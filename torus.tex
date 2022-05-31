@@ -223,7 +223,91 @@ In fact, we can even correctly account for the equivalence classes of triples; l
 \begin{proof}
 	Observe that
 	\[\widehat H^0(G,\op{Hom}_\ZZ(\coker\mathcal F_2,L^\times))=\frac{\op{Hom}_\ZZ(\coker\mathcal F_2,L^\times)^G}{N_G(\op{Hom}_\ZZ(\coker\mathcal F_2,L^\times))},\]
-	so to pass through $\varphi$ appropriately, we have to show that $\varphi(\im N_G)=S_0$.\todo{Show this.}
+	so to pass through $\varphi$ appropriately, we have to show that $\varphi(\im N_G)=S_0$.
+	
+	Well, pick up some $f\in\op{Hom}_\ZZ(\coker\mathcal F_2,L^\times)$, and we will pass it through $N_G$. In particular, to compute $\varphi(N_G(f))$, we are only interested in computing $(N_Gf)(1,0,0)$ and $(N_Gf)(0,1,0)$ and $(N_Gf)(0,0,1)$. As usual, we proceed by force. On one hand,
+	\begin{align*}
+		(N_Gf)(1,0,0) &= \prod_{i=0}^{n_1-1}\prod_{j=0}^{n_2-1}\sigma_1^{i}\sigma_2^{j}f\left(\sigma_1^{n_1-i}\sigma_2^{n_2-j},0,0\right) \\
+		&= \prod_{i=0}^{n_1-1}\prod_{j=0}^{n_2-1}\sigma_1^{i}\sigma_2^{j}f\left(T_2\sigma_2^{(n_2-j)}+1,0,0\right) \\
+		&= \prod_{i=0}^{n_1-1}\prod_{j=0}^{n_2-1}\sigma_1^{i}\sigma_2^{j}f\left(1,-N_1\sigma_2^{(n_2-j)},0\right) \\
+		&= \left[\prod_{i=0}^{n_1-1}\prod_{j=0}^{n_2-1}\sigma_1^{i}\sigma_2^{j}f(1,0,0)\right]\left[\prod_{i=0}^{n_1-1}\prod_{j=0}^{n_2-1}\sigma_1^{i}\sigma_2^{j}f\left(0,-N_1\sigma_2^{(n_2-j)},0\right)\right] \\
+		&= Nf(1,0,0)\cdot N_1\prod_{j=0}^{n_2-1}\prod_{p=0}^{n_1-1}\prod_{q=0}^{n_2-j-1}\sigma_2^{j}f\left(0,\sigma_1^p\sigma_2^q,0\right)^{-1} \\
+		&= Nf(1,0,0)\cdot N_1\prod_{p=0}^{n_1-1}\prod_{q=0}^{n_2-1}\prod_{j=0}^{n_2-q-1}\sigma_2^{j}f\left(0,\sigma_1^p\sigma_2^q,0\right)^{-1}.
+	\end{align*}
+	As such, we set
+	\[m_1\coloneqq N_2f(1,0,0)\cdot\prod_{p=0}^{n_1-1}\prod_{q=0}^{n_2-1}\prod_{j=0}^{n_2-q-1}\sigma_2^{j}f\left(0,\sigma_1^p\sigma_2^q,0\right)^{-1}\]
+	so that $(N_Gf)(1,0,0)=N_1m_1$. In particular,
+	\begin{align*}
+		\frac{m_1}{\sigma_2m_1} &= \prod_{p=0}^{n_1-1}\prod_{q=0}^{n_2-1}\prod_{j=0}^{n_2-q-1}\frac{\sigma_2^{j+1}f\left(0,\sigma_1^p\sigma_2^q,0\right)}{\sigma_2^{j}f\left(0,\sigma_1^p\sigma_2^q,0\right)} \\
+		&= \prod_{p=0}^{n_1-1}\prod_{q=0}^{n_2-1}\frac{\sigma_2^{n_2-q}f\left(0,\sigma_1^p\sigma_2^q,0\right)}{f\left(0,\sigma_1^p\sigma_2^q,0\right)}.
+	\end{align*}
+	On the other hand,
+	\begin{align*}
+		(N_Gf)(0,0,1) &= \prod_{i=0}^{n_1-1}\prod_{j=0}^{n_2-1}\sigma_1^i\sigma_2^jf\left(0,0,\sigma_1^{n_1-i}\sigma_2^{n_2-j}\right) \\
+		&= \prod_{i=0}^{n_1-1}\prod_{j=0}^{n_2-1}\sigma_1^i\sigma_2^jf\left(0,0,T_1\sigma_1^{(n_1-i)}+1\right) \\
+		&= \prod_{i=0}^{n_1-1}\prod_{j=0}^{n_2-1}\sigma_1^i\sigma_2^jf\left(0,N_2\sigma_1^{(n_1-i)},1\right) \\
+		&= \left[\prod_{i=0}^{n_1-1}\prod_{j=0}^{n_2-1}\sigma_1^i\sigma_2^jf\left(0,0,1\right)\right]\left[\prod_{i=0}^{n_1-1}\prod_{j=0}^{n_2-1}\sigma_1^i\sigma_2^jf\left(0,N_2\sigma_1^{(n_1-i)},0\right)\right] \\
+		&= Nf(0,0,1)\cdot N_2\prod_{i=0}^{n_1-1}\prod_{p=0}^{n_1-i-1}\prod_{q=0}^{n_2-1}\sigma_1^if\left(0,\sigma_1^p\sigma_2^q,0\right) \\
+		&= Nf(0,0,1)\cdot N_2\prod_{p=0}^{n_1-1}\prod_{q=0}^{n_2-1}\prod_{i=0}^{n_1-p-1}\sigma_1^if\left(0,\sigma_1^p\sigma_2^q,0\right).
+	\end{align*}
+	As such, we set
+	\[m_2\coloneqq N_1f(0,0,1)\cdot\prod_{p=0}^{n_1-1}\prod_{q=0}^{n_2-1}\prod_{i=0}^{n_1-p-1}\sigma_1^i\sigma_2^{n_2-q}f\left(0,\sigma_1^p\sigma_2^q,0\right)\]
+	so that $(N_Gf)(0,0,1)=N_2m_2$. In particular,
+	\begin{align*}
+		\frac{\sigma_1m_2}{m_2} &= \prod_{p=0}^{n_1-1}\prod_{q=0}^{n_2-1}\prod_{i=0}^{n_1-p-1}\frac{\sigma_1^{i+1}\sigma_2^{n_2-q}f\left(0,\sigma_1^p\sigma_2^q,0\right)}{\sigma_1^i\sigma_2^{n_2-q}f\left(0,\sigma_1^p\sigma_2^q,0\right)} \\
+		&= \prod_{p=0}^{n_1-1}\prod_{q=0}^{n_2-1}\frac{\sigma_1^{n_1-p}\sigma_2^{n_2-q}f\left(0,\sigma_1^p\sigma_2^q,0\right)}{\sigma_2^{n_2-q}f\left(0,\sigma_1^p\sigma_2^q,0\right)}.
+	\end{align*}
+	Thus,
+	\begin{align*}
+		\frac{m_1}{\sigma_2m_1}\cdot\frac{\sigma_1m_2}{m_2} &= \prod_{p=0}^{n_1-1}\prod_{q=0}^{n_2-1}\left(\frac{\sigma_2^{n_2-q}f\left(0,\sigma_1^p\sigma_2^q,0\right)}{f\left(0,\sigma_1^p\sigma_2^q,0\right)}\cdot\frac{\sigma_1^{n_1-p}\sigma_2^{n_2-q}f\left(0,\sigma_1^p\sigma_2^q,0\right)}{\sigma_2^{n_2-q}f\left(0,\sigma_1^p\sigma_2^q,0\right)}\right) \\
+		&= \prod_{p=0}^{n_1-1}\prod_{q=0}^{n_2-1}\left(\frac{\sigma_1^{n_1-p}\sigma_2^{n_2-q}f\left(0,\sigma_1^p\sigma_2^q,0\right)}{f\left(0,\sigma_1^p\sigma_2^q,0\right)}\right) \\
+		&= \left(\prod_{p=0}^{n_1-1}\prod_{q=0}^{n_2-1}\sigma_1^{n_1-p}\sigma_2^{n_2-q}f\left(0,\sigma_1^p\sigma_2^q,0\right)\right)\bigg/f(0,N,0) \\
+		&= (N_Gf)(0,1,0),
+	\end{align*}
+	where in the last equality we have used that $(0,N,0)=(0,0,0)$. In total, we have computed
+	\[\big((N_Gf)(1,0,0),(N_Gf)(0,1,0),(N_Gf)(0,0,1)\big)=\left(N_1m_1,\frac{m_1}{\sigma_2m_1}\cdot\frac{\sigma_1m_2}{m_2},N_2m_2\right)\in S_0,\]
+	so we see that $\varphi(\im N_G)\subseteq S_0$.
+
+	To get the equality $\varphi(\im N_G)=S_0$, we pick up arbitrary $m_1,m_2\in L^\times$ and exhibit $f\colon\coker\mathcal F_2\to L^\times$ such that $f$ produces $m_1$ and $m_2$ as described in the algorithm above.
+	\begin{warn}
+		The following construction is not extremely rigorous. The correct thing to do would be to write down a full formula for $f$ and then verify that it is in fact a morphism $f\colon\coker\mathcal F_2\to L^\times$. I am not doing this out of laziness.
+	\end{warn}
+	We quickly discuss what freedom we are allowed to give to $f$.
+	\begin{itemize}
+		\item The fact that $(\sigma_1,0,0)=(1,0,0)$ corresponds to a relation $f\left(\sigma_1^i,0,0\right)=f(1,0,0)$. Similarly, we require $f\left(0,0,\sigma_2^j\right)=f(0,0,1)$.
+		\item Because $(T_2,N_1,0)=(0,0,0)$, we require $(\sigma_2^i,0,0)=(1,-N_1\sigma_2^{(i)},0)$ (here, $i\ge1$), as above. However, this is the last relation on the left coordinate, so we may set $f(1,0,0)$ however we please and solve for the remaining $f\left(\sigma_2^i,0,0\right)$ based off of what we'll set the elements $f(0,g,0)$ equal to.
+		\item Similarly, we may set $f(0,0,1)$ however we please and solve for the remaining $f\left(0,0,\sigma_1^i\right)$.
+		\item As for the middle terms, we are unaffected by relations dealing with $\im\mathcal F_2$ because we already accounted for them above. So we merely need to vanish on $N$, which translates into
+		\[\prod_{g\in G}f(0,g,0)=1.\]
+	\end{itemize}
+	So in total, we may set $f(1,0,0)$ and $f(0,0,1)$ however we please and then set $f(0,g,0)$ for $g\in G$ however we please so long as
+	\[\prod_{g\in G}f(0,g,0)=1.\]
+	As such, we do the following.
+	\begin{itemize}
+		\item Set $f\left(0,\sigma_2^{n_2-1},0\right)=m_1^{-1}$.
+		\item Set $f\left(0,\sigma_1^{n_1-1},0\right)=m_2$.
+		\item To correct, set $f(0,1,0)=1/\big(f\left(0,\sigma_2^{n_2-1},0\right)f\left(0,\sigma_1^{n_1-1},0\right)\big)$ and set $f(0,g,0)=1$ for all other $g\in G$. This gives
+		\[\prod_{g\in G}f(0,g,0)=1.\]
+		\item Set $f(1,0,0)=f(0,\sigma_1^{n_1-1},0)f(0,1,0)$.
+		\item Set $f(0,0,1)=1/\big(\sigma_2f\left(0,\sigma_2^{n_2-1},0\right)\cdot \sigma_2^{n_2}f\left(0,1,0\right)\big)$.
+	\end{itemize}
+	The above data describe some $f\colon\coker\mathcal F_2\to L^\times$, as discussed above. It remains to show that this $f$ produces $m_1$ and $m_2$ as needed. Well, we compute
+	\begin{align*}
+		m_1 &\stackrel?= N_2f(1,0,0)\cdot\prod_{p=0}^{n_1-1}\prod_{q=0}^{n_2-1}\prod_{j=0}^{n_2-q-1}\sigma_2^{j}f\left(0,\sigma_1^p\sigma_2^q,0\right)^{-1} \\
+		&= N_2f(1,0,0)\cdot\frac1{f\left(0,\sigma_2^{n_2-1},0\right)\cdot N_2f\left(0,\sigma_1^{n_1-1},0\right)\cdot N_2f(0,1,0)} \\
+		&= \frac1{f\left(0,\sigma_2^{n_2-1},0\right)} \\
+		&= m_1,
+	\end{align*}
+	as needed.
+	
+	Similarly,
+	\begin{align*}
+		m_2 &\stackrel?= N_1f(0,0,1)\cdot\prod_{p=0}^{n_1-1}\prod_{q=0}^{n_2-1}\prod_{i=0}^{n_1-p-1}\sigma_1^i\sigma_2^{n_2-q}f\left(0,\sigma_1^p\sigma_2^q,0\right) \\
+		&= N_1f(0,0,1)\cdot \sigma_2^{n_2}f\left(0,\sigma_1^{n_1-1},0\right)\cdot N_1\sigma_2f\left(0,\sigma_2^{n_2-1},0\right)\cdot N_1\sigma_2^{n_2}f\left(0,1,0\right) \\
+		&= \sigma_2^{n_2}f\left(0,\sigma_1^{n_1-1},0\right) \\
+		&= m_2,
+	\end{align*}
+	as needed. This finishes the construction.
 \end{proof}
 To tie up loose ends, we promised to use $\delta u$ from \autoref{sec:cocycle}, so here is how.
 \begin{proposition}
@@ -239,7 +323,7 @@ To tie up loose ends, we promised to use $\delta u$ from \autoref{sec:cocycle}, 
 	\end{align*}
 	Passing through evaluation, we will get an element in $L^\times$ which looks like
 	\begin{align*}
-		q_1\alpha_1\cdot-\sigma_1^{a_1}\sigma_1^{(b_1)}\sigma_2^{(a_2)}\beta\cdot q_2\sigma_1^{a_1+b_1}\alpha_2,
+		\varphi^{-1}(\alpha_1,\beta,\alpha_2)\left((\delta u)\left(\sigma_1^{a_1}\sigma_2^{a_2},\sigma_1^{b_1}\sigma_2^{b_2}\right)\right)=q_1\alpha_1\cdot-\sigma_1^{a_1}\sigma_1^{(b_1)}\sigma_2^{(a_2)}\beta\cdot q_2\sigma_1^{a_1+b_1}\alpha_2,
 	\end{align*}
 	which is exactly what we wanted (after a little rearrangement).
 \end{proof}

@@ -27,3 +27,5 @@ Dwork
 Serre
 Lubin
 automorphisms on
+nonnegative
+pointwise

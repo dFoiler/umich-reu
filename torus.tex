@@ -4,7 +4,6 @@
 \newcommand{\nirpdftitle}{Torus Worksheet}
 \usepackage{import}
 \inputfrom{../notes}{nir}
-\numberwithin{equation}{section}
 
 \pagestyle{contentpage}
 
@@ -19,7 +18,230 @@
 
 \maketitle
 
+\setcounter{tocdepth}{4}
+\tableofcontents
+
 \section{The Bicyclic Case}
-We proceed as follows.
+Set $G\simeq G_1\times G_2$ where $G_1=\langle\sigma_1\rangle\subseteq G$ and $G_2=\langle\sigma_2\rangle\subseteq G$ with $n_1\coloneqq\#G_1$ and $n_2\coloneqq\#G_2$. We define the elements
+\[N_i\coloneqq\sum_{k=0}^{n_i-1}\sigma_i^k\qquad\text{and}\qquad T_i\coloneqq(\sigma_i-1)\]
+for $i\in\{1,2\}$. Additionally, we define
+\[N\coloneqq N_1N_2=\sum_{k=0}^{n_1-1}\sum_{\ell=0}^{n_2-1}\sigma_1^k\sigma_2^\ell.\]
+We will also use the elements $N_i,T_i,N$ to mean the induced multiplication maps $\ZZ[G]\to\ZZ[G]$.
+\begin{remark}
+	We will freely use the facts that $\ker T_i=\im N_i$ and $\im T_i=\ker N_i$. These are not too hard to prove and follow similarly as in the cyclic case.
+\end{remark}
+We take a moment to define the maps
+\begin{align*}
+	\mathcal F_1\colon\frac{\ZZ[G]}{\im T_1}\times\frac{\ZZ[G]}{\im N}\times\frac{\ZZ[G]}{\im T_2} &\to \ZZ[G]\times\ZZ[G] \\
+	(x,y,z) &\mapsto (N_2z+T_1y,N_1x-T_2y) \\
+	\mathcal F_2\colon\ZZ[G]\times\ZZ[G] &\to \frac{\ZZ[G]}{\im T_1}\times\frac{\ZZ[G]}{\im N}\times\frac{\ZZ[G]}{\im T_2} \\
+	(a,b) &\mapsto (T_2a,N_1a-N_2b,T_1b).
+\end{align*}
+Observe that $\mathcal F_1$ is in fact well-defined: if $x-x'=T_1a\in\im T_1$ and $y-y'=Nb\in\im N$ and $z-z'=T_2c\in\im T_2$, then
+\begin{align*}
+	N_2z &= N_2z' + N_2T_2c = N_2z' \\
+	N_1x &= N_1x' + N_1T_1a = N_1x' \\
+	T_1y &= T_1y' + T_1Nb = T_1y' \\
+	T_2y &= T_2y' + T_2Nb = T_2y',
+\end{align*}
+so everything is independent of choice of representative.
+
+\subsection{The Complex}
+Now, we can chain $\mathcal F_1$ and $\mathcal F_2$ into an infinite sequence as follows.
+\begin{equation}
+	\cdots\stackrel{\mathcal F_1}\to\ZZ[G]\times\ZZ[G]\stackrel{\mathcal F_2}\to\frac{\ZZ[G]}{\im T_1}\times\frac{\ZZ[G]}{\im N}\times\frac{\ZZ[G]}{\im T_2}\stackrel{\mathcal F_1}\to\ZZ[G]\times\ZZ[G]\stackrel{\mathcal F_2}\to\cdots \label{eq:bicycliccomplex}
+\end{equation}
+We make a few preliminary observations about \autoref{eq:bicycliccomplex}.
+\begin{lemma} \label{lem:getcomplex}
+	The sequence of maps in \autoref{eq:bicycliccomplex} makes a complex.
+\end{lemma}
+\begin{proof}
+	We need to show that $\mathcal F_1\circ\mathcal F_2=\mathcal F_2\circ\mathcal F_1=0$. This is a matter of force. On one hand,
+	\begin{align*}
+		(\mathcal F_1\circ\mathcal F_2)(a,b) &= \mathcal F_1(T_2a,N_1a-N_2b,T_1b) \\
+		&= \big(N_2(T_1b)+T_1(N_1a-N_2b),N_1(T_2a)-T_2(N_1a-N_2b)\big) \\
+		&= \big(N_2T_1b+T_1N_1a-T_1N_2b,N_1T_2a-T_2N_1a-T_2N_2b\big) \\
+		&= \big(N_2T_1b-T_1N_2b,N_1T_2a-T_2N_2b\big) \\
+		&= (0,0).
+	\end{align*}
+	On the other hand,
+	\begin{align*}
+		(\mathcal F_2\circ\mathcal F_1)(x,y,z) &= \mathcal F_2(N_2z+T_1y,N_1x-T_2y) \\
+		&= \big(T_2(N_2z+T_1y),N_1(N_2z+T_1y)-N_2(N_1x-T_2y),T_1(N_1x-T_2y)\big) \\
+		&= \big(T_2N_2z+T_2T_1y,N_1N_2z+N_1T_1y-N_2N_1x+N_2T_2y,T_1N_1x-T_1T_2y\big) \\
+		&= \big(T_2T_1y,N_1N_2z-N_2N_1x,-T_1T_2y\big),
+	\end{align*}
+	which we can see represents $0$ in $\ZZ[G]/\im T_1\times\ZZ[G]/\im N\times\ZZ[G]/\im T_2$.
+\end{proof}
+\begin{lemma} \label{lem:almostexact}
+	The complex \autoref{eq:bicycliccomplex} is exact at each $\ZZ[G]/\im T_1\times\ZZ[G]/\im N\times\ZZ[G]/\im T_2$.
+\end{lemma}
+\begin{proof}
+	We need to show that $\ker\mathcal F_1=\im\mathcal F_2$. By \autoref{lem:getcomplex}, we already know that $\im\mathcal F_2\subseteq\ker\mathcal F_2$, so it remains to get the reverse inclusion. Well, suppose $(x,y,z)\in\ker\mathcal F_1$, which means that
+	\[N_2z+T_1y=N_1x-T_2y=0.\]
+	Now, note that because $x\in\ZZ[G]/\im T_1$, where $\sigma_1\equiv1\pmod{T_1}$, we have
+	\[N_1x=\sum_{k=0}^{n_1-1}\sigma_1^kx\equiv n_1x.\]
+	However,
+	\[n_1\cdot N_2x=N_2(n_1x)=N_2N_1x=N_2(N_1x-T_2y)=0,\]
+	so $N_2x=0$. Thus, $x\in\ker N_2=\im T_2$, so we may write $x=T_2a$ for some $a\in\ZZ[G]$. A similar argument (replacing $1$s with $2$s and adjusting some signs) shows that we may write $z=T_1b$ for some $b\in\ZZ[G]$.
+
+	To show $(x,y,z)\in\im\mathcal F_2$, it remains to show that $y\equiv N_1a-N_2b\pmod N$. Well, notice that
+	\begin{align*}
+		T_1(N_1a-N_2b-y) &= -(N_2T_1b+T_1y) \\
+		&= -(N_2z+T_1y) \\
+		&= 0 \\
+		T_2(N_1a-N_2b-y) &= N_1T_2a-T_2y \\
+		&= N_1x-T_2y \\
+		&= 0,
+	\end{align*}
+	so $N_1a-N_2b-y\in(\ker T_1)\cap(\ker T_2)$. To finish, we would like $(\ker T_1)\cap(\ker T_2)\subseteq\im N$. Well, if $\alpha\in(\ker T_1)\cap(\ker T_2)$, then we can write
+	\[\alpha=\sum_{k=0}^{n_1-1}\sum_{\ell=0}^{n_2-1}a_{k,\ell}\sigma_1^k\sigma_2^\ell.\]
+	Now, the condition $T_1\alpha=0$ implies that $a_{k,\ell}-a_{k-1,\ell}=0$ for each $k$, where indices are taken modulo $n_i$ as necessary; thus, $a_{k,\ell}$ is constant with respect to $k$. Similarly, $T_2\alpha=0$ implies that $a_{k,\ell}$ is constant with respect to $\ell$, so
+	\[\alpha=\sum_{k=0}^{n_1-1}\sum_{\ell=0}^{n_2-1}a_{0,0}\sigma_1^k\sigma_2^\ell=Na_{0,0}\in\im N,\]
+	as desired.
+\end{proof}
+
+\subsection{A Cocycle} \label{sec:cocycle}
+The benefit to our analysis above is that we have a short exact sequence
+\begin{equation}
+	0\to\coker\mathcal F_2\stackrel{\mathcal F_1}\to\ZZ[G]\times\ZZ[G]\to\coker\mathcal F_1\to1. \label{eq:ses}
+\end{equation}
+In particular, the (induced) map $\mathcal F_1\colon\coker\mathcal F_2\to\ZZ[G]\times\ZZ[G]$ is injective by \autoref{lem:almostexact}.
+
+In the future, we will want a $2$-cocycle in $Z^2(G,\coker\mathcal F_2)$, which we will create by tracking a boundary morphism through \autoref{eq:ses}. Thus, we want to start with a $1$-cocycle in $Z^2(G,\coker\mathcal F_1)$. For this, we define the notation
+\[\sigma_i^{(a_i)}\coloneqq\sum_{k=0}^{a_i-1}\sigma_i^k\]
+for $i\in\{1,2\}$ and any nonnegative integer $a_i\ge0$. For example, $\sigma_i^{(n_i)}=N_i$. We also note that
+\[\sigma_i^{(a_i+b_i)}=\sigma_i^{(a_i)}+\sigma_i^{a_i}\sigma_i^{(b_i)},\]
+which justifies our ``almost exponential'' notation.
+\begin{lemma}
+	Define $u\in C^1(G,\ZZ[G]\times\ZZ[G])$ by $u\left(\sigma_1^{a_1}\sigma_2^{a_2}\right)\coloneqq\left(\sigma_1^{a_1}\sigma_2^{(a_2)},\sigma_1^{(a_1)}\right)$. Then the induced $1$-cochain $\overline u\in C^1(G,\coker\mathcal F_1)$ is a $1$-cocycle.
+\end{lemma}
+\begin{proof}
+	We need to show that $\overline{du}=d\overline u=0$; i.e., we need to show that $\im(du)\subseteq\im\mathcal F_1$. Well, pick up $a_i,b_i$ with $0\le a_i,b_i<n_i$, and set
+	\[a_i+b_i=n_iq_i+r_i\]
+	by the division algorithm so that $q_i\in\{0,1\}$ and $0\le r_i<n_i$. This lets us compute
+	\begin{align*}
+		(du)\left(\sigma_1^{a_1}\sigma_2^{a_2},\sigma_1^{b_1}\sigma_2^{b_2}\right) &= \sigma_1^{a_1}\sigma_2^{a_2}u\left(\sigma_1^{b_1}\sigma_2^{b_2}\right)-u\left(\sigma_1^{r_1}\sigma_2^{r_2}\right)+u\left(\sigma_1^{a_1}\sigma_2^{a_2}\right) \\
+		&= \sigma_1^{a_1}\sigma_2^{a_2}\left(\sigma_1^{b_1}\sigma_2^{(b_2)},\sigma_1^{(b_1)}\right)-\left(\sigma_1^{r_1}\sigma_2^{(r_2)},\sigma_1^{(r_1)}\right)+\left(\sigma_1^{a_1}\sigma_2^{(a_2)},\sigma_1^{(a_1)}\right).
+	\end{align*}
+	Now, note
+	\begin{align*}
+		\left(\sigma_1^{r_1}\sigma_2^{(r_2)},\sigma_1^{(r_1)}\right) &= \left(\sigma_1^{a_1+b_1}\sigma_2^{(r_2)},\sigma_1^{(r_1)}\right) \\
+		&= \left(\sigma_1^{a_1+b_1}\sigma_2^{(a_2+b_2)}-\sigma_1^{a_1+b_1}\sigma_2^{r_2}\sigma_2^{(n_2q_2)},\sigma_1^{(a_1+b_1)}-\sigma_1^{r_1}\sigma_1^{(n_1q_1)}\right) \\
+		&= \left(\sigma_1^{a_1+b_1}\sigma_2^{(a_2+b_2)},\sigma_1^{(a_1+b_1)}\right)-\left(\sigma_1^{a_1+b_1}\sigma_2^{a_2+b_2}\cdot q_2N_2,\sigma_1^{a_1+b_1}\cdot q_1N_1\right).
+	\end{align*}
+	On the other hand,
+	\begin{align*}
+		\sigma_1^{a_1}\sigma_2^{a_2}\left(\sigma_1^{b_1}\sigma_2^{(b_2)},\sigma_1^{(b_1)}\right) &= \left(\sigma_1^{a_1+b_1}\sigma_2^{a_2}\sigma_2^{(b_2)},\sigma_1^{a_1}\sigma_2^{a_2}\sigma_1^{(b_1)}\right) \\
+		&= \left(\sigma_1^{a_1+b_1}\sigma_2^{a_2}\sigma_2^{(b_2)},\sigma_1^{a_1}\sigma_1^{(b_1)}\right)+\left(0,\sigma_1^{a_1}\left(\sigma_2^{a_2}-1\right)\sigma_1^{(b_1)}\right) \\
+		&= \left(\sigma_1^{a_1+b_1}\sigma_2^{a_2}\sigma_2^{(b_2)},\sigma_1^{a_1}\sigma_1^{(b_1)}\right)+\left(0,\sigma_1^{a_1}\sigma_2^{(a_2)}\sigma_1^{(b_1)}T_2\right),
+	\end{align*}
+	and
+	\begin{align*}
+		\left(\sigma_1^{a_1}\sigma_2^{(a_2)},\sigma_1^{(a_1)}\right) &= \left(\sigma_1^{a_1+b_1}\sigma_2^{(a_1)},\sigma_1^{(a_1)}\right)+\left(\sigma_1^{a_1}\left(1-\sigma_1^{b_1}\right)\sigma_2^{(a_2)},0\right) \\
+		&= \left(\sigma_1^{a_1+b_1}\sigma_2^{(a_1)},\sigma_1^{(a_1)}\right)+\left(-\sigma_1^{a_1}\sigma_1^{(b_1)}\sigma_2^{(a_2)}T_1,0\right).
+	\end{align*}
+	Synthesizing, we see that $\sigma_2^{(a_2+b_2)}=\sigma_2^{(a_2)}+\sigma_1^{a_2}\sigma_2^{(b_2)}$ causes the ``leading'' terms to vanish, leaving us with
+	\begin{align*}
+		(du)\left(\sigma_1^{a_1}\sigma_2^{a_2},\sigma_1^{b_1}\sigma_2^{b_2}\right) &= \left(0,\sigma_1^{a_1}\sigma_2^{(a_2)}\sigma_1^{(b_1)}T_2\right)+\left(q_2\sigma_1^{a_1+b_1}\sigma_2^{a_2+b_2}N_2,q_1\sigma_1^{a_1+b_1}N_1\right)+\left(-\sigma_1^{a_1}\sigma_1^{(b_1)}\sigma_2^{(a_2)}T_1,0\right) \\
+		&= \mathcal F_1\left(q_1\sigma_1^{a_1+b_1},\quad-\sigma_1^{a_1}\sigma_1^{(b_1)}\sigma_2^{(a_2)},\quad q_2\sigma_1^{a_1+b_1}\sigma_2^{a_2+b_2}\right),
+	\end{align*}
+	which finishes.
+\end{proof}
+In particular, from our above computation of $du$, we can pull back along $\mathcal F_1$ to find $\delta u\in Z^2(G,\coker\mathcal F_2)$ is given by
+\[(\delta u)\left(\sigma_1^{a_1}\sigma_2^{a_2},\sigma_1^{b_1}\sigma_2^{b_2}\right)=\left(q_1\sigma_1^{a_1+b_1},\quad-\sigma_1^{a_1}\sigma_1^{(b_1)}\sigma_2^{(a_2)},\quad q_2\sigma_1^{a_1+b_1}\sigma_2^{a_2+b_2}\right).\]
+Simplifying a bit, we note that $\sigma_i\equiv1\pmod{T_i}$, so we can write this as
+\begin{equation}
+	(\delta u)\left(\sigma_1^{a_1}\sigma_2^{a_2},\sigma_1^{b_1}\sigma_2^{b_2}\right)=\left(q_1,\quad-\sigma_1^{a_1}\sigma_1^{(b_1)}\sigma_2^{(a_2)},\quad q_2\sigma_1^{a_1+b_1}\right). \label{eq:deltau}
+\end{equation}
+We will use $\delta u$ again shortly.
+
+\subsection{Triples}
+We have now built enough machinery to be able to talk about triples; for the rest of the article, we will have $G=\op{Gal}(L/K)$ for some bicyclic extension $L/K$. Let $S$ be the set of triples. The following is the main idea.
+\begin{lemma} \label{lem:tripleisomorphism}
+	There is a natural isomorphism between morphisms $f\in\op{Hom}_{\ZZ[G]}\left(\coker\mathcal F_2,L^\times\right)$ and the set $S$ of triples $(\alpha_1,\beta,\alpha_2)$ given by
+	\[\varphi\colon f\mapsto\big(f(1,0,0),f(0,1,0),f(0,0,1)\big).\]
+\end{lemma}
+\begin{proof}
+	For brevity, set $e_1\coloneqq(1,0,0)$ and $e_2\coloneqq(0,1,0)$ and $e_3\coloneqq(0,0,1)$ to be elements of $\ZZ[G]$. Now, let $\varphi\colon\op{Hom}_{\ZZ[G]}(\coker\mathcal F_2,L^\times)\to S$ be defined by
+	\[\varphi\colon f\mapsto\big(f(e_1),f(e_2),f(e_3)\big).\]
+	The main check here is that $\varphi$ is well-defined. We have the following checks.
+	\begin{itemize}
+		\item We check that our elements live in the correct fields. Note that $f(e_1),f(e_2),f(e_3)\in L^\times$. Further,
+		\[\sigma_1(f(e_1))=f(\sigma_1,0,0)=f(1,0,0)=f(e_1)\]
+		where the main step is that $\sigma_1\equiv1\pmod{T_1}$ enforces $(\sigma_1,0,0)=(1,0,0)$. It follows that $f(e_1)\in L^{\langle\sigma_1\rangle}$. An analogous argument shows that $f(e_3)\in L^{\langle\sigma_2\rangle}$.
+		\item We check the relations. The main point is that
+		\begin{align*}
+			(0,N_1,0) &\equiv (-T_2,0,0) \pmod{\im\mathcal F_2}, \\
+			(0,N_2,0) &\equiv (0,0,T_1) \pmod{\im\mathcal F_2}.
+		\end{align*}
+		As such, observe that
+		\begin{align*}
+			\op N_{L/L^{\langle\sigma_1\rangle}}f(0,1,0) &= f(0,N_1,0) \\
+			&= f(-T_2,0,0) \\
+			&= f(1,0,0)/\sigma_2f(1,0,0).
+		\end{align*}
+		The other relation is similar: observe
+		\begin{align*}
+			\op N_{L/L^{\langle\sigma_2\rangle}}f(0,1,0) &= f(0,N_2,0) \\
+			&= f(0,0,T_1) \\
+			&= \sigma_1f(0,0,1)/f(0,0,1),
+		\end{align*}
+		which is what we wanted.
+	\end{itemize}
+	We also remark that $\varphi$ is homomorphic because the operations on both $\op{Hom}_{\ZZ[G]}(\coker\mathcal F_2,L^\times)$ and $S$ are both defined pointwise.
+
+	Now, in the other direction, we define $\psi\colon S\to\op{Hom}_{\ZZ[G]}(\coker\mathcal F_2,L^\times)$ by
+	\[\psi\colon(\alpha_1,\beta,\alpha_2)\mapsto\big((z_1,z_2,z_3)\mapsto z_1\alpha\cdot z_2\beta\cdot z_3\alpha_2\big).\]
+	Again, the main check is that $\psi$ is well-defined. Well, given a triple $(\alpha_1,\beta,\alpha_2)\in S$, we show that $\psi(\alpha_1,\beta,\alpha_2)$ is well-defined as a $G$-module homomorphism. To begin, we note that we can start with a function $f\colon\ZZ[G]\times\ZZ[G]\times\ZZ[G]\to L^\times$ by
+	\[f\colon(z_1,z_2,z_3)\mapsto z_1\alpha_1\cdot z_2\beta\cdot z_3\alpha_2.\]
+	This can be quickly checked to be a $G$-module homomorphism: note that any $\alpha\in L^\times$ makes $z\mapsto z\alpha$ is a $G$-module homomorphism $L^\times\to L^\times$, and the above is more or less a linear combination of such $G$-module homomorphisms.
+
+	We now investigate $\ker f$. Note that
+	\[f(T_1,0,0)=T_1\alpha=(\sigma_1\alpha_1)/\alpha_1=1\]
+	because $\alpha_1\in L^{\langle\sigma_1\rangle}$. An identical argument shows that $f(0,0,T_2)=1$. Further,
+	\[f(0,N,0)=N\beta=\op N_{L/K}(\beta)=1.\]
+	In total, we see that $\im T_1\times\im N\times\im T_2\subseteq\ker f$, so we get to induce a function $\overline f\colon\ZZ[G]/\im T_1\times\ZZ[G]/\im N\times\ZZ[G]\im T_2$ by
+	\[\overline f\colon(z_1,z_2,z_3)\mapsto z_1\alpha_1\cdot z_2\beta\cdot z_3\alpha_2.\]
+	Further, we note that $(a,b)\in\ZZ[G]\times\ZZ[G]$ will have
+	\begin{align*}
+		\overline f(\mathcal F_2(a,b)) &= f(T_2a,N_1a-N_2b,T_1b) \\
+		&= (T_2a)\alpha_1\cdot(N_1a-N_2b)\beta\cdot(T_1b)\alpha_2 \\
+		&= a\left(\frac{\sigma_2\alpha_1}{\alpha_1}\cdot\op N_{L/L^{\langle\sigma_1\rangle}}(\beta)\right)\cdot b\left(\frac{\sigma_1\alpha_2}{\alpha_2}\cdot\op N_{L/L^{\langle\sigma_2\rangle}}(\beta^{-1})\right),
+	\end{align*}
+	which we see goes to $1$ by the relations between $\beta$ and the $\alpha$s. Thus, we do indeed a $G$-module homomorphism $\coker\mathcal F_2\to S$ defined as $\psi(\alpha_1,\beta,\alpha_2)$ requires.
+
+	We now finish by stating that $\varphi$ and $\psi$ are mutually inverse, essentially by construction. Checking that $(\varphi\circ\psi)(\alpha_1,\beta,\alpha_2)=(\alpha_1,\beta,\alpha_2)$ is a matter of plugging everything through; on the other hand, to show $(\psi\circ\varphi)(f)=f$, we note that
+	\[f(z_1,z_2,z_3)=z_1f(1,0,0)\cdot z_2f(0,1,0)\cdot z_3f(0,0,1)=\psi(\varphi(f))\]
+	because $f$ is a $G$-module homomorphism.
+\end{proof}
+In fact, we can even correctly account for the equivalence classes of triples; let $S_0$ denote the subgroup of triples coming from the trivial gerb.
+\begin{proposition}
+	The isomorphism $\varphi$ of \autoref{lem:tripleisomorphism} descends to a natural isomorphism
+	\[\overline\varphi\colon\widehat H^0(G,\op{Hom}_\ZZ(\coker\mathcal F_2,L^\times))\simeq S/S_0.\]
+\end{proposition}
+\begin{proof}
+	Observe that
+	\[\widehat H^0(G,\op{Hom}_\ZZ(\coker\mathcal F_2,L^\times))=\frac{\op{Hom}_\ZZ(\coker\mathcal F_2,L^\times)^G}{N_G(\op{Hom}_\ZZ(\coker\mathcal F_2,L^\times))},\]
+	so to pass through $\varphi$ appropriately, we have to show that $\varphi(\im N_G)=S_0$.\todo{Show this.}
+\end{proof}
+To tie up loose ends, we promised to use $\delta u$ from \autoref{sec:cocycle}, so here is how.
+\begin{proposition}
+	Fix a triple $(\alpha_1,\beta,\alpha_2)\in S$. Then the cocycle in $Z^2(G,L^\times)$ corresponding to $(\alpha_1,\beta,\alpha_2)$ is
+	\[(\delta u)\cup\varphi^{-1}(\alpha_1,\beta,\alpha_2),\]
+	where we are implicitly passing through the evaluation map $\coker\mathcal F_2\otimes_{\ZZ}\op{Hom}_\ZZ(\coker\mathcal F_2,L^\times)\to L^\times$.
+\end{proposition}
+\begin{proof}
+	The cup product on inhomogeneous cochains is given by
+	\begin{align*}
+		\big((\delta u)\cup\varphi^{-1}(\alpha_1,\beta,\alpha_2)\big)\left(\sigma_1^{a_1}\sigma_2^{a_2},\sigma_1^{b_1}\sigma_2^{b_2}\right) &= (\delta u)\left(\sigma_1^{a_1}\sigma_2^{a_2},\sigma_1^{b_1}\sigma_2^{b_2}\right)\otimes_\ZZ\sigma_1^{a_1+b_1}\sigma_2^{a_2+b_2}\varphi^{-1}(\alpha_1,\beta,\alpha_2) \\
+		&= (\delta u)\left(\sigma_1^{a_1}\sigma_2^{a_2},\sigma_1^{b_1}\sigma_2^{b_2}\right)\otimes_\ZZ\varphi^{-1}(\alpha_1,\beta,\alpha_2).
+	\end{align*}
+	Passing through evaluation, we will get an element in $L^\times$ which looks like
+	\begin{align*}
+		q_1\alpha_1\cdot-\sigma_1^{a_1}\sigma_1^{(b_1)}\sigma_2^{(a_2)}\beta\cdot q_2\sigma_1^{a_1+b_1}\alpha_2,
+	\end{align*}
+	which is exactly what we wanted (after a little rearrangement).
+\end{proof}
 
 \end{document}

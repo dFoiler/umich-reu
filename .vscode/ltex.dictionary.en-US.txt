@@ -29,3 +29,4 @@ Lubin
 automorphisms on
 nonnegative
 pointwise
+multiplicatively

@@ -945,7 +945,13 @@ Lastly, we compute our $\beta_{10}$ as
 \end{align*}
 In total, we get the following nice result.
 \begin{theorem}
-	Let $p$ be an odd prime, and fix $K\coloneqq\QQ_p$ and $L\coloneqq\QQ_p(\zeta_p,\zeta_m)$, where $p\nmid m$. Further, suppose that the order of $p$ modulo $m$ is $f$, and find $\gamma\in\QQ_p(\zeta_p)$ such that $\gamma^{p-1}+p=0$. Then the fundamental class $u_{L/K}\in H^2(\op{Gal}(L/K),L^\times)$ is represented by the triple
+	Let $p$ be an odd prime, and fix $K\coloneqq\QQ_p$ and $L\coloneqq\QQ_p(\zeta_p,\zeta_m)$, where $p\nmid m$. Further, set $L_0\coloneqq\QQ_p(\zeta_p)$ and $L_1\coloneqq\QQ_p(\zeta_m)$ so that $L=L_0L_1$ and $L_0\cap L_1=K$. Now, pick up the following data.
+	\begin{itemize}
+		\item Suppose the order of $p$ modulo $m$ is $f$.
+		\item Let $\sigma_x\colon\zeta_p\mapsto\zeta_p^x$ be a generator of $\op{Gal}(\QQ_p(\zeta_p)/\QQ_p)$.
+		\item Find $\gamma\in\QQ_p(\zeta_p)$ such that $\gamma^{p-1}+p=0$ and $\sigma_x(\gamma)/\gamma=\zeta_{p-1}$. (Equivalently, set $\zeta_{p-1}\coloneqq\sigma_x(\gamma)/\gamma$.)
+	\end{itemize}
+	Then the fundamental class $u_{L/K}\in H^2(\op{Gal}(L/K),L^\times)$ is represented by the triple
 	\[(\alpha_0,\alpha_1,\beta_{10})=\left(\gamma,\zeta_{p^f-1}^{-1},\zeta_{p^f-1}^{-1}\right).\]
 \end{theorem}
 \begin{remark}

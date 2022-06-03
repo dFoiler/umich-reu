@@ -31,3 +31,4 @@ nonnegative
 pointwise
 multiplicatively
 Hensel
+rigorize

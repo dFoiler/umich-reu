@@ -20,22 +20,22 @@
 \maketitle
 
 \begin{abstract}
-	\noindent We use group cohomology to provide some general theory to classify all group extensions of a $\Gamma$-module $A$ in the case of an abelian group $\Gamma$. The main idea is to provide a group presentation of the extension using specially chosen elements of $A$.
+	\noindent We use group cohomology to provide some general theory to classify all group extensions of a $ G$-module $A$ in the case of an abelian group $ G$. The main idea is to provide a group presentation of the extension using specially chosen elements of $A$.
 \end{abstract}
 
 \setcounter{tocdepth}{4}
 \tableofcontents
 
 \section{General Group Extensions} \label{sec:general}
-Throughout this section, $\Gamma$ will be a finite group and $A$ will be a $\Gamma$-module; we will write the group operation of $A$ and the group action of $\Gamma$ on $A$ multiplicatively. To sketch the idea here, begin with an extension
-\[1\to A\to\mc E\stackrel\pi\to\Gamma\to1.\]
-We know that we can abstractly represent $\mc E$ as the set $A\times\Gamma$ with some group law dictated by a $2$-cocycle in $H^2(G,A)$, so we expect that $\mc E$ can be presented by $A$ and a choice of lifts from $\Gamma$, with some specially chosen relations.
+Throughout this section, $ G$ will be a finite group and $A$ will be a $ G$-module; we will write the group operation of $A$ and the group action of $ G$ on $A$ multiplicatively. To sketch the idea here, begin with an extension
+\[1\to A\to\mc E\stackrel\pi\to G\to1.\]
+We know that we can abstractly represent $\mc E$ as the set $A\times G$ with some group law dictated by a $2$-cocycle in $H^2(G,A)$, so we expect that $\mc E$ can be presented by $A$ and a choice of lifts from $ G$, with some specially chosen relations.
 
-Here are some basic observations realizing this idea. We start by lifting a single element of $\Gamma$.
+Here are some basic observations realizing this idea. We start by lifting a single element of $ G$.
 \begin{lemma} \label{lem:constructalpha}
-	Let $A$ be a $\Gamma$-module, and let 
-	\[1\to A\to\mc E\stackrel\pi\to\Gamma\to1\]
-	denote a group extension. Further, fix some $\sigma\in\Gamma$ of order $n_\sigma$, and find $F\in\mc E$ such that $\sigma\coloneqq\pi(F)$. Then
+	Let $A$ be a $ G$-module, and let 
+	\[1\to A\to\mc E\stackrel\pi\to G\to1\]
+	denote a group extension. Further, fix some $\sigma\in G$ of order $n_\sigma$, and find $F\in\mc E$ such that $\sigma\coloneqq\pi(F)$. Then
 	\[\alpha\coloneqq F^{n_\sigma}\]
 	has $\alpha\in A^{\langle\sigma\rangle}$.
 \end{lemma}
@@ -48,9 +48,9 @@ Here are some basic observations realizing this idea. We start by lifting a sing
 \end{proof}
 We can make the above proof more explicit by specifying the group law of $\mc E$.
 \begin{lemma} \label{lem:explicitalpha}
-	Let $A$ be a $\Gamma$-module. Picking up some $2$-cocycle $c\in Z^2(\Gamma,A)$, let
-	\[1\to A\to\mc E\stackrel\pi\to\Gamma\to1\]
-	be the corresponding extension. Fixing $\sigma\in\Gamma$ of order $n_\sigma$, let $F\coloneqq(m,\sigma)\in\mc E$ be a lift. Then
+	Let $A$ be a $ G$-module. Picking up some $2$-cocycle $c\in Z^2( G,A)$, let
+	\[1\to A\to\mc E\stackrel\pi\to G\to1\]
+	be the corresponding extension. Fixing $\sigma\in G$ of order $n_\sigma$, let $F\coloneqq(m,\sigma)\in\mc E$ be a lift. Then
 	\[\alpha\coloneqq F^{n_\sigma}=N_\sigma(m)\prod_{i=0}^{n_\sigma-1}c\left(\sigma^i,\sigma\right),\]
 	where $N_\sigma\coloneqq\sum_{i=0}^{n_\sigma-1}\sigma^i$.
 \end{lemma}
@@ -65,20 +65,20 @@ We can make the above proof more explicit by specifying the group law of $\mc E$
 \end{proof}
 Having this explicit formula lets us say how $\alpha$ changes as we vary the lift.
 \begin{prop} \label{prop:findallalpha}
-	Let $A$ be a $\Gamma$-module. Fixing a cohomology class $u\in H^2(\Gamma,A)$, let 
-	\[1\to A\to\mc E\stackrel\pi\to\Gamma\to1\]
-	be a group extension whose isomorphism class corresponds to $u$. Further, fix some $\sigma\in\Gamma$ of order $n_\sigma$, and let $A_\sigma\coloneqq A^{\langle\sigma\rangle}$ be the fixed submodule. Then the set
+	Let $A$ be a $ G$-module. Fixing a cohomology class $u\in H^2( G,A)$, let 
+	\[1\to A\to\mc E\stackrel\pi\to G\to1\]
+	be a group extension whose isomorphism class corresponds to $u$. Further, fix some $\sigma\in G$ of order $n_\sigma$, and let $A_\sigma\coloneqq A^{\langle\sigma\rangle}$ be the fixed submodule. Then the set
 	\[S_{\mc E,\sigma}\coloneqq\left\{F^{n_\sigma}:\pi(F)=\sigma\right\}\]
 	is an equivalence class in $A_\sigma/N_\sigma(A)$, independent of the choice of $\mc E$. Again, $N_\sigma\coloneqq\sum_{i=1}^{n_\sigma-1}\sigma^i$.
 \end{prop}
 \begin{proof}
 	Note that $S_{\mc E,\sigma}\subseteq A_\sigma$ already from \autoref{lem:constructalpha}.
 	
-	The point is to use \autoref{lem:explicitalpha}. Note the extension $\mc E$ corresponds to the equivalence class $u\in H^2(\Gamma,A)$, so let $c\in Z^2(\Gamma,A)$ be a representative. Letting $\mc E_c$ be the extension constructed from $c$, we are promised an isomorphism $\varphi\colon\mc E\simeq\mc E_c$ making the following diagram commute.
+	The point is to use \autoref{lem:explicitalpha}. Note the extension $\mc E$ corresponds to the equivalence class $u\in H^2( G,A)$, so let $c\in Z^2( G,A)$ be a representative. Letting $\mc E_c$ be the extension constructed from $c$, we are promised an isomorphism $\varphi\colon\mc E\simeq\mc E_c$ making the following diagram commute.
 	% https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMSJdLFsxLDAsIkxeXFx0aW1lcyJdLFsyLDAsIlxcbWMgRSJdLFszLDAsIlxcR2FtbWEiXSxbNCwwLCIxIl0sWzAsMSwiMSJdLFsxLDEsIkxeXFx0aW1lcyJdLFsyLDEsIlxcbWMgRV9jIl0sWzMsMSwiXFxHYW1tYSJdLFs0LDEsIjEiXSxbMCwxXSxbMSwyXSxbMiwzLCJcXHBpIl0sWzMsNF0sWzUsNl0sWzYsN10sWzcsOCwiXFxwaV9jIl0sWzgsOV0sWzIsNywiXFx2YXJwaGkiXSxbMSw2LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDgsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
 	\[\begin{tikzcd}
-		1 & {A} & {\mc E} & \Gamma & 1 \\
-		1 & {A} & {\mc E_c} & \Gamma & 1
+		1 & {A} & {\mc E} &  G & 1 \\
+		1 & {A} & {\mc E_c} &  G & 1
 		\arrow[from=1-1, to=1-2]
 		\arrow[from=1-2, to=1-3]
 		\arrow["\pi", from=1-3, to=1-4]
@@ -97,11 +97,11 @@ Having this explicit formula lets us say how $\alpha$ changes as we vary the lif
 
 	It thus suffices to show that $S_{\mc E_c,\sigma}$ is an equivalence class in $A_\sigma/N_\sigma(A)$. However, this is exactly what \autoref{lem:explicitalpha} says as we let the possible lifts $F=(m,\sigma)\in\mc E_c$ of $\sigma$ vary over $m\in A$.
 \end{proof}
-The fact that we are taking elements of $\Gamma$ to equivalence classes in $A_\sigma^\times/N_\sigma\left(A\right)$ is reminiscent of the (inverse) Artin reciprocity map, and indeed that is exactly what is going on.
+The fact that we are taking elements of $ G$ to equivalence classes in $A_\sigma^\times/N_\sigma\left(A\right)$ is reminiscent of the (inverse) Artin reciprocity map, and indeed that is exactly what is going on.
 \begin{cor} \label{cor:alphaiscupproduct}
 	Work in the context of \autoref{prop:findallalpha}. Then
 	\[S_\sigma\coloneqq S_{\mc E,\sigma}=[\sigma]\cup[c],\]
-	where $\cup\colon\widehat H^{-2}(\Gamma,A)\times\widehat H^2(\Gamma,A)\to\widehat H^0(\Gamma,A)$ is the cup product in Tate cohomology.
+	where $\cup\colon\widehat H^{-2}( G,A)\times\widehat H^2( G,A)\to\widehat H^0( G,A)$ is the cup product in Tate cohomology.
 \end{cor}
 \begin{proof}
 	Using notation as in the proof of \autoref{prop:findallalpha}, we recall that $S_\sigma=S_{\mc E_c,\sigma}$, so it suffices to prove the result for $\mc E_c$. Well, by \autoref{lem:explicitalpha}, $S_\sigma$ is represented by
@@ -109,22 +109,22 @@ The fact that we are taking elements of $\Gamma$ to equivalence classes in $A_\s
 	However, this product is exactly the cup product $[\sigma]\cup[c]$.
 \end{proof}
 \begin{cor}
-	Let $L/K$ be a finite Galois extension of local fields with Galois group $\Gamma\coloneqq\op{Gal}(L/K)$. Further, let
-	\[1\to L^\times\to\mc E\stackrel\pi\to\Gamma\to1\]
-	be an $L/K$-gerb bound by $\mathbb G_m$ whose isomorphism class corresponds to the fundamental class $u_{L/K}\in H^2(\Gamma,L^\times)$. Further, fix some $\sigma\in\Gamma$ of order $n_\sigma$, and let $L_\sigma\coloneqq L^{\langle\sigma\rangle}$ be the fixed field. Then
+	Let $L/K$ be a finite Galois extension of local fields with Galois group $ G\coloneqq\op{Gal}(L/K)$. Further, let
+	\[1\to L^\times\to\mc E\stackrel\pi\to G\to1\]
+	be an $L/K$-gerb bound by $\mathbb G_m$ whose isomorphism class corresponds to the fundamental class $u_{L/K}\in H^2( G,L^\times)$. Further, fix some $\sigma\in G$ of order $n_\sigma$, and let $L_\sigma\coloneqq L^{\langle\sigma\rangle}$ be the fixed field. Then
 	\[\theta_{L/L_\sigma}^{-1}(\sigma)=\left\{F^{n_\sigma}:\pi(F)=\sigma\right\}.\]
 \end{cor}
 \begin{proof}
 	Recalling $\theta_{L/L_\sigma}^{-1}$ is a cup product map, note that $\theta_{L/L_\sigma}^{-1}(\sigma)$ is given by $[\sigma]\cup u_{L/K}$. So we are done by \autoref{cor:alphaiscupproduct}.
 \end{proof}
-The above results are all interested in lifting single elements of $\Gamma$ and studying how they behave on their own. In the discussion that follows, we will need to study how the lifts interact with each other, but for now, we will justify why lifts are adequate to study as follows.
+The above results are all interested in lifting single elements of $ G$ and studying how they behave on their own. In the discussion that follows, we will need to study how the lifts interact with each other, but for now, we will justify why lifts are adequate to study as follows.
 \begin{proposition} \label{prop:liftsgenerate}
-	Let $A$ be a $\Gamma$-module. Further, let
-	\[1\to A\to\mc E\stackrel\pi\to\Gamma\to1\]
-	be a group extension. Given elements $\{\sigma_i\}_{i=1}^m$ which generate $\Gamma$, then $\mc E$ is generated by $A$ and a set of lifts $\{F_i\}_{i=1}^m$ with $\pi(F_i)=\sigma_i$ for each $i$.
+	Let $A$ be a $ G$-module. Further, let
+	\[1\to A\to\mc E\stackrel\pi\to G\to1\]
+	be a group extension. Given elements $\{\sigma_i\}_{i=1}^m$ which generate $ G$, then $\mc E$ is generated by $A$ and a set of lifts $\{F_i\}_{i=1}^m$ with $\pi(F_i)=\sigma_i$ for each $i$.
 \end{proposition}
 \begin{proof}
-	Fix some element $e\in\mc E$, which we need to exhibit as a product of elements in $A$ and $F_i$s. Well, because the $\sigma_i$ generate $\Gamma$, we know that $\pi(e)\in\Gamma$ can be written as
+	Fix some element $e\in\mc E$, which we need to exhibit as a product of elements in $A$ and $F_i$s. Well, because the $\sigma_i$ generate $ G$, we know that $\pi(e)\in G$ can be written as
 	\[\pi(e)=\prod_{i=1}^m\sigma_i^{a_i}\]
 	for some sequence of integers $\{a_i\}_{i=1}^m$. It follows that
 	\[\pi\left(\frac e{\prod_{i=1}^mF_i^{a_i}}\right)=1,\]
@@ -133,14 +133,14 @@ The above results are all interested in lifting single elements of $\Gamma$ and 
 	which is what we wanted.
 \end{proof}
 
-\section{Abelian Group Extensions}
+\section{Abelian Group Extensions} \label{sec:abelian}
 
 \subsection{Extensions to Tuples}
-The above proofs technically don't even require that the group $\Gamma$ is abelian. If we want to keep track of the fact our group is abelian, we should extract the elements of $A$ which can do so.
+The above proofs technically don't even require that the group $ G$ is abelian. If we want to keep track of the fact our group is abelian, we should extract the elements of $A$ which can do so.
 \begin{lemma} \label{lem:constructalphabeta}
-	Let $A$ be a $\Gamma$-module, and let 
-	\[1\to A\to\mc E\stackrel\pi\to\Gamma\to1\]
-	be a group extension. Further, fix some $F_1,F_2\in\mc E$ and define $\sigma_i\coloneqq\pi(F_i)$ for $i\in\{1,2\}$, and let $\sigma_i\in\Gamma$ have order $n_i$. Then, setting
+	Let $A$ be a $ G$-module, and let 
+	\[1\to A\to\mc E\stackrel\pi\to G\to1\]
+	be a group extension. Further, fix some $F_1,F_2\in\mc E$ and define $\sigma_i\coloneqq\pi(F_i)$ for $i\in\{1,2\}$, and let $\sigma_i\in G$ have order $n_i$. Then, setting
 	\[\alpha_i\coloneqq F_i^{n_i}\qquad\text{and}\qquad\beta\coloneqq F_1F_2F_1^{-1}F_2^{-1},\]
 	we have the following.
 	\begin{listalph}
@@ -211,9 +211,9 @@ The proof of (b) above might appear magical, but in fact it comes from a more ge
 \end{remark}
 In particular, \autoref{rem:alphabetarelation} tells us that coherence of the group law in $\mc E$ should give rise to relations between our elements of $A$. Here is a more complex example.
 \begin{lemma} \label{lem:betarelations}
-	Let $A$ be a $\Gamma$-module, and let 
-	\[1\to A\to\mc E\stackrel\pi\to\Gamma\to1\]
-	be a group extension. Further, fix some $F_1,F_2,F_3\in\mc E$ and define $\sigma_i\coloneqq\pi(F_i)$ for $i\in\{1,2,3\}$, and let $\sigma_i\in\Gamma$ have order $n_i$. Then, setting
+	Let $A$ be a $ G$-module, and let 
+	\[1\to A\to\mc E\stackrel\pi\to G\to1\]
+	be a group extension. Further, fix some $F_1,F_2,F_3\in\mc E$ and define $\sigma_i\coloneqq\pi(F_i)$ for $i\in\{1,2,3\}$, and let $\sigma_i\in G$ have order $n_i$. Then, setting
 	\[\beta_{ij}\coloneqq F_iF_jF_i^{-1}F_j^{-1}\]
 	for each pair of indices $(i,j)$ with $i>j$. Then
 	\[\frac{\sigma_2(\beta_{31})}{\beta_{31}}=\frac{\sigma_1(\beta_{32})}{\beta_{32}}\cdot\frac{\sigma_3(\beta_{21})}{\beta_{21}}.\]
@@ -246,9 +246,9 @@ In particular, \autoref{rem:alphabetarelation} tells us that coherence of the gr
 \subsubsection{The Set-Up}
 The proceeding lemma is intended to give intuition that the element $\beta$ is helping to specify the group law on $\mc E$.
 
-More concretely, we will take the following set-up for the following results: fix a $\Gamma$-module $A$, and let
-\[1\to A\to\mc E\to\Gamma\to1\]
-be a group extension. Once we choose elements $\{\sigma_i\}_{i=1}^m$ generating $\Gamma$, we know by \autoref{prop:liftsgenerate} that we can generate $\mc E$ by $A$ and some arbitrarily chosen lifts $\{F_i\}_{i=1}^m$ of the $\{\sigma_i\}_{i=1}^m$. Then, letting $n_i$ be the order of $\sigma_i$, we set
+More concretely, we will take the following set-up for the following results: fix a $ G$-module $A$, and let
+\[1\to A\to\mc E\to G\to1\]
+be a group extension. Once we choose elements $\{\sigma_i\}_{i=1}^m$ generating $ G$, we know by \autoref{prop:liftsgenerate} that we can generate $\mc E$ by $A$ and some arbitrarily chosen lifts $\{F_i\}_{i=1}^m$ of the $\{\sigma_i\}_{i=1}^m$. Then, letting $n_i$ be the order of $\sigma_i$, we set
 \[\alpha_i\coloneqq F_i^{n_i}\]
 for each index $i$ and
 \[\beta_{ij}\coloneqq F_iF_jF_i^{-1}F_j^{-1}\]
@@ -282,7 +282,7 @@ for $x\in A$ and $a_i\in\ZZ/n_i\ZZ$ because we know how to make these elements c
 \[xF_1^{a_1}\cdots F_m^{a_m}\cdot yF_1^{b_1}\cdots F_m^{b_m}\]
 into a term of the form $zF_1^{c_1}\cdots F_m^{c_m}$. In fact, it will be helpful for us to see how to do this.
 \begin{proposition} \label{prop:multiplytwoelements}
-	Fix everything as in the set-up, except drop the assumption that $\{\sigma_i\}_{i=1}^m$ generate $\Gamma$. Then, choosing $a_i,b_i\in\NN$ for each $i$, we have
+	Fix everything as in the set-up, except drop the assumption that $\{\sigma_i\}_{i=1}^m$ generate $ G$. Then, choosing $a_i,b_i\in\NN$ for each $i$, we have
 	\[\left(\prod_{i=1}^mF_i^{a_i}\right)\left(\prod_{i=1}^mF_i^{b_i}\right)=\left[\prod_{1\le j<i\le m}\Bigg(\prod_{1\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\beta_{ij}^{(a_ib_j)}\right]\left(\prod_{i=1}^mF_i^{a_i+b_i}\right).\]
 \end{proposition}
 \begin{proof}
@@ -324,7 +324,7 @@ Observe that \autoref{prop:writedowncocycle} has a fairly strong hypothesis that
 	\[a_i+b_i=n_iq_i+r_i\]
 	where $q_\in\{0,1\}$ and $0\le r_i<n_i$. In particular,
 	\[gh=\prod_{i=1}^mF_i^{r_i}.\]
-	Now, because the elements $\sigma_i$ generate $\Gamma$, we see that the lifts $\sigma_i\mapsto F_i$ defines a section $s\colon\Gamma\to\mc E$. As such, we can compute a representing cocycle for our cohomology class as
+	Now, because the elements $\sigma_i$ generate $ G$, we see that the lifts $\sigma_i\mapsto F_i$ defines a section $s\colon G\to\mc E$. As such, we can compute a representing cocycle for our cohomology class as
 	\begin{align*}
 		c(g,h) &= s(g)s(h)s(gh)^{-1} \\
 		&= \Bigg(\prod_{i=1}^mF_i^{a_i}\Bigg)\Bigg(\prod_{i=1}^mF_i^{b_i}\Bigg)\Bigg(\prod_{i=1}^mF_i^{r_i}\Bigg)^{-1} \\
@@ -348,12 +348,12 @@ Observe that \autoref{prop:writedowncocycle} has a fairly strong hypothesis that
 A priori we have no reason to expect that the $c$ constructed in \autoref{prop:writedowncocycle} is actually a cocycle, especially if the $\sigma_i$ have nontrivial relations.
 
 To account for this, we modify our set-up slightly. By the classification of finitely generated abelian groups, we may write
-\[\Gamma\simeq\bigoplus_{k=1}^m\Gamma_k,\]
-where $\Gamma_k\subseteq\Gamma$ with $\Gamma_k\cong\ZZ/n_k\ZZ$ and $n_k>1$ for each $n_k$. As such, we let $\sigma_k$ be a generating element of $\Gamma_k$ so that we still know that the $\sigma_k$ generate $\Gamma$. In this case, we have the following result.
+\[ G\simeq\bigoplus_{k=1}^m G_k,\]
+where $ G_k\subseteq G$ with $ G_k\cong\ZZ/n_k\ZZ$ and $n_k>1$ for each $n_k$. As such, we let $\sigma_k$ be a generating element of $ G_k$ so that we still know that the $\sigma_k$ generate $ G$. In this case, we have the following result.
 \begin{theorem} \label{thm:getcocycle}
 	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Then a $\{\sigma_i\}_{i=1}^m$-tuple of $\{\alpha_i\}_{i=1}^m$ and $\{\beta_{ij}\}_{i>j}$ makes
 	\[c(g,h)\coloneqq\left[\prod_{1\le j<i\le m}\Bigg(\prod_{1\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\beta_{ij}^{(a_ib_j)}\right]\left[\prod_{i=1}^m\Bigg(\prod_{1\le k<i}\sigma_k^{a_k+b_k}\Bigg)\alpha_i^{\floor{\frac{a_i+b_i}{n_i}}}\right],\]
-	where $g\coloneqq\prod_i\sigma_i^{a_i}$ with $h\coloneqq\prod_i\sigma_j^{a_j}$ and $0\le a_i,b_i<n_i$, into a cocycle in $Z^2(\Gamma,A)$.
+	where $g\coloneqq\prod_i\sigma_i^{a_i}$ with $h\coloneqq\prod_i\sigma_j^{a_j}$ and $0\le a_i,b_i<n_i$, into a cocycle in $Z^2( G,A)$.
 \end{theorem}
 \begin{proof}
 	Note that $c$ is now surely well-defined because the elements $g$ and $h$ have unique representations as described. Anyway, we relegate the cocycle check to \autoref{sec:verifycocycle} because it is long, annoying, and unenlightening.
@@ -363,7 +363,7 @@ Observe that the above construction has now completely forgotten about $\mc E$! 
 \subsection{Building Tuples}
 We continue in the modified set-up of the previous section. There is already an established way to get from a cocycle to an extension, which means that it should be possible to go straight from the cocycle to a $\{\sigma_i\}_{i=1}^m$-tuple. Again, it will be beneficial to write this out.
 \begin{lemma} \label{lem:explicitalphabeta}
-	Fix everything as in the modified set-up, but suppose that $\mc E=\mc E_c$ is the extension generated from a cocycle $c\in Z^2(\Gamma,A)$. Then, if $F_i=(x_i,\sigma_i)$ are our lifts, we have
+	Fix everything as in the modified set-up, but suppose that $\mc E=\mc E_c$ is the extension generated from a cocycle $c\in Z^2( G,A)$. Then, if $F_i=(x_i,\sigma_i)$ are our lifts, we have
 	\[\alpha_i=N_i(x_i)\cdot\prod_{k=0}^{n_i-1}c\left(\sigma_i^k,\sigma_i\right)\qquad\text{and}\qquad\beta_{ij}=\frac{x_i}{\sigma_j(x_i)}\cdot\frac{\sigma_i(x_j)}{x_j}\cdot\frac{c(\sigma_i,\sigma_j)}{c(\sigma_j,\sigma_i)}\]
 	for each $\alpha_i$ and $\beta_{ij}$.
 \end{lemma}
@@ -388,7 +388,7 @@ Here is a nice sanity check that we are doing things in the right setting: not o
 	\[\alpha_i=F_i^{n_i}\qquad\text{and}\qquad\beta_{ij}=F_iF_jF_i^{-1}F_j^{-1}.\]
 \end{cor}
 \begin{proof}
-	From \autoref{thm:getcocycle}, we may build the cocycle $c\in Z^2(\Gamma,A)$ defined by
+	From \autoref{thm:getcocycle}, we may build the cocycle $c\in Z^2( G,A)$ defined by
 	\begin{equation}
 		c(g,h)\coloneqq\left[\prod_{1\le j<i\le m}\Bigg(\prod_{1\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\beta_{ij}^{(a_ib_j)}\right]\left[\prod_{i=1}^m\Bigg(\prod_{1\le k<i}\sigma_k^{a_k+b_k}\Bigg)\alpha_i^{\floor{\frac{a_i+b_i}{n_i}}}\right], \label{eq:uglycocycle}
 	\end{equation}
@@ -413,14 +413,14 @@ Here is a nice sanity check that we are doing things in the right setting: not o
 \end{proof}
 And here is our first taste of (partial) classification.
 \begin{cor} \label{cor:cocycletuplesection}
-	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Then the formula of \autoref{thm:getcocycle} and the formulae of \autoref{lem:explicitalphabeta} (setting $x_i=1$ for each $i$) are homomorphisms of abelian groups between the set of $\{\sigma_i\}_{i=1}^m$-tuples and cocycles in $Z^2(\Gamma,A)$. In fact, the formula of \autoref{thm:getcocycle} is a section of the formulae of \autoref{lem:explicitalphabeta}.
+	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Then the formula of \autoref{thm:getcocycle} and the formulae of \autoref{lem:explicitalphabeta} (setting $x_i=1$ for each $i$) are homomorphisms of abelian groups between the set of $\{\sigma_i\}_{i=1}^m$-tuples and cocycles in $Z^2( G,A)$. In fact, the formula of \autoref{thm:getcocycle} is a section of the formulae of \autoref{lem:explicitalphabeta}.
 \end{cor}
 \begin{proof}
 	The formulae in \autoref{thm:getcocycle} and \autoref{lem:explicitalphabeta} are both large products in their inputs, so they are multiplicative (i.e., homomorphisms). It remains to check that we have a section. Well, starting with a $\{\sigma_i\}_{i=1}^m$-tuple and building the corresponding cocycle $c$ by \autoref{thm:getcocycle}, the proof of \autoref{cor:alltuplesfromextens} shows that the formulae of \autoref{lem:explicitalphabeta} recovers the correct $\{\sigma_i\}_{i=1}^m$-tuple.
 \end{proof}
 
 \subsection{Equivalence Classes of Tuples}
-We continue in the modified set-up. We would like to make \autoref{cor:cocycletuplesection} into a proper isomorphism of abelian groups, but this is not feasible; for example, the cocycle $c$ generated by \autoref{thm:getcocycle} will always have $c(\sigma_j,\sigma_i)=1$ for $i>j$, which is not true of all cocycles in $Z^2(\Gamma,A)$.
+We continue in the modified set-up. We would like to make \autoref{cor:cocycletuplesection} into a proper isomorphism of abelian groups, but this is not feasible; for example, the cocycle $c$ generated by \autoref{thm:getcocycle} will always have $c(\sigma_j,\sigma_i)=1$ for $i>j$, which is not true of all cocycles in $Z^2( G,A)$.
 
 However, we did have a notion that the data of a $\{\sigma_i\}_{i=1}^m$ should be enough to specify the group law of the extension that the tuple comes from, so we do expect to be able to define all extensions---and hence achieve all cohomology classes---from a specially chosen $\{\sigma_i\}_{i=1}^m$-tuple.
 
@@ -440,8 +440,8 @@ This notion of equivalence can be seen to be the correct one in the sense that i
 	We proceed as in \autoref{prop:findallalpha}. Given an extension $\mc E'$, let $S_{\mc E'}$ be the set of $\{\sigma_i\}_{i=1}^m$-tuples generated as the lifts $F_i$ change. We start by showing that an isomorphism $\varphi\colon\mc E\simeq\mc E'$ of extensions implies that $S_{\mc E}=S_{\mc E'}$; by symmetry, it will be enough for $S_{\mc E}\subseteq S_{\mc E'}$. The isomorphism induces the following diagram.
 	% https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMSJdLFsxLDAsIkxeXFx0aW1lcyJdLFsyLDAsIlxcbWMgRSJdLFszLDAsIlxcR2FtbWEiXSxbNCwwLCIxIl0sWzAsMSwiMSJdLFsxLDEsIkxeXFx0aW1lcyJdLFsyLDEsIlxcbWMgRSciXSxbMywxLCJcXEdhbW1hIl0sWzQsMSwiMSJdLFswLDFdLFsxLDJdLFsyLDMsIlxccGkiXSxbMyw0XSxbNSw2XSxbNiw3XSxbNyw4LCJcXHBpJyJdLFs4LDldLFsyLDcsIlxcdmFycGhpIl0sWzEsNiwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMyw4LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
 	\[\begin{tikzcd}
-		1 & {A} & {\mc E} & \Gamma & 1 \\
-		1 & {A} & {\mc E'} & \Gamma & 1
+		1 & {A} & {\mc E} &  G & 1 \\
+		1 & {A} & {\mc E'} &  G & 1
 		\arrow[from=1-1, to=1-2]
 		\arrow[from=1-2, to=1-3]
 		\arrow["\pi", from=1-3, to=1-4]
@@ -464,30 +464,30 @@ This notion of equivalence can be seen to be the correct one in the sense that i
 	\[F_i'F_j'(F_i')^{-1}(F_j')^{-1}=\varphi\left(F_iF_jF_i^{-1}F_j^{-1}\right)=\varphi(\beta_{ij})=\beta_{ij}\]
 	for each $i>j$. Thus, $(\{\alpha_i\},\{\beta_{ij}\})$ is a $\{\sigma_i\}_{i=1}^m$-tuple generated by lifts from $\mc E'$, implying that $(\{\alpha_i\},\{\beta_{ij}\})\in S_{\mc E'}$.
 
-	It now suffices to show the statement in the proposition for a specific extension isomorphic to $\mc E$. Well, the isomorphism class of $\mc E$ corresponds to some cohomology class in $H^2(\Gamma,A)$, for which we let $c$ be a representative; then $\mc E\simeq\mc E_c$, so we may show the statement for $\mc E\coloneqq\mc E_c$. Indeed, as the lifts $F_i=(x_i,\sigma_i)$ change, we know by \autoref{lem:explicitalphabeta} that
+	It now suffices to show the statement in the proposition for a specific extension isomorphic to $\mc E$. Well, the isomorphism class of $\mc E$ corresponds to some cohomology class in $H^2( G,A)$, for which we let $c$ be a representative; then $\mc E\simeq\mc E_c$, so we may show the statement for $\mc E\coloneqq\mc E_c$. Indeed, as the lifts $F_i=(x_i,\sigma_i)$ change, we know by \autoref{lem:explicitalphabeta} that
 	\[\alpha_i=N_i(x_i)\cdot\prod_{k=0}^{n_i-1}c\left(\sigma_i^k,\sigma_i\right)\qquad\text{and}\qquad\beta_{ij}=\frac{x_i}{\sigma_j(x_i)}\cdot\frac{\sigma_i(x_j)}{x_j}\cdot\frac{c(\sigma_i,\sigma_j)}{c(\sigma_j,\sigma_i)}\]
 	for each $\alpha_i$ and $\beta_{ij}$. All of these live in the same equivalence class by definition of the equivalence, and as the $x_i$ are allowed to vary over all of $A$, they will fill up that equivalence class fully. This finishes.
 \end{proof}
 We are now ready to upgrade our section.
 \begin{cor} \label{cor:cohomologymakesaclass}
-	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Fixing a cohomology class $[c]\in H^2(\Gamma,A)$, the set of $\{\sigma_i\}_{i=1}^m$ which correspond to $[c]$ (via \autoref{thm:getcocycle}) forms exactly one equivalence class.
+	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Fixing a cohomology class $[c]\in H^2( G,A)$, the set of $\{\sigma_i\}_{i=1}^m$ which correspond to $[c]$ (via \autoref{thm:getcocycle}) forms exactly one equivalence class.
 \end{cor}
 \begin{proof}
 	We show that two tuples are equivalent if and only if their corresponding cocycles (via \autoref{thm:getcocycle}) to the same cohomology class, which will be enough.
 	
-	In one direction, suppose $(\{\alpha_i\},\{\beta_{ij}\})\sim(\{\alpha_i'\},\{\beta_{ij}'\})$. By \autoref{cor:alltuplesfromextens}, we can find an extension $\mc E$ which gives $(\{\alpha_i\},\{\beta_{ij}\})$ by choosing an appropriate set of lifts. By \autoref{prop:extenmakesaclass}, we see that $(\{\alpha_i'\},\{\beta_{ij}'\})$ must also come from choosing an appropriate set of lifts in $\mc E$. However, the cocycles in $Z^2(\Gamma,A)$ generated by \autoref{thm:getcocycle} from our two tuples now both represent the isomorphism class of $\mc E$ by \autoref{prop:writedowncocycle}, so these cocycles belong to the same cohomology class.
+	In one direction, suppose $(\{\alpha_i\},\{\beta_{ij}\})\sim(\{\alpha_i'\},\{\beta_{ij}'\})$. By \autoref{cor:alltuplesfromextens}, we can find an extension $\mc E$ which gives $(\{\alpha_i\},\{\beta_{ij}\})$ by choosing an appropriate set of lifts. By \autoref{prop:extenmakesaclass}, we see that $(\{\alpha_i'\},\{\beta_{ij}'\})$ must also come from choosing an appropriate set of lifts in $\mc E$. However, the cocycles in $Z^2( G,A)$ generated by \autoref{thm:getcocycle} from our two tuples now both represent the isomorphism class of $\mc E$ by \autoref{prop:writedowncocycle}, so these cocycles belong to the same cohomology class.
 
 	In the other direction, name the cocycles corresponding to $(\{\alpha_i\},\{\beta_{ij}\})$ and $(\{\alpha_i'\},\{\beta_{ij}'\})$ by $c$ and $c'$ respectively, and suppose $[c]=[c']$. Then $\mc E_c\simeq\mc E_{c'}$ as extensions, but we know by the proof of \autoref{cor:alltuplesfromextens} that $(\{\alpha_i\},\{\beta_{ij}\})$ comes from choosing lifts of $\mc E_c$ and similar for $(\{\alpha_i'\},\{\beta_{ij}'\})$. In particular, because $\mc E_c\simeq\mc E_{c'}$, we know that $(\{\alpha_i'\},\{\beta_{ij}'\})$ will also come from choosing some lifts in $\mc E_c$ (recall the proof of \autoref{prop:extenmakesaclass}), so $(\{\alpha_i\},\{\beta_{ij}\})\sim(\{\alpha_i'\},\{\beta_{ij}'\})$ follows.
 \end{proof}
 \begin{theorem} \label{thm:classisomorphism}
-	The maps described in \autoref{cor:cocycletuplesection} descend to an isomorphism of abelian groups between the equivalence classes of $\{\sigma_i\}_{i=1}^m$-tuples and cohomology classes in $H^2(\Gamma,A)$.
+	The maps described in \autoref{cor:cocycletuplesection} descend to an isomorphism of abelian groups between the equivalence classes of $\{\sigma_i\}_{i=1}^m$-tuples and cohomology classes in $H^2( G,A)$.
 \end{theorem}
 \begin{proof}
 	The fact that the maps are well-defined (in both directions) and hence injective is \autoref{cor:cohomologymakesaclass}. The fact that we had a section from tuples to cocycles implies that the map from cocycles to tuples was also surjective. Thus, we have a bona fide isomorphism.
 \end{proof}
 
 \subsection{Classification of Extensions}
-We remark that we are now able to classify all extensions up to isomorphism, in some sense. At a high level, an isomorphism class of extensions corresponds to a particular cohomology class in $H^2(\Gamma,A)$, so choosing a $\{\sigma_i\}_{i=1}^m$-tuple $(\{\alpha_i\},\{\beta_{ij}\})$ corresponding to this class, we can write out a representative of this cocycle by \autoref{thm:getcocycle}, properly corresponding to the original extension by \autoref{prop:writedowncocycle}.
+We remark that we are now able to classify all extensions up to isomorphism, in some sense. At a high level, an isomorphism class of extensions corresponds to a particular cohomology class in $H^2( G,A)$, so choosing a $\{\sigma_i\}_{i=1}^m$-tuple $(\{\alpha_i\},\{\beta_{ij}\})$ corresponding to this class, we can write out a representative of this cocycle by \autoref{thm:getcocycle}, properly corresponding to the original extension by \autoref{prop:writedowncocycle}.
 
 In fact, the cocycle in \autoref{prop:writedowncocycle} is generated by the description of the group law in \autoref{prop:multiplytwoelements}, and the entire computation only needed to use the following relations, for the appropriate choice of lifts $F_i$.
 \begin{listalph}
@@ -503,17 +503,147 @@ As such, the above relations fully describe the extension because they also spec
 		\item $F_i^{n_i}=\alpha_i$ for each $i$.
 		\item $F_iF_j=\beta_{ij}F_jF_i$ for each $i>j$.
 	\end{listalph}
-	Then the natural embedding $A\into\mc E(\{\alpha_i\},\{\beta_{ij}\})$ and projection $\pi\colon\mc E(\{\alpha_i\},\{\beta_{ij}\})\onto\Gamma$ by $F_i\mapsto\sigma_i$ makes $\mc E(\{\alpha_i\},\{\beta_{ij}\})$ into an extension. In fact, all extensions are isomorphic to some $\mc E(\{\alpha_i\},\{\beta_{ij}\})$.
+	Then the natural embedding $A\into\mc E(\{\alpha_i\},\{\beta_{ij}\})$ and projection $\pi\colon\mc E(\{\alpha_i\},\{\beta_{ij}\})\onto G$ by $F_i\mapsto\sigma_i$ makes $\mc E(\{\alpha_i\},\{\beta_{ij}\})$ into an extension. In fact, all extensions are isomorphic to some $\mc E(\{\alpha_i\},\{\beta_{ij}\})$.
 \end{theorem}
 \begin{proof}
 	This follows from the preceding discussion, though we will provide a few more words in this proof. The exactness of
-	\[1\to A\to\mc E(\{\alpha_i\},\{\beta_{ij}\})\stackrel\pi\to\Gamma\to1\]
-	follows quickly. Further, the action of conjugation of $\mc E$ on $A$ corresponds correctly to the $\Gamma$-action by (a). So we do indeed have an extension.
+	\[1\to A\to\mc E(\{\alpha_i\},\{\beta_{ij}\})\stackrel\pi\to G\to1\]
+	follows quickly. Further, the action of conjugation of $\mc E$ on $A$ corresponds correctly to the $ G$-action by (a). So we do indeed have an extension.
 
 	It remains to show that all extensions are isomorphic to one of this type. Well, note that \autoref{prop:multiplytwoelements} and \autoref{prop:writedowncocycle} use only the above relations to write down a cocycle representing the isomorphism class of $\mc E(\{\alpha_i\},\{\beta_{ij}\})$, and it is the cocycle corresponding to the $\{\sigma_i\}_{i=1}^m$-tuple $(\{\alpha_i\},\{\beta_{ij}\})$ itself as described in \autoref{thm:getcocycle}.
 
-	However, we know that as the equivalence class of $(\{\alpha_i\},\{\beta_{ij}\})$ changes, we will hit all cohomology classes in $H^2(\Gamma,A)$ by \autoref{thm:classisomorphism}. Thus, because every extension is represented by some cohomology class, every extension will be isomorphic to some $\mc E(\{\alpha_i\},\{\beta_{ij}\})$. This completes the proof.
+	However, we know that as the equivalence class of $(\{\alpha_i\},\{\beta_{ij}\})$ changes, we will hit all cohomology classes in $H^2( G,A)$ by \autoref{thm:classisomorphism}. Thus, because every extension is represented by some cohomology class, every extension will be isomorphic to some $\mc E(\{\alpha_i\},\{\beta_{ij}\})$. This completes the proof.
 \end{proof}
+
+\section{Studying Tuples}
+The story so far has been able to generalize the one-variable results from \autoref{sec:general} to results using all generators of an abelian group in \autoref{sec:abelian}. It remains to prove \autoref{thm:getcocycle}, which is the main goal of this section.
+
+\subsection{Set-Up and Overview}
+The approach here will be to attempt to abstract our data away from the $ G$-module $A$ as much as possible. To set up our discussion, we continue with
+\[G\simeq\bigoplus_{i=1}^mG_i,\]
+where $G_i=\langle\sigma_i\rangle\subseteq G$ and $\sigma_i$ has order $n_k$. These variables allow us to define
+\[T_i\coloneqq(\sigma_i-1)\qquad\text{and}\qquad N_i\coloneqq\sum_{p=0}^{n_i-1}\sigma_i^p\]
+for each index $i$. In fact, it will be helpful to also have notation
+\[\sigma^{(a)}\coloneqq\sum_{p=0}^{a-1}\sigma^p\]
+for any $\sigma\in G$ and nonnegative integer $a\ge0$; in particular, $\sigma^{(0)}=0$ and $\sigma_i^{(n_i)}=N_i$. The main benefits to this notation will be the facts that
+\[\sigma^{(a+b)}=\sigma^{(a)}+\sigma^a\sigma^{(b)}\qquad\text{and}\qquad\sigma_i^a=T_i\sigma_i^{(a)}+1,\]
+which can be seen by direct expansion. Given $g\in\prod_{p=1}^n\sigma_p^{a_p}$, we will also define the notation
+\[g_i\coloneqq\prod_{p=1}^{i-1}\sigma_p^{a_p}\]
+for $i\ge0$. In particular $g_0=g_1=1$ and $g_{n+1}=g$.
+
+Now, our tool in the proof of \autoref{thm:getcocycle} will be the magical map $\mathcal F\colon\ZZ[G]^m\times\ZZ[G]^{\binom m2}\to\ZZ[G]^m$ defined by
+\[\mathcal F\colon\big((x_i)_{i=1}^m,(y_{ij})_{i>j}\big)\mapsto\Bigg(x_iN_i-\sum_{j=1}^{i-1}y_{ij}T_i+\sum_{j=i+1}^my_{ji}T_j\Bigg)_{i=1}^m.\]
+This is of course as $G$-module homomorphism. We will go ahead and state the main results we will prove. Roughly speaking, $\mathcal F$ is manufactured to make the following result true.
+\begin{lemma} \label{lem:manufacturedcocycle}
+	Fix everything as above. Then the function
+	\[\overline c(g)\coloneqq\left(g_i\sigma_i^{(a_i)}\right)_{i=1}^m,\]
+	where $g\coloneqq\prod_{i=1}^m\sigma_i^{a_i}$, is a $1$-cocycle in $Z^1(G,\coker\mathcal F)$.
+\end{lemma}
+The reason we care about this cocycle is that we can pass it through a boundary morphism induced by the short exact sequence
+\[0\to\underbrace{\frac{\ZZ[G]^m\times\ZZ[G]^{\binom m2}}{\ker\mathcal F}}_{X\coloneqq}\stackrel{\mathcal F}\to\ZZ[G]^m\to\coker\mathcal F\to0,\]
+so we have a $2$-cocycle $\delta(\overline c)\in Z^2(G,X)$; in fact, we will be able to explicitly compute $\delta(\overline c)$ as a result of the proof of \autoref{lem:manufacturedcocycle}.
+
+Only now will we bring in tuples. The first result provides an alternate description of tuples.
+\begin{lemma} \label{lem:alternativetuple}
+	Fix everything as above, and now let $A$ be a $G$-module. Then $\{\sigma_i\}_{i=1}^m$-tuples are canonically isomorphic to $\op{Hom}_{\ZZ[G]}(X,A)$. In fact, equivalence classes of $\{\sigma_i\}_{i=1}^m$-tuples are canonically isomorphic to $\widehat H^0(G,\op{Hom}_\ZZ(X,A))$.
+\end{lemma}
+The second result brings in the last ingredient, the cup product.
+\begin{theorem} \label{thm:yesitisacocycle}
+	Fix everything as above. Further, fix a $G$-module $A$ and a $\{\sigma_i\}_{i=1}^m$-tuple $\left(\{\alpha_i\},\{\beta_{ij}\}\right)$. Then observe there is a natural cup product map
+	\[\cup\colon\widehat H^2(G,X)\times\widehat H^0(G,\op{Hom}_\ZZ(X,A))\to\widehat H^2(G,A)\]
+	by using the evaluation map $X\otimes_\ZZ\op{Hom}_\ZZ(X,A)\to A$. Then, using the isomorphism of \autoref{lem:alternativetuple}, the cocycle defined in \autoref{thm:getcocycle} is simply the output of $\delta(\overline c)\cup\left(\{\alpha_i\},\{\beta_{ij}\}\right)$ on cocycles.
+\end{theorem}
+Because we know that the cup product sends cocycles to cocycles, this will show that the cocycle of \autoref{thm:getcocycle} is in fact well-defined.
+
+% it might be worth stating the main results we are going to prove here, but they are somewhat notation-heavy
+
+\subsection{A Cocycle}
+We continue in the set-up of the previous subsection. The goal of this subsection is to prove \autoref{lem:manufacturedcocycle}. This is a matter of brute force. Set $c\in C^1\left(G,\ZZ[G]^m\right)$ defined by
+\[c(g)\coloneqq\left(g_i\sigma_i^{(a_i)}\right)^m_{i=1},\]
+where $g\coloneqq\prod_{i=1}^m\sigma_i^{a_i}$. We will show that $\im dc\subseteq\im\mathcal F$, which we will mean that $\im\overline{dc}=\im d\overline c=0$, where $f\mapsto\overline f$ is the map $C^\bullet\left(G,\ZZ[G]^m\right)\onto C^\bullet\left(G,\coker\mathcal F\right)$ induced by modding out.
+
+As such, we set $g\coloneqq\prod_{i=1}^m\sigma_i^{a_i}$ and $h\coloneqq\prod_{i=1}^m\sigma_i^{b_i}$ with $0\le a_i,b_i<n_i$ for each $i$. Then, using the division algorithm, write
+\[a_i+b_i=n_iq_i+r_i\]
+where $q_i\in\{0,1\}$ and $0\le r_i<n_i$ for each $i$. Now, we want to show $dc(g,h)\in\im\mathcal F$, so we begin by writing
+\begin{align}
+	dc(g,h) &= gc(h)-c(gh)+c(g) \notag \\
+	&= g\left(h_i\sigma_i^{(b_i)}\right)_{i=1}^m-\Bigg(\prod_{p=0}^{i-1}\sigma_p^{r_p}\cdot\sigma_i^{(r_i)}\Bigg)_{i=1}^m+\left(g_i\sigma_i^{(a_i)}\right)_{i=1}^m \notag \\
+	&= \left(gh_i\sigma_i^{(b_i)}\right)_{i=1}^m-\left(g_ih_i\sigma_i^{(r_i)}\right)_{i=1}^m+\left(g_i\sigma_i^{(a_i)}\right)_{i=1}^m. \label{eq:expandedcocycle}
+\end{align}
+We now go term-by-term in \autoref{eq:expandedcocycle}. The easiest is the middle term of \autoref{eq:expandedcocycle}, for which we write
+\begin{align*}
+	g_ih_i\sigma_i^{(r_i)} &= g_ih_i\sigma_i^{(a_i+b_i)}-g_ih_i\sigma_i^{r_i}\sigma_i^{(n_iq_i)} \\
+	&= g_ih_i\sigma_i^{(a_i+b_i)}-g_ih_i\sigma_i^{a_i+b_i}\cdot q_iN_i \\
+	&= g_ih_i\sigma_i^{(a_i+b_i)}-g_ih_i\cdot q_iN_i,
+\end{align*}
+where the last equality is because $\sigma_iN_i=N_i$. Thus,
+\begin{align*}
+	-\left(g_ih_i\sigma_i^{(r_i)}\right)_{i=1}^m &= -\left(g_ih_i\sigma_i^{(a_i+b_i)}\right)_{i=1}^m+\left(g_ih_i\cdot q_iN_i\right)_{i=1}^m \\
+	&= -\left(g_ih_i\sigma_i^{(a_i+b_i)}\right)_{i=1}^m+\mathcal F\big((g_ih_iq_i)_i,(0)_{i>j}\big).
+\end{align*}
+Now, for the left and right terms of \autoref{eq:expandedcocycle}, we will need the following lemma.
+\begin{lemma}
+	Fix everything as in the set-up. Then, given $g\coloneqq\prod_{i=1}^m\sigma_i^{a_i}$, we have
+	\[g_i=1+\sum_{p=1}^{i-1}g_p\sigma_p^{(a_p)}T_p\]
+	for $i\ge1$.
+\end{lemma}
+\begin{proof}
+	This is by induction. For $i=1$, there is nothing to say. For the inductive step, we take $i>1$ where we may assume the statement for $i-1$. Via some relabeling, we may make our inductive hypothesis assert
+	\[\prod_{p=2}^{i-1}\sigma_p^{a_p}=1+\sum_{p=2}^{i-1}\Bigg(\prod_{q=2}^{p-1}\sigma_q^{a_q}\Bigg)\sigma_p^{(a_p)}T_p.\]
+	In particular, multiplying through by $\sigma_1^{a_1}$ yields
+	\begin{align*}
+		g_i &= \sigma_1^{a_1}\cdot\prod_{p=2}^{i-1}\sigma_p^{a_p} \\
+		&= \sigma_1^{a_1}+\sigma_1^{a_1}\sum_{p=2}^{i-1}\Bigg(\prod_{q=2}^{p-1}\sigma_q^{a_q}\Bigg)\sigma_p^{(a_p)}T_p \\
+		&= \sigma_1^{a_1}+\sum_{p=2}^{i-1}g_p\sigma_p^{(a_p)}T_p \\
+		&= 1+\sigma_1^{(a_1)}T_1+\sum_{p=2}^{i-1}g_p\sigma_p^{(a_p)}T_p,
+	\end{align*}
+	which is exactly what we wanted, after a little more rearrangement.
+\end{proof}
+Thus, for the left term of \autoref{eq:expandedcocycle}, the $i$th coordinate is
+\begin{align*}
+	gh_i\sigma_i^{(b_i)} &= g_i\sigma_i^{a_i}\Bigg(\prod_{ j=i+1}^{n_2}\sigma_j^{a_j}\Bigg)h_i\sigma_i^{(b_i)} \\
+	&= g_i\Bigg(1+\sum_{j=i+1}^{n_2}\Bigg(\prod_{q=i+1}^{j-1}\sigma_q^{a_q}\Bigg)\sigma_j^{(a_j)}T_j\Bigg)h_i\sigma_i^{a_i}\sigma_i^{(b_i)} \\
+	&= g_ih_i\sigma_i^{a_i}\sigma_i^{(b_i)}+\sum_{j=i+1}^{n_2}\Bigg(g_i\sigma_i^{a_i}\prod_{q=i+1}^{j-1}\sigma_q^{a_q}\Bigg)h_i\sigma_j^{(a_j)}\sigma_i^{(b_i)}T_j \\
+	&= g_ih_i\sigma_i^{a_i}\sigma_i^{(b_i)}+\sum_{j=i+1}^{n_2}g_jh_i\sigma_j^{(a_j)}\sigma_i^{(b_i)}T_j.
+\end{align*}
+And lastly, for the right term of \autoref{eq:expandedcocycle}, the $i$th coordinate is
+\begin{align*}
+	g_i\sigma_i^{(a_i)} &= g_i\Bigg(h_i-\sum_{j=1}^{i-1}h_j\sigma_j^{(b_j)}T_j\Bigg)\sigma_i^{(a_i)} \\
+	&= g_ih_i\sigma_i^{(a_i)}-\sum_{j=1}^{i-1}g_ih_j\sigma_i^{(a_i)}\sigma_j^{(b_j)}T_j.
+\end{align*}
+So to finish, we continue from \autoref{eq:expandedcocycle}, which gives
+\begin{align*}
+	dc(g,h)-\mathcal F\big((g_ih_iq_i)_i,(0)_{i>j}\big) &= \left(g_ih_i\sigma_i^{a_i}\sigma_i^{(b_i)}\right)_{i=1}^m-\left(g_ih_i\sigma_i^{(a_i+b_i)}\right)_{i=1}^m+\left(g_ih_i\sigma_i^{(a_i)}\right)_{i=1}^m \\
+	&\qquad\qquad+\Bigg(\sum_{j=i+1}^{n_2}g_jh_i\sigma_j^{(a_j)}\sigma_i^{(b_i)}T_j-\sum_{j=1}^{i-1}g_ih_j\sigma_i^{(a_i)}\sigma_j^{(b_j)}T_j\Bigg)_{i=1}^m \\
+	&= \Bigg(-\sum_{j=1}^{i-1}g_ih_j\sigma_i^{(a_i)}\sigma_j^{(b_j)}T_j+\sum_{j=i+1}^{n_2}g_jh_i\sigma_j^{(a_j)}\sigma_i^{(b_i)}T_j\Bigg)_{i=1}^m \\
+	&= \mathcal F\left((0)_i,\big(g_ih_j\sigma_i^{(a_i)}\sigma_j^{(b_j)}\big)_{i>j}\right).
+\end{align*}
+Thus,
+\begin{equation}
+	dc(g,h) = \mathcal F\left((g_ih_iq_i)_i,\big(g_ih_j\sigma_i^{(a_i)}\sigma_j^{(b_j)}\big)_{i>j}\right)\in\im\mathcal F. \label{eq:computedelta}
+\end{equation}
+This completes the proof of \autoref{lem:manufacturedcocycle}.
+
+In fact, the above proof has found an explicit element $z$ so that $\mathcal F(z)=dc(g,h)$ for each $g,h\in G$. As such, we recall that we set
+\[X\coloneqq\frac{\ZZ[G]^m\times\ZZ[G]^{\binom m2}}{\ker\mathcal F}\]
+to give the short exact sequence
+\[0\to X\stackrel{\mathcal F}\to\ZZ[G]^m\to\coker\mathcal F\to0.\]
+In particular, we can track $\overline c\in Z^1(G,\coker\mathcal F)$ through a boundary morphism: we already have a chosen lift $c\in Z^1(G,\ZZ[G]^m)$ for $\overline c$, and we have also computed $\mathcal F^{-1}\circ dc$ from the above work. This gives the following result.
+\begin{cor}
+	Fix everything as in the set-up. Then the $\overline c$ of \autoref{lem:manufacturedcocycle} has
+	\[\delta(c)(g,h)\coloneqq\left((g_ih_iq_i)_i,\big(g_ih_j\sigma_i^{(a_i)}\sigma_j^{(b_j)}\big)_{i>j}\right)\in Z^2(G,X)\]
+	where $\delta$ is induced by
+	\[0\to X\stackrel{\mathcal F}\to\ZZ[G]^m\to\coker\mathcal F\to0.\]
+\end{cor}
+\begin{proof}
+	This follows from tracking how $\delta$ behaves, using \autoref{eq:computedelta}.
+\end{proof}
+\begin{remark}
+	In some sense, this $\delta(c)$ is exactly the cocycle of \autoref{thm:getcocycle}, where we have abstracted away everything about $A$. We will rigorize this notion in our proof of \autoref{thm:yesitisacocycle}.
+\end{remark}
+
+\subsection{Tuples via Cohomology}
+We continue in the set-up of the previous subsection. The goal of this subsection is to prove \autoref{lem:alternativetuple}. The main idea is that we will be able to finitely generate $\ker\mathcal F$ essentially using the relations of a $\{\sigma_i\}_{i=1}^m$-tuple.
 
 \newpage
 \appendix
@@ -523,10 +653,10 @@ In this section, we verify \autoref{thm:getcocycle}. As such, in this section, w
 Here the formula looks like
 \[c(g,g')\coloneqq\left[\prod_{1\le j<i\le m}\Bigg(\prod_{1\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\beta_{ij}^{(a_ib_j)}\right]\left[\prod_{i=1}^m\Bigg(\prod_{1\le k<i}\sigma_k^{a_k+b_k}\Bigg)\alpha_i^{\floor{\frac{a_i+b_i}{n_i}}}\right],\]
 where $g=\prod_i\sigma_i^{a_i}$ and $g'=\prod_i\sigma_i^{b_i}$ with $0\le a_i,b_i<n_i$ and $q_i\coloneqq\floor{(a_i+b_i)/n_i}$. To make this more digestible, we define
-\[g_i\coloneqq\prod_{1\le k<i}\sigma_i^{a_i}\]
-for any $g=\prod_i\sigma_i^{a_i}\in\Gamma$, so we can write down our formula as
+\[g_i\coloneqq\prod_{1\le k<i}\sigma_k^{a_k}\]
+for any $g=\prod_i\sigma_i^{a_i}\in G$, so we can write down our formula as
 \[c(g,g')\coloneqq\left[\prod_{1\le j<i\le m}g_ig'_j\beta_{ij}^{(a_ib_j)}\right]\left[\prod_{i=1}^mg_ig'_i\alpha_i^{\floor{\frac{a_i+b_i}{n_i}}}\right].\]
-Now, given $g,g',g''\in\Gamma$, we would like to check
+Now, given $g,g',g''\in G$, we would like to check
 \[gc(g',g'')\cdot c(g,g'g'')\stackrel?=c(gg',g'')\cdot c(g,g'),\]
 where $g=\prod_i\sigma_i^{a_i}$ and $g'=\prod_i\sigma_i^{b_i}$ and $g''=\prod_i\sigma_i^{c_i}$ with $0\le a_i,b_i,c_i<n_i$.
 

@@ -18,3 +18,6 @@
 {"rule":"EN_A_VS_AN","sentence":"^\\QFurther, because \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is also only defined up to a multiple in \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, to show that the classes in \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q coincide, it thus suffices to exhibit a single triple \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q such that \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is a uniformizer.\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QClassifying \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q-cyclic Gerbs Nir Elber FUNDAMENTAL CLASS\\E$"}
 {"rule":"EN_A_VS_AN","sentence":"^\\Q\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q To begin, we know that we can write \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, where \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is a uniformizer of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QAt \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, we have \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QComputation of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.ker F.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QComputation of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.ker F. In this section we give a proof of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}

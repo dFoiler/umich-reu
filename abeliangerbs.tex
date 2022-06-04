@@ -356,7 +356,7 @@ where $ G_k\subseteq G$ with $ G_k\cong\ZZ/n_k\ZZ$ and $n_k>1$ for each $n_k$. A
 	where $g\coloneqq\prod_i\sigma_i^{a_i}$ with $h\coloneqq\prod_i\sigma_j^{a_j}$ and $0\le a_i,b_i<n_i$, into a cocycle in $Z^2( G,A)$.
 \end{theorem}
 \begin{proof}
-	Note that $c$ is now surely well-defined because the elements $g$ and $h$ have unique representations as described. Anyway, we relegate the cocycle check to \autoref{sec:verifycocycle} because it is long, annoying, and unenlightening.
+	Note that $c$ is now surely well-defined because the elements $g$ and $h$ have unique representations as described. Anyway, we relegate the direct cocycle check to \autoref{sec:verifycocycle} because it is long, annoying, and unenlightening. We will also present an alternative proof in \autoref{sec:tuplestudy}, using more abstract theory.
 \end{proof}
 Observe that the above construction has now completely forgotten about $\mc E$! Namely, we have managed to go from tuples straight to cocycles; this is theoretically good because it will allow us to go fully in reverse: we will be able to start with a tuple, build the corresponding cocycle, from which the extension arises. However, equivalence classes of cocycles give the ``same'' extension, so we will also need to give equivalence classes for tuples as well.
 
@@ -515,7 +515,7 @@ As such, the above relations fully describe the extension because they also spec
 	However, we know that as the equivalence class of $(\{\alpha_i\},\{\beta_{ij}\})$ changes, we will hit all cohomology classes in $H^2( G,A)$ by \autoref{thm:classisomorphism}. Thus, because every extension is represented by some cohomology class, every extension will be isomorphic to some $\mc E(\{\alpha_i\},\{\beta_{ij}\})$. This completes the proof.
 \end{proof}
 
-\section{Studying Tuples}
+\section{Studying Tuples} \label{sec:tuplestudy}
 The story so far has been able to generalize the one-variable results from \autoref{sec:general} to results using all generators of an abelian group in \autoref{sec:abelian}. It remains to prove \autoref{thm:getcocycle}, which is the main goal of this section.
 
 \subsection{Set-Up and Overview}
@@ -532,33 +532,33 @@ which can be seen by direct expansion. Given $g\in\prod_{p=1}^n\sigma_p^{a_p}$, 
 for $i\ge0$. In particular $g_0=g_1=1$ and $g_{n+1}=g$.
 
 Now, our tool in the proof of \autoref{thm:getcocycle} will be the magical map $\mathcal F\colon\ZZ[G]^m\times\ZZ[G]^{\binom m2}\to\ZZ[G]^m$ defined by
-\[\mathcal F\colon\big((x_i)_{i=1}^m,(y_{ij})_{i>j}\big)\mapsto\Bigg(x_iN_i-\sum_{j=1}^{i-1}y_{ij}T_i+\sum_{j=i+1}^my_{ji}T_j\Bigg)_{i=1}^m.\]
+\[\mathcal F\colon\big((x_i)_{i=1}^m,(y_{ij})_{i>j}\big)\mapsto\Bigg(x_iN_i-\sum_{j=1}^{i-1}y_{ij}T_j+\sum_{j=i+1}^my_{ji}T_j\Bigg)_{i=1}^m.\]
 This is of course as $G$-module homomorphism. We will go ahead and state the main results we will prove. Roughly speaking, $\mathcal F$ is manufactured to make the following result true.
-\begin{lemma} \label{lem:manufacturedcocycle}
-	Fix everything as above. Then the function
+\begin{prop} \label{prop:manufacturedcocycle}
+	Fix everything as in the set-up. Then the function
 	\[\overline c(g)\coloneqq\left(g_i\sigma_i^{(a_i)}\right)_{i=1}^m,\]
 	where $g\coloneqq\prod_{i=1}^m\sigma_i^{a_i}$, is a $1$-cocycle in $Z^1(G,\coker\mathcal F)$.
-\end{lemma}
+\end{prop}
 The reason we care about this cocycle is that we can pass it through a boundary morphism induced by the short exact sequence
 \[0\to\underbrace{\frac{\ZZ[G]^m\times\ZZ[G]^{\binom m2}}{\ker\mathcal F}}_{X\coloneqq}\stackrel{\mathcal F}\to\ZZ[G]^m\to\coker\mathcal F\to0,\]
-so we have a $2$-cocycle $\delta(\overline c)\in Z^2(G,X)$; in fact, we will be able to explicitly compute $\delta(\overline c)$ as a result of the proof of \autoref{lem:manufacturedcocycle}.
+so we have a $2$-cocycle $\delta(\overline c)\in Z^2(G,X)$; in fact, we will be able to explicitly compute $\delta(\overline c)$ as a result of the proof of \autoref{prop:manufacturedcocycle}.
 
 Only now will we bring in tuples. The first result provides an alternate description of tuples.
-\begin{lemma} \label{lem:alternativetuple}
-	Fix everything as above, and now let $A$ be a $G$-module. Then $\{\sigma_i\}_{i=1}^m$-tuples are canonically isomorphic to $\op{Hom}_{\ZZ[G]}(X,A)$. In fact, equivalence classes of $\{\sigma_i\}_{i=1}^m$-tuples are canonically isomorphic to $\widehat H^0(G,\op{Hom}_\ZZ(X,A))$.
-\end{lemma}
-The second result brings in the last ingredient, the cup product.
-\begin{theorem} \label{thm:yesitisacocycle}
-	Fix everything as above. Further, fix a $G$-module $A$ and a $\{\sigma_i\}_{i=1}^m$-tuple $\left(\{\alpha_i\},\{\beta_{ij}\}\right)$. Then observe there is a natural cup product map
-	\[\cup\colon\widehat H^2(G,X)\times\widehat H^0(G,\op{Hom}_\ZZ(X,A))\to\widehat H^2(G,A)\]
-	by using the evaluation map $X\otimes_\ZZ\op{Hom}_\ZZ(X,A)\to A$. Then, using the isomorphism of \autoref{lem:alternativetuple}, the cocycle defined in \autoref{thm:getcocycle} is simply the output of $\delta(\overline c)\cup\left(\{\alpha_i\},\{\beta_{ij}\}\right)$ on cocycles.
-\end{theorem}
-Because we know that the cup product sends cocycles to cocycles, this will show that the cocycle of \autoref{thm:getcocycle} is in fact well-defined.
+\begin{restatable}{prop}{propalternativetuple} \label{prop:alternativetuple}
+	Fix everything as in the set-up, and now let $A$ be a $G$-module. Then $\{\sigma_i\}_{i=1}^m$-tuples are canonically isomorphic to $\op{Hom}_{\ZZ[G]}(X,A)=H^0(G,\op{Hom}_\ZZ(X,A))$.
+\end{restatable}
+\noindent The second result brings in the last ingredient, the cup product.
+\begin{restatable}{theorem}{thmyesitisacocycle} \label{thm:yesitisacocycle}
+	Fix everything as in the set-up. Further, fix a $G$-module $A$ and a $\{\sigma_i\}_{i=1}^m$-tuple $\left(\{\alpha_i\},\{\beta_{ij}\}\right)$. Then observe there is a natural cup product map
+	\[\cup\colon H^2(G,X)\times H^0(G,\op{Hom}_\ZZ(X,A))\to H^2(G,A)\]
+	by using the evaluation map $X\otimes_\ZZ\op{Hom}_\ZZ(X,A)\to A$. Then, using the isomorphism of \autoref{prop:alternativetuple}, the cocycle defined in \autoref{thm:getcocycle} is simply the output of $\delta(\overline c)\cup\left(\{\alpha_i\},\{\beta_{ij}\}\right)$ on cocycles.
+\end{restatable}
+\noindent Because we know that the cup product sends cocycles to cocycles, this will show that the cocycle of \autoref{thm:getcocycle} is in fact well-defined.
 
 % it might be worth stating the main results we are going to prove here, but they are somewhat notation-heavy
 
 \subsection{A Cocycle}
-We continue in the set-up of the previous subsection. The goal of this subsection is to prove \autoref{lem:manufacturedcocycle}. This is a matter of brute force. Set $c\in C^1\left(G,\ZZ[G]^m\right)$ defined by
+We continue in the set-up of the previous subsection. The goal of this subsection is to prove \autoref{prop:manufacturedcocycle}. This is a matter of brute force. Set $c\in C^1\left(G,\ZZ[G]^m\right)$ defined by
 \[c(g)\coloneqq\left(g_i\sigma_i^{(a_i)}\right)^m_{i=1},\]
 where $g\coloneqq\prod_{i=1}^m\sigma_i^{a_i}$. We will show that $\im dc\subseteq\im\mathcal F$, which we will mean that $\im\overline{dc}=\im d\overline c=0$, where $f\mapsto\overline f$ is the map $C^\bullet\left(G,\ZZ[G]^m\right)\onto C^\bullet\left(G,\coker\mathcal F\right)$ induced by modding out.
 
@@ -622,15 +622,15 @@ Thus,
 \begin{equation}
 	dc(g,h) = \mathcal F\left((g_ih_iq_i)_i,\big(g_ih_j\sigma_i^{(a_i)}\sigma_j^{(b_j)}\big)_{i>j}\right)\in\im\mathcal F. \label{eq:computedelta}
 \end{equation}
-This completes the proof of \autoref{lem:manufacturedcocycle}.
+This completes the proof of \autoref{prop:manufacturedcocycle}.
 
 In fact, the above proof has found an explicit element $z$ so that $\mathcal F(z)=dc(g,h)$ for each $g,h\in G$. As such, we recall that we set
 \[X\coloneqq\frac{\ZZ[G]^m\times\ZZ[G]^{\binom m2}}{\ker\mathcal F}\]
 to give the short exact sequence
 \[0\to X\stackrel{\mathcal F}\to\ZZ[G]^m\to\coker\mathcal F\to0.\]
 In particular, we can track $\overline c\in Z^1(G,\coker\mathcal F)$ through a boundary morphism: we already have a chosen lift $c\in Z^1(G,\ZZ[G]^m)$ for $\overline c$, and we have also computed $\mathcal F^{-1}\circ dc$ from the above work. This gives the following result.
-\begin{cor}
-	Fix everything as in the set-up. Then the $\overline c$ of \autoref{lem:manufacturedcocycle} has
+\begin{cor} \label{cor:deltaccomputation}
+	Fix everything as in the set-up. Then the $\overline c$ of \autoref{prop:manufacturedcocycle} has
 	\[\delta(c)(g,h)\coloneqq\left((g_ih_iq_i)_i,\big(g_ih_j\sigma_i^{(a_i)}\sigma_j^{(b_j)}\big)_{i>j}\right)\in Z^2(G,X)\]
 	where $\delta$ is induced by
 	\[0\to X\stackrel{\mathcal F}\to\ZZ[G]^m\to\coker\mathcal F\to0.\]
@@ -643,7 +643,116 @@ In particular, we can track $\overline c\in Z^1(G,\coker\mathcal F)$ through a b
 \end{remark}
 
 \subsection{Tuples via Cohomology}
-We continue in the set-up of the previous subsection. The goal of this subsection is to prove \autoref{lem:alternativetuple}. The main idea is that we will be able to finitely generate $\ker\mathcal F$ essentially using the relations of a $\{\sigma_i\}_{i=1}^m$-tuple.
+We continue in the set-up of the previous subsection. The goal of this subsection is to prove \autoref{prop:alternativetuple}. The main idea is that we will be able to finitely generate $\ker\mathcal F$ essentially using the relations of a $\{\sigma_i\}_{i=1}^m$-tuple.
+
+To set us up, we define the notation
+\[\kappa_p\coloneqq\big((1_{i=p})_i,(0)_{i>j}\big)\in X\qquad\text{and}\qquad\lambda_{pq}\coloneqq\big((0)_i,(1_{(i,j)=(p,q)})_{i>j}\big)\]
+for all relevant indices $p$ and $q$. We now start with the following basic result.
+\begin{lemma} \label{lem:getgens}
+	Fix everything as in the set-up. Then $\ker\mathcal F$ contains the following elements.
+	\begin{listalph}
+		\item $T_p\kappa_p$ for any index $p$.
+		\item $N_pN_q\lambda_{pq}$ for any pair of indices $(p,q)$ with $p>q$.
+		\item $T_q\kappa_p+N_p\lambda_{pq}$ for any pair of indices $(p,q)$ with $p>q$.
+		\item $T_p\kappa_q-N_q\lambda_{pq}$ for any pair of indices $(p,q)$ with $p>q$.
+		\item $T_q\lambda_{pr}-T_r\lambda_{pq}-T_p\lambda_{qr}$ for any triplet of indices $(p,q,r)$ with $p>q>r$.
+	\end{listalph}
+\end{lemma}
+\begin{proof}
+	We start by showing that all the listed elements are in fact in $\ker\mathcal F$.
+	\begin{listalph}
+		\item Note that $\mathcal F$ only ever takes the $x_i$ term to $x_iN_i$, so if $x_i=T_i$, then the effect of $x_i$ vanishes.
+		\item Similarly, note that $\mathcal F$ only ever takes the $y_{ij}$ term to $y_{ij}T_i$ or $y_{ij}T_j$. As such, if $y_{ij}=N_iN_j$, then the effect of $y_{ij}$ vanishes again.
+		\item The only relevant terms are at indices $p$ and $q$. Here, $i=p$ has $\mathcal F$ output
+		\[T_qN_p-N_pT_q+0=0.\]
+		For $i=q$, we have no $x_q$ term, so we are left with $N_pT_p=0$.
+		\item Again, the only relevant terms are at indices $p$ and $q$. This time the interesting term is at $i=q$, where we have
+		\[T_pN_q-0+(-N_q)T_p=0.\]
+		Then at $i=p$, we simply have $0N_p-(-N_q)T_q+0=0$.
+		\item The relevant terms, as usual, are for $i\in\{p,q,r\}$.
+		\begin{itemize}
+			\item At $i=p$, we have $0-(T_qT_r+(-T_r)T_q)+0=0.$
+			\item At $i=q$, we have $0-(-(T_p)T_r)+((-T_r)T_p)=0$.
+			\item At $i=r$, we have $0-0+(T_qT_p+(-T_p)T_q)=0$.
+		\end{itemize}
+	\end{listalph}
+	The above checks complete this part of the proof.
+\end{proof}
+\begin{remark}
+	The above elements are intended to encode the relations to be a $\{\sigma_i\}_{i=1}^n$-tuple. We will see this made rigorous in the proof of \autoref{prop:alternativetuple}.
+\end{remark}
+In fact, the following is true.
+\begin{lemma} \label{lem:havegens}
+	Fix everything as in the set-up. Then the elements (a)--(e) of \autoref{lem:getgens}, with (b) removed, generate $\ker\mathcal F$.
+\end{lemma}
+\begin{proof}
+	We remark that we callously removed (b) because it is implied (c): $T_q\kappa_p+N_p\lambda_{pq}\in\ker\mathcal F$ implies that
+	\[N_q\cdot(T_q\kappa_p+N_p\lambda_{pq})=N_pN_q\lambda_{pq}\]
+	is also in $\ker\mathcal F$. Anyway, this proof is long and annoying and hence relegated to \autoref{sec:havegensproof}.
+\end{proof}
+Here is the payoff for the hard work in \autoref{lem:havegens}.
+\propalternativetuple*
+\begin{proof}
+	Let $\mathcal T$ denote the set of $\{\sigma_i\}_{i=1}^m$-tuples. We now define the map $\varphi\colon\op{Hom}_{\ZZ[G]}(X,A)\to\mathcal T$ by
+	\[\varphi\colon f\mapsto\Big(\big(f(\kappa_i)\big)_i,\big(f(\lambda_{ij})\big)_{i>j}\Big).\]
+	In other words, we simply read off the values of $f$ from indicators on the coordinates of $X$. It's not hard to see that $\varphi$ is in fact a $G$-module homomorphism, but we will have to check that $\varphi$ is well-defined, for which we have to check the conditions on being a $\{\sigma_i\}_{i=1}^m$-tuple.
+	\begin{lemma} \label{lem:kernelisrelations}
+		Fix everything as in the set-up, and let $A$ be a $G$-module. Then, given $f\colon\ZZ[G]^m\times\ZZ[G]^{\binom m2}$, we have $\ker\mathcal F\subseteq\ker f$ if and only if
+		\[\Big(\big(f(\kappa_i)\big)_i,\big(f(\lambda_{ij})\big)_{i>j}\Big)\]
+		is a $\{\sigma_i\}_{i=1}^m$-tuple.
+	\end{lemma}
+	\begin{proof}
+		By \autoref{lem:havegens}, we see $\ker\mathcal F\subseteq\ker f$ if and only if $f$ vanishes on the elements given in \autoref{lem:getgens}. As such, we now run the following checks.
+		\begin{enumerate}
+			\item We discuss \autoref{eq:tuplefields}. For one, note that $f(\lambda_{ij})\in A$ essentially for free. Now, we note
+			\begin{align*}
+				f(\kappa_i)\in A^{\langle\sigma_i\rangle} &\iff T_if(\kappa_i)=0 \\
+				&\iff f(T_i\kappa_i)=0 \\
+				&\iff T_i\kappa_i\in\ker f.
+			\end{align*}
+			\item We discuss \autoref{eq:tuplerelations}. On one hand, note that $i>j$ has
+			\begin{align*}
+				N_if(\lambda_{ij})=-T_jf(\lambda_i) &\iff f(N_i\lambda_{ij}+T_j\lambda_i) \\
+				&\iff N_i\lambda_{ij}+T_j\lambda_i\in\ker f.
+			\end{align*}
+			On the other hand,
+			\begin{align*}
+				-N_jf(\lambda_{ij})=-T_if(\lambda_j) &\iff f(N_j\lambda_{ij}+T_i\lambda_j)=0 \\
+				&\iff N_j\lambda_{ij}+T_i\lambda_j\in\ker f.
+			\end{align*}
+			\item We discuss \autoref{eq:betarelations}. Simply note indices $i>j>k$ have
+			\begin{align*}
+				T_jf(\lambda_{ik})=T_kf(\lambda_{ij})+T_if(\lambda_{jk}) &\iff f(T_j\lambda_{ik}-T_k\lambda_{ij}-T_i\lambda_{jk})=0 \\
+				&\iff T_j\lambda_{ik}-T_k\lambda_{ij}-T_i\lambda_{jk}\in\ker f.
+			\end{align*}
+		\end{enumerate}
+		In total, we see that satisfying the relations to be a $\{\sigma_i\}_{i=1}^m$-tuple exactly encodes the data of having the generators of $\ker\mathcal F$ live in $\ker f$.
+	\end{proof}
+	So indeed, given $f\colon X\to A$, the above lemma applied to the composite
+	\[\ZZ[G]^m\times\ZZ[G]^{\binom m2}\onto X\stackrel{f}\to A\]
+	shows that $\varphi(f)\in\mathcal T$.
+
+	To show that $\varphi$ is an isomorphism, we exhibit its inverse; fix some $(\{\alpha_i\},\{\beta_{ij}\}_{i>j})\in\mathcal T$. Well, $\ZZ[G]\times\ZZ[G]^{\binom m2}$ has as a basis the $\kappa_i$ and $\lambda_{ij}$, so we can uniquely define a $G$-module homomorphism $f\colon X\to A$ by
+	\[f(\kappa_i)\coloneqq\alpha_i\qquad\text{and}\qquad f(\lambda_{ij})\coloneqq\beta_{ij}\]
+	for all relevant indices $i,j$, and in fact the map $\mathcal T\to\op{Hom}_\ZZ\left(\ZZ[G]^m\times\ZZ[G]^{\binom m2},A\right)$ we can see to be a $G$-module homomorphism. However, because these outputs are a $\{\sigma_i\}_{i=1}^m$-tuple, we can read \autoref{lem:kernelisrelations} backward to say that $f$ has kernel containing $\ker\mathcal F$, so in fact we induce a map $\overline f\colon X\to A$.
+	
+	So in total, we get a $G$-module homomorphism $\psi\colon\mathcal T\to\op{Hom}_{\ZZ[G]}(X,A)$ by
+	\[\psi\colon(\{\alpha_i\},\{\beta_{ij}\}_{i>j})\mapsto\overline f,\]
+	where $\overline f$ is defined on the basis elements above. Further, $\psi$ is the inverse of $\varphi$ essentially because the $\{\kappa_i\}_i\cup\{\lambda_{ij}\}_{i>j}$ form a basis of $\ZZ[G]^m\times\ZZ[G]^{\binom m2}$. This completes the proof.
+\end{proof}
+And now because it is so easy, we might as well prove \autoref{thm:yesitisacocycle}.
+\thmyesitisacocycle*
+\begin{proof}
+	The main point is that we have a computation of $\delta(\overline c)$ from \autoref{cor:deltaccomputation}, which we merely need to track through. In particular, fix a $\{\sigma_i\}_{i=1}^m$-tuple $(\{\alpha_i\}_i,\{\beta_{ij}\}_{i>j})$, and let $f\in H^0(G,\op{Hom}_\ZZ(X,A))$ be the corresponding morphism. As such, we may compute
+	\[\delta(\overline c)\cup f\colon(g,h)\mapsto\delta(\overline c)(g,h)\otimes_\ZZ gh\cdot f=\delta(\overline c)(g,h)\otimes_\ZZ f.\]
+	To pass through evaluation, we set $g\coloneqq\prod_i\sigma_i^{a_i}$ and $h\coloneqq\prod_i\sigma_i^{b_i}$, from which we get
+	\begin{align*}
+		f(\delta(\overline c)(g,h)) &= f\left((g_ih_iq_i)_i,\big(g_ih_j\sigma_i^{(a_i)}\sigma_j^{(b_j)}\big)_{i>j}\right) \\
+		&= \sum_{i=1}^mg_ih_i\floor{\frac{a_i+b_i}{n_i}}\cdot\alpha_i+\sum_{\substack{i,j=1\\i>j}}^mg_ih_j\sigma_i^{(a_i)}\sigma_j^{(b_j)}\cdot\beta_{ij} \\
+		&= \sum_{\substack{i,j=1\\i>j}}^m\Bigg(\prod_{p<i}\sigma_p^{a_p}\Bigg)\Bigg(\prod_{q<j}\sigma_q^{b_q}\Bigg)\sigma_i^{(a_i)}\sigma_j^{(b_j)}\beta_{ij}+\sum_{i=1}^mg_ih_i\alpha_i^{\floor{\frac{a_i+b_i}{n_i}}}.
+	\end{align*}
+	Doing a little more rearrangement and writing this multiplicatively and exactly recovers the cocycle of \autoref{thm:getcocycle}. This completes the proof.
+\end{proof}
 
 \newpage
 \appendix
@@ -874,5 +983,100 @@ However, by definition of the $\beta_{ij}^{(xy)}$, we see that
 {\beta_{m''j}^{(a_{m''}c_j)}\cdot
 \sigma_{m''}^{a_{m''}}\beta_{m''j}^{(b_{m''}c_j)}}=1,\]
 so everything does indeed cancel out properly. This completes the check.
+
+\section{Computation of \texorpdfstring{$\ker\mathcal F$}{ker F}} \label{sec:havegensproof}
+In this section we give a proof of \autoref{lem:havegens}. As such, we will use all the context from the statement and proceed directly with the proof; as mentioned earlier, we may add (b) back to our list of generators because it is induced by (c). Pick up some $z\coloneqq((x_i)_i,(y_{ij})_{i>j})\in\ker\mathcal F$, which is equivalent to saying
+\[x_iN_i-\sum_{j=1}^{i-1}y_{ij}T_j+\sum_{j=i+1}^my_{ji}T_j=0\]
+for each index $i$. We want to write $z$ as a $\ZZ[G]$-linear combination of the elements from (a)--(e). The main idea will be to slowly subtract out $\ZZ[G]$-linear combinations of the above elements (which does not affect $z\in\ker\mathcal F$) until we can prove that we have $0$ left over. We start with the $x_i$ terms, which we do in two steps.
+\begin{enumerate}
+	\item We begin by dealing with the $x_i$ terms. Fix some index $p$, and we will subtract out a suitable $\ZZ[G]$-linear combination of the above generators to set $x_p=0$ while not changing the other $x_i$ terms. Well, using the element
+	\[\kappa_pT_p,\tag{a}\]
+	we may assume that $x_p$ has no $\sigma_p$ terms because $\sigma_p\equiv1\pmod{T_p}$. Then for each $q<p$, we can subtract out a suitable multiple of
+	\[T_q\kappa_p+N_p\lambda_{pq}\tag{c}\]
+	to make it so that we may assume $x_p$ has no $\sigma_q$ terms because $\sigma_q\equiv1\pmod{T_q}$. Similarly, for each $q>p$, we can subtract out a suitable multiple of
+	\[T_q\kappa_p-N_p\lambda_{pq}\tag{d}\]
+	to make it so that we may assume $x_p$ has no $\sigma_q$ terms because $\sigma_q\equiv1\pmod{T_q}$.
+
+	\item Thus, the above process allows us to assume that $x_p\in\ZZ$, and the above linear combinations have not affected any $x_i$ for $i\ne p$. We now use the fact that $z\in\ker\mathcal F$. Indeed, we know that
+	\[x_pN_p-\sum_{j=1}^{p-1}y_{pj}T_j+\sum_{j=p+1}^my_{jp}T_j=0.\]
+	Applying the augmentation map $\varepsilon\colon\ZZ[G]\to\ZZ$, sending $\varepsilon\colon\sigma_i\mapsto1$ for each index $i$, we see that $x_p\in\ZZ$ implying that $x_p$ remains fixed. On the other hand $\varepsilon\colon T_j\mapsto0$ for each index $j$ and $\varepsilon\colon N_p\mapsto n_p$, so we are left with
+	\[n_px_p=0.\]
+	Because $n_p\ne0$ (it's the order of $\sigma_p$), we conclude that $x_p=0$. Applying this argument to the other $x_i$ terms, we conclude that we may assume $x_i=0$ for each $i$.
+\end{enumerate}
+It remains to deal with the $y_{ij}$ terms, which is a little more involved. For reference, we are showing that
+\[-\sum_{j=1}^{i-1}y_{ij}T_j+\sum_{j=i+1}^my_{ji}T_j=0\]
+for each index $i$ implies that $z=((0)_i,(y_{ij})_{i>j})$ is a $\ZZ[G]$-linear combination of the terms from (b) and (e). Before continuing, we acknowledge that we will want the following lemma.
+\begin{lemma} \label{lem:separatenijs}
+	Fix everything as in the set-up. Then, for any pair of distinct indices $(p,q)$, we have $(\im N_p)\cap(\im N_q)=\im N_pN_q$, where we are identifying $x\in\ZZ[G]$ with its associated multiplication map $x\colon\ZZ[G]\to\ZZ[G]$.
+\end{lemma}
+\begin{proof}
+	The point is that the elements of $(\im N_p)\cap(\im N_q)$ and $\im N_pN_q$ are both simply the elements whose expansion in the form $\sum_gc_gg\in\ZZ[G]$ have $c_j$ ``constant in $\sigma_p$ and $\sigma_q$.'' More explicitly, of course, $N_pN_q\in(\im N_p)\cap(\im N_jq)$, so $\im N_pN_q\subseteq(\im N_p)\cap(\im N_q)$. In the other direction, suppose that we have some element
+	\[z\coloneqq\sum_{(a_i)_i}c_{(a_i)_i}\sigma_1^{a_1}\cdots\sigma_m^{a_m}\in(\im N_i)\cap(\im N_j),\]
+	the sum is over sequences $(a_i)_{i=1}^m$ such that $0\le a_i<n_i$ for each index $i$. We will show $z\in\im N_iN_j$.
+	
+	Now, $z\in\im N_r$ for $r\in\{p,q\}$ is equivalent to $z\in\ker T_r$, but upon multiplying by $(\sigma_r-1)$ we see that we are asking for
+	\[\sum_{(a_i)_i}c_{(a_i)_i}\sigma_1^{a_1}\cdots\sigma_{r-1}^{a_{r-1}}\sigma_r^{a_r}\sigma_{r+1}^{a_{r+1}}\cdots\sigma_n^{a_n}=\sum_{(a_i)_i}c_{(a_i)_i}\sigma_1^{a_1}\cdots\sigma_{r-1}^{a_{r-1}}\sigma_r^{a_r+1}\sigma_{r+1}^{a_{r+1}}\cdots\sigma_n^{a_n}.\]
+	In other words, this is asking for $c_{(a_i)_i}=c_{(a_i)_i+(1_{i=r})_i}$, or more succinctly just that $c$ is constant in the $i=r$ coordinate.
+
+	Thus, $c$ is constant in both the $i=p$ and $i=q$ coordinates. Thus, we let $d_{(a_i)_{i\ne p,q}}$ be the restricted function equal to $c_{(a_i)_i}$ but forgetting the information input from $a_p$ and $a_q$. This allows us to write
+	\begin{align*}
+		z &= \sum_{(a_i)_i}c_{(a_i)_i}\sigma_1^{a_1}\cdots\sigma_m^{a_m} \\
+		&= \sum_{(a_i)_{i\ne p,q}}\sum_{a_p=0}^{n_p-1}\sum_{a_q=0}^{n_q-1}d_{(a_i)_{i\ne p,q}}\sigma_1^{a_1}\cdots\sigma_m^{a_m} \\
+		&= \Bigg(\sum_{(a_i)_{i\ne p,q}}d_{(a_i)_{i\ne p,q}}\prod_{i=0,i\ne p,q}^m\sigma_i^{a_i}\Bigg)\Bigg(\sum_{a_p=0}^{n_p-1}\sigma_p^{a_p}\Bigg)\Bigg(\sum_{a_q=0}^{n_q-1}\sigma_q^{a_q}\Bigg),
+	\end{align*}
+	which is now manifestly in $\im N_pN_q$.
+\end{proof}
+We will now more or less proceed with the $y_{ij}$ by induction on $m$, allowing the group $G$ (in its number of generators $m$) to be changed in the process. For $m=1$, there is nothing to say because there is no $y_{ij}$ term at all. For a taste of how we will use \autoref{lem:separatenijs}, we also work out $m=2$: our equations read
+\[\underbrace{-y_{21}T_1=0}_{i=1}\qquad\text{and}\qquad\underbrace{y_{21}T_2=0}_{i=2}.\]
+Thus, $y_{21}\in(\ker T_1)\cap(\ker T_2)=(\im N_1)\cap(\im N_2)$, which is $\im N_1N_2$ by \autoref{lem:separatenijs}.
+
+We now proceed with the general case; take $m>2$. Let $G'\coloneqq\langle\sigma_2,\ldots,\sigma_m\rangle$, which has $m-1$ generators. By the inductive hypothesis, we may assume the statement for $G'$. Explicitly, we will assume that, if $(y_{ij}')_{i>j\ge2}\in\ZZ[G']^{\binom{m-1}2}$ are variables satisfying
+\[-\sum_{j=2}^{i-1}y_{ij}'T_j+\sum_{j=i+1}^my_{ji}'T_j=0\]
+for each index $i\ge2$, then $y_{ij}'$ are a linear combination of terms from the elements from (b) and (e) above, only using indices at least $2$.
+
+We will again proceed in steps, for clarity.
+\begin{enumerate}
+	\item To apply the inductive hypothesis, we need to force $y_{pq}\in\ZZ[G']$ for each pair of indices $(p,q)$ with $p>q\ge2$. Well, we use the relation (e) so that we can subtract multiples of
+	\[T_q\lambda_{p1}-T_1\lambda_{pq}-T_p\lambda_{q1}.\]
+	In particular, this element will subtract out $T_1$ from $y_{pq}$ while only introducing chaos to the elements $y_{p1}$ and $y_{q1}$ in the process. Thus, subtracting a suitable multiple allows us to assume that $y_{pq}$ has no $\sigma_1$ terms while not affecting any other $y_{ij}$ with $i>j\ge2$.
+
+	Applying this process to all $y_{ij}$ with $i>j\ge2$, we do indeed get $y_{ij}\in\ZZ[G']$ for each $i>j\ge2$.
+
+	\item We are now ready to apply the inductive hypothesis. For each index $i\ge2$, we have the equation
+	\[-y_{i1}T_1-\sum_{j=2}^{i-1}y_{ij}T_j+\sum_{j=i+1}^my_{ji}T_j=0.\]
+	Because each $y_{pq}$ term with $p>q\ge2$ features no $\sigma_1$, applying the transformation $\sigma_1\mapsto1$ will affect no term in the sums while causing $y_{i1}T_1$ to vanish. Thus, we have the equations
+	\[-\sum_{j=2}^{i-1}y_{ij}T_j+\sum_{j=i+1}^my_{ji}T_j=0\]
+	for each index $i\ge2$. Because $y_{ij}\in\ZZ[G']$ for $i>j\ge2$ already, we see that we may apply the inductive hypothesis to assert that the $y_{ij}$ are $\ZZ[G']$-linear combinations of terms from (b) and (e) (only using indices at least $2$).
+	
+	Subtracting these linear combinations out, we may assume $y_{ij}=0$ for each $i>j\ge2$.
+
+	\item To take stock, our equations for $i\ge2$ now read
+	\[-y_{i1}T_1=0,\]
+	which simply tells us that $y_{i1}\in\im N_1$ for each $i\ge2$. As such, we pick up $w_i\in\ZZ[G]$ so that $y_{i1}=w_iN_1$ for each $i\ge2$; because $\sigma_1N_1=N_1$, we may assume that $w_i\in\ZZ[G']$ for each $i\ge2$.
+
+	Now the equation for $i=1$ reads
+	\[\sum_{j=2}^my_{j1}T_j=0,\]
+	or
+	\[\sum_{i=2}^mw_iN_1T_i=0.\]
+	Sending $\sigma_1\mapsto1$, we see that $w_i$ and $T_i$ are both fixed because they feature no $\sigma_1$s, so we merely have
+	\[n_1\sum_{i=2}^mw_iT_i=0.\]
+	Dividing out by $n_1$, we are left with
+	\[\sum_{i=2}^mw_iT_i=0.\]
+
+	\item At this point, we may appear stuck, but we have one final trick: taking indices $p>q\ge2$, subtracting out multiples of
+	\[\big(T_q\lambda_{p1}-T_1\lambda_{pq}-T_p\lambda_{q1}\big)\cdot N_1\]
+	will not affect the $y_{pq}$ term because $T_1N_1$. Indeed, subtracting this term out looks like
+	\[T_qN_1\lambda_{p1}-T_pN_1\lambda_{q1},\]
+	which after factoring out $N_1$ takes $w_p\mapsto w_p-T_q$ and $w_q\mapsto w_q+T_p$.
+
+	In particular, fixing any $q\ge2$ and then applying this trick for all $p>q$, we may assume that $w_q$ does not feature any $\sigma_p$ terms for $p>q$. Thus, looking at our equation
+	\[\sum_{i=2}^mw_iT_i=0,\]
+	we are now able to show that $w_i\in\ker T_i=\im N_i$ for each $i\ge2$, which will finish because it shows $y_{i1}\in N_iN_1$. Indeed, starting with $i=2$, we see that $w_2$ features no $\sigma_p$ for $p>2$, so we may take $\sigma_p\mapsto1$ for each $p>2$ safely, giving the equation
+	\[w_2T_2=0,\]
+	finishing for $w_2$. Thus, we are left with the equation
+	\[\sum_{i=3}^mw_iT_i=0,\]
+	from which we see we can induct downwards (this has fewer variables) to finish.
+\end{enumerate}
+The above steps complete the proof, as advertised.
 
 \end{document}

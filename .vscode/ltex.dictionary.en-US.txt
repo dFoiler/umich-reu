@@ -32,3 +32,5 @@ pointwise
 multiplicatively
 Hensel
 rigorize
+additivity
+Nakayama

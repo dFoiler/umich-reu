@@ -533,7 +533,7 @@ for $i\ge0$. In particular $g_0=g_1=1$ and $g_{n+1}=g$.
 
 Now, our tool in the proof of \autoref{thm:getcocycle} will be the magical map $\mathcal F\colon\ZZ[G]^m\times\ZZ[G]^{\binom m2}\to\ZZ[G]^m$ defined by
 \[\mathcal F\colon\big((x_i)_{i=1}^m,(y_{ij})_{i>j}\big)\mapsto\Bigg(x_iN_i-\sum_{j=1}^{i-1}y_{ij}T_j+\sum_{j=i+1}^my_{ji}T_j\Bigg)_{i=1}^m.\]
-This is of course as $G$-module homomorphism. We will go ahead and state the main results we will prove. Roughly speaking, $\mathcal F$ is manufactured to make the following result true.
+This is of course a $G$-module homomorphism. We will go ahead and state the main results we will prove. Roughly speaking, $\mathcal F$ is manufactured to make the following result true.
 \begin{prop} \label{prop:manufacturedcocycle}
 	Fix everything as in the set-up. Then the function
 	\[\overline c(g)\coloneqq\left(g_i\sigma_i^{(a_i)}\right)_{i=1}^m,\]
@@ -584,7 +584,7 @@ Additionally, so that we do not need to interrupt our discussion later, we estab
 \end{lemma}
 \begin{proof}
 	The point is that the elements of $\bigcap_{p=1}^k\im N_{i_p}$ and $\im\prod_{p=1}^kN_{i_p}$ are both simply the elements whose expansion in the form $\sum_gc_gg\in\ZZ[G]$ have $c_j$ ``constant in $\sigma_p$ and $\sigma_q$.'' More explicitly, of course, $\prod_{p=1}^kN_{i_p}\in\bigcap_{p=1}^k\im N_{i_p}$, so
-	\[\im\prod_{p=1}^kN_{i_p}\in\bigcap_{p=1}^k\im N_{i_p}.\]
+	\[\im\prod_{p=1}^kN_{i_p}\subseteq\bigcap_{p=1}^k\im N_{i_p}.\]
 	In the other direction, suppose that we have some element
 	\[z\coloneqq\sum_{(a_i)_i}c_{(a_i)_i}\sigma_1^{a_1}\cdots\sigma_m^{a_m}\in\bigcap_{p=1}^k\im N_{i_p},\]
 	the sum is over sequences $(a_i)_{i=1}^m$ such that $0\le a_i<n_i$ for each index $i$. We will show $z\in\im\prod_{p=1}^kN_{i_p}$.
@@ -985,29 +985,67 @@ And now because it is so easy, we might as well prove \autoref{thm:yesitisacocyc
 \subsection{Some Loose Ends}
 We continue in the set-up and notation of the previous subsection. Though we have proven everything we set out to do in \autoref{sec:overview}, there is more to discuss with our alternate description of tuples. The main goal of this subsection is to prove the following extension of \autoref{prop:alternativetuple}.
 \begin{proposition}
-	Fix everything as in the set-up, and now let $L/K$ be an extension of local fields with $G=\op{Gal}(L/K)$. Then the isomorphism of \autoref{prop:alternativetuple} descends to an isomorphism between equivalence classes of $\{\sigma_i\}_{i=1}^m$-tuples are canonically isomorphic to $\widehat H^0(G,\op{Hom}_\ZZ(X,L^\times))$.
+	Fix everything as in the set-up, and let $A$ be a $G$-module. Then the isomorphism of \autoref{prop:alternativetuple} descends to an isomorphism between equivalence classes of $\{\sigma_i\}_{i=1}^m$-tuples are canonically isomorphic to $\widehat H^0(G,\op{Hom}_\ZZ(X,A))$.
 \end{proposition}
 \begin{proof}
-	The main point is that the cup product with $\delta(\overline c)$ will induce an isomorphism
-	\[\widehat H^0(G,\op{Hom}_\ZZ(X,L^\times))\to H^2(G,L^\times).\]
-	Indeed, note that $\mathcal F\colon X\to\ZZ[G]^m$ is an embedding of $\ZZ$-modules, so $X$ is a free abelian group because $\ZZ[G]^m$ is. It follows that $X$ is the character group of an algebraic torus $\mathcal T=\op{Hom}_\ZZ(X,\mathbb G_m)$, so we write $X=X^*(\mathcal T)$. Now, the main point is that we can realize the cup-product map of \autoref{thm:yesitisacocycle} in Tate cohomology as
-	\[\cup\colon\widehat H^0(G,\mathcal T(L))\times\widehat H^2(G,X^*(\mathcal T))\to H^2(G,L^\times).\]
-	However, by Tate--Nakayama duality, we know that this pairing is non-degenerate. In particular, because $\delta(\overline c)$ generates $H^2(G,X^*(\mathcal T))=H^2(G,X)$ by \autoref{cor:computeh2x}, we know that the map
-	\[\delta(\overline c)\cup-\colon\widehat H^0(G,\op{Hom}_\ZZ(X,L^\times))\to H^2(G,L^\times)\]
-	must be injective. On the other hand, by taking a cohomology class $[c]\in H^2(G,L^\times)$, lifting to a representative $\{\sigma_i\}_{i=1}^m$-tuple (as in \autoref{thm:classisomorphism}) gives an input to the above cup product map hitting $[c]$. Thus, the above cup product map we already know to be surjective, so it is an isomorphism.
+	Recall that the short exact sequence
+	\[0\to X\stackrel{\mathcal F}\to\ZZ[G]^m\to\coker\mathcal F\to 0\]
+	of $G$-modules splits as $\ZZ$-modules by \autoref{lem:sessplits}, so we have a short exact sequence
+	\[0\to\op{Hom}_\ZZ(\coker\mathcal F,A)\to\op{Hom}_\ZZ(\ZZ[G]^m,A)\stackrel{-\circ\mathcal F}\to\op{Hom}_\ZZ(X,A)\to 0.\]
+	Now, the key trick will be to compare regular group cohomology with Tate cohomology. To begin, we note that our cohomology theories give the following commutative diagram with exact rows.
+	% https://q.uiver.app/?q=WzAsNixbMCwwLCJIXjAoRyxcXG9we0hvbX1fXFxaWihcXFpaW0ddXm0sQSkpIl0sWzEsMCwiSF4wKEcsXFxvcHtIb219X1xcWlooWCxBKSkiXSxbMSwxLCJcXHdpZGVoYXQgSF4wKEcsXFxvcHtIb219X1xcWlooWCxBKSkiXSxbMiwwLCJIXjEoRyxcXG9we0hvbX1fXFxaWihcXGNva2VyXFxtYXRoY2FsIEYsQSkpIl0sWzIsMSwiXFx3aWRlaGF0IEheMShHLFxcb3B7SG9tfV9cXFpaKFxcY29rZXJcXG1hdGhjYWwgRixBKSkiXSxbMCwxLCIwIl0sWzEsMiwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzMsNCwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwzXSxbMiw0XSxbNSwyXSxbMCwxLCItXFxjaXJjXFxtYXRoY2FsIEYiXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\begin{equation}
+		\begin{tikzcd}
+			{H^0(G,\op{Hom}_\ZZ(\ZZ[G]^m,A))} & {H^0(G,\op{Hom}_\ZZ(X,A))} & {H^1(G,\op{Hom}_\ZZ(\coker\mathcal F,A))} \\
+			0 & {\widehat H^0(G,\op{Hom}_\ZZ(X,A))} & {\widehat H^1(G,\op{Hom}_\ZZ(\coker\mathcal F,A))}
+			\arrow[two heads, from=1-2, to=2-2]
+			\arrow[Rightarrow, no head, from=1-3, to=2-3]
+			\arrow[from=1-2, to=1-3]
+			\arrow[from=2-2, to=2-3]
+			\arrow[from=2-1, to=2-2]
+			\arrow["{-\circ\mathcal F}", from=1-1, to=1-2]
+		\end{tikzcd} \label{eq:crazycohomology}
+	\end{equation}
+	Here, the middle vertical map is reduction modulo $\im N_G$. The rows are exact from the long exact sequences, and the square commutes by construction of Tate cohomology. Now, the point is that the diagram induces the isomorphism
+	\begin{equation}
+		\frac{H^0(G,\op{Hom}_\ZZ(X,A))}{\im(-\circ\mathcal F)}\simeq\widehat H^0(G,\op{Hom}_\ZZ(X,A)), \label{eq:crazyinducediso}
+	\end{equation}
+	which simply sends $[f]\mapsto[f]$.
 
-	We now attack the statement directly. Let $\mathcal T$ denote the set of $\{\sigma_i\}_{i=1}^m$-tuples and $\mathcal T_0$ denote the set (in fact, equivalence class) of tuples corresponding to the trivial cohomology class in $H^2(G,L^\times)$. Then we draw the following diagram, which we claim commutes and is made of isomorphisms.
-	% https://q.uiver.app/?q=WzAsMyxbMCwwLCJcXG1hdGhjYWwgVC9cXG1hdGhjYWwgVF8wIl0sWzAsMSwiXFx3aWRlaGF0IEheMChHLFxcb3B7SG9tfV9cXFpaKFgsTF5cXHRpbWVzKSkiXSxbMSwxLCJcXHdpZGVoYXQgSF4yKEcsTF5cXHRpbWVzKSJdLFswLDJdLFswLDFdLFsxLDJdXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		{\mathcal T/\mathcal T_0} \\
-		{\widehat H^0(G,\op{Hom}_\ZZ(X,L^\times))} & {\widehat H^2(G,L^\times)}
-		\arrow[from=1-1, to=2-2]
-		\arrow[from=1-1, to=2-1, dashed]
-		\arrow[from=2-1, to=2-2]
-	\end{tikzcd}\]
-	Namely, the map $\mathcal T/\mathcal T_0\to\widehat H^2(G,L^\times)$ sends an equivalence class of tuples to its cocycle, and it is an isomorphism by \autoref{thm:classisomorphism}. Further, the map $\widehat H^0(G,\op{Hom}_\ZZ(X,L^\times))\to\widehat H^2(G,L^\times)$ is the cup product with $\delta(\overline c)$, and it is an isomorphism as described above.
-	
-	Lastly, $\mathcal T/\mathcal T_0\to\widehat H^0(G,\op{Hom}_\ZZ(X,L^\times))$ is descended from the morphism of \autoref{prop:alternativetuple}, so the diagram does indeed commute by \autoref{thm:yesitisacocycle}. In particular, this vertical map is well-defined and in fact an isomorphism by the commutativity of the diagram. This completes the proof.
+	Thus, the main content here will be to track through the image of $-\circ\mathcal F$ in \autoref{eq:crazycohomology}. Let $\mathcal T$ denote the set of $\{\sigma_i\}_{i=1}^m$-triples of $A$, and let $\mathcal T_0$ denote the set (in fact, equivalence class) of triples corresponding to $[0]\in H^2(G,A)$. Letting $\varphi\colon H^0(G,\op{Hom}_\ZZ(X,A))\to\mathcal T$ be defined by
+	\[\varphi\colon f\mapsto\Big(\big(f(\kappa_i)\big)_i,\big(f(\lambda_{ij})\big)_{i>j}\Big)\]
+	be the isomorphism of \autoref{prop:alternativetuple}, we claim that the image of $-\circ\mathcal F$ in $H^0(G,\op{Hom}_\ZZ(X,A))$ corresponds under $\varphi$ to exactly $\mathcal T_0$.
+
+	Indeed, we take a $G$-module homomorphism $f\colon\ZZ[G]^m\to A$ to the $G$-module homomorphism $(f\circ\mathcal F)\colon X\to A$. Then we compute
+	\begin{align*}
+		(f\circ\mathcal F)(\kappa_i) &= f(N_i\varepsilon_i) \\
+		&= N_if(\varepsilon_i) \\
+		(f\circ\mathcal F)(\lambda_{ij}) &= f(T_i\varepsilon_j-T_j\varepsilon_i) \\
+		&= T_if(\varepsilon_j)-T_jf(\varepsilon_i)
+	\end{align*}
+	for all relevant indices $i$ and $j$. Thus,
+	\[\varphi(f\circ\mathcal F)=\left(\big(N_if(\varepsilon_i)\big)_{i},\big(T_if(\varepsilon_j)-T_jf(\varepsilon_i)\big)_{i>j}\right),\]
+	which we can see lives in $\mathcal T_0$ by definition of our equivalence relation (upon using multiplicative notation). In fact, as $f$ varies, we see that the values of $f(\varepsilon_i)$ may vary over all $A$, so the image of $f\mapsto\varphi(f\circ\mathcal F)$ is exactly all of $\mathcal T_0$. Thus, $\varphi$ induces an isomorphism
+	\[\overline\varphi\colon\frac{H^0(G,\op{Hom}_\ZZ(X,A))}{\im(-\circ\mathcal F)}\simeq\frac{\mathcal T}{\mathcal T_0}.\]
+	Composing this with the ``identity'' map \autoref{eq:crazyinducediso} finishes the proof.
+	% The main point is that the cup product with $\delta(\overline c)$ will induce an isomorphism
+	% \[\widehat H^0(G,\op{Hom}_\ZZ(X,L^\times))\to H^2(G,L^\times).\]
+	% Indeed, note that $\mathcal F\colon X\to\ZZ[G]^m$ is an embedding of $\ZZ$-modules, so $X$ is a free abelian group because $\ZZ[G]^m$ is. It follows that $X$ is the character group of an algebraic torus $\mathcal T=\op{Hom}_\ZZ(X,\mathbb G_m)$, so we write $X=X^*(\mathcal T)$. Now, the main point is that we can realize the cup-product map of \autoref{thm:yesitisacocycle} in Tate cohomology as
+	% \[\cup\colon\widehat H^0(G,\mathcal T(L))\times\widehat H^2(G,X^*(\mathcal T))\to H^2(G,L^\times).\]
+	% However, by Tate--Nakayama duality, we know that this pairing is non-degenerate. In particular, because $\delta(\overline c)$ generates $H^2(G,X^*(\mathcal T))=H^2(G,X)$ by \autoref{cor:computeh2x}, we know that the map
+	% \[\delta(\overline c)\cup-\colon\widehat H^0(G,\op{Hom}_\ZZ(X,L^\times))\to H^2(G,L^\times)\]
+	% must be injective. On the other hand, by taking a cohomology class $[c]\in H^2(G,L^\times)$, lifting to a representative $\{\sigma_i\}_{i=1}^m$-tuple (as in \autoref{thm:classisomorphism}) gives an input to the above cup product map hitting $[c]$. Thus, the above cup product map we already know to be surjective, so it is an isomorphism.
+	% We now attack the statement directly. Let $\mathcal T$ denote the set of $\{\sigma_i\}_{i=1}^m$-tuples and $\mathcal T_0$ denote the set (in fact, equivalence class) of tuples corresponding to the trivial cohomology class in $H^2(G,L^\times)$. Then we draw the following diagram, which we claim commutes and is made of isomorphisms.
+	% % https://q.uiver.app/?q=WzAsMyxbMCwwLCJcXG1hdGhjYWwgVC9cXG1hdGhjYWwgVF8wIl0sWzAsMSwiXFx3aWRlaGF0IEheMChHLFxcb3B7SG9tfV9cXFpaKFgsTF5cXHRpbWVzKSkiXSxbMSwxLCJcXHdpZGVoYXQgSF4yKEcsTF5cXHRpbWVzKSJdLFswLDJdLFswLDFdLFsxLDJdXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	% \[\begin{tikzcd}
+	% 	{\mathcal T/\mathcal T_0} \\
+	% 	{\widehat H^0(G,\op{Hom}_\ZZ(X,L^\times))} & {\widehat H^2(G,L^\times)}
+	% 	\arrow[from=1-1, to=2-2]
+	% 	\arrow[from=1-1, to=2-1, dashed]
+	% 	\arrow[from=2-1, to=2-2]
+	% \end{tikzcd}\]
+	% Namely, the map $\mathcal T/\mathcal T_0\to\widehat H^2(G,L^\times)$ sends an equivalence class of tuples to its cocycle, and it is an isomorphism by \autoref{thm:classisomorphism}. Further, the map $\widehat H^0(G,\op{Hom}_\ZZ(X,L^\times))\to\widehat H^2(G,L^\times)$ is the cup product with $\delta(\overline c)$, and it is an isomorphism as described above.
+	% Lastly, $\mathcal T/\mathcal T_0\to\widehat H^0(G,\op{Hom}_\ZZ(X,L^\times))$ is descended from the morphism of \autoref{prop:alternativetuple}, so the diagram does indeed commute by \autoref{thm:yesitisacocycle}. In particular, this vertical map is well-defined and in fact an isomorphism by the commutativity of the diagram. This completes the proof.
 \end{proof}
 Another loose end we have to tie up is that we showed $H^2(G,X)$ is cyclic generated by $[\delta(\overline c)]$, but we do not actually know the order. Tracking through Tate--Nakayama duality in the proof will tell us that the order is $\#G$, but this requires $G$ to be a Galois group. Thankfully, we are able to work this out for general $G$ using the rest of the theory that we have built.
 \begin{lemma} \label{lem:zivanish}
@@ -1040,7 +1078,7 @@ Another loose end we have to tie up is that we showed $H^2(G,X)$ is cyclic gener
 \begin{proof}
 	To help us use \autoref{prop:computeh1cokerF}, let $\varepsilon\colon\ZZ[G]\to\ZZ$ denote the augmentation map.
 	
-	Note that we already know $H^1(G,\coker\mathcal F)$ is cyclic generated by $[\overline c]$ by \autoref{prop:computeh1cokerF}, so it only remains to compute the order of $[\overline c]$. On one hand, we have an upper bound on the order of $[\overline c]$ because $H^1(G,\coker\mathcal F)$ is $\#G$-toresion, but we can also see this directly: note that \autoref{lem:computeordc} tells us that
+	Note that we already know $H^1(G,\coker\mathcal F)$ is cyclic generated by $[\overline c]$ by \autoref{prop:computeh1cokerF}, so it only remains to compute the order of $[\overline c]$. On one hand, we have an upper bound on the order of $[\overline c]$ because $H^1(G,\coker\mathcal F)$ is $\#G$-torsion, but we can also see this directly: note that \autoref{lem:computeordc} tells us that
 	\[[0]=[N_G\cdot\overline c].\]
 	However, $[N_G\cdot\overline c]=[\varepsilon(N_G)\cdot\overline c]=[\#G\cdot\overline c]$ by \autoref{prop:computeh1cokerF}, so we do see that $\#G\cdot\overline c=0$.
 	

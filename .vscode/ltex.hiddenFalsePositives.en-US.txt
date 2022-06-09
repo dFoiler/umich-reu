@@ -21,3 +21,8 @@
 {"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QAt \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, we have \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QComputation of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.ker F.\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QComputation of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.ker F. In this section we give a proof of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QFor the right arrow, we have \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q by evaluation.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QFor the bottom arrow, we have \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q by \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QThis square commutes by \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QThis square commutes by functoriality of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q applied to \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"TO_NON_BASE","sentence":"^\\QHowever, \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q-torsion, so in fact maps \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q automatically have \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q in their kernel and hence reduce to maps \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}

@@ -5,6 +5,11 @@
 \usepackage{import}
 \inputfrom{../notes}{nir}
 \numberwithin{equation}{section}
+\usepackage[backend=biber,
+    style=alphabetic,
+    sorting=ynt
+]{biblatex}
+\addbibresource{bib.bib}
 
 \pagestyle{contentpage}
 
@@ -1100,146 +1105,480 @@ Another loose end we have to tie up is that we showed $H^2(G,X)$ is cyclic gener
 	As in the proof of \autoref{cor:computeh2x}, we note $\delta\colon H^1(G,\coker\mathcal F)\to H^2(G,X)$ is an isomorphism, so this follows from \autoref{prop:finishh1cokerFcomputation}.
 \end{proof}
 
-\section{Torus Reciprocity}
-In this section we will apply the theory we have built to the specific case where $G$ is a Galois group of an extension of local fields $L/K$.
-
-In particular, we keep the notation as in \autoref{sec:tuplestudy} while asserting that $G=\op{Gal}(L/K)$ for some finite abelian extension of local fields $L/K$. Now, we note that the embedding
-\[X\stackrel{\mathcal F}\into\ZZ[G]^m\]
-tells us that $X$ embeds into a free abelian group and hence must be a free abelian group. In particular, because $X$ has a $G$-action---which extends to a $\op{Gal}(K^{\op{sep}}/K)$-action by taking quotients---we are promised a $K$-torus $T$ such that
-\[X^*(T)=X.\]
-By dualizing again, we see that $T\simeq\op{Hom}_\ZZ(X,\mathbb G_m-)$. As such, we just set $T\coloneqq\op{Hom}_\ZZ(X,\mathbb G_m-)$, which gives the following result.
-\begin{cor} \label{cor:torustupledescription}
-	Fix notation as above. Then $H^0(L/K,T(L))$ is in natural bijection with $\{\sigma_i\}_{i=1}^m$-tuples, and $\widehat H^0(L/K,T(L))$ is in natural bijection with equivalence classes of $\{\sigma_i\}_{i=1}^m$-tuples.
-\end{cor}
-\begin{proof}
-	Because $T(L)=\op{Hom}_\ZZ(X^*(T),L^\times)$, we may plug into \autoref{prop:alternativetuple} and \autoref{prop:alternativetupleclass}.
-\end{proof}
-To continue our discussion, we recall the following generalization of Artin reciprocity.
-\begin{theorem} \label{thm:torusreciprocity}
-	Let $K$ be a local field and $T$ a $K$-torus. Suppose that $L/K$ is an extension of fields such that the base change $T_L$ is a split torus. Then cup product with the fundamental class $u_{L/K}\in H^2(L/K,L^\times)$ induces an isomorphism
-	\[-\cup u_{L/K}\colon\widehat H^n(L/K,X_*(T))\to\widehat H^{n+2}(L/K,T(L))\]
-	for all integers $n$.
-\end{theorem}
-\begin{proof}
-	Omitted.
-\end{proof}
-Importantly, our torus $T$ is split over $L$ because (say) all characters in $X^*(T)$ are defined over $L$.\todo{I'm not sure if this makes sense.}
-
-In light of \autoref{cor:torustupledescription}, we are particularly interested in the case of $n=-2$ in \autoref{thm:torusreciprocity}, giving an isomorphism
-\[-\cup u_{L/K}\colon\widehat H^{-2}(L/K,X_*(T))\to\widehat H^0(L/K,T(L)).\]
-For example, we may use \autoref{thm:yesitisacocycle} to create the following diagram.
-% https://q.uiver.app/?q=WzAsMyxbMCwwLCJcXHdpZGVoYXQgSF57LTJ9KEwvSyxYXyooVCkpIl0sWzEsMCwiXFx3aWRlaGF0IEheMChML0ssVChMKSkiXSxbMSwxLCJcXHdpZGVoYXQgSF4yKEwvSyxMXlxcdGltZXMpIl0sWzAsMSwiLVxcY3VwIHVfe0wvS30iXSxbMSwyLCJcXGRlbHRhKFxcb3ZlcmxpbmUgYylcXGN1cC0iXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-\[\begin{tikzcd}
-	{\widehat H^{-2}(L/K,X_*(T))} & {\widehat H^0(L/K,T(L))} \\
-	& {\widehat H^2(L/K,L^\times)}
-	\arrow["{-\cup u_{L/K}}", from=1-1, to=1-2]
-	\arrow["{[\delta(\overline c)]\cup-}", from=1-2, to=2-2]
-\end{tikzcd}\]
-In particular, the vertical arrow is now an isomorphism because we know that equivalence classes of tuples uniquely correspond to cocycles from \autoref{thm:classisomorphism}.
-
-To complete the above suggestive diagram, we have the following lemma.
-\begin{lemma} \label{lem:torusdiagram}
-	Let $L/K$ be an extension of local fields, and let $T$ be a $K$-torus which splits over $L$. Then, given arbitrary classes $u\in H^2(L/K,L^\times)$ and $c\in H^2(L/K,X^*(T))$, the following diagram commutes.
-	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF57LTJ9KEwvSyxYXyooVCkpIl0sWzEsMCwiXFx3aWRlaGF0IEheMChML0ssVChMKSkiXSxbMSwxLCJcXHdpZGVoYXQgSF4yKEwvSyxMXlxcdGltZXMpIl0sWzAsMSwiXFx3aWRlaGF0IEheMChML0ssXFxaWikiXSxbMCwxLCItXFxjdXAgdSJdLFsxLDIsIlxcZGVsdGEoXFxvdmVybGluZSBjKVxcY3VwLSJdLFszLDIsIi1cXGN1cCB1IiwyXSxbMCwzLCJcXGRlbHRhKFxcb3ZlcmxpbmUgYylcXGN1cC0iLDJdXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+\subsection{Preliminaries on the Cup Product}
+We take a brief intermission to establish a little theory on cup products. In this section, we let $G$ denote a generic finite group (not necessarily assumed to be abelian) and $A$ a $G$-module.
+\begin{lemma}[\cite{bonn-lectures}, Proposition~I.5.3] \label{lem:cupproductmorphism}
+	Let $G$ be a finite group. Given any $G$-modules $A,B,C$ with a $G$-module homomorphism $\varphi\colon B\to C$, the following diagram commutes for any $p,q\in\ZZ$ and $[a]\in\widehat H^p(G,A)$.
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF5wKEcsQikiXSxbMSwwLCJcXHdpZGVoYXQgSF5wKEcsQykiXSxbMCwxLCJcXHdpZGVoYXQgSF57cCtxfShHLEFcXG90aW1lc19cXFpaIEIpIl0sWzEsMSwiXFx3aWRlaGF0IEhee3ArcX0oRyxBXFxvdGltZXNfXFxaWiBDKSJdLFswLDEsIlxcdmFycGhpIl0sWzIsMywiXFx2YXJwaGkiXSxbMCwyLCJhXFxjdXAgLSIsMl0sWzEsMywiYVxcY3VwIC0iXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
 	\[\begin{tikzcd}
-		{\widehat H^{-2}(L/K,X_*(T))} & {\widehat H^0(L/K,T(L))} \\
-		{\widehat H^0(L/K,\ZZ)} & {\widehat H^2(L/K,L^\times)}
-		\arrow["{-\cup u}", from=1-1, to=1-2]
-		\arrow["{c\cup-}", from=1-2, to=2-2]
-		\arrow["{-\cup u}"', from=2-1, to=2-2]
-		\arrow["{c\cup-}"', from=1-1, to=2-1]
+		{\widehat H^q(G,B)} & {\widehat H^q(G,C)} \\
+		{\widehat H^{p+q}(G,A\otimes_\ZZ B)} & {\widehat H^{p+q}(G,A\otimes_\ZZ C)}
+		\arrow["\varphi", from=1-1, to=1-2]
+		\arrow["\id_A\otimes\varphi", from=2-1, to=2-2]
+		\arrow["{[a]\cup -}"', from=1-1, to=2-1]
+		\arrow["{[a]\cup -}", from=1-2, to=2-2]
 	\end{tikzcd}\]
 \end{lemma}
 \begin{proof}
-	At a high level, this should follow from the associativity of the cup product, but some care is required because the cup product maps are augmented in various ways throughout the diagram. For peace of mind, we will actually track through these maps.
-	
-	We use the standard resolution by homogeneous cochains; let $G\coloneqq\op{Gal}(L/K)$. We can represent a class $[x]\in\widehat H^{-2}(L/K,X_*(T))$ by an element $x\in\op{Hom}_G(P_{-2},X_*(T))$, where $P_{-2}\coloneqq\op{Hom}_\ZZ(P_1,\ZZ)=\op{Hom}_\ZZ(\ZZ[G]^2,\ZZ)$. To compute our cup products, we also need to define the notation
-	\[(g_1^*,\ldots,g_q^*)\in P_{-q}\coloneqq\op{Hom}_\ZZ(P_{q-1},\ZZ)=\op{Hom}_\ZZ(\ZZ[G]^q,\ZZ)\]
-	which behaves as the indicator function for $(g_1,\ldots,g_q)$ on $G^q$. We are now ready to track through our diagram
-	\begin{itemize}
-		\item Along the bottom, we start with $c\cup x\in\widehat H^0(L/K,X^*(T)\otimes_\ZZ X_*(T))$, which is
-		\[(c\cup x)(g)=\sum_{s_1,s_2\in G}c(g,s_1,s_2)\otimes x(s_2^*,s_1^*).\]
-		Now, passing through $X^*(T)\otimes_\ZZ X_*(T)\to\op{Hom}(\mathbb G_m,\mathbb G_m)$ by $(f\otimes g)\mapsto(f\circ g)$, we get the map
-		\[(c\cup x)(g)=\prod_{s_1,s_2\in G}c(g,s_1,s_2)\circ x(s_2^*,s_1^*).\]
-		In particular, the right-hand side is an algebraic map $L^\times\to L^\times$, which we know must take the form $z\mapsto z^{r_g}$ for some $r_g\in\ZZ$. The mapping $g\mapsto r_g$ is the $0$-cocycle in $\widehat H^0(L/K,\ZZ)$.
-
-		Next we must compute $(c\cup x)\cup u\in\widehat H^2(L/K,\ZZ\otimes_\ZZ L^\times)$, which is
-		\[((c\cup x)\cup u)(g_0,g_1,g_2)=r_{g_0}\otimes u(g_0,g_1,g_2).\]
-		Passing through $\ZZ\otimes_\ZZ L^\times\to L^\times$ by $r\otimes z\mapsto z^r$, we see that we get
-		\begin{align}
-			((c\cup x)\cup u)(g_0,g_1,g_2) &= u(g_0,g_1,g_2)^{r_{g_0}} \notag \\
-			&= \prod_{s_1,s_2\in G}\big(c(g_0,s_1,s_2)\circ x(s_2^*,s_1^*)\big)\big(u(g_0,g_1,g_2)\big), \label{eq:cupsleft}
-		\end{align}
-		where in the last equality we applied the definition of $r_{g_0}$.
-
-		\item We now track along the top. Starting with $x\cup u\in\widehat H^0(L/K,X_*(T)\otimes_\ZZ L^\times)$, we have
-		\[(x\cup u)(g)=\sum_{s_1,s_2\in G}x(s_1^*,s_2^*)\otimes u(s_2,s_1,g).\]
-		Passing through $X_*(T)\otimes_\ZZ L^\times\to T(L)$ by $(f\otimes z)\mapsto f(z)$, we get
-		\[(x\cup u)(g)=\prod_{s_1,s_2\in G}x(s_1^*,s_2^*)\big(u(s_2,s_1,g)\big).\]
-		Continuing, we compute $(c\cup(x\cup u))\in\widehat H^2(L/K,X*(T)\otimes_\ZZ T(L))$ as
-		\[(c\cup(x\cup u))(g_0,g_1,g_2)=c(g_0,g_1,g_2)\otimes\prod_{s_1,s_2\in G}x(s_1^*,s_2^*)\big(u(s_2,s_1,g_2)\big).\]
-		And to finish, we pass through $X^*(T)\otimes_\ZZ T(L)\to L^\times$ by $(f\otimes z)\mapsto f(z)$, which gives
-		\begin{equation}
-			(c\cup(x\cup u))(g_0,g_1,g_2)=\prod_{s_1,s_2\in G}\big(c(g_0,g_1,g_2)\circ x(s_1^*,s_2^*)\big)\big(u(s_2,s_1,g_2)\big). \label{eq:cupsright}
-		\end{equation}
-	\end{itemize}
-	At this point, it might look like we're in trouble because \autoref{eq:cupsleft} and \autoref{eq:cupsright} look different from each other. However, this is just an outcome of how the cup product is defined. Indeed, we know abstractly that we must have $(c\cup x)\cup u=c\cup(x\cup u)$ in $\widehat H^2(L/K,X^*(T)\otimes_\ZZ X_*(T)\otimes_\ZZ L^\times)$, but these are
+	When $p,q\ge0$, we can argue directly. Indeed, we claim that the diagram commutes on the level of homogeneous cochains: let $[a]\in\widehat H^p(G,A)$ and $[b]\in\widehat H^q(G,B)$ be cohomology classes represented by the homogeneous cochains $a\in[a]$ and $b\in[b]$. Tracking along the top of the diagram, we see
 	\begin{align*}
-		((c\cup x)\cup u)(g_0,g_1,g_2) &= (c\cup x)(g_0)\otimes u(g_0,g_1,g_2) \\
-		&= \sum_{s_1,s_2\in G}c(g_0,s_1,s_2)\otimes x(s_2^*,s_1^*)\otimes u(g_0,g_1,g_2),
+		(a\cup\varphi(b))(g_0,\ldots,g_{p+q}) &= a(g_0,\ldots,g_p)\otimes\varphi(b)(g_p,\ldots,g_{p+1}) \\
+		&= a(g_0,\ldots,g_p)\otimes\varphi(b(g_p,\ldots,g_{p+1})).
 	\end{align*}
-	and
+	Tracking along the bottom of the diagram, we see
 	\begin{align*}
-		(c\cup(x\cup u))(g_0,g_1,g_2) &= c(g_0,g_1,g_2)\otimes(x\cup u)(g_0) \\
-		&= \sum_{s_1,s_2\in G}c(g_0,g_1,g_2)\otimes x(s_1^*,s_2^*)\otimes u(s_2,s_1,g_0).
+		(\id_A\otimes\varphi)(a\cup b)(g_0,\ldots,g_{p+q}) &= (\id_A\otimes\varphi)(a(g_0,\ldots,g_p)\otimes b(g_p,\ldots,g_{p+q})) \\
+		&= a(g_0,\ldots,g_p)\otimes\varphi(b(g_p,\ldots,g_{p+q})),
 	\end{align*}
-	The above two cocycles need to be equal up to a coboundary in $B^2(G,X^*(T)\otimes_\ZZ X_*(T)\otimes_\ZZ L^\times)$, so we have that the map sending $(g_0,g_1,g_2)$ to
-	\[\sum_{s_1,s_2\in G}c(g_0,s_1,s_2)\otimes x(s_2^*,s_1^*)\otimes u(g_0,g_1,g_2)-\sum_{s_1,s_2\in G}c(g_0,g_1,g_2)\otimes x(s_1^*,s_2^*)\otimes u(s_2,s_1,g_0)\]
-	lives in $B^2(G,X^*(T)\otimes_\ZZ X_*(T)\otimes_\ZZ L^\times)$. Passing this all through the evaluation map $X^*(T)\otimes_\ZZ X_*(T)\otimes_\ZZ L^\times\to L^\times$ by $(f\otimes g\otimes z)\mapsto(f\circ g)(z)$, we see that the map sending $(g_0,g_1,g_2)$ to
-	\[\prod_{s_1,s_2\in G}\big(c(g_0,s_1,s_2)\circ x(s_2^*,s_1^*)\big)\big(u(g_0,g_1,g_2)\big)\bigg/\prod_{s_1,s_2\in G}\big(c(g_0,g_1,g_2)\circ x(s_1^*,s_2^*)\big)\big(u(s_2,s_1,g_2)\big)\]
-	is a coboundary in $B^2(G,L^\times)$. (Namely, homomorphisms $M\to M'$ induce homomorphisms $B^\bullet(G,M)\to B^\bullet(G,M)$.) Thus, \autoref{eq:cupsleft} and \autoref{eq:cupsright} are indeed in the same cocycle class.\todo{Run this check without gimmicks. Maybe general indices?}
-\end{proof}
-The point of \autoref{lem:torusdiagram} is the following result.
-\begin{theorem} \label{thm:goodcuppairing}
-	Let $L/K$ be an extension of local fields, and let $T$ be a $K$-torus which splits over $L$. Further, suppose there is some $c\in H^2(L/K,X^*(T))$ such that
-	\[c\cup-\colon\widehat H^0(L/K,T(L))\to\widehat H^2(L/K,L^\times)\]
-	is an isomorphism. Now, if $u,u'\in H^2(L/K,L^\times)$ has
-	\[x\cup u=x\cup u'\in\widehat H^0(L/K,T(L))\]
-	for all $x\in\widehat H^{-2}(L/K,X_*(T))$, then $u=u'$.
-\end{theorem}
-\begin{proof}
-	In the language of \autoref{lem:torusdiagram}, we are being told that $v=u$ and $v=u'$ are inducing the same top row of the following commutative diagram.
+	which is equal. This completes the proof in the case of $p,q\ge0$.
+
+	We will only need the case of $p,q\ge0$ in the application, but we will go ahead and do the general case now; we dimension-shift $p$ and $q$ downwards. For example, to shift $p$ downwards, we note that the (split) short exact sequence
 	\begin{equation}
-		\begin{tikzcd}
-			{\widehat H^{-2}(L/K,X_*(T))} & {\widehat H^0(L/K,T(L))} \\
-			{\widehat H^0(L/K,\ZZ)} & {\widehat H^2(L/K,L^\times)}
-			\arrow["{-\cup v}", from=1-1, to=1-2]
-			\arrow["{c\cup-}", from=1-2, to=2-2]
-			\arrow["{-\cup v}"', from=2-1, to=2-2]
-			\arrow["{c\cup-}"', from=1-1, to=2-1]
-		\end{tikzcd} \label{eq:torusdiagram}
+		0\to A\otimes_\ZZ I_G\to A\otimes_\ZZ\ZZ[G]\to A\to0 \label{eq:standardashift}
 	\end{equation}
-	Quickly, note that $v=u_{L/K}$ makes the top row an isomorphism by \autoref{thm:torusreciprocity} as well as the bottom row an isomorphism (e.g., the generator $[1]\in\widehat H^0(L/K,\ZZ)$ maps to the generator $[1]\cup u_{L/K}=u^1_{L/K}=u_{L/K}$). Additionally, the right arrow is an isomorphism by hypothesis on $c$. Thus, the commutativity of the diagram tells us that the left arrow is also an isomorphism.
+	induces the isomorphism $\delta\colon\widehat H^{p-1}(G,A)\to\widehat H^p(G,I_G\otimes_\ZZ A)$. As such, given $a\in\widehat H^{p-1}(G,A)$, the inductive hypothesis reassures that the following diagram commutes.
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF5wKEcsQikiXSxbMSwwLCJcXHdpZGVoYXQgSF5wKEcsQykiXSxbMCwxLCJcXHdpZGVoYXQgSF57cCtxfShHLElfR1xcb3RpbWVzX1xcWlogQVxcb3RpbWVzX1xcWlogQikiXSxbMSwxLCJcXHdpZGVoYXQgSF57cCtxfShHLElfR1xcb3RpbWVzX1xcWlogQVxcb3RpbWVzX1xcWlogQykiXSxbMCwxLCJcXHZhcnBoaSJdLFsyLDMsIlxcdmFycGhpIl0sWzAsMiwiXFxkZWx0YShhKVxcY3VwIC0iLDJdLFsxLDMsIlxcZGVsdGEoYSlcXGN1cCAtIl1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		{\widehat H^q(G,B)} & {\widehat H^q(G,C)} \\
+		{\widehat H^{p+q}(G,I_G\otimes_\ZZ A\otimes_\ZZ B)} & {\widehat H^{p+q}(G,I_G\otimes_\ZZ A\otimes_\ZZ C)}
+		\arrow["\varphi", from=1-1, to=1-2]
+		\arrow["\varphi", from=2-1, to=2-2]
+		\arrow["{\delta(a)\cup -}"', from=1-1, to=2-1]
+		\arrow["{\delta(a)\cup -}", from=1-2, to=2-2]
+	\end{tikzcd}\]
+	In other words, all $b\in\widehat H^q(G,B)$ have $\varphi(\delta(a)\cup b)=\delta(a)\cup\varphi(b)$.
+	
+	Now, because \autoref{eq:standardashift} is split, we can hit it with $-\otimes_\ZZ B$ and $-\otimes_\ZZ C$ to induce the following commutative diagram with exact rows.
+	% https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIkFcXG90aW1lc19cXFpaIElfR1xcb3RpbWVzX1xcWlogQiJdLFsyLDAsIkFcXG90aW1lc19cXFpaXFxaWltHXVxcb3RpbWVzX1xcWlogQiJdLFszLDAsIkFcXG90aW1lc19cXFpaIEIiXSxbNCwwLCIwIl0sWzEsMSwiQVxcb3RpbWVzX1xcWlogSV9HXFxvdGltZXNfXFxaWiBDIl0sWzIsMSwiQVxcb3RpbWVzX1xcWlpcXFpaW0ddXFxvdGltZXNfXFxaWiBDIl0sWzMsMSwiQVxcb3RpbWVzX1xcWlogQyJdLFswLDEsIjAiXSxbNCwxLCIwIl0sWzAsMV0sWzEsMl0sWzIsM10sWzMsNF0sWzgsNV0sWzUsNl0sWzYsN10sWzcsOV0sWzEsNSwiXFx2YXJwaGkiLDJdLFsyLDYsIlxcdmFycGhpIiwyXSxbMyw3LCJcXHZhcnBoaSIsMl1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		0 & {A\otimes_\ZZ I_G\otimes_\ZZ B} & {A\otimes_\ZZ\ZZ[G]\otimes_\ZZ B} & {A\otimes_\ZZ B} & 0 \\
+		0 & {A\otimes_\ZZ I_G\otimes_\ZZ C} & {A\otimes_\ZZ\ZZ[G]\otimes_\ZZ C} & {A\otimes_\ZZ C} & 0
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+		\arrow[from=2-1, to=2-2]
+		\arrow[from=2-2, to=2-3]
+		\arrow[from=2-3, to=2-4]
+		\arrow[from=2-4, to=2-5]
+		\arrow["\varphi"', from=1-2, to=2-2]
+		\arrow["\varphi"', from=1-3, to=2-3]
+		\arrow["\varphi"', from=1-4, to=2-4]
+	\end{tikzcd}\]
+	Letting $\delta_B\colon\widehat H^{p-1}(A\otimes_\ZZ B)\to\widehat H^p(I_G\otimes_\ZZ A\otimes_\ZZ B)$ and $\delta_C\colon\widehat H^{p-1}(A\otimes_\ZZ B)\to\widehat H^p(I_G\otimes_\ZZ A\otimes_\ZZ B)$ denote the corresponding isomorphisms (note that the middle terms are induced and hence acyclic), we note that the functoriality of boundary morphisms tells us that $\varphi\delta_B=\delta_C\varphi$. In total, it follows that $b\in\widehat H^q(G,B)$ will have
+	\[\delta_C(\varphi(a\cup b))=\varphi(\delta_B(a\cup b))=\varphi(\delta(a)\cup b)\stackrel*=\delta(a)\cup\varphi(b)=\delta_C(a\cup\varphi(b)),\]
+	where we have used the inductive hypothesis at $\stackrel*=$. Because $\delta_C$ is an isomorphism, this completes the step to shift $p$ downwards to $p-1$.
 
-	Now, because $-\cup u,-\cup u'\colon H^{-2}\colon\widehat H^{-2}(L/K,X_*(T))\to\widehat H^0(L/K,T(L))$ induce the same map along the top row of \autoref{eq:torusdiagram}, and the vertical arrows of \autoref{eq:torusdiagram} are isomorphisms, we see that
-	\[-\cup u,-\cup u'\colon\widehat H^0(L/K,\ZZ)\to\widehat H^2(L/K,L^\times)\]
-	must also be the same map (along the bottom row). However, for any $v\in H^2(L/K,L^\times)$, we see that
-	\[[1]\cup v=v^1=v,\]
-	so it follows $u=[1]\cup u=[1]\cup u'=u'$. This finishes.
-\end{proof}
-\begin{cor}
-	Fix notation and in particular the torus $T$ as above. If $u\in H^2(L/K,L^\times)$ induces the same isomorphism of \autoref{thm:torusreciprocity} via the cup-product map $-\cup u$, then $u=u_{L/K}$.
-\end{cor}
-\begin{proof}
-	We apply \autoref{thm:goodcuppairing} with $c$ set to be $[\delta(\overline c)]$; notably,
-	\[[\delta(\overline c)]\cup-\colon\widehat H^0(L/K,T(L))\to\widehat H^2(L/K,L^\times)\]
-	is an isomorphism by combining \autoref{prop:alternativetupleclass} with \autoref{thm:yesitisacocycle}. Thus, \autoref{thm:goodcuppairing} applies and achieves the result upon setting $u'\coloneqq u_{L/K}$.
+	Shifting $q$ downwards is similar. This time we start with the following commutative diagram whose rows are (split) short exact sequences.
+	% https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIklfR1xcb3RpbWVzX1xcWlogQiJdLFsyLDAsIlxcWlpbR11cXG90aW1lc19cXFpaIEIiXSxbMywwLCJCIl0sWzQsMCwiMCJdLFsxLDEsIklfR1xcb3RpbWVzX1xcWlogQyJdLFsyLDEsIlxcWlpbR11cXG90aW1lc19cXFpaIEMiXSxbMywxLCJDIl0sWzAsMSwiMCJdLFs0LDEsIjAiXSxbMCwxXSxbMSwyXSxbMiwzXSxbMyw0XSxbOCw1XSxbNSw2XSxbNiw3XSxbNyw5XSxbMSw1LCJcXHZhcnBoaSIsMl0sWzIsNiwiXFx2YXJwaGkiLDJdLFszLDcsIlxcdmFycGhpIiwyXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		0 & {I_G\otimes_\ZZ B} & {\ZZ[G]\otimes_\ZZ B} & B & 0 \\
+		0 & {I_G\otimes_\ZZ C} & {\ZZ[G]\otimes_\ZZ C} & C & 0
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+		\arrow[from=2-1, to=2-2]
+		\arrow[from=2-2, to=2-3]
+		\arrow[from=2-3, to=2-4]
+		\arrow[from=2-4, to=2-5]
+		\arrow["\varphi"', from=1-2, to=2-2]
+		\arrow["\varphi"', from=1-3, to=2-3]
+		\arrow["\varphi"', from=1-4, to=2-4]
+	\end{tikzcd}\]
+	In particular, we let $\delta_B'\colon\widehat H^{q-1}(G,B)\to\widehat H^q(G,I_G\otimes_\ZZ B)$ and $\delta_C'\colon\widehat H^{q-1}(G,B)\to\widehat H^q(G,I_G\otimes_\ZZ C)$ denote the induced isomorphisms, and again functoriality of the boundary morphisms tells us that $\varphi\delta_B=\delta_C\varphi$. Now, the inductive hypothesis tells us that the following diagram commutes for any $a\in\widehat H^p(G,A)$.
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF5wKEcsSV9HXFxvdGltZXNfXFxaWiBCKSJdLFsxLDAsIlxcd2lkZWhhdCBIXnAoRyxJX0dcXG90aW1lc19cXFpaIEMpIl0sWzAsMSwiXFx3aWRlaGF0IEhee3ArcX0oRyxBXFxvdGltZXNfXFxaWiBJX0dcXG90aW1lc19cXFpaIEIpIl0sWzEsMSwiXFx3aWRlaGF0IEhee3ArcX0oRyxBXFxvdGltZXNfXFxaWiBJX0dcXG90aW1lc19cXFpaIEMpIl0sWzAsMSwiXFx2YXJwaGkiXSxbMiwzLCJcXHZhcnBoaSJdLFswLDIsImFcXGN1cCAtIiwyXSxbMSwzLCJhXFxjdXAgLSJdXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		{\widehat H^q(G,I_G\otimes_\ZZ B)} & {\widehat H^q(G,I_G\otimes_\ZZ C)} \\
+		{\widehat H^{p+q}(G,A\otimes_\ZZ I_G\otimes_\ZZ B)} & {\widehat H^{p+q}(G,A\otimes_\ZZ I_G\otimes_\ZZ C)}
+		\arrow["\varphi", from=1-1, to=1-2]
+		\arrow["\varphi", from=2-1, to=2-2]
+		\arrow["{a\cup -}"', from=1-1, to=2-1]
+		\arrow["{a\cup -}", from=1-2, to=2-2]
+	\end{tikzcd}\]
+	Namely, any $b\in\widehat H^{p-1}(G,B)$ has
+	\[\delta_C'(a\cup\varphi(b))=a\cup\delta_C'(\varphi(b))=a\cup\varphi(\delta_B'(b))\stackrel*=\varphi(a\cup\delta_B'(b))=\varphi(\delta_B'(a\cup b))=\delta_C'(\varphi(a\cup b)),\]
+	where we've applied the inductive hypothesis at $\stackrel*=$. Because $\delta_C'$ is an isomorphism, this completes shifting $q$ downwards to $q-1$.
 \end{proof}
 \begin{remark}
-	The above corollary is false when $T=\mathbb G_m$ and $G$ is non-cyclic. What makes our $T$ special is that we have some $[\delta(\overline c)]\in H^2(L/K,X^*(T))$ such that
-	\[[\delta(\overline c)]\cup-\colon\widehat H^0(L/K,T(L))\to\widehat H^2(L/K,L^\times)\]
-	is an isomorphism. No such element exists when $T=\mathbb G_m$ and $G$ is non-cyclic because the above groups need not even be isomorphic!
+	An analogous argument shows that a $G$-module homomorphism $\psi\colon A\to B$ induces the following commutative diagram, for any $p,q\in\ZZ$ and $c\in\widehat H^q(G,C)$.
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF5wKEcsQSkiXSxbMSwwLCJcXHdpZGVoYXQgSF5wKEcsQikiXSxbMCwxLCJcXHdpZGVoYXQgSF57cCtxfShHLEFcXG90aW1lc19cXFpaIEMpIl0sWzEsMSwiXFx3aWRlaGF0IEhee3ArcX0oRyxCXFxvdGltZXNfXFxaWiBDKSJdLFswLDEsIlxccHNpIl0sWzIsMywiXFxwc2kiXSxbMCwyLCItXFxjdXAgYyIsMl0sWzEsMywiLVxcY3VwIGMiLDJdXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		{\widehat H^p(G,A)} & {\widehat H^p(G,B)} \\
+		{\widehat H^{p+q}(G,A\otimes_\ZZ C)} & {\widehat H^{p+q}(G,B\otimes_\ZZ C)}
+		\arrow["\psi", from=1-1, to=1-2]
+		\arrow["\psi", from=2-1, to=2-2]
+		\arrow["{-\cup c}"', from=1-1, to=2-1]
+		\arrow["{-\cup c}"', from=1-2, to=2-2]
+	\end{tikzcd}\]
 \end{remark}
+In a different direction, we will want a duality result. To begin, we recall the following.
+\begin{prop}[\cite{cartan-eilenberg}, Corollary~XII.6.5] \label{prop:ceduality}
+	Let $G$ be a finite group and $A$ be any $G$-module. Then the cup-product pairing induces an isomorphism
+	\[\widehat H^{i-1}(G,\op{Hom}_\ZZ(A,\QQ/\ZZ))\to\op{Hom}_\ZZ\left(\widehat H^{-i}(G,A),\widehat H^{-1}(G,\QQ/\ZZ)\right)\]
+	for all $i\in\ZZ$. Indeed, this is a duality upon identifying $\widehat H^{-1}(G,\QQ/\ZZ)$ with $\QQ/\ZZ$.
+\end{prop}
+We will use this to prove the following.
+\begin{proposition} \label{prop:abstractintegralduality}
+	Let $G$ be a finite group, and let $X$ be a finitely generated $\ZZ$-free $G$-module. Then the cup-product pairing induces an isomorphism
+	\[\widehat H^i(G,\op{Hom}_\ZZ(X,\ZZ))\to\op{Hom}_\ZZ\left(\widehat H^{-i}(G,X),\widehat H^0(G,\ZZ)\right)\]
+	for all $i\in\ZZ$. Indeed, this is a duality upon identifying $\widehat H^0(G,\ZZ)$ with $\frac1{\#G}\ZZ/\ZZ\subseteq\QQ/\ZZ$.
+\end{proposition}
+\begin{proof}
+	This proof is analogous to \cite{cartan-eilenberg}, Theorem XII.6.6. The key to the proof is the short exact sequence
+	\begin{equation}
+		0\to\ZZ\to\QQ\to\QQ/\ZZ\to0. \label{eq:divisibleses}
+	\end{equation}
+	The main point is that $X$ being finitely generated and $\ZZ$-free implies that $X$ is projective (as an abelian group), so we can apply $\op{Hom}_\ZZ(X,-)$ to get out the short exact sequence
+	\begin{equation}
+		0\to\op{Hom}_\ZZ(X,\ZZ)\to\op{Hom}_\ZZ(X,\QQ)\to\op{Hom}_\ZZ(X,\QQ/\ZZ)\to0. \label{eq:homdivisibleses}
+	\end{equation}
+	Now, note that the multiplication-by-$n$ endomorphism on $\op{Hom}_\ZZ(X,\QQ)$ is an isomorphism (namely, $\QQ$ is a divisible abelian group), so the same will be true of $\widehat H^i(G,\op{Hom}_\ZZ(X,\QQ))$ for any $i\in\ZZ$. However, these cohomology groups must be $\#G$-torsion, so in fact $\widehat H^i(G,\op{Hom}_\ZZ(X,\QQ))=0$ for all $i\in\ZZ$.
+
+	Similarly, we note that we can hit \autoref{eq:homdivisibleses} with the functor $-\otimes_\ZZ X$ to get another short exact sequence
+	\begin{equation}
+		0\to\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ X\to\op{Hom}_\ZZ(X,\QQ)\otimes_\ZZ X\to\op{Hom}_\ZZ(X,\QQ/\ZZ)\otimes_\ZZ X\to0. \label{eq:tensorhomdivisibleses}
+	\end{equation}
+	Notably, this is exact because $\ZZ$ is a finitely generated, torsion-free $\ZZ$-module and hence flat as a $\ZZ$-module. Now, $\op{Hom}_\ZZ(X,\QQ)\otimes_\ZZ X$ is still a divisible abelian group, so again $\widehat H^i(G,\op{Hom}_\ZZ(X,\QQ))=0$ for all $i\in\ZZ$.
+
+	The rest of the proof is tracking boundary morphisms around. Fix some $i\in\ZZ$. Note \autoref{eq:divisibleses} and \autoref{eq:homdivisibleses} and \autoref{eq:tensorhomdivisibleses} induce boundary isomorphisms
+	\[\arraycolsep=1.4pt\begin{array}{rlcl}
+		\delta \colon& \widehat H^{-1}(G,\QQ/\ZZ) &\to& \widehat H^0(G,\ZZ) \\
+		\delta_h \colon& \widehat H^{i-1}(G,\op{Hom}_\ZZ(X,\QQ/\ZZ))&\to&\widehat H^i(G,\op{Hom}_\ZZ(X,\ZZ)) \\
+		\delta_t \colon& \widehat H^{-1}(G,\op{Hom}_\ZZ(\QQ/\ZZ)\otimes_\ZZ X)&\to&\widehat H^0(G,\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ X).
+	\end{array}\]
+	We also note that we have a morphism of short exact sequences
+	% https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIlxcb3B7SG9tfV9cXFpaKFgsXFxaWilcXG90aW1lc19cXFpaIFgiXSxbMiwwLCJcXG9we0hvbX1fXFxaWihYLFxcUVEpXFxvdGltZXNfXFxaWiBYIl0sWzMsMCwiXFxvcHtIb219X1xcWlooWCxcXFFRL1xcWlopXFxvdGltZXNfXFxaWiBYIl0sWzAsMSwiMCJdLFs0LDAsIjAiXSxbNCwxLCIwIl0sWzEsMSwiXFxaWiJdLFsyLDEsIlxcUVEiXSxbMywxLCJcXFFRL1xcWloiXSxbMCwxXSxbMSwyXSxbMiwzXSxbMyw1XSxbNCw3XSxbNyw4XSxbOCw5XSxbOSw2XSxbMSw3LCJcXGV0YV9cXFpaIiwyXSxbMiw4LCJcXGV0YV9cXFFRIiwyXSxbMyw5LCJcXGV0YV97XFxRUS9cXFpafSIsMl1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		0 & {\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ X} & {\op{Hom}_\ZZ(X,\QQ)\otimes_\ZZ X} & {\op{Hom}_\ZZ(X,\QQ/\ZZ)\otimes_\ZZ X} & 0 \\
+		0 & \ZZ & \QQ & {\QQ/\ZZ} & 0
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+		\arrow[from=2-1, to=2-2]
+		\arrow[from=2-2, to=2-3]
+		\arrow[from=2-3, to=2-4]
+		\arrow[from=2-4, to=2-5]
+		\arrow["{\eta_\ZZ}"', from=1-2, to=2-2]
+		\arrow["{\eta_\QQ}"', from=1-3, to=2-3]
+		\arrow["{\eta_{\QQ/\ZZ}}"', from=1-4, to=2-4]
+	\end{tikzcd}\]
+	where the $\eta_\bullet$ are evaluation maps. Now, \autoref{prop:ceduality} tells us that
+	\[\arraycolsep=1.4pt\begin{array}{ccc}
+		\widehat H^{i-1}(G,\op{Hom}_\ZZ(X,\QQ/\ZZ)) &\to& \op{Hom}_\ZZ\left(\widehat H^{-i}(G,X),\widehat H^{-1}(G,\QQ/\ZZ)\right) \\
+		a &\mapsto& (b\mapsto\eta_{\QQ/\ZZ}(a\cup b))
+	\end{array}\]
+	is an isomorphism. Composing this with various other isomorphisms, we can build the isomorphism
+	\[\arraycolsep=1.4pt\begin{array}{ccccccc}
+		\widehat H^i(G,X_*) &\to& \widehat H^{i-1}(G,X^*) &\to& \op{Hom}\left(\widehat H^{-i}(G,X),\widehat H^{-1}(G,\QQ/\ZZ)\right) &\to& \op{Hom}\left(\widehat H^{-i}(G,X),\widehat H^0(G,\QQ/\ZZ)\right)  \\
+		a &\mapsto& \delta_h^{-1}a &\mapsto& \left(b\mapsto\eta_{\QQ/\ZZ}(\delta_h^{-1}a\cup b)\right) &\mapsto& \left(b\mapsto\delta\eta_{\QQ/\ZZ}(\delta_h^{-1}a\cup b)\right)
+	\end{array}\]
+	where $X_*\coloneqq\op{Hom}_\ZZ(X,\ZZ)$ and $X^*\coloneqq\op{Hom}_\ZZ(X,\QQ/\ZZ)$, for brevity. This gives an isomorphism between the desired objects, but to prove the result we need to show that the above map is $a\mapsto(b\mapsto\eta_\ZZ(a\cup b))$. Well, given $a\in\widehat H^i(G,\op{Hom}_\ZZ(X,\ZZ))$ and $b\in\widehat H^{-i}(G,X)$, properties of the boundary morphisms tells us
+	\begin{align*}
+		\delta\eta_{\QQ/\ZZ}\left(\delta_h^{-1}a\cup b\right) &= \eta_\ZZ\delta_t\left(\delta_h^{-1}a\cup b\right) \\
+		&= \eta_\ZZ\left(\delta_h\delta_h^{-1}a\cup b\right) \\
+		&= \eta_\ZZ(a\cup b),
+	\end{align*}
+	which is what we wanted.
+\end{proof}
+\begin{remark}
+	The hypothesis that $X$ be $\ZZ$-free is necessary: the statement is false for $X=\ZZ/\#G\ZZ$ and $i=0$, for example.
+\end{remark}
+
+\subsection{A Reciprocity}
+The main goal of this subsection is to prove the following result.
+\begin{theorem} \label{thm:abstractperfectpairing}
+	Let $G$ be a finite group, and let $X$ and $A$ be $G$-modules. Then, if there exists an element $c\in H^2(G,X)$ such that the cup-product maps
+	\begin{align*}
+		c\cup-&\colon\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ))\to\widehat H^0(G,\ZZ) \\
+		c\cup-&\colon\widehat H^0(G,\op{Hom}_\ZZ(X,A))\to\widehat H^{2}(G,A)
+	\end{align*}
+	are isomorphisms, then the cup-product pairing induces an isomorphism
+	\[\widehat H^2(G,A)\to\op{Hom}_\ZZ\left(\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ)),\widehat H^0(G,\op{Hom}_\ZZ(X,A))\right).\]
+\end{theorem}
+The main step in the proof is the following lemma.
+\begin{lemma}
+	Let $G$ be a finite group, and let $X$ and $A$ be $G$-modules. Pick up another $G$-module $A$. Then, given any $i\in\ZZ$ and $c\in\widehat H^2(G,X)$ and $u\in\widehat H^2(G,A)$, the following diagram commutes, where all arrows are cup-product maps.
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF57aS0yfShHLFxcb3B7SG9tfV9cXFpaKFgsXFxaWikpIl0sWzEsMCwiXFx3aWRlaGF0IEheaShHLFxcb3B7SG9tfV9cXFpaKFgsQSkpIl0sWzAsMSwiXFx3aWRlaGF0IEheaShHLFxcWlopIl0sWzEsMSwiXFx3aWRlaGF0IEhee2krMn0oRyxBKSJdLFswLDEsIi1cXGN1cCB1Il0sWzAsMiwiY1xcY3VwLSIsMl0sWzIsMywiLVxcY3VwIHUiLDJdLFsxLDMsImNcXGN1cC0iXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		{\widehat H^{i-2}(G,\op{Hom}_\ZZ(X,\ZZ))} & {\widehat H^i(G,\op{Hom}_\ZZ(X,A))} \\
+		{\widehat H^i(G,\ZZ)} & {\widehat H^{i+2}(G,A)}
+		\arrow["{-\cup u}", from=1-1, to=1-2]
+		\arrow["{c\cup-}"', from=1-1, to=2-1]
+		\arrow["{-\cup u}"', from=2-1, to=2-2]
+		\arrow["{c\cup-}", from=1-2, to=2-2]
+	\end{tikzcd}\]
+\end{lemma}
+\begin{proof}
+	Formally, our cup-product maps are induced by the following ``evaluation morphisms.''
+	\begin{itemize}
+		\item For the left arrow, we have $\eta_L\colon X\otimes_\ZZ\op{Hom}_\ZZ(X,\ZZ)\to\ZZ$ by evaluation.
+		\item For the top arrow, we have $\eta_T\colon\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ A\to\op{Hom}_\ZZ(X,A)$ by $f\otimes a\mapsto(x\mapsto f(x)a)$.
+		\item For the bottom arrow, we have $\eta_B\colon\ZZ\otimes_\ZZ A\to A$ by $k\otimes a\mapsto ka$.
+		\item For the right arrow, we have $\eta_R\colon X\otimes_\ZZ\op{Hom}_\ZZ(X,A)\to A$ by evaluation.
+	\end{itemize}
+	In particular, these maps are defined so that the following diagram commutes.
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJYXFxvdGltZXNfXFxaWlxcb3B7SG9tfV9cXFpaKFgsXFxaWilcXG90aW1lc19cXFpaIEEiXSxbMSwwLCJYXFxvdGltZXNfXFxaWlxcb3B7SG9tfV9cXFpaKFgsQSkiXSxbMCwxLCJcXFpaXFxvdGltZXNfXFxaWiBBIl0sWzEsMSwiQSJdLFswLDEsIlxcZXRhX1QiXSxbMCwyLCJcXGV0YV9MIiwyXSxbMSwzLCJcXGV0YV9SIl0sWzIsMywiXFxldGFfQiIsMl1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\begin{equation}
+		\begin{tikzcd}
+			{X\otimes_\ZZ\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ A} & {X\otimes_\ZZ\op{Hom}_\ZZ(X,A)} \\
+			{\ZZ\otimes_\ZZ A} & A
+			\arrow["{\eta_T}", from=1-1, to=1-2]
+			\arrow["{\eta_L}"', from=1-1, to=2-1]
+			\arrow["{\eta_R}", from=1-2, to=2-2]
+			\arrow["{\eta_B}"', from=2-1, to=2-2]
+		\end{tikzcd} \label{eq:innermorphismcoherence}
+	\end{equation}
+	Indeed, we can just compute along the following diagram.
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJ4XFxvdGltZXMgZlxcb3RpbWVzIGEiXSxbMSwwLCJ4XFxvdGltZXMoeCdcXG1hcHN0byBmKHgnKWEpIl0sWzAsMSwiZih4KVxcb3RpbWVzIGEiXSxbMSwxLCJmKHgpYSJdLFswLDEsIlxcZXRhX1QiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzAsMiwiXFxldGFfTCIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMSwzLCJcXGV0YV9SIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsyLDMsIlxcZXRhX0IiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		{x\otimes f\otimes a} & {x\otimes(x'\mapsto f(x')a)} \\
+		{f(x)\otimes a} & {f(x)a}
+		\arrow["{\eta_T}", maps to, from=1-1, to=1-2]
+		\arrow["{\eta_L}"', maps to, from=1-1, to=2-1]
+		\arrow["{\eta_R}", maps to, from=1-2, to=2-2]
+		\arrow["{\eta_B}"', maps to, from=2-1, to=2-2]
+	\end{tikzcd}\]
+	Now, the core of the proof is in drawing the following very large diagram.
+	% https://q.uiver.app/?q=WzAsOSxbMCwwLCJcXHdpZGVoYXQgSF57aS0yfShHLFxcb3B7SG9tfV9cXFpaKFgsXFxaWikpIl0sWzEsMCwiXFx3aWRlaGF0IEheaShHLFxcb3B7SG9tfV9cXFpaKFgsXFxaWilcXG90aW1lc19cXFpaIEEpIl0sWzIsMCwiXFx3aWRlaGF0IEheaShHLFxcb3B7SG9tfV9cXFpaKFgsQSkpIl0sWzAsMSwiXFx3aWRlaGF0IEheaShHLFhcXG90aW1lc19cXFpaXFxvcHtIb219X1xcWlooWCxcXFpaKSkiXSxbMSwxLCJcXHdpZGVoYXQgSF57aSsyfShHLFhcXG90aW1lc19cXFpaXFxvcHtIb219X1xcWlooWCxcXFpaKVxcb3RpbWVzX1xcWlogQSkiXSxbMiwxLCJcXHdpZGVoYXQgSF57aSsyfShHLFhcXG90aW1lc19cXFpaXFxvcHtIb219X1xcWlooWCxBKSkiXSxbMiwyLCJcXHdpZGVoYXQgSF57aSsyfShHLEEpIl0sWzAsMiwiXFx3aWRlaGF0IEheaShHLFxcWlopIl0sWzEsMiwiXFx3aWRlaGF0IEheMihHLFhcXG90aW1lc19cXFpaIEEpIl0sWzAsMSwiLVxcY3VwIHUiXSxbMyw0LCItXFxjdXAgdSJdLFs3LDgsIi1cXGN1cCB1Il0sWzAsMywiY1xcY3VwIC0iLDJdLFsxLDQsImNcXGN1cCAtIiwyXSxbMiw1LCJjXFxjdXAgLSIsMl0sWzEsMiwiXFxldGFfVCJdLFs0LDUsIlxcZXRhX1QiXSxbOCw2LCJcXGV0YV9CIl0sWzMsNywiXFxldGFfTCIsMl0sWzQsOCwiXFxldGFfTCIsMl0sWzUsNiwiXFxldGFfUiIsMl0sWzEyLDEzLCIoMSkiLDMseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMTMsMTQsIigyKSIsMyx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxOCwxOSwiKDMpIiwzLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzE5LDIwLCIoNCkiLDMseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		{\widehat H^{i-2}(G,\op{Hom}_\ZZ(X,\ZZ))} & {\widehat H^i(G,\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ A)} & {\widehat H^i(G,\op{Hom}_\ZZ(X,A))} \\
+		{\widehat H^i(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,\ZZ))} & {\widehat H^{i+2}(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ A)} & {\widehat H^{i+2}(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,A))} \\
+		{\widehat H^i(G,\ZZ)} & {\widehat H^2(G,X\otimes_\ZZ A)} & {\widehat H^{i+2}(G,A)}
+		\arrow["{-\cup u}", from=1-1, to=1-2]
+		\arrow["{-\cup u}", from=2-1, to=2-2]
+		\arrow["{-\cup u}", from=3-1, to=3-2]
+		\arrow[""{name=0, anchor=center, inner sep=0}, "{c\cup -}"', from=1-1, to=2-1]
+		\arrow[""{name=1, anchor=center, inner sep=0}, "{c\cup -}"', from=1-2, to=2-2]
+		\arrow[""{name=2, anchor=center, inner sep=0}, "{c\cup -}"', from=1-3, to=2-3]
+		\arrow["{\eta_T}", from=1-2, to=1-3]
+		\arrow["{\eta_T}", from=2-2, to=2-3]
+		\arrow["{\eta_B}", from=3-2, to=3-3]
+		\arrow[""{name=3, anchor=center, inner sep=0}, "{\eta_L}"', from=2-1, to=3-1]
+		\arrow[""{name=4, anchor=center, inner sep=0}, "{\eta_L}"', from=2-2, to=3-2]
+		\arrow[""{name=5, anchor=center, inner sep=0}, "{\eta_R}"', from=2-3, to=3-3]
+		\arrow["{(1)}"{marking}, Rightarrow, draw=none, from=0, to=1]
+		\arrow["{(2)}"{marking}, Rightarrow, draw=none, from=1, to=2]
+		\arrow["{(3)}"{marking}, Rightarrow, draw=none, from=3, to=4]
+		\arrow["{(4)}"{marking}, Rightarrow, draw=none, from=4, to=5]
+	\end{tikzcd}\]
+	We are being asked to show that the outer square commutes; we will show that each inner square commutes, which will be enough.
+	\begin{enumerate}[label=(\arabic*)]
+		\item This square commutes by the associativity of the cup product.
+		\item This square commutes by \autoref{lem:cupproductmorphism}.
+		\item This square commutes by \autoref{lem:cupproductmorphism}.
+		\item This square commutes by functoriality of $\widehat H^2(G,-)$ applied to \autoref{eq:innermorphismcoherence}.
+	\end{enumerate}
+	The above checks complete the proof.
+\end{proof}
+We may now proceed directly with \autoref{thm:abstractperfectpairing}.
+\begin{proof}[Proof of \autoref{thm:abstractperfectpairing}]
+	We use the lemma to assert that, for any $u\in H^2(G,A)$, the diagram
+	\[\begin{tikzcd}
+		{\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ))} & {\widehat H^0(G,\op{Hom}_\ZZ(X,A))} \\
+		{\widehat H^0(G,\ZZ)} & {\widehat H^{2}(G,A)}
+		\arrow["{-\cup u}", from=1-1, to=1-2]
+		\arrow["{c\cup-}"', from=1-1, to=2-1]
+		\arrow["{-\cup u}"', from=2-1, to=2-2]
+		\arrow["{c\cup-}", from=1-2, to=2-2]
+	\end{tikzcd}\]
+	commutes. By hypothesis, the left and right arrows are isomorphisms, so the commutativity means that showing
+	\[\arraycolsep=1.4pt\begin{array}{ccc}
+		\widehat H^2(G,A) &\to& \op{Hom}_\ZZ\left(\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ)),\widehat H^0(G,\op{Hom}_\ZZ(X,A))\right) \\
+		u &\mapsto& (a\mapsto (a\cup u))
+	\end{array}\]
+	is an isomorphism is the same as showing that
+	\[\arraycolsep=1.4pt\begin{array}{ccc}
+		\widehat H^2(G,A) &\to& \op{Hom}_\ZZ\left(\widehat H^0(G,\ZZ),\widehat H^2(G,A)\right) \\
+		u &\mapsto& (k\mapsto (k\cup u))
+	\end{array}\]
+	is an isomorphism. Setting $n\coloneqq\#G$, we see $\widehat H^0(G,\ZZ)=\ZZ/n\ZZ$, and the cup product we are looking at sends $k\in\ZZ/n\ZZ$ and $u\in\widehat H^2(G,A)$ to $k\cup u=ku$ by how the ``evaluation'' map $\ZZ\otimes_\ZZ A\simeq A$ behaves. Thus, we are showing that
+	\[\arraycolsep=1.4pt\begin{array}{ccc}
+		\widehat H^2(G,A) &\to& \op{Hom}_\ZZ\left(\ZZ/n\ZZ,\widehat H^2(G,A)\right) \\
+		u &\mapsto& (k\mapsto ku)
+	\end{array}\]
+	is an isomorphism.
+	
+	However, $\widehat H^2(G,A)$ is $n$-torsion, so in fact maps $\ZZ\to\widehat H^2(G,A)$ automatically have $n\ZZ$ in their kernel and hence reduce to maps $\ZZ/n\ZZ\to\widehat H^2(G,A)$. Conversely, any map $\ZZ/n\ZZ\to\widehat H^2(G,A)$ can be extended by $\ZZ\onto\ZZ/n\ZZ$ to a map $\ZZ\to\widehat H^2(G,A)$, so we have a natural isomorphism
+	\[\arraycolsep=1.4pt\begin{array}{ccc}
+		\op{Hom}_\ZZ\left(\ZZ/n\ZZ,\widehat H^2(G,A)\right) &\simeq& \op{Hom}_\ZZ\left(\ZZ,\widehat H^2(G,A)\right) \\
+		f &\mapsto& (k\mapsto f([k])) \\
+		([k]\mapsto f(k)) &\mapsfrom& f.
+	\end{array}\]
+	In particular, it suffices to show that
+	\[\arraycolsep=1.4pt\begin{array}{ccc}
+		\widehat H^2(G,A) &\to& \op{Hom}_\ZZ\left(\ZZ,\widehat H^2(G,A)\right) \\
+		u &\mapsto& (k\mapsto ku)
+	\end{array}\]
+	is an isomorphism. But this is a standard fact about the functor $\op{Hom}_\ZZ\colon\mathrm{AbGrp}\to\mathrm{AbGrp}$, so we are done.
+\end{proof}
+We now synthesize the theory we have been building.
+\begin{cor}
+	Fix notation as in \autoref{sec:overview}. Then, given a $G$-module $A$, the cup-product pairing induces an isomorphism
+	\[\widehat H^2(G,A)\to\op{Hom}_\ZZ\left(\widehat H^{-2}(G,\op{Hom}_\ZZ(X,A)),\widehat H^0(G,\op{Hom}_\ZZ(X,A))\right).\]
+\end{cor}
+\begin{proof}
+	We apply \autoref{thm:abstractperfectpairing} to our case; here $X$ is defined as in \autoref{sec:overview}, and we take $c$ to be $[\delta(\overline c)]$. We have the following two checks on $[\delta(\overline c)]$.
+	\begin{itemize}
+		\item The easier check is that $[\delta(\overline c)]\cup-\colon\widehat H^0(G,\op{Hom}_\ZZ(X,A))\to\widehat H^2(G,A)$ is an isomorphism, which follows from applying \autoref{prop:alternativetupleclass} and \autoref{thm:yesitisacocycle}.
+		\item Seeing that $[\delta(\overline c)]\cup-\colon\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ))\to\widehat H^0(G,\ZZ)$ is an isomorphism requires a little more thought. Let $n\coloneqq\#G$.
+		
+		The idea is to use \autoref{prop:abstractintegralduality} upon recalling from \autoref{cor:computeh2x} that $\widehat H^2(G,X)=\langle[\delta(\overline c)]\rangle\simeq\ZZ/n\ZZ$. Indeed, $\widehat H^0(G,\ZZ)=\ZZ/n\ZZ$ as well, so \autoref{prop:abstractintegralduality} at least tells us that we have an isomorphism
+		\begin{equation}
+			\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ))\simeq\op{Hom}_\ZZ(\ZZ/n\ZZ,\ZZ/n\ZZ)\simeq\ZZ/n\ZZ. \label{eq:atleastisomorphic}
+		\end{equation}
+		More precisely, there is a morphism $\widehat H^2(G,X)\to\widehat H^0(G,\ZZ)$ sending $[\delta(\overline c)]$ to $[1]$, so in fact \autoref{prop:abstractintegralduality} tells us that there is some $x\in\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ))$ such that
+		\[[\delta(\overline c)]\cup x=[1].\]
+		In particular,
+		\[[\delta(\overline c)]\cup-\colon\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ))\to\widehat H^0(G,\ZZ)\]
+		sends the element $x\in\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ))$ to the generator $[1]\in\widehat H^0(G,\ZZ)$. In particular, $[\delta(\overline c)]\cup-$ is surjective, but because \autoref{eq:atleastisomorphic} tells us that these groups already have the same size, we see $[\delta(\overline c)]\cup-$ is an isomorphism.
+	\end{itemize}
+	The above checks tell us that \autoref{thm:abstractperfectpairing} kicks in, completing the proof.
+\end{proof}
+
+% \section{Torus Reciprocity}
+% In this section we will apply the theory we have built to the specific case where $G$ is a Galois group of an extension of local fields $L/K$.
+
+% In particular, we keep the notation as in \autoref{sec:tuplestudy} while asserting that $G=\op{Gal}(L/K)$ for some finite abelian extension of local fields $L/K$. Now, we note that the embedding
+% \[X\stackrel{\mathcal F}\into\ZZ[G]^m\]
+% tells us that $X$ embeds into a free abelian group and hence must be a free abelian group. In particular, because $X$ has a $G$-action---which extends to a $\op{Gal}(K^{\op{sep}}/K)$-action by taking quotients---we are promised a $K$-torus $T$ such that
+% \[X^*(T)=X.\]
+% By dualizing again, we see that $T\simeq\op{Hom}_\ZZ(X,\mathbb G_m-)$. As such, we just set $T\coloneqq\op{Hom}_\ZZ(X,\mathbb G_m-)$, which gives the following result.
+% \begin{cor} \label{cor:torustupledescription}
+% 	Fix notation as above. Then $H^0(L/K,T(L))$ is in natural bijection with $\{\sigma_i\}_{i=1}^m$-tuples, and $\widehat H^0(L/K,T(L))$ is in natural bijection with equivalence classes of $\{\sigma_i\}_{i=1}^m$-tuples.
+% \end{cor}
+% \begin{proof}
+% 	Because $T(L)=\op{Hom}_\ZZ(X^*(T),L^\times)$, we may plug into \autoref{prop:alternativetuple} and \autoref{prop:alternativetupleclass}.
+% \end{proof}
+% To continue our discussion, we recall the following generalization of Artin reciprocity.
+% \begin{theorem} \label{thm:torusreciprocity}
+% 	Let $K$ be a local field and $T$ a $K$-torus. Suppose that $L/K$ is an extension of fields such that the base change $T_L$ is a split torus. Then cup product with the fundamental class $u_{L/K}\in H^2(L/K,L^\times)$ induces an isomorphism
+% 	\[-\cup u_{L/K}\colon\widehat H^n(L/K,X_*(T))\to\widehat H^{n+2}(L/K,T(L))\]
+% 	for all integers $n$.
+% \end{theorem}
+% \begin{proof}
+% 	Omitted.
+% \end{proof}
+% Importantly, our torus $T$ is split over $L$ because (say) all characters in $X^*(T)$ are defined over $L$.\todo{I'm not sure if this makes sense.}
+
+% In light of \autoref{cor:torustupledescription}, we are particularly interested in the case of $n=-2$ in \autoref{thm:torusreciprocity}, giving an isomorphism
+% \[-\cup u_{L/K}\colon\widehat H^{-2}(L/K,X_*(T))\to\widehat H^0(L/K,T(L)).\]
+% For example, we may use \autoref{thm:yesitisacocycle} to create the following diagram.
+% % https://q.uiver.app/?q=WzAsMyxbMCwwLCJcXHdpZGVoYXQgSF57LTJ9KEwvSyxYXyooVCkpIl0sWzEsMCwiXFx3aWRlaGF0IEheMChML0ssVChMKSkiXSxbMSwxLCJcXHdpZGVoYXQgSF4yKEwvSyxMXlxcdGltZXMpIl0sWzAsMSwiLVxcY3VwIHVfe0wvS30iXSxbMSwyLCJcXGRlbHRhKFxcb3ZlcmxpbmUgYylcXGN1cC0iXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+% \[\begin{tikzcd}
+% 	{\widehat H^{-2}(L/K,X_*(T))} & {\widehat H^0(L/K,T(L))} \\
+% 	& {\widehat H^2(L/K,L^\times)}
+% 	\arrow["{-\cup u_{L/K}}", from=1-1, to=1-2]
+% 	\arrow["{[\delta(\overline c)]\cup-}", from=1-2, to=2-2]
+% \end{tikzcd}\]
+% In particular, the vertical arrow is now an isomorphism because we know that equivalence classes of tuples uniquely correspond to cocycles from \autoref{thm:classisomorphism}.
+
+% To complete the above suggestive diagram, we have the following lemma.
+% \begin{lemma} \label{lem:torusdiagram}
+% 	Let $L/K$ be an extension of local fields, and let $T$ be a $K$-torus which splits over $L$. Then, given arbitrary classes $u\in H^2(L/K,L^\times)$ and $c\in H^2(L/K,X^*(T))$, the following diagram commutes.
+% 	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF57LTJ9KEwvSyxYXyooVCkpIl0sWzEsMCwiXFx3aWRlaGF0IEheMChML0ssVChMKSkiXSxbMSwxLCJcXHdpZGVoYXQgSF4yKEwvSyxMXlxcdGltZXMpIl0sWzAsMSwiXFx3aWRlaGF0IEheMChML0ssXFxaWikiXSxbMCwxLCItXFxjdXAgdSJdLFsxLDIsIlxcZGVsdGEoXFxvdmVybGluZSBjKVxcY3VwLSJdLFszLDIsIi1cXGN1cCB1IiwyXSxbMCwzLCJcXGRlbHRhKFxcb3ZlcmxpbmUgYylcXGN1cC0iLDJdXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+% 	\[\begin{tikzcd}
+% 		{\widehat H^{-2}(L/K,X_*(T))} & {\widehat H^0(L/K,T(L))} \\
+% 		{\widehat H^0(L/K,\ZZ)} & {\widehat H^2(L/K,L^\times)}
+% 		\arrow["{-\cup u}", from=1-1, to=1-2]
+% 		\arrow["{c\cup-}", from=1-2, to=2-2]
+% 		\arrow["{-\cup u}"', from=2-1, to=2-2]
+% 		\arrow["{c\cup-}"', from=1-1, to=2-1]
+% 	\end{tikzcd}\]
+% \end{lemma}
+% \begin{proof}
+% 	At a high level, this should follow from the associativity of the cup product, but some care is required because the cup product maps are augmented in various ways throughout the diagram. For peace of mind, we will actually track through these maps.
+	
+% 	We use the standard resolution by homogeneous cochains; let $G\coloneqq\op{Gal}(L/K)$. We can represent a class $[x]\in\widehat H^{-2}(L/K,X_*(T))$ by an element $x\in\op{Hom}_G(P_{-2},X_*(T))$, where $P_{-2}\coloneqq\op{Hom}_\ZZ(P_1,\ZZ)=\op{Hom}_\ZZ(\ZZ[G]^2,\ZZ)$. To compute our cup products, we also need to define the notation
+% 	\[(g_1^*,\ldots,g_q^*)\in P_{-q}\coloneqq\op{Hom}_\ZZ(P_{q-1},\ZZ)=\op{Hom}_\ZZ(\ZZ[G]^q,\ZZ)\]
+% 	which behaves as the indicator function for $(g_1,\ldots,g_q)$ on $G^q$. We are now ready to track through our diagram
+% 	\begin{itemize}
+% 		\item Along the bottom, we start with $c\cup x\in\widehat H^0(L/K,X^*(T)\otimes_\ZZ X_*(T))$, which is
+% 		\[(c\cup x)(g)=\sum_{s_1,s_2\in G}c(g,s_1,s_2)\otimes x(s_2^*,s_1^*).\]
+% 		Now, passing through $X^*(T)\otimes_\ZZ X_*(T)\to\op{Hom}(\mathbb G_m,\mathbb G_m)$ by $(f\otimes g)\mapsto(f\circ g)$, we get the map
+% 		\[(c\cup x)(g)=\prod_{s_1,s_2\in G}c(g,s_1,s_2)\circ x(s_2^*,s_1^*).\]
+% 		In particular, the right-hand side is an algebraic map $L^\times\to L^\times$, which we know must take the form $z\mapsto z^{r_g}$ for some $r_g\in\ZZ$. The mapping $g\mapsto r_g$ is the $0$-cocycle in $\widehat H^0(L/K,\ZZ)$.
+
+% 		Next we must compute $(c\cup x)\cup u\in\widehat H^2(L/K,\ZZ\otimes_\ZZ L^\times)$, which is
+% 		\[((c\cup x)\cup u)(g_0,g_1,g_2)=r_{g_0}\otimes u(g_0,g_1,g_2).\]
+% 		Passing through $\ZZ\otimes_\ZZ L^\times\to L^\times$ by $r\otimes z\mapsto z^r$, we see that we get
+% 		\begin{align}
+% 			((c\cup x)\cup u)(g_0,g_1,g_2) &= u(g_0,g_1,g_2)^{r_{g_0}} \notag \\
+% 			&= \prod_{s_1,s_2\in G}\big(c(g_0,s_1,s_2)\circ x(s_2^*,s_1^*)\big)\big(u(g_0,g_1,g_2)\big), \label{eq:cupsleft}
+% 		\end{align}
+% 		where in the last equality we applied the definition of $r_{g_0}$.
+
+% 		\item We now track along the top. Starting with $x\cup u\in\widehat H^0(L/K,X_*(T)\otimes_\ZZ L^\times)$, we have
+% 		\[(x\cup u)(g)=\sum_{s_1,s_2\in G}x(s_1^*,s_2^*)\otimes u(s_2,s_1,g).\]
+% 		Passing through $X_*(T)\otimes_\ZZ L^\times\to T(L)$ by $(f\otimes z)\mapsto f(z)$, we get
+% 		\[(x\cup u)(g)=\prod_{s_1,s_2\in G}x(s_1^*,s_2^*)\big(u(s_2,s_1,g)\big).\]
+% 		Continuing, we compute $(c\cup(x\cup u))\in\widehat H^2(L/K,X*(T)\otimes_\ZZ T(L))$ as
+% 		\[(c\cup(x\cup u))(g_0,g_1,g_2)=c(g_0,g_1,g_2)\otimes\prod_{s_1,s_2\in G}x(s_1^*,s_2^*)\big(u(s_2,s_1,g_2)\big).\]
+% 		And to finish, we pass through $X^*(T)\otimes_\ZZ T(L)\to L^\times$ by $(f\otimes z)\mapsto f(z)$, which gives
+% 		\begin{equation}
+% 			(c\cup(x\cup u))(g_0,g_1,g_2)=\prod_{s_1,s_2\in G}\big(c(g_0,g_1,g_2)\circ x(s_1^*,s_2^*)\big)\big(u(s_2,s_1,g_2)\big). \label{eq:cupsright}
+% 		\end{equation}
+% 	\end{itemize}
+% 	At this point, it might look like we're in trouble because \autoref{eq:cupsleft} and \autoref{eq:cupsright} look different from each other. However, this is just an outcome of how the cup product is defined. Indeed, we know abstractly that we must have $(c\cup x)\cup u=c\cup(x\cup u)$ in $\widehat H^2(L/K,X^*(T)\otimes_\ZZ X_*(T)\otimes_\ZZ L^\times)$, but these are
+% 	\begin{align*}
+% 		((c\cup x)\cup u)(g_0,g_1,g_2) &= (c\cup x)(g_0)\otimes u(g_0,g_1,g_2) \\
+% 		&= \sum_{s_1,s_2\in G}c(g_0,s_1,s_2)\otimes x(s_2^*,s_1^*)\otimes u(g_0,g_1,g_2),
+% 	\end{align*}
+% 	and
+% 	\begin{align*}
+% 		(c\cup(x\cup u))(g_0,g_1,g_2) &= c(g_0,g_1,g_2)\otimes(x\cup u)(g_0) \\
+% 		&= \sum_{s_1,s_2\in G}c(g_0,g_1,g_2)\otimes x(s_1^*,s_2^*)\otimes u(s_2,s_1,g_0).
+% 	\end{align*}
+% 	The above two cocycles need to be equal up to a coboundary in $B^2(G,X^*(T)\otimes_\ZZ X_*(T)\otimes_\ZZ L^\times)$, so we have that the map sending $(g_0,g_1,g_2)$ to
+% 	\[\sum_{s_1,s_2\in G}c(g_0,s_1,s_2)\otimes x(s_2^*,s_1^*)\otimes u(g_0,g_1,g_2)-\sum_{s_1,s_2\in G}c(g_0,g_1,g_2)\otimes x(s_1^*,s_2^*)\otimes u(s_2,s_1,g_0)\]
+% 	lives in $B^2(G,X^*(T)\otimes_\ZZ X_*(T)\otimes_\ZZ L^\times)$. Passing this all through the evaluation map $X^*(T)\otimes_\ZZ X_*(T)\otimes_\ZZ L^\times\to L^\times$ by $(f\otimes g\otimes z)\mapsto(f\circ g)(z)$, we see that the map sending $(g_0,g_1,g_2)$ to
+% 	\[\prod_{s_1,s_2\in G}\big(c(g_0,s_1,s_2)\circ x(s_2^*,s_1^*)\big)\big(u(g_0,g_1,g_2)\big)\bigg/\prod_{s_1,s_2\in G}\big(c(g_0,g_1,g_2)\circ x(s_1^*,s_2^*)\big)\big(u(s_2,s_1,g_2)\big)\]
+% 	is a coboundary in $B^2(G,L^\times)$. (Namely, homomorphisms $M\to M'$ induce homomorphisms $B^\bullet(G,M)\to B^\bullet(G,M)$.) Thus, \autoref{eq:cupsleft} and \autoref{eq:cupsright} are indeed in the same cocycle class.\todo{Run this check without gimmicks. Maybe general indices?}
+% \end{proof}
+% The point of \autoref{lem:torusdiagram} is the following result.
+% \begin{theorem} \label{thm:goodcuppairing}
+% 	Let $L/K$ be an extension of local fields, and let $T$ be a $K$-torus which splits over $L$. Further, suppose there is some $c\in H^2(L/K,X^*(T))$ such that
+% 	\[c\cup-\colon\widehat H^0(L/K,T(L))\to\widehat H^2(L/K,L^\times)\]
+% 	is an isomorphism. Now, if $u,u'\in H^2(L/K,L^\times)$ has
+% 	\[x\cup u=x\cup u'\in\widehat H^0(L/K,T(L))\]
+% 	for all $x\in\widehat H^{-2}(L/K,X_*(T))$, then $u=u'$.
+% \end{theorem}
+% \begin{proof}
+% 	In the language of \autoref{lem:torusdiagram}, we are being told that $v=u$ and $v=u'$ are inducing the same top row of the following commutative diagram.
+% 	\begin{equation}
+% 		\begin{tikzcd}
+% 			{\widehat H^{-2}(L/K,X_*(T))} & {\widehat H^0(L/K,T(L))} \\
+% 			{\widehat H^0(L/K,\ZZ)} & {\widehat H^2(L/K,L^\times)}
+% 			\arrow["{-\cup v}", from=1-1, to=1-2]
+% 			\arrow["{c\cup-}", from=1-2, to=2-2]
+% 			\arrow["{-\cup v}"', from=2-1, to=2-2]
+% 			\arrow["{c\cup-}"', from=1-1, to=2-1]
+% 		\end{tikzcd} \label{eq:torusdiagram}
+% 	\end{equation}
+% 	Quickly, note that $v=u_{L/K}$ makes the top row an isomorphism by \autoref{thm:torusreciprocity} as well as the bottom row an isomorphism (e.g., the generator $[1]\in\widehat H^0(L/K,\ZZ)$ maps to the generator $[1]\cup u_{L/K}=u^1_{L/K}=u_{L/K}$). Additionally, the right arrow is an isomorphism by hypothesis on $c$. Thus, the commutativity of the diagram tells us that the left arrow is also an isomorphism.
+
+% 	Now, because $-\cup u,-\cup u'\colon H^{-2}\colon\widehat H^{-2}(L/K,X_*(T))\to\widehat H^0(L/K,T(L))$ induce the same map along the top row of \autoref{eq:torusdiagram}, and the vertical arrows of \autoref{eq:torusdiagram} are isomorphisms, we see that
+% 	\[-\cup u,-\cup u'\colon\widehat H^0(L/K,\ZZ)\to\widehat H^2(L/K,L^\times)\]
+% 	must also be the same map (along the bottom row). However, for any $v\in H^2(L/K,L^\times)$, we see that
+% 	\[[1]\cup v=v^1=v,\]
+% 	so it follows $u=[1]\cup u=[1]\cup u'=u'$. This finishes.
+% \end{proof}
+% \begin{cor}
+% 	Fix notation and in particular the torus $T$ as above. If $u\in H^2(L/K,L^\times)$ induces the same isomorphism of \autoref{thm:torusreciprocity} via the cup-product map $-\cup u$, then $u=u_{L/K}$.
+% \end{cor}
+% \begin{proof}
+% 	We apply \autoref{thm:goodcuppairing} with $c$ set to be $[\delta(\overline c)]$; notably,
+% 	\[[\delta(\overline c)]\cup-\colon\widehat H^0(L/K,T(L))\to\widehat H^2(L/K,L^\times)\]
+% 	is an isomorphism by combining \autoref{prop:alternativetupleclass} with \autoref{thm:yesitisacocycle}. Thus, \autoref{thm:goodcuppairing} applies and achieves the result upon setting $u'\coloneqq u_{L/K}$.
+% \end{proof}
+% \begin{remark}
+% 	The above corollary is false when $T=\mathbb G_m$ and $G$ is non-cyclic. What makes our $T$ special is that we have some $[\delta(\overline c)]\in H^2(L/K,X^*(T))$ such that
+% 	\[[\delta(\overline c)]\cup-\colon\widehat H^0(L/K,T(L))\to\widehat H^2(L/K,L^\times)\]
+% 	is an isomorphism. No such element exists when $T=\mathbb G_m$ and $G$ is non-cyclic because the above groups need not even be isomorphic!
+% \end{remark}
+
+\printbibliography[heading=bibintoc,title={References}]
 
 \newpage
 \appendix

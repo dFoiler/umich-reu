@@ -34,3 +34,8 @@ Hensel
 rigorize
 additivity
 Nakayama
+Homological
+Cartan
+Eilenberg
+functoriality
+endomorphism

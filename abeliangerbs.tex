@@ -1201,8 +1201,10 @@ To complete the above suggestive diagram, we have the following lemma.
 \end{proof}
 The point of \autoref{lem:torusdiagram} is the following result.
 \begin{theorem} \label{thm:goodcuppairing}
-	Fix notation as above. If $u,u'\in H^2(L/K,L^\times)$ has
-	\[t\cup u=t\cup u'\in\widehat H^0(L/K,T(L))\]
+	Let $L/K$ be an extension of local fields, and let $T$ be a $K$-torus which splits over $L$. Further, suppose there is some $c\in H^2(L/K,X^*(T))$ such that
+	\[c\cup-\colon\widehat H^0(L/K,T(L))\to\widehat H^2(L/K,L^\times)\]
+	is an isomorphism. Now, if $u,u'\in H^2(L/K,L^\times)$ has
+	\[x\cup u=x\cup u'\in\widehat H^0(L/K,T(L))\]
 	for all $x\in\widehat H^{-2}(L/K,X_*(T))$, then $u=u'$.
 \end{theorem}
 \begin{proof}
@@ -1212,25 +1214,32 @@ The point of \autoref{lem:torusdiagram} is the following result.
 			{\widehat H^{-2}(L/K,X_*(T))} & {\widehat H^0(L/K,T(L))} \\
 			{\widehat H^0(L/K,\ZZ)} & {\widehat H^2(L/K,L^\times)}
 			\arrow["{-\cup v}", from=1-1, to=1-2]
-			\arrow["{[\delta(\overline c)]\cup-}", from=1-2, to=2-2]
+			\arrow["{c\cup-}", from=1-2, to=2-2]
 			\arrow["{-\cup v}"', from=2-1, to=2-2]
-			\arrow["{[\delta(\overline c)]\cup-}"', from=1-1, to=2-1]
+			\arrow["{c\cup-}"', from=1-1, to=2-1]
 		\end{tikzcd} \label{eq:torusdiagram}
 	\end{equation}
-	Quickly, note that $v=u_{L/K}$ makes the top row an isomorphism by \autoref{thm:torusreciprocity} as well as the bottom row an isomorphism (e.g., the generator $[1]\in\widehat H^0(L/K,\ZZ)$ maps to the generator $[1]\cup u_{L/K}=u^1_{L/K}=u_{L/K}$). Additionally, the right arrow is an isomorphism by combining \autoref{prop:alternativetupleclass} and \autoref{thm:yesitisacocycle}. Thus, the commutativity of the diagram tells us that the left arrow is also an isomorphism.
+	Quickly, note that $v=u_{L/K}$ makes the top row an isomorphism by \autoref{thm:torusreciprocity} as well as the bottom row an isomorphism (e.g., the generator $[1]\in\widehat H^0(L/K,\ZZ)$ maps to the generator $[1]\cup u_{L/K}=u^1_{L/K}=u_{L/K}$). Additionally, the right arrow is an isomorphism by hypothesis on $c$. Thus, the commutativity of the diagram tells us that the left arrow is also an isomorphism.
 
-	Now, because $-\cup u,-\cup u'\colon H^{-2}\colon\widehat H^{-2}(L/K,X_*(T))\to\widehat H^0(L/K,T(L))$ induce the same map along the top row of \autoref{eq:torusdiagram}, and the vertical arrows of \autoref{eq:torusdiagram}, we see that
+	Now, because $-\cup u,-\cup u'\colon H^{-2}\colon\widehat H^{-2}(L/K,X_*(T))\to\widehat H^0(L/K,T(L))$ induce the same map along the top row of \autoref{eq:torusdiagram}, and the vertical arrows of \autoref{eq:torusdiagram} are isomorphisms, we see that
 	\[-\cup u,-\cup u'\colon\widehat H^0(L/K,\ZZ)\to\widehat H^2(L/K,L^\times)\]
-	must also be the same map. However, for $v\in H^2(L/K,L^\times)$, we see that
+	must also be the same map (along the bottom row). However, for any $v\in H^2(L/K,L^\times)$, we see that
 	\[[1]\cup v=v^1=v,\]
 	so it follows $u=[1]\cup u=[1]\cup u'=u'$. This finishes.
 \end{proof}
 \begin{cor}
-	Fix notation as above. If $u\in H^2(L/K,L^\times)$ induces the same isomorphism of \autoref{thm:torusreciprocity} via the cup product, then $u=u_{L/K}$.
+	Fix notation and in particular the torus $T$ as above. If $u\in H^2(L/K,L^\times)$ induces the same isomorphism of \autoref{thm:torusreciprocity} via the cup-product map $-\cup u$, then $u=u_{L/K}$.
 \end{cor}
 \begin{proof}
-	This is simply \autoref{thm:goodcuppairing}, in the case where $u'=u_{L/K}$.
+	We apply \autoref{thm:goodcuppairing} with $c$ set to be $[\delta(\overline c)]$; notably,
+	\[[\delta(\overline c)]\cup-\colon\widehat H^0(L/K,T(L))\to\widehat H^2(L/K,L^\times)\]
+	is an isomorphism by combining \autoref{prop:alternativetupleclass} with \autoref{thm:yesitisacocycle}. Thus, \autoref{thm:goodcuppairing} applies and achieves the result upon setting $u'\coloneqq u_{L/K}$.
 \end{proof}
+\begin{remark}
+	The above corollary is false when $T=\mathbb G_m$ and $G$ is non-cyclic. What makes our $T$ special is that we have some $[\delta(\overline c)]\in H^2(L/K,X^*(T))$ such that
+	\[[\delta(\overline c)]\cup-\colon\widehat H^0(L/K,T(L))\to\widehat H^2(L/K,L^\times)\]
+	is an isomorphism. No such element exists when $T=\mathbb G_m$ and $G$ is non-cyclic because the above groups need not even be isomorphic!
+\end{remark}
 
 \newpage
 \appendix

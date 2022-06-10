@@ -1,0 +1,76 @@
+% !TEX root = ../abeliangerbs.tex
+
+In this section we give a proof of \autoref{lem:havegens}. As such, we will use all the context from the statement and proceed directly with the proof; as mentioned earlier, we may add (b) back to our list of generators because it is induced by (c). Pick up some $z\coloneqq((x_i)_i,(y_{ij})_{i>j})\in\ker\mathcal F$, which is equivalent to saying
+\[x_iN_i-\sum_{j=1}^{i-1}y_{ij}T_j+\sum_{j=i+1}^my_{ji}T_j=0\]
+for each index $i$. We want to write $z$ as a $\ZZ[G]$-linear combination of the elements from (a)--(e). The main idea will be to slowly subtract out $\ZZ[G]$-linear combinations of the above elements (which does not affect $z\in\ker\mathcal F$) until we can prove that we have $0$ left over. We start with the $x_i$ terms, which we do in two steps.
+\begin{enumerate}
+	\item We begin by dealing with the $x_i$ terms. Fix some index $p$, and we will subtract out a suitable $\ZZ[G]$-linear combination of the above generators to set $x_p=0$ while not changing the other $x_i$ terms. Well, using the element
+	\[\kappa_pT_p,\tag{a}\]
+	we may assume that $x_p$ has no $\sigma_p$ terms because $\sigma_p\equiv1\pmod{T_p}$. Then for each $q<p$, we can subtract out a suitable multiple of
+	\[T_q\kappa_p+N_p\lambda_{pq}\tag{c}\]
+	to make it so that we may assume $x_p$ has no $\sigma_q$ terms because $\sigma_q\equiv1\pmod{T_q}$. Similarly, for each $q>p$, we can subtract out a suitable multiple of
+	\[T_q\kappa_p-N_p\lambda_{pq}\tag{d}\]
+	to make it so that we may assume $x_p$ has no $\sigma_q$ terms because $\sigma_q\equiv1\pmod{T_q}$.
+
+	\item Thus, the above process allows us to assume that $x_p\in\ZZ$, and the above linear combinations have not affected any $x_i$ for $i\ne p$. We now use the fact that $z\in\ker\mathcal F$. Indeed, we know that
+	\[x_pN_p-\sum_{j=1}^{p-1}y_{pj}T_j+\sum_{j=p+1}^my_{jp}T_j=0.\]
+	Applying the augmentation map $\varepsilon\colon\ZZ[G]\to\ZZ$, sending $\varepsilon\colon\sigma_i\mapsto1$ for each index $i$, we see that $x_p\in\ZZ$ implying that $x_p$ remains fixed. On the other hand $\varepsilon\colon T_j\mapsto0$ for each index $j$ and $\varepsilon\colon N_p\mapsto n_p$, so we are left with
+	\[n_px_p=0.\]
+	Because $n_p\ne0$ (it's the order of $\sigma_p$), we conclude that $x_p=0$. Applying this argument to the other $x_i$ terms, we conclude that we may assume $x_i=0$ for each $i$.
+\end{enumerate}
+It remains to deal with the $y_{ij}$ terms, which is a little more involved. For reference, we are showing that
+\[-\sum_{j=1}^{i-1}y_{ij}T_j+\sum_{j=i+1}^my_{ji}T_j=0\]
+for each index $i$ implies that $z=((0)_i,(y_{ij})_{i>j})$ is a $\ZZ[G]$-linear combination of the terms from (b) and (e).
+
+We will now more or less proceed with the $y_{ij}$ by induction on $m$, allowing the group $G$ (in its number of generators $m$) to be changed in the process. For $m=1$, there is nothing to say because there is no $y_{ij}$ term at all. For a taste of how we will use \autoref{lem:separatenijs}, we also work out $m=2$: our equations read
+\[\underbrace{-y_{21}T_1=0}_{i=1}\qquad\text{and}\qquad\underbrace{y_{21}T_2=0}_{i=2}.\]
+Thus, $y_{21}\in(\ker T_1)\cap(\ker T_2)=(\im N_1)\cap(\im N_2)$, which is $\im N_1N_2$ by \autoref{lem:separatenijs}.
+
+We now proceed with the general case; take $m>2$. Let $G'\coloneqq\langle\sigma_2,\ldots,\sigma_m\rangle$, which has $m-1$ generators. By the inductive hypothesis, we may assume the statement for $G'$. Explicitly, we will assume that, if $(y_{ij}')_{i>j\ge2}\in\ZZ[G']^{\binom{m-1}2}$ are variables satisfying
+\[-\sum_{j=2}^{i-1}y_{ij}'T_j+\sum_{j=i+1}^my_{ji}'T_j=0\]
+for each index $i\ge2$, then $y_{ij}'$ are a linear combination of terms from the elements from (b) and (e) above, only using indices at least $2$.
+
+We will again proceed in steps, for clarity.
+\begin{enumerate}
+	\item To apply the inductive hypothesis, we need to force $y_{pq}\in\ZZ[G']$ for each pair of indices $(p,q)$ with $p>q\ge2$. Well, we use the relation (e) so that we can subtract multiples of
+	\[T_q\lambda_{p1}-T_1\lambda_{pq}-T_p\lambda_{q1}.\]
+	In particular, this element will subtract out $T_1$ from $y_{pq}$ while only introducing chaos to the elements $y_{p1}$ and $y_{q1}$ in the process. Thus, subtracting a suitable multiple allows us to assume that $y_{pq}$ has no $\sigma_1$ terms while not affecting any other $y_{ij}$ with $i>j\ge2$.
+
+	Applying this process to all $y_{ij}$ with $i>j\ge2$, we do indeed get $y_{ij}\in\ZZ[G']$ for each $i>j\ge2$.
+
+	\item We are now ready to apply the inductive hypothesis. For each index $i\ge2$, we have the equation
+	\[-y_{i1}T_1-\sum_{j=2}^{i-1}y_{ij}T_j+\sum_{j=i+1}^my_{ji}T_j=0.\]
+	Because each $y_{pq}$ term with $p>q\ge2$ features no $\sigma_1$, applying the transformation $\sigma_1\mapsto1$ will affect no term in the sums while causing $y_{i1}T_1$ to vanish. Thus, we have the equations
+	\[-\sum_{j=2}^{i-1}y_{ij}T_j+\sum_{j=i+1}^my_{ji}T_j=0\]
+	for each index $i\ge2$. Because $y_{ij}\in\ZZ[G']$ for $i>j\ge2$ already, we see that we may apply the inductive hypothesis to assert that the $y_{ij}$ are $\ZZ[G']$-linear combinations of terms from (b) and (e) (only using indices at least $2$).
+	
+	Subtracting these linear combinations out, we may assume $y_{ij}=0$ for each $i>j\ge2$.
+
+	\item To take stock, our equations for $i\ge2$ now read
+	\[-y_{i1}T_1=0,\]
+	which simply tells us that $y_{i1}\in\im N_1$ for each $i\ge2$. As such, we pick up $w_i\in\ZZ[G]$ so that $y_{i1}=w_iN_1$ for each $i\ge2$; because $\sigma_1N_1=N_1$, we may assume that $w_i\in\ZZ[G']$ for each $i\ge2$.
+
+	Now the equation for $i=1$ reads
+	\[\sum_{j=2}^my_{j1}T_j=0,\]
+	or
+	\[\sum_{i=2}^mw_iN_1T_i=0.\]
+	Sending $\sigma_1\mapsto1$, we see that $w_i$ and $T_i$ are both fixed because they feature no $\sigma_1$s, so we merely have
+	\[n_1\sum_{i=2}^mw_iT_i=0.\]
+	Dividing out by $n_1$, we are left with
+	\[\sum_{i=2}^mw_iT_i=0.\]
+
+	\item At this point, we may appear stuck, but we have one final trick: taking indices $p>q\ge2$, subtracting out multiples of
+	\[\big(T_q\lambda_{p1}-T_1\lambda_{pq}-T_p\lambda_{q1}\big)\cdot N_1\]
+	will not affect the $y_{pq}$ term because $T_1N_1$. Indeed, subtracting this term out looks like
+	\[T_qN_1\lambda_{p1}-T_pN_1\lambda_{q1},\]
+	which after factoring out $N_1$ takes $w_p\mapsto w_p-T_q$ and $w_q\mapsto w_q+T_p$.
+
+	In particular, fixing any $q\ge2$ and then applying this trick for all $p>q$, we may assume that $w_q$ does not feature any $\sigma_p$ terms for $p>q$. Thus, looking at our equation
+	\[\sum_{i=2}^mw_iT_i=0,\]
+	we are now able to show that $w_i\in\ker T_i=\im N_i$ for each $i\ge2$, which will finish because it shows $y_{i1}\in N_iN_1$. Indeed, starting with $i=2$, we see that $w_2$ features no $\sigma_p$ for $p>2$, so we may take $\sigma_p\mapsto1$ for each $p>2$ safely, giving the equation
+	\[w_2T_2=0,\]
+	finishing for $w_2$. Thus, we are left with the equation
+	\[\sum_{i=3}^mw_iT_i=0,\]
+	from which we see we can induct downwards (this has fewer variables) to finish.
+\end{enumerate}
+The above steps complete the proof, as advertised.

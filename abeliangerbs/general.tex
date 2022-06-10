@@ -1,0 +1,107 @@
+% !TEX root = ../abeliangerbs.tex
+
+Throughout this section, $ G$ will be a finite group and $A$ will be a $ G$-module; we will write the group operation of $A$ and the group action of $ G$ on $A$ multiplicatively. To sketch the idea here, begin with an extension
+\[1\to A\to\mc E\stackrel\pi\to G\to1.\]
+We know that we can abstractly represent $\mc E$ as the set $A\times G$ with some group law dictated by a $2$-cocycle in $H^2(G,A)$, so we expect that $\mc E$ can be presented by $A$ and a choice of lifts from $ G$, with some specially chosen relations.
+
+Here are some basic observations realizing this idea. We start by lifting a single element of $ G$.
+\begin{lemma} \label{lem:constructalpha}
+	Let $A$ be a $ G$-module, and let 
+	\[1\to A\to\mc E\stackrel\pi\to G\to1\]
+	denote a group extension. Further, fix some $\sigma\in G$ of order $n_\sigma$, and find $F\in\mc E$ such that $\sigma\coloneqq\pi(F)$. Then
+	\[\alpha\coloneqq F^{n_\sigma}\]
+	has $\alpha\in A^{\langle\sigma\rangle}$.
+\end{lemma}
+\begin{proof}
+	A priori, we only know that $\alpha\in\mc E$, so we compute
+	\[\pi(\alpha)=\pi\left(F^{n_\sigma}\right)=\sigma^{n_\sigma}=1,\]
+	so $\alpha\in\ker\pi=A$. Thus, we may say that
+	\[\sigma(\alpha)=F\alpha F^{-1}=F^{n_\sigma}=\alpha,\]
+	so $\alpha\in A^{\langle\sigma\rangle}$, as desired.
+\end{proof}
+We can make the above proof more explicit by specifying the group law of $\mc E$.
+\begin{lemma} \label{lem:explicitalpha}
+	Let $A$ be a $ G$-module. Picking up some $2$-cocycle $c\in Z^2( G,A)$, let
+	\[1\to A\to\mc E\stackrel\pi\to G\to1\]
+	be the corresponding extension. Fixing $\sigma\in G$ of order $n_\sigma$, let $F\coloneqq(m,\sigma)\in\mc E$ be a lift. Then
+	\[\alpha\coloneqq F^{n_\sigma}=N_\sigma(m)\prod_{i=0}^{n_\sigma-1}c\left(\sigma^i,\sigma\right),\]
+	where $N_\sigma\coloneqq\sum_{i=0}^{n_\sigma-1}\sigma^i$.
+\end{lemma}
+\begin{proof}
+	This is a direct computation. By induction, we have that
+	\[F^k=\left(\prod_{i=0}^{k-1}\sigma^i(m)c\left(\sigma^i,\sigma\right),\sigma^k\right)\]
+	for $k\in\NN$. Indeed, there is nothing to say for $k=0$, and the inductive step merely expands out $F^k\cdot F$.
+
+	It follows that
+	\[\alpha=F^{n_\sigma}=\left(\prod_{i=0}^{n_\sigma-1}\sigma^i(m)\cdot\prod_{i=0}^{n_\sigma-1}c\left(\sigma^i,\sigma\right),1\right),\]
+	which is what we wanted.
+\end{proof}
+Having this explicit formula lets us say how $\alpha$ changes as we vary the lift.
+\begin{prop} \label{prop:findallalpha}
+	Let $A$ be a $ G$-module. Fixing a cohomology class $u\in H^2( G,A)$, let 
+	\[1\to A\to\mc E\stackrel\pi\to G\to1\]
+	be a group extension whose isomorphism class corresponds to $u$. Further, fix some $\sigma\in G$ of order $n_\sigma$, and let $A_\sigma\coloneqq A^{\langle\sigma\rangle}$ be the fixed submodule. Then the set
+	\[S_{\mc E,\sigma}\coloneqq\left\{F^{n_\sigma}:\pi(F)=\sigma\right\}\]
+	is an equivalence class in $A_\sigma/N_\sigma(A)$, independent of the choice of $\mc E$. Again, $N_\sigma\coloneqq\sum_{i=1}^{n_\sigma-1}\sigma^i$.
+\end{prop}
+\begin{proof}
+	Note that $S_{\mc E,\sigma}\subseteq A_\sigma$ already from \autoref{lem:constructalpha}.
+	
+	The point is to use \autoref{lem:explicitalpha}. Note the extension $\mc E$ corresponds to the equivalence class $u\in H^2( G,A)$, so let $c\in Z^2( G,A)$ be a representative. Letting $\mc E_c$ be the extension constructed from $c$, we are promised an isomorphism $\varphi\colon\mc E\simeq\mc E_c$ making the following diagram commute.
+	% https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMSJdLFsxLDAsIkxeXFx0aW1lcyJdLFsyLDAsIlxcbWMgRSJdLFszLDAsIlxcR2FtbWEiXSxbNCwwLCIxIl0sWzAsMSwiMSJdLFsxLDEsIkxeXFx0aW1lcyJdLFsyLDEsIlxcbWMgRV9jIl0sWzMsMSwiXFxHYW1tYSJdLFs0LDEsIjEiXSxbMCwxXSxbMSwyXSxbMiwzLCJcXHBpIl0sWzMsNF0sWzUsNl0sWzYsN10sWzcsOCwiXFxwaV9jIl0sWzgsOV0sWzIsNywiXFx2YXJwaGkiXSxbMSw2LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDgsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		1 & {A} & {\mc E} &  G & 1 \\
+		1 & {A} & {\mc E_c} &  G & 1
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow["\pi", from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+		\arrow[from=2-1, to=2-2]
+		\arrow[from=2-2, to=2-3]
+		\arrow["{\pi_c}", from=2-3, to=2-4]
+		\arrow[from=2-4, to=2-5]
+		\arrow["\varphi", from=1-3, to=2-3]
+		\arrow[Rightarrow, no head, from=1-2, to=2-2]
+		\arrow[Rightarrow, no head, from=1-4, to=2-4]
+	\end{tikzcd}\]
+	We start by claiming that $S_{\mc E,\sigma}=S_{\mc E_c,\sigma}$, which will show that $S_{\mc E,\sigma}$ is independent of the choice of representative $\mc E$. To show $S_{\mc E,\sigma}\subseteq S_{\mc E_c,\sigma}$, note that $\alpha\in S_{\mc E,\sigma}$ has $F\in\mc E$ with $\pi(F)=\sigma$ and $\alpha=F^{n_\sigma}$. Pushing this through $\varphi$, we see $\varphi(F)\in\mc E_c$ has
+	\[\pi_c(\varphi(F))=\varphi(\pi(F))=\sigma\qquad\text{and}\qquad\varphi(F)^{n_\sigma}=\varphi(F^{n_\sigma})=\alpha,\]
+	so $\alpha\in S_{\mc E_c,\sigma}$ follows. An analogous argument with $\varphi^{-1}$ shows the other needed inclusion.
+
+	It thus suffices to show that $S_{\mc E_c,\sigma}$ is an equivalence class in $A_\sigma/N_\sigma(A)$. However, this is exactly what \autoref{lem:explicitalpha} says as we let the possible lifts $F=(m,\sigma)\in\mc E_c$ of $\sigma$ vary over $m\in A$.
+\end{proof}
+The fact that we are taking elements of $ G$ to equivalence classes in $A_\sigma^\times/N_\sigma\left(A\right)$ is reminiscent of the (inverse) Artin reciprocity map, and indeed that is exactly what is going on.
+\begin{cor} \label{cor:alphaiscupproduct}
+	Work in the context of \autoref{prop:findallalpha}. Then
+	\[S_\sigma\coloneqq S_{\mc E,\sigma}=[\sigma]\cup[c],\]
+	where $\cup\colon\widehat H^{-2}( G,A)\times\widehat H^2( G,A)\to\widehat H^0( G,A)$ is the cup product in Tate cohomology.
+\end{cor}
+\begin{proof}
+	Using notation as in the proof of \autoref{prop:findallalpha}, we recall that $S_\sigma=S_{\mc E_c,\sigma}$, so it suffices to prove the result for $\mc E_c$. Well, by \autoref{lem:explicitalpha}, $S_\sigma$ is represented by
+	\[\prod_{i=0}^{n_\sigma-1}c\left(\sigma^i,\sigma\right).\]
+	However, this product is exactly the cup product $[\sigma]\cup[c]$.
+\end{proof}
+\begin{cor}
+	Let $L/K$ be a finite Galois extension of local fields with Galois group $ G\coloneqq\op{Gal}(L/K)$. Further, let
+	\[1\to L^\times\to\mc E\stackrel\pi\to G\to1\]
+	be an $L/K$-gerb bound by $\mathbb G_m$ whose isomorphism class corresponds to the fundamental class $u_{L/K}\in H^2( G,L^\times)$. Further, fix some $\sigma\in G$ of order $n_\sigma$, and let $L_\sigma\coloneqq L^{\langle\sigma\rangle}$ be the fixed field. Then
+	\[\theta_{L/L_\sigma}^{-1}(\sigma)=\left\{F^{n_\sigma}:\pi(F)=\sigma\right\}.\]
+\end{cor}
+\begin{proof}
+	Recalling $\theta_{L/L_\sigma}^{-1}$ is a cup product map, note that $\theta_{L/L_\sigma}^{-1}(\sigma)$ is given by $[\sigma]\cup u_{L/K}$. So we are done by \autoref{cor:alphaiscupproduct}.
+\end{proof}
+The above results are all interested in lifting single elements of $ G$ and studying how they behave on their own. In the discussion that follows, we will need to study how the lifts interact with each other, but for now, we will justify why lifts are adequate to study as follows.
+\begin{proposition} \label{prop:liftsgenerate}
+	Let $A$ be a $ G$-module. Further, let
+	\[1\to A\to\mc E\stackrel\pi\to G\to1\]
+	be a group extension. Given elements $\{\sigma_i\}_{i=1}^m$ which generate $ G$, then $\mc E$ is generated by $A$ and a set of lifts $\{F_i\}_{i=1}^m$ with $\pi(F_i)=\sigma_i$ for each $i$.
+\end{proposition}
+\begin{proof}
+	Fix some element $e\in\mc E$, which we need to exhibit as a product of elements in $A$ and $F_i$s. Well, because the $\sigma_i$ generate $ G$, we know that $\pi(e)\in G$ can be written as
+	\[\pi(e)=\prod_{i=1}^m\sigma_i^{a_i}\]
+	for some sequence of integers $\{a_i\}_{i=1}^m$. It follows that
+	\[\pi\left(\frac e{\prod_{i=1}^mF_i^{a_i}}\right)=1,\]
+	so $\frac e{\prod_{i=1}^mF_i^{a_i}}=\ker\pi=A$. Thus, we can find some $x\in A$ such that
+	\[e=x\cdot\prod_{i=1}^mF_i^{a_i},\]
+	which is what we wanted.
+\end{proof}

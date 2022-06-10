@@ -1,0 +1,228 @@
+% !TEX root = ../abeliangerbs.tex
+
+In this section, we verify \autoref{thm:getcocycle}. As such, in this section, we will work under the modified set-up, forgetting about the extension $\mc E$ but letting $(\{\alpha_i\},\{\beta_{ij}\})$ be some $\{\sigma_i\}_{i=1}^m$-tuple.
+
+Here the formula looks like
+\[c(g,g')\coloneqq\left[\prod_{1\le j<i\le m}\Bigg(\prod_{1\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\beta_{ij}^{(a_ib_j)}\right]\left[\prod_{i=1}^m\Bigg(\prod_{1\le k<i}\sigma_k^{a_k+b_k}\Bigg)\alpha_i^{\floor{\frac{a_i+b_i}{n_i}}}\right],\]
+where $g=\prod_i\sigma_i^{a_i}$ and $g'=\prod_i\sigma_i^{b_i}$ with $0\le a_i,b_i<n_i$ and $q_i\coloneqq\floor{(a_i+b_i)/n_i}$. To make this more digestible, we define
+\[g_i\coloneqq\prod_{1\le k<i}\sigma_k^{a_k}\]
+for any $g=\prod_i\sigma_i^{a_i}\in G$, so we can write down our formula as
+\[c(g,g')\coloneqq\left[\prod_{1\le j<i\le m}g_ig'_j\beta_{ij}^{(a_ib_j)}\right]\left[\prod_{i=1}^mg_ig'_i\alpha_i^{\floor{\frac{a_i+b_i}{n_i}}}\right].\]
+Now, given $g,g',g''\in G$, we would like to check
+\[gc(g',g'')\cdot c(g,g'g'')\stackrel?=c(gg',g'')\cdot c(g,g'),\]
+where $g=\prod_i\sigma_i^{a_i}$ and $g'=\prod_i\sigma_i^{b_i}$ and $g''=\prod_i\sigma_i^{c_i}$ with $0\le a_i,b_i,c_i<n_i$.
+
+\subsection{Carries}
+We will begin our verification by dealing with carries; we start with the following lemma, intended to beef up our relation \autoref{eq:tuplerelations}.
+\begin{lemma}
+	Given indices $i>j$ with $a_i,a_j,q_i,q_j\ge0$, we have
+	\[\beta_{ij}^{(a_ia_j)}=\beta_{ij}^{(a_i+q_in_i,a_j)}\left(\frac{\sigma_j^{a_j}(\alpha_i)}{\alpha_i}\right)^{q_i}\qquad\text{and}\qquad\beta_{ij}^{(a_ia_j)}=\beta_{ij}^{(a_i,a_j+q_jn_j)}\left(\frac{\alpha_j}{\sigma_i^{a_i}(\alpha_j)}\right)^{q_j}.\]
+\end{lemma}
+\begin{proof}
+	This is a matter of force. For one, we compute
+	\begin{align*}
+		\beta_{ij}^{(a_i+n_iq_i,a_j)} &= \prod_{p=0}^{a_i+n_iq_i-1}\prod_{q=0}^{a_j-1}\sigma_i^p\sigma_j^q\beta_{ij} \\
+		&= \left(\prod_{p=0}^{a_i-1}\prod_{q=0}^{a_j-1}\sigma_i^p\sigma_j^q\beta_{ij}\right)\left(\prod_{q=0}^{a_j-1}\prod_{p=a_i}^{a_i+n_iq_i-1}\sigma_i^p\sigma_j^q\beta_{ij}\right) \\
+		&= \beta_{ij}^{(a_ia_j)}\left(\prod_{q=0}^{a_j-1}\sigma_j^q\op N_{L/L_i}(\beta_{ij})\right)^{q_i}.
+	\end{align*}
+	Now, using the relation $\op N_{L/L_i}(\beta_{ij})=\alpha_i/\sigma_j(\alpha_i)$ from \autoref{eq:tuplerelations}, this becomes
+	\begin{align*}
+		\beta_{ij}^{(a_i+n_iq_i,a_j)} &= \beta_{ij}^{(a_ia_j)}\left(\prod_{q=0}^{a_j-1}\frac{\sigma_j^q\alpha_i}{\sigma^{j+1}\alpha_i}\right)^{q_i} \\
+		&= \beta_{ij}^{(a_ia_j)}\left(\frac{\alpha_i}{\sigma^{a_j}\alpha_i}\right)^{q_i},
+	\end{align*}
+	which rearranges into what we wanted.
+
+	For the other, we again just compute
+	\begin{align*}
+		\beta_{ij}^{(a_i,a_j+n_jq_j)} &= \prod_{p=0}^{a_i-1}\prod_{q=0}^{a_j+n_jq_j-1}\sigma_i^p\sigma_j^q\beta_{ij} \\
+		&= \left(\prod_{p=0}^{a_i-1}\prod_{q=0}^{a_j-1}\sigma_i^p\sigma_j^q\beta_{ij}\right)\left(\prod_{p=0}^{a_i-1}\prod_{q=q_j}^{a_j+n_jq_j-1}\sigma_i^p\sigma_j^q\beta_{ij}\right) \\
+		&= \beta_{ij}^{(a_ia_j)}\left(\prod_{p=0}^{a_i-1}\sigma_i^p\op N_{L/L_q}(\beta_{ij})\right)^{q_i}.
+	\end{align*}
+	This time, we use the relation $\op N_{L/L_j}(\beta_{ij})=\sigma_i(\alpha_j)/\alpha_j$, which gives
+	\begin{align*}
+		\beta_{ij}^{(a_i,a_j+n_jq_j)} &= \beta_{ij}^{(a_ia_j)}\left(\prod_{p=0}^{a_i-1}\frac{\sigma_i^{p+1}(\alpha_j)}{\sigma_i^p(\alpha_j)}\right)^{q_i} \\
+		&= \beta_{ij}^{(a_ia_j)}\left(\frac{\sigma_i^{a_j}(\alpha_j)}{\alpha_j}\right)^{q_i},
+	\end{align*}
+	which again rearranges into the desired.
+\end{proof}
+We are now ready to begin the computation, dealing with carries to start. Use the division algorithm to write
+\[a_i+b_i=n_iu_i+x_i\qquad\text{and}\qquad b_i+c_i=n_iv_i+y_i,\]
+where $u_i,v_i\in\{0,1\}$ and $0\le x_i,y_i<n_i$ for each $i$. We start by collecting remainder terms on the side of $gc(g',g'')\cdot c(g,g'g'')$.
+\begin{enumerate}
+	\item Note
+	\begin{align*}
+		gc(g',g'') &= g\left[\prod_{1\le j<i\le m}g_i'g''_j\beta_{ij}^{(b_ic_j)}\right]\cdot g\left[\prod_{i=1}^mg'_ig''_i\alpha_i^{v_i}\right],
+	\end{align*}
+	so we set
+	\[R_1\coloneqq\prod_{i=1}^mgg'_ig''_i\alpha_i^{v_i}\]
+	to be our remainder term.
+	\item Note
+	\begin{align*}
+		c(g,g'g'') &= \left[\prod_{1\le j<i\le m}g_ig'_jg''_j\beta_{ij}^{(a_iy_j)}\right]\left[\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{\floor{\frac{a_i+y_i}{n_i}}}\right] \\
+		&= \left[\prod_{1\le j<i\le m}g_ig'_jg''_j\beta_{ij}^{(a_i,b_j+c_j)}\cdot g_ig'_jg''_j\left(\frac{\alpha_j}{\sigma_i^{a_i}\alpha_j}\right)^{v_i}\right]\left[\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{\floor{\frac{a_i+y_i}{n_i}}}\right] \\
+		&= \left[\prod_{1\le j<i\le m}g_ig'_jg''_j\beta_{ij}^{(a_i,b_j+c_j)}\right]\left[\prod_{1\le j<i\le m}g_ig'_jg''_j\left(\frac{\alpha_j}{\sigma_i^{a_i}\alpha_j}\right)^{v_i}\right]\left[\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{\floor{\frac{a_i+y_i}{n_i}}}\right],
+	\end{align*}
+	so we set
+	\[R_2\coloneqq\left[\prod_{1\le j<i\le m}g_ig'_jg''_j\left(\frac{\alpha_j}{\sigma_i^{a_i}\alpha_j}\right)^{v_i}\right]\left[\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{\floor{\frac{a_i+y_i}{n_i}}}\right]\]
+	to be our remainder term.
+	\item Lastly, we collect our remainders. Observe
+	\begin{align*}
+		R_2 &= \left[\prod_{j=1}^mg'_jg''_j\Bigg(\prod_{i=j+1}^mg_i\cdot\frac{\alpha_j}{\sigma_i^{a_i}\alpha_j}\Bigg)^{v_i}\right]\left[\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{\floor{\frac{a_i+y_i}{n_i}}}\right] \\
+		&= \left[\prod_{j=1}^mg'_jg''_j\Bigg(\prod_{i=j+1}^m\frac{(\sigma_1^{a_1}\cdots\sigma_{i-1}^{a_{i-1}})\alpha_j}{(\sigma_1^{a_1}\cdots\sigma_{i-1}^{a_{i-1}})\sigma_i^{a_i}\alpha_j}\Bigg)^{v_i}\right]\left[\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{\floor{\frac{a_i+y_i}{n_i}}}\right] \\
+		&= \left[\prod_{j=1}^mg'_jg''_j\Bigg(\prod_{i=j+1}^m\frac{g_i\alpha_j}{g_{i+1}\alpha_j}\Bigg)^{v_i}\right]\left[\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{\floor{\frac{a_i+y_i}{n_i}}}\right] \\
+		&= \left[\prod_{j=1}^mg'_jg''_j\cdot\frac{g_{j+1}\alpha_j^{v_j}}{g\alpha_j^{v_j}}\right]\left[\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{\floor{\frac{a_i+y_i}{n_i}}}\right].
+	\end{align*}
+	We now note that $g_{j+1}\alpha_j=g_j\alpha_j$ because $\alpha_j$ is fixed by $\sigma_j$. As such,
+	\begin{align*}
+		R_1R_2 &= \left[\prod_{i=1}^mgg'_ig''_i\alpha_i^{v_i}\right]\left[\prod_{i=1}^mg'_ig''_i\cdot\frac{g_i\alpha_i^{v_i}}{g\alpha_i^{v_i}}\right]\left[\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{\floor{\frac{a_i+y_i}{n_i}}}\right] \\
+		&= \prod_{i=1}^mg_ig'_ig''_i\alpha_i^{v_i+\floor{\frac{a_i+y_i}{n_i}}},
+	\end{align*}
+	which is nice enough for us now.
+\end{enumerate}
+Now, we collect remainder terms from $c(gg',g'')\cdot c(g,g')$.
+\begin{enumerate}
+	\item Note
+	\begin{align*}
+		c(gg',g'') &= \left[\prod_{1\le j<i\le m}g_ig'_ig''_j\beta_{ij}^{(x_ic_j)}\right]\left[\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{\floor{\frac{x_i+c_i}{n_i}}}\right] \\
+		&= \left[\prod_{1\le j<i\le m}g_ig'_ig''_j\beta_{ij}^{(a_i+b_i,c_j)}\cdot g_ig'_ig''_j\left(\frac{\sigma_j^{c_j}\alpha_i}{\alpha_i}\right)^{u_i}\right]\left[\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{\floor{\frac{x_i+c_i}{n_i}}}\right] \\
+		&= \left[\prod_{1\le j<i\le m}g_ig'_ig''_j\beta_{ij}^{(a_i+b_i,c_j)}\right]\left[\prod_{1\le j<i\le m}g_ig'_ig''_j\left(\frac{\sigma_j^{c_j}\alpha_i}{\alpha_i}\right)^{u_i}\right]\left[\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{\floor{\frac{x_i+c_i}{n_i}}}\right],
+	\end{align*}
+	so we set
+	\[R_3\coloneqq\left[\prod_{1\le j<i\le m}g_ig'_ig''_j\left(\frac{\sigma_j^{c_j}\alpha_i}{\alpha_i}\right)^{u_i}\right]\left[\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{\floor{\frac{x_i+c_i}{n_i}}}\right].\]
+	\item Note
+	\[c(g,g') = \left[\prod_{1\le j<i\le m}g_ig'_j\beta_{ij}^{(a_ib_j)}\right]\left[\prod_{i=1}^mg_ig'_i\alpha_i^{u_i}\right],\]
+	so we set
+	\[R_4\coloneqq\left[\prod_{i=1}^mg_ig'_i\alpha_i^{u_i}\right].\]
+	\item Lastly, we collect our remainder terms. Observe
+	\begin{align*}
+		R_3 &= \left[\prod_{i=1}^mg_ig'_i\Bigg(\prod_{j=1}^{i-1}g''_j\cdot\frac{\sigma_j^{c_j}\alpha_i}{\alpha_i}\Bigg)^{u_i}\right]\left[\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{\floor{\frac{x_i+c_i}{n_i}}}\right] \\
+		&= \left[\prod_{i=1}^mg_ig'_i\Bigg(\prod_{j=1}^{i-1}\frac{(\sigma_1^{c_1}\cdots\sigma_{j-1}^{c_{j-1}})\sigma_j^{c_j}\alpha_i}{(\sigma_1^{c_1}\cdots\sigma_{j-1}^{c_{j-1}})\alpha_i}\Bigg)^{u_i}\right]\left[\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{\floor{\frac{x_i+c_i}{n_i}}}\right] \\
+		&= \left[\prod_{i=1}^mg_ig'_i\Bigg(\prod_{j=1}^{i-1}\frac{g''_{j+1}\alpha_i}{g''_j\alpha_i}\Bigg)^{u_i}\right]\left[\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{\floor{\frac{x_i+c_i}{n_i}}}\right] \\
+		&= \left[\prod_{i=1}^mg_ig'_i\cdot\frac{g''_i\alpha_i^{u_i}}{\alpha_i^{u_i}}\right]\left[\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{\floor{\frac{x_i+c_i}{n_i}}}\right].
+	\end{align*}
+	Thus,
+	\begin{align*}
+		R_3R_4 &= \left[\prod_{i=1}^mg_ig'_i\cdot\frac{g''_i\alpha_i^{u_i}}{\alpha_i^{u_i}}\right]\left[\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{\floor{\frac{x_i+c_i}{n_i}}}\right]\left[\prod_{i=1}^mg_ig'_i\alpha_i^{u_i}\right] \\
+		&= \prod_{i=1}^mg_ig'_ig''_i\alpha_i^{u_i+\floor{\frac{x_i+c_i}{n_i}}},
+	\end{align*}
+	which is again simple enough for our purposes.
+\end{enumerate}
+We now note that, for each $i$,
+\[u_i+\floor{\frac{x_i+c_i}{n_i}}=\floor{\frac{a_i+b_i+c_i}{n_i}}=v_i+\floor{\frac{a_i+y_i}{n_i}}\]
+by how carried addition behaves. It follows that
+\[R_1R_2=\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{v_i+\floor{\frac{a_i+y_i}{n_i}}}=\prod_{i=1}^mg_ig'_ig''_i\alpha_i^{u_i+\floor{\frac{x_i+c_i}{n_i}}}=R_3R_4.\]
+Thus, it suffices to show that
+\[\frac{gc(g',g'')}{R_1}\cdot\frac{c(g,g'')}{R_2}\stackrel?=\frac{c(gg',g'')}{R_3}\cdot\frac{c(g,g')}{R_4},\]
+which is equivalent to
+\[g\left[\prod_{1\le j<i\le m}g_i'g''_j\beta_{ij}^{(b_ic_j)}\right]\cdot\left[\prod_{1\le j<i\le m}g_ig'_jg''_j\beta_{ij}^{(a_i,b_j+c_j)}\right]\stackrel?=\left[\prod_{1\le j<i\le m}g_ig'_ig''_j\beta_{ij}^{(a_i+b_i,c_j)}\right]\cdot\left[\prod_{1\le j<i\le m}g_ig'_j\beta_{ij}^{(a_ib_j)}\right]\]
+by the work above.
+
+\subsection{Finishing}
+We need to verify that
+\[g\left[\prod_{1\le j<i\le m}g_i'g''_j\beta_{ij}^{(b_ic_j)}\right]\cdot\left[\prod_{1\le j<i\le m}g_ig'_jg''_j\beta_{ij}^{(a_i,b_j+c_j)}\right]\stackrel?=\left[\prod_{1\le j<i\le m}g_ig'_ig''_j\beta_{ij}^{(a_i+b_i,c_j)}\right]\cdot\left[\prod_{1\le j<i\le m}g_ig'_j\beta_{ij}^{(a_ib_j)}\right]\]
+as discussed in the previous subsection.
+
+Before beginning the check, we recall the relations on the $\beta$s from \autoref{eq:betarelations} can be written as
+\[\frac{\sigma_2(\beta_{31})}{\beta_{31}}=\frac{\sigma_1(\beta_{32})}{\beta_{32}}\cdot\frac{\sigma_3(\beta_{21})}{\beta_{21}},\]
+because we only have one triple $(i,j,k)$ of indices with $i>j>k$. This is somewhat difficult to deal with directly, so we quickly show a more general version.
+\begin{lemma} \label{lem:betterbetarelation}
+	Fix indices with $i>j>k$, and let $a_i,a_j,a_k\ge0$. Then
+	\[\frac{\sigma_j^{a_j}\beta_{ik}^{(a_ia_k)}}{\beta_{ik}^{(a_ia_k)}}=\frac{\sigma_k^{a_k}\beta_{ij}^{(a_ia_j)}}{\beta_{ij}^{(a_ia_j)}}\cdot\frac{\sigma_i^{a_i}\beta_{jk}^{(a_ja_k)}}{\beta_{jk}^{(a_ja_k)}}.\]
+\end{lemma}
+\begin{proof}
+	We simply compute
+	\begin{align*}
+		\frac{\sigma_i^{a_i}\beta_{jk}^{(a_ja_k)}}{\beta_{jk}^{(a_ja_k)}}\cdot\frac{\sigma_k^{a_k}\beta_{ij}^{(a_ia_j)}}{\beta_{ij}^{(a_ia_j)}} &= \prod_{r=0}^{a_i-1}\frac{\sigma_i^{r+1}\beta_{jk}^{(a_ja_k)}}{\sigma_i^r\beta_{jk}^{(a_ja_k)}}\cdot\prod_{p=0}^{a_k-1}\frac{\sigma_k^{p+1}\beta_{ij}^{(a_ia_j)}}{\sigma_k^p\beta_{ij}^{(a_ia_j)}} \\
+		&= \prod_{p=0}^{a_k-1}\prod_{q=0}^{a_j-1}\prod_{r=0}^{a_i-1}\left(\frac{\sigma_k^p\sigma_j^q\sigma_i^{r+1}\beta_{jk}}{\sigma_k^p\sigma_j^q\sigma_i^r\beta_{jk}}\cdot\frac{\sigma_k^{p+1}\sigma_j^q\sigma_i^r\beta_{ij}}{\sigma_k^p\sigma_j^q\sigma_i^r\beta_{ij}}\right) \\
+		&= \prod_{p=0}^{a_k-1}\prod_{q=0}^{a_j-1}\prod_{r=0}^{a_i-1}\sigma_k^p\sigma_j^q\sigma_i^r\left(\frac{\sigma_i\beta_{jk}}{\beta_{jk}}\cdot\frac{\sigma_k\beta_{ij}}{\beta_{ij}}\right) \\
+		&= \prod_{p=0}^{a_k-1}\prod_{q=0}^{a_j-1}\prod_{r=0}^{a_i-1}\sigma_k^p\sigma_j^q\sigma_i^r\left(\frac{\sigma_j\beta_{ik}}{\beta_{ik}}\right),
+	\end{align*}
+	where in the last equality we have use the relation on the $\beta$s. Continuing,
+	\begin{align*}
+		\frac{\sigma_i^{a_i}\beta_{jk}^{(a_ja_k)}}{\beta_{jk}^{(a_ja_k)}}\cdot\frac{\sigma_k^{a_k}\beta_{ij}^{(a_ia_j)}}{\beta_{ij}^{(a_ia_j)}} &= \prod_{q=0}^{a_j-1}\left(\prod_{p=0}^{a_k-1}\prod_{r=0}^{a_i-1}\frac{\sigma_j^{q+1}\sigma_k^p\sigma_i^r\beta_{ik}}{\sigma_j^q\sigma_k^p\sigma_i^r\beta_{ik}}\right) \\
+		&= \prod_{q=0}^{a_j-1}\frac{\sigma_j^{q+1}\beta_{ik}^{(a_ia_k)}}{\sigma_j^q\beta_{ik}^{(a_ia_k)}} \\
+		&= \frac{\sigma_j^{a_j}\beta_{ik}^{(a_ia_k)}}{\beta_{ik}^{(a_ia_k)}},
+	\end{align*}
+	which is what we wanted.
+\end{proof}
+We now proceed with the check, by induction. More precisely, we claim that any $m'\le m$ gives
+\[g_{m'+1}\left[\prod_{j<i\le m'}g_i'g''_j\beta_{ij}^{(b_ic_j)}\right]\left[\prod_{j<i\le m'}g_ig'_jg''_j\beta_{ij}^{(a_i,b_j+c_j)}\right]\stackrel?=\left[\prod_{j<i\le m'}g_ig'_ig''_j\beta_{ij}^{(a_i+b_i,c_j)}\right]\left[\prod_{j<i\le m'}g_ig'_j\beta_{ij}^{(a_ib_j)}\right]\]
+which we will show by induction on $m'$. For $m'=1$, there is nothing to say because there are no indices $i>j$.
+
+So now suppose we have equality for $m'<m$, and we give equality for $m''\coloneqq m'+1$. That is, we want to show that
+\[g_{m'+2}\prod_{j<i\le m'+1}g_i'g''_j\beta_{ij}^{(b_ic_j)}\cdot\prod_{j<i\le m'+1}g_ig'_jg''_j\beta_{ij}^{(a_i,b_j+c_j)}\stackrel?=\prod_{j<i\le m'+1}g_ig'_ig''_j\beta_{ij}^{(a_i+b_i,c_j)}\cdot\prod_{j<i\le m'+1}g_ig'_j\beta_{ij}^{(a_ib_j)}\]
+but by the inductive hypothesis it suffices for
+\[\frac{\displaystyle g_{m''+1}\prod_{j<i\le m'+1}g_i'g''_j\beta_{ij}^{(b_ic_j)}}{\displaystyle g_{m'+1}\prod_{j<i\le m'}g_i'g''_j\beta_{ij}^{(b_ic_j)}}\cdot
+\frac{\displaystyle\prod_{j<i\le m'+1}g_ig'_jg''_j\beta_{ij}^{(a_i,b_j+c_j)}}{\displaystyle\prod_{j<i\le m'}g_ig'_jg''_j\beta_{ij}^{(a_i,b_j+c_j)}}
+\stackrel?=
+\frac{\displaystyle\prod_{j<i\le m'+1}g_ig'_ig''_j\beta_{ij}^{(a_i+b_i,c_j)}}{\displaystyle\prod_{j<i\le m'}g_ig'_ig''_j\beta_{ij}^{(a_i+b_i,c_j)}}\cdot
+\frac{\displaystyle\prod_{j<i\le m'+1}g_ig'_j\beta_{ij}^{(a_ib_j)}}{\displaystyle\prod_{j<i\le m'}g_ig'_j\beta_{ij}^{(a_ib_j)}}\]
+which is collapses to
+\[\frac{\displaystyle g_{m''+1}\prod_{j<i\le m'+1}g_i'g''_j\beta_{ij}^{(b_ic_j)}}{\displaystyle g_{m'+1}\prod_{j<i\le m'}g_i'g''_j\beta_{ij}^{(b_ic_j)}}\cdot
+\prod_{j\le m'}g_{m''}g'_jg''_j\beta_{m''j}^{(a_{m''},b_j+c_j)}
+\stackrel?=
+\prod_{j\le m'}g_{m''}g'_{m''}g''_j\beta_{m''j}^{(a_{m''}+b_{m''},c_j)}\cdot
+\displaystyle\prod_{j\le m'}g_{m''}g'_j\beta_{ij}^{(a_{m''}b_j)}\]
+because the terms with $i<m''=m'+1$ got cancelled in the rightmost three products. Rearranging, this is the same as
+\[\frac{\displaystyle g_{m''+1}\prod_{j<i\le m'+1}g_i'g''_j\beta_{ij}^{(b_ic_j)}}{\displaystyle g_{m'+1}\prod_{j<i\le m'}g_i'g''_j\beta_{ij}^{(b_ic_j)}}
+\stackrel?=
+\frac{\displaystyle\prod_{j<m''}g_{m''}g'_{m''}g''_j\beta_{m''j}^{(a_{m''}+b_{m''},c_j)}\cdot
+\displaystyle\prod_{j<m''}g_{m''}g'_j\beta_{m''j}^{(a_{m''}b_j)}}
+{\displaystyle\prod_{j<m''}g_{m''}g'_jg''_j\beta_{m''j}^{(a_{m''},b_j+c_j)}}.\]
+Peeling off the $i=m''=m'+1$ terms from the left-hand side numerator, we're showing
+\[\frac{\displaystyle g_{m''+1}\prod_{j<i\le m'}g_i'g''_j\beta_{ij}^{(b_ic_j)}}{\displaystyle g_{m'+1}\prod_{j<i\le m'}g_i'g''_j\beta_{ij}^{(b_ic_j)}}
+\stackrel?=
+\frac{\displaystyle\prod_{j<m''}g_{m''}g'_{m''}g''_j\beta_{m''j}^{(a_{m''}+b_{m''},c_j)}\cdot
+\displaystyle\prod_{j<m''}g_{m''}g'_j\beta_{m''j}^{(a_{m''}b_j)}}
+{\displaystyle\prod_{j<m''}g_{m''+1}g_{m''}'g''_j\beta_{m''j}^{(b_{m''}c_j)}\cdot
+\prod_{j<m''}g_{m''}g'_jg''_j\beta_{m''j}^{(a_{m''},b_j+c_j)}}.\]
+We take a moment to simplify the left-hand side with \autoref{lem:betterbetarelation} by writing
+\begin{align*}
+	g_{m'+1}\prod_{j<i\le m'}g_i'g''_j\left(\frac{\sigma_{m''}^{a_{m''}}\beta_{ij}^{(b_ic_j)}}{\beta_{ij}^{(b_ic_j)}}\right) &= g_{m''}\prod_{j<i\le m'}g_i'g''_j\left(\frac{\sigma_i^{b_i}\beta_{m''j}^{(a_{m''}c_j)}}{\beta_{m''j}^{(a_{m''}c_j)}}\cdot\frac{\beta_{m''i}^{(a_{m''}b_i)}}{\sigma_j^{c_j}\beta_{m''i}^{(a_{m''}b_i)}}\right) \\
+	&= g_{m''}\left[\prod_{j=1}^{m'}g''_j\prod_{i=j+1}^{m'}g_i'\left(\frac{\sigma_i^{b_i}\beta_{m''j}^{(a_{m''}c_j)}}{\beta_{m''j}^{(a_{m''}c_j)}}\right)\cdot
+	\prod_{i=1}^{m'}g_i'\prod_{j=1}^{i-1}g_j''\left(\frac{\beta_{m''i}^{(a_{m''}b_i)}}{\sigma_j^{c_j}\beta_{m''i}^{(a_{m''}b_i)}}\right)\right] \\
+	&= g_{m''}\left[\prod_{j=1}^{m'}\frac{g'_{m'+1}g''_j\beta_{m''j}^{(a_{m''}c_j)}}{g'_{j+1}g''_j\beta_{m''j}^{(a_{m''}c_j)}}\cdot
+	\prod_{i=1}^{m'}\frac{g_i'\beta_{m''i}^{(a_{m''}b_i)}}{g_i'g_i''\beta_{m''i}^{(a_{m''}b_i)}}\right] \\
+	&= g_{m''}\left[\prod_{j<m''}\frac{g'_{m''}g''_j\beta_{m''j}^{(a_{m''}c_j)}}{g'_{j+1}g''_j\beta_{m''j}^{(a_{m''}c_j)}}\cdot
+	\prod_{j<m''}\frac{g_j'\beta_{m''j}^{(a_{m''}b_j)}}{g_j'g_j''\beta_{m''j}^{(a_{m''}b_j)}}\right]
+\end{align*}
+after doing a lot of telescoping. Now, we can remove $g_{m''}$ everywhere to give
+\[\prod_{j<m''}\frac{g'_{m''}g''_j\beta_{m''j}^{(a_{m''}c_j)}}{g'_{j+1}g''_j\beta_{m''j}^{(a_{m''}c_j)}}\cdot
+\prod_{j<m''}\frac{g_j'\beta_{m''j}^{(a_{m''}b_j)}}{g_j'g_j''\beta_{m''j}^{(a_{m''}b_j)}}
+\stackrel?=
+\frac{\displaystyle\prod_{j<m''}g'_{m''}g''_j\beta_{m''j}^{(a_{m''}+b_{m''},c_j)}\cdot
+\displaystyle\prod_{j<m''}g'_j\beta_{m''j}^{(a_{m''}b_j)}}
+{\displaystyle\prod_{j<m''}g'_{m''+1}g''_j\beta_{m''j}^{(b_{m''}c_j)}\cdot
+\prod_{j<m''}g'_jg''_j\beta_{m''j}^{(a_{m''},b_j+c_j)}},\]
+or
+\[\prod_{j<m''}\frac{g'_{m''}g''_j\beta_{m''j}^{(a_{m''}c_j)}}{g'_{j+1}g''_j\beta_{m''j}^{(a_{m''}c_j)}}
+\stackrel?=
+\frac{\displaystyle\prod_{j<m''}g'_{m''}g''_j\beta_{m''j}^{(a_{m''}+b_{m''},c_j)}\cdot
+\displaystyle\prod_{j<m''}g'_jg''_j\beta_{m''j}^{(a_{m''}b_j)}}
+{\displaystyle\prod_{j<m''}g'_{m''+1}g''_j\beta_{m''j}^{(b_{m''}c_j)}\cdot
+\prod_{j<m''}g'_jg''_j\beta_{m''j}^{(a_{m''},b_j+c_j)}}.\]
+Rearranging, we want
+\[\prod_{j<m''}
+\frac{g'_jg''_j\beta_{m''j}^{(a_{m''},b_j+c_j)}}
+{g'_jg''_j\beta_{m''j}^{(a_{m''}b_j)}\cdot
+g'_{j+1}g''_j\beta_{m''j}^{(a_{m''}c_j)}}
+\stackrel?=\prod_{j<m''}
+\frac{g'_{m''}g''_j\beta_{m''j}^{(a_{m''}+b_{m''},c_j)}}
+{g'_{m''}g''_j\beta_{m''j}^{(a_{m''}c_j)}\cdot
+g'_{m''+1}g''_j\beta_{m''j}^{(b_{m''}c_j)}},\]
+which is
+\[\prod_{j<m''}
+g'_jg''_j\left(\frac{\beta_{m''j}^{(a_{m''},b_j+c_j)}}
+{\beta_{m''j}^{(a_{m''}b_j)}\cdot
+\sigma_j^{b_j}\beta_{m''j}^{(a_{m''}c_j)}}\right)
+\stackrel?=\prod_{j<m''}
+g'_{m''}g''_j\left(\frac{\beta_{m''j}^{(a_{m''}+b_{m''},c_j)}}
+{\beta_{m''j}^{(a_{m''}c_j)}\cdot
+\sigma_{m''}^{a_{m''}}\beta_{m''j}^{(b_{m''}c_j)}}\right).\]
+However, by definition of the $\beta_{ij}^{(xy)}$, we see that
+\[\frac{\beta_{m''j}^{(a_{m''},b_j+c_j)}}
+{\beta_{m''j}^{(a_{m''}b_j)}\cdot
+\sigma_j^{b_j}\beta_{m''j}^{(a_{m''}c_j)}}=\frac{\beta_{m''j}^{(a_{m''}+b_{m''},c_j)}}
+{\beta_{m''j}^{(a_{m''}c_j)}\cdot
+\sigma_{m''}^{a_{m''}}\beta_{m''j}^{(b_{m''}c_j)}}=1,\]
+so everything does indeed cancel out properly. This completes the check.

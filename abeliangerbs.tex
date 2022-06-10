@@ -1239,7 +1239,7 @@ We will use this to prove the following.
 	\begin{equation}
 		0\to\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ X\to\op{Hom}_\ZZ(X,\QQ)\otimes_\ZZ X\to\op{Hom}_\ZZ(X,\QQ/\ZZ)\otimes_\ZZ X\to0. \label{eq:tensorhomdivisibleses}
 	\end{equation}
-	Notably, this is exact because $\ZZ$ is a finitely generated, torsion-free $\ZZ$-module and hence flat as a $\ZZ$-module. Now, $\op{Hom}_\ZZ(X,\QQ)\otimes_\ZZ X$ is still a divisible abelian group, so again $\widehat H^i(G,\op{Hom}_\ZZ(X,\QQ))=0$ for all $i\in\ZZ$.
+	Notably, this is exact because $X$ is a finitely generated, torsion-free $\ZZ$-module and hence flat as a $\ZZ$-module. Now, $\op{Hom}_\ZZ(X,\QQ)\otimes_\ZZ X$ is still a divisible abelian group, so again $\widehat H^i(G,\op{Hom}_\ZZ(X,\QQ))=0$ for all $i\in\ZZ$.
 
 	The rest of the proof is tracking boundary morphisms around. Fix some $i\in\ZZ$. Note \autoref{eq:divisibleses} and \autoref{eq:homdivisibleses} and \autoref{eq:tensorhomdivisibleses} induce boundary isomorphisms
 	\[\arraycolsep=1.4pt\begin{array}{rlcl}
@@ -1286,7 +1286,7 @@ We will use this to prove the following.
 	The hypothesis that $X$ be $\ZZ$-free is necessary: the statement is false for $X=\ZZ/\#G\ZZ$ and $i=0$, for example.
 \end{remark}
 
-\subsection{A Reciprocity}
+\subsection{A Perfect Pairing}
 The main goal of this subsection is to prove the following result.
 \begin{theorem} \label{thm:abstractperfectpairing}
 	Let $G$ be a finite group, and let $X$ and $A$ be $G$-modules. Then, if there exists an element $c\in H^2(G,X)$ such that the cup-product maps
@@ -1345,7 +1345,7 @@ The main step in the proof is the following lemma.
 	\[\begin{tikzcd}
 		{\widehat H^{i-2}(G,\op{Hom}_\ZZ(X,\ZZ))} & {\widehat H^i(G,\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ A)} & {\widehat H^i(G,\op{Hom}_\ZZ(X,A))} \\
 		{\widehat H^i(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,\ZZ))} & {\widehat H^{i+2}(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ A)} & {\widehat H^{i+2}(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,A))} \\
-		{\widehat H^i(G,\ZZ)} & {\widehat H^2(G,X\otimes_\ZZ A)} & {\widehat H^{i+2}(G,A)}
+		{\widehat H^i(G,\ZZ)} & {\widehat H^{i+2}(G,X\otimes_\ZZ A)} & {\widehat H^{i+2}(G,A)}
 		\arrow["{-\cup u}", from=1-1, to=1-2]
 		\arrow["{-\cup u}", from=2-1, to=2-2]
 		\arrow["{-\cup u}", from=3-1, to=3-2]
@@ -1368,7 +1368,7 @@ The main step in the proof is the following lemma.
 		\item This square commutes by the associativity of the cup product.
 		\item This square commutes by \autoref{lem:cupproductmorphism}.
 		\item This square commutes by \autoref{lem:cupproductmorphism}.
-		\item This square commutes by functoriality of $\widehat H^2(G,-)$ applied to \autoref{eq:innermorphismcoherence}.
+		\item This square commutes by functoriality of $\widehat H^{i+2}(G,-)$ applied to \autoref{eq:innermorphismcoherence}.
 	\end{enumerate}
 	The above checks complete the proof.
 \end{proof}

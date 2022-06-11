@@ -39,3 +39,13 @@ Cartan
 Eilenberg
 functoriality
 endomorphism
+Profinite
+poset
+profinite
+procyclic
+multiplicativity
+colimit
+colimits
+Yoneda
+morphsims
+functorial

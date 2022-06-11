@@ -131,11 +131,11 @@ by \autoref{lem:constructalphabeta}, and
 \end{equation}
 by \autoref{lem:betarelations}. This data is so important that we will give it a name.
 \begin{definition}
-	In the above set-up, the data of $(\{\alpha_i\},\{\beta_{ij}\})$ satisfying \autoref{eq:tuplefields} and \autoref{eq:tuplerelations} and \autoref{eq:betarelations} will be called a \textit{$\{\sigma_i\}_{i=1}^m$-tuple}. When understood, the $\{\sigma_i\}_{i=1}^m$ will be abbreviated.
+	In the above set-up, the data of $(\{\alpha_i\},\{\beta_{ij}\})$ satisfying \autoref{eq:tuplefields} and \autoref{eq:tuplerelations} and \autoref{eq:betarelations} will be called a \textit{$\{\sigma_i\}_{i=1}^m$-tuple}. When understood, the $\{\sigma_i\}_{i=1}^m$ will be abbreviated. Once $G$ and $A$ are fixed, we will denote the set of $\{\sigma_i\}_{i=1}^m$-tuples by $\mathcal T(G,A)$.
 \end{definition}
 Note that this definition is independent of $\mc E$, but a choice of extension $\mc E$ and lifts $F_i$ give a $\{\sigma_i\}_{i=1}^m$-tuple as described above.
 \begin{remark}
-	The set of $\{\sigma_i\}_{i=1}^m$-tuples form a group under multiplication in $A$. Indeed, the conditions \autoref{eq:tuplefields} and \autoref{eq:tuplerelations} and \autoref{eq:betarelations} are closed under multiplication and inversion.
+	The $\mathcal T(G,A)$ form a group under multiplication in $A$. Indeed, the conditions \autoref{eq:tuplefields} and \autoref{eq:tuplerelations} and \autoref{eq:betarelations} are closed under multiplication and inversion.
 \end{remark}
 We also know from \autoref{lem:switchtwo} that
 \[F_i^xF_j^y=\prod_{k=0}^{x-1}\prod_{\ell=0}^{y-1}\sigma_i^k\sigma_j^\ell(\beta_{ij})F_j^yF_i^x\]
@@ -278,7 +278,7 @@ Here is a nice sanity check that we are doing things in the right setting: not o
 \end{proof}
 And here is our first taste of (partial) classification.
 \begin{cor} \label{cor:cocycletuplesection}
-	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Then the formula of \autoref{thm:getcocycle} and the formulae of \autoref{lem:explicitalphabeta} (setting $x_i=1$ for each $i$) are homomorphisms of abelian groups between the set of $\{\sigma_i\}_{i=1}^m$-tuples and cocycles in $Z^2( G,A)$. In fact, the formula of \autoref{thm:getcocycle} is a section of the formulae of \autoref{lem:explicitalphabeta}.
+	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Then the formula of \autoref{thm:getcocycle} and the formulae of \autoref{lem:explicitalphabeta} (setting $x_i=1$ for each $i$) are homomorphisms of abelian groups between tuples in $\mathcal T(G,A)$ and cocycles in $Z^2( G,A)$. In fact, the formula of \autoref{thm:getcocycle} is a section of the formulae of \autoref{lem:explicitalphabeta}.
 \end{cor}
 \begin{proof}
 	The formulae in \autoref{thm:getcocycle} and \autoref{lem:explicitalphabeta} are both large products in their inputs, so they are multiplicative (i.e., homomorphisms). It remains to check that we have a section. Well, starting with a $\{\sigma_i\}_{i=1}^m$-tuple and building the corresponding cocycle $c$ by \autoref{thm:getcocycle}, the proof of \autoref{cor:alltuplesfromextens} shows that the formulae of \autoref{lem:explicitalphabeta} recovers the correct $\{\sigma_i\}_{i=1}^m$-tuple.
@@ -292,9 +292,12 @@ However, we did have a notion that the data of a $\{\sigma_i\}_{i=1}^m$ should b
 To make this precise, we want to define an equivalence relation on tuples which go to the same cohomology class and then show that the map \autoref{thm:getcocycle} is surjective on these equivalence classes. The correct equivalence relation is taken from \autoref{lem:explicitalphabeta}.
 \begin{definition}
 	Fix everything as in the modified set-up. We say that two $\{\sigma_i\}_{i=1}^m$-tuples $(\{\alpha_i\},\{\beta_{ij}\})$ and $(\{\alpha_i'\},\{\beta_{ij}'\})$ are \textit{equivalent} if and only if there exist elements $x_1,\ldots,x_m\in A$ such that
-	\[\alpha_i=N_i(x_i)\cdot\prod_{k=0}^{n_i-1}c\left(\sigma_i^k,\sigma_i\right)\qquad\text{and}\qquad\beta_{ij}=\frac{x_i}{\sigma_j(x_i)}\cdot\frac{\sigma_i(x_j)}{x_j}\cdot\frac{c(\sigma_i,\sigma_j)}{c(\sigma_j,\sigma_i)}\]
+	\[\alpha_i=N_i(x_i)\cdot\alpha_i'\qquad\text{and}\qquad\beta_{ij}=\frac{x_i}{\sigma_j(x_i)}\cdot\frac{\sigma_i(x_j)}{x_j}\cdot\beta_{ij}'\]
 	for each $\alpha_i$ and $\beta_{ij}$. We may notate this by $(\{\alpha_i\},\{\beta_{ij}\})\sim(\{\alpha_i'\},\{\beta_{ij}'\})$.
 \end{definition}
+\begin{remark}
+	It is not too hard to see directly from the definition that this is in fact an equivalence relation. In fact, the set of tuples equivalent to the ``trivial'' tuple of all $1$s is closed under multiplication (and inversion) and hence forms a subgroup of $\mathcal T(G,A)$. As such, the set of equivalence classes forms a quotient group of $\mathcal T(G,A)$. We will denote this quotient group by $\overline{\mathcal T}(G,A)$.
+\end{remark}
 This notion of equivalence can be seen to be the correct one in the sense that it correctly generalizes \autoref{prop:findallalpha}.
 \begin{proposition} \label{prop:extenmakesaclass}
 	Fix everything as in the modified set-up with an extension $\mc E$. As the lifts $F_i$ change, the corresponding values of
@@ -335,7 +338,7 @@ This notion of equivalence can be seen to be the correct one in the sense that i
 \end{proof}
 We are now ready to upgrade our section.
 \begin{cor} \label{cor:cohomologymakesaclass}
-	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Fixing a cohomology class $[c]\in H^2( G,A)$, the set of $\{\sigma_i\}_{i=1}^m$ which correspond to $[c]$ (via \autoref{thm:getcocycle}) forms exactly one equivalence class.
+	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Fixing a cohomology class $[c]\in H^2( G,A)$, the set of $\{\sigma_i\}_{i=1}^m$-tuples which correspond to $[c]$ (via \autoref{thm:getcocycle}) forms exactly one equivalence class.
 \end{cor}
 \begin{proof}
 	We show that two tuples are equivalent if and only if their corresponding cocycles (via \autoref{thm:getcocycle}) to the same cohomology class, which will be enough.
@@ -345,7 +348,7 @@ We are now ready to upgrade our section.
 	In the other direction, name the cocycles corresponding to $(\{\alpha_i\},\{\beta_{ij}\})$ and $(\{\alpha_i'\},\{\beta_{ij}'\})$ by $c$ and $c'$ respectively, and suppose $[c]=[c']$. Then $\mc E_c\simeq\mc E_{c'}$ as extensions, but we know by the proof of \autoref{cor:alltuplesfromextens} that $(\{\alpha_i\},\{\beta_{ij}\})$ comes from choosing lifts of $\mc E_c$ and similar for $(\{\alpha_i'\},\{\beta_{ij}'\})$. In particular, because $\mc E_c\simeq\mc E_{c'}$, we know that $(\{\alpha_i'\},\{\beta_{ij}'\})$ will also come from choosing some lifts in $\mc E_c$ (recall the proof of \autoref{prop:extenmakesaclass}), so $(\{\alpha_i\},\{\beta_{ij}\})\sim(\{\alpha_i'\},\{\beta_{ij}'\})$ follows.
 \end{proof}
 \begin{theorem} \label{thm:classisomorphism}
-	The maps described in \autoref{cor:cocycletuplesection} descend to an isomorphism of abelian groups between the equivalence classes of $\{\sigma_i\}_{i=1}^m$-tuples and cohomology classes in $H^2( G,A)$.
+	The maps described in \autoref{cor:cocycletuplesection} descend to an isomorphism of abelian groups between the equivalence classes in $\overline{\mathcal T}(G,A)$ and cohomology classes in $H^2( G,A)$.
 \end{theorem}
 \begin{proof}
 	The fact that the maps are well-defined (in both directions) and hence injective is \autoref{cor:cohomologymakesaclass}. The fact that we had a section from tuples to cocycles implies that the map from cocycles to tuples was also surjective. Thus, we have a bona fide isomorphism.
@@ -379,3 +382,272 @@ As such, the above relations fully describe the extension because they also spec
 
 	However, we know that as the equivalence class of $(\{\alpha_i\},\{\beta_{ij}\})$ changes, we will hit all cohomology classes in $H^2( G,A)$ by \autoref{thm:classisomorphism}. Thus, because every extension is represented by some cohomology class, every extension will be isomorphic to some $\mc E(\{\alpha_i\},\{\beta_{ij}\})$. This completes the proof.
 \end{proof}
+
+\subsection{Change of Group}
+We continue in the modified set-up, but we will no longer need access to an extension $\mc E$. In this subsection, we are interested in what happens to tuples when the cocycle operations of $\op{Inf}\colon H^2\left(G/H,A^H\right)\to H^2(G,A)$ and $\op{Res}\colon H^2(G,A)\to H^2(H,A)$ are applied, where $H\subseteq G$ is some subgroup.
+
+In general, this is difficult because the structure of a subgroup $H\subseteq G$ might not be particularly amenable to forming a tuple from a tuple in $G$. More concretely, $H$ might have generators which look very different from those of $G$. However, it will be enough for our purposes to restrict our attention to the subgroups of the form
+\[H=\langle\sigma_1^{t_1},\ldots,\sigma_m^{t_m}\rangle,\]
+where the $\{t_i\}_{i=1}^m$ are some positive integers. With that said, here are our computations. We begin with inflation.
+\begin{lemma} \label{lem:tupleinflation}
+	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Further, let $H\coloneqq\langle\sigma_1^{t_1},\ldots,\sigma_m^{t_m}\rangle$ be a subgroup, and let $\overline\sigma_i$ be the image of $\sigma_i$ in $G/H$. Consider the inflation map $\op{Inf}\colon H^2\left(G/H,A^H\right)\to H^2(G,A)$.
+	
+	If the cocycle $\overline c\in Z^2\left(G/H,A^H\right)$ gives the $\left\{\overline\sigma_i\right\}_{i=1}^m$-tuple $(\{\overline\alpha_i\},\{\overline\beta_{ij}\})$ (by \autoref{cor:cocycletuplesection}), then the cocycle $\op{Inf}\overline c\in Z^2(G,A)$ gives the $\{\sigma_i\}_{i=1}^m$-tuple
+	\[\op{Inf}(\{\overline\alpha_i\},\{\overline\beta_{ij}\})\coloneqq(\{\alpha_i\},\{\beta_{ij}\})=\left(\left\{\overline\alpha_i^{n_i/\gcd(t_i,n_i)}\right\},\{\overline\beta_{ij}\}\right).\]
+	Notably, $\gcd(t_i,n_i)$ is the order of $\overline\sigma_i\in G/H$.
+\end{lemma}
+\begin{proof}
+	The point is to use the explicit formulae for the $\alpha_i$ and $\beta_{ij}$ of \autoref{lem:explicitalphabeta}.
+	
+	More explicitly, the map of \autoref{cor:cocycletuplesection} tells us that we can compute the tuple for $\op{Inf}\overline c$ by using our explicit formulae for $\alpha_i$ and $\beta_{ij}$ on the $2$-cocycle $\op{Inf}\overline c\in Z^2(G,A)$. For some $\alpha_i$, the computation is
+	\begin{align*}
+		\alpha_i &= \prod_{k=0}^{n_i-1}(\op{Inf}c)\left(\sigma_i^k,\sigma_i\right) \\
+		&= \prod_{k=0}^{n_i-1}\overline c\left(\overline\sigma_i^k,\overline\sigma_i\right) \\
+		&= \Bigg(\prod_{k=0}^{\gcd(n_i,t_i)-1}\overline c\left(\overline\sigma_i^k,\overline\sigma_i\right)\Bigg)^{n_i/\gcd(n_i,t_i)}
+	\end{align*}
+	where the last equality is because $\overline\sigma_i^{\gcd(n_i,t_i)}=1$ in $G/H$. In fact, $\gcd(n_i,t_i)$ is the order of $\overline\sigma_i$, so the product is just $\overline\alpha_i$ by \autoref{lem:explicitalphabeta} and how we defined $\overline\alpha_i$. It follows
+	\[\alpha_i=\overline\alpha_i^{n_i/\gcd(n_i,t_i)}.\]
+	Continuing, for some $\beta_{ij}$, we have
+	\begin{align*}
+		\beta_{ij} &= \frac{(\op{Inf}\overline c)(\sigma_i,\sigma_j)}{(\op{Inf}\overline c)(\sigma_j,\sigma_i)} \\
+		&= \frac{\overline c(\overline\sigma_i,\overline\sigma_j)}{\overline c(\overline\sigma_j,\overline\sigma_i)} \\
+		&= \overline\beta_{ij},
+	\end{align*}
+	where the last equality is by how we defined $\overline\beta_{ij}$. These computations complete the proof.
+\end{proof}
+\begin{remark} \label{rem:tupleinflationcommutativediagram}
+	We can also the statement of \autoref{lem:tupleinflation} as asserting that the diagram
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXG1hdGhjYWwgVFxcbGVmdChHL0gsQV5IXFxyaWdodCkiXSxbMSwwLCJcXG1hdGhjYWwgVChHLEEpIl0sWzAsMSwiWl4yXFxsZWZ0KEcvSCxBXkhcXHJpZ2h0KSJdLFsxLDEsIlpeMihHLEEpIl0sWzAsMSwiXFxvcHtJbmZ9Il0sWzAsMiwiIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzEsMywiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzIsMywiXFxvcHtJbmZ9IiwyXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		{Z^2\left(G/H,A^H\right)} & {Z^2(G,A)} \\
+		{\mathcal T\left(G/H,A^H\right)} & {\mathcal T(G,A)}
+		\arrow["{\op{Inf}}", from=1-1, to=1-2]
+		\arrow[two heads, from=1-1, to=2-1]
+		\arrow[two heads, from=1-2, to=2-2]
+		\arrow["{\op{Inf}}", from=2-1, to=2-2]
+	\end{tikzcd}\]
+	commutes, where the vertical morphisms are from \autoref{cor:cocycletuplesection}.
+\end{remark}
+\begin{remark} \label{rem:inflationclasses}
+	In light of the fact that the cohomology class of some $\op{Inf}\overline c\in Z^2(G,A)$ is only defined up to the cohomology class of $\overline c\in Z^2\left(G/H,A^H\right)$, changing an input tuple $(\{\overline\alpha_i\},\{\overline\beta_{ij}\})\in\mathcal T\left(G/H,A^H\right)$ up to equivalence will not change the cohomology class of the associated cocycle in $\overline c\in Z^2\left(G/H,A^H\right)$ and hence will not change the cohomology class of $\op{Inf}\overline c$ nor the equivalence class of $\op{Inf}(\{\overline\alpha_i\},\{\overline\beta_{ij}\})\in\mathcal T\left(G,A\right)$. All this is to say that we have a well-defined map
+	\[\op{Inf}\colon\overline{\mathcal T}\left(G/H,A^H\right)\to\overline{\mathcal T}(G,A)\]
+	and commutative diagram
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXG92ZXJsaW5le1xcbWF0aGNhbCBUfVxcbGVmdChHL0gsQV5IXFxyaWdodCkiXSxbMSwwLCJcXG92ZXJsaW5le1xcbWF0aGNhbCBUfShHLEEpIl0sWzAsMSwiSF4yXFxsZWZ0KEcvSCxBXkhcXHJpZ2h0KSJdLFsxLDEsIkheMihHLEEpIl0sWzAsMSwiXFxvcHtJbmZ9Il0sWzAsMiwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifSwiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzEsMywiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifSwiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzIsMywiXFxvcHtJbmZ9IiwyXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		{\overline{\mathcal T}\left(G/H,A^H\right)} & {\overline{\mathcal T}(G,A)} \\
+		{H^2\left(G/H,A^H\right)} & {H^2(G,A)}
+		\arrow["{\op{Inf}}", from=1-1, to=1-2]
+		\arrow[hook, two heads, from=1-1, to=2-1]
+		\arrow[hook, two heads, from=1-2, to=2-2]
+		\arrow["{\op{Inf}}", from=2-1, to=2-2]
+	\end{tikzcd}\]
+	induced by modding out from \autoref{rem:tupleinflationcommutativediagram}.
+\end{remark}
+Restriction is similar.
+\begin{lemma}
+	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Further, let $H\coloneqq\langle\sigma_1^{t_1},\ldots,\sigma_m^{t_m}\rangle$ be a subgroup. Consider the inflation map $\op{Res}\colon H^2\left(G,A\right)\to H^2(H,A)$.
+	
+	If the cohomology class $[c]\in H^2\left(G,A\right)$ is represented by the $\left\{\sigma_i\right\}_{i=1}^m$-tuple $(\{\alpha_i\},\{\beta_{ij}\})$, then the cohomology class $[\op{Res}\overline c]$ is represented by the $\{\sigma_i\}_{i=1}^m$-tuple
+	\[(\{\overline\alpha_i\},\{\overline\beta_{ij}\})=\left(\left\{\alpha_i^{1_{n_i\mid t_i}}\right\},\left\{\beta_{ij}^{(\gcd(t_i,n_i)1_{n_i\mid t_i},\,\gcd(t_j,n_j)1_{n_i\mid t_i})}\right\}\right).\]
+\end{lemma}
+\begin{proof}
+	By replacing $t_i$ with $\gcd(t_i,n_i)$ (which does not affect $\langle\sigma_i^{t_i}\rangle$ and hence does not affect $H$), we may assume that $t_i=\gcd(t_i,n_i)$. As in the previous proof, we will simply define $c$ by \autoref{thm:getcocycle}, and we will use the formulae of \autoref{lem:explicitalphabeta} to retrieve the $\left\{\sigma_i^{t_i}\right\}$-tuple for $\op{Res}c$. Indeed, we compute
+	\begin{align*}
+		\overline\alpha_i &= \prod_{k=0}^{n_i/t_i-1}(\op{Res}c)\left(\sigma_i^{t_ik},\sigma_i^{t_i}\right) \\
+		&= \prod_{k=0}^{n_i/t_i-1}c\left(\sigma_i^{t_ik},\sigma_i^{t_i}\right) \\
+		&= \prod_{k=0}^{n_i/t_i-1}\alpha_i^{\floor{t_i(k+1)/n_i}},
+	\end{align*}
+	where in the last equality we have used the construction of $c$. Now, if $n_i\mid t_i$, then $n_i=t_i$, and the product is empty, and we get $1$; otherwise, the last term of the product $k=n_i/t_i-1$ is the only term which does not return $1$, and it returns $\alpha_i$. So this matches the claimed $\alpha_i^{1_{n_i\mid t_i}}$.
+
+	Continuing, we compute
+	\begin{align*}
+		\overline\beta_{ij} &= \frac{(\op{Res}c)\left(\sigma_i^{t_i},\sigma_j^{t_j}\right)}{(\op{Res}c)\left(\sigma_j^{t_j},\sigma_i^{t_i}\right)} \\
+		&= \frac{c\left(\sigma_i^{t_i},\sigma_j^{t_j}\right)}{c\left(\sigma_j^{t_j},\sigma_i^{t_i}\right)} \\
+		&= c\left(\sigma_i^{t_i},\sigma_j^{t_j}\right),
+	\end{align*}
+	where in the last step we have used the construction of $c$. Now, if $n_i\mid t_i$ or $n_i\mid t_j$, then we are computing $c\left(1,\sigma_j^{t_j}\right)$ or $c\left(\sigma_i^{t_i},1\right)$, which are both $1$, as needed. Otherwise, $t_i<n_i$ and $t_j<n_j$, so
+	\[\overline\beta_{ij}=\beta_{ij}^{(t_it_j)},\]
+	which again is as claimed.
+\end{proof}
+Thankfully, we will really only care about inflation in the following discussion, but we will say that there are analogues of \autoref{rem:tupleinflationcommutativediagram} and \autoref{rem:inflationclasses}.
+
+\subsection{Profinite Groups}
+In this subsection, we will use our results on change of group to extend our results a little to allow profinite groups. As such, we will want to slightly modify our set-up; we will call the following set-up the ``profinite set-up.''
+
+Let $\mathcal I$ be a poset category such that any pair of elements has an upper bound (i.e., a directed set), and let the functor $G_\bullet\colon\mathcal I\opp\to\op{FinAbGrp}$ be an inverse system of finite abelian groups. These will create a profinite group
+\[G\coloneqq\limit_{i\in\mathcal I}G_i.\]
+In order to be able to apply our theory, we will assume that $G$ is a finite direct sum of procyclic groups as
+\[G\simeq\bigoplus_{k=1}^m\overline{\langle\sigma_k\rangle}\]
+for some elements $\{\sigma_k\}_{k=1}^m\subseteq G$. Further, we will require that the kernel $N_i$ of the map $G\onto G_i$ to take the form
+\[N_i\coloneqq\overline{\left\langle\sigma_1^{t_{i,1}},\ldots,\sigma_m^{t_{i,m}}\right\rangle}.\]
+In short, our restriction on the $N_i$ will allow our inflation maps to be computable in the sense of \autoref{lem:tupleinflation}. We quickly remark that, because the topology on $G$ is the coarsest one making the projections $G\onto G_i$ continuous, the subsets $\{N_i\}_{i\in\mathcal I}$ give a fundamental system of open neighborhoods around the identity.
+\begin{example}
+	To show that we are still allowing interesting groups, we can set 
+	\[G_{m,\nu}\coloneqq\op{Gal}\left(\QQ_p(\zeta_{p^m-1})\QQ_p(\zeta_{p^\nu})/\QQ_p\right)\simeq\op{Gal}\left(\QQ_p(\zeta_{p^m-1})/\QQ_p\right)\oplus\op{Gal}\left(\QQ_p(\zeta_{p^\nu})/\QQ_p\right),\]
+	which becomes $G=\op{Gal}\left(\QQ_p^{\op{ab}}/\QQ_p\right)\simeq\widehat\ZZ\oplus\ZZ_p^\times$ upon taking the inverse limit. It is not very hard to check that the kernels are generated correctly; for example, when $p$ is odd, we have $\ZZ_p^\times\cong\ZZ/(p-1)\ZZ\oplus\ZZ_p$, and under our isomorphisms, we will have
+	\[\op{Gal}\left(\QQ(\zeta_{p^\nu})/\QQ_p\right)\simeq\ZZ/(p-1)\ZZ\oplus\ZZ_p/p^{\nu-1}\ZZ_p,\]
+	so the kernel of $G\onto G_{m,\nu}$ is $m\widehat\ZZ\oplus(\ZZ/(p-1)\ZZ)^{1_{\nu=0}}\oplus p^{\nu-1}\ZZ_p$.
+	% let $K$ be a local field with $\op{char}K=0$, and set $G_{\pi,n,m}\coloneqq\op{Gal}(K_{\pi,n}K_m/K)$, where $\{K_{\pi,n}\}$ is an ascending chain of Lubin--Tate extension and $K_m$ is the unramified extension of degree $m$. Then
+	% \begin{align*}
+	% 	\colimit_{n,m}\op{Gal}(K_{\pi,n}K_m/K) &\cong \op{Gal}(K^{\mathrm{ab}}/K) \\
+	% 	&\cong \op{Gal}(K^{\op{unr}}/K)\oplus\op{Gal}(K_\pi) \\
+	% 	&\cong \overline{\langle\op{Frob}_K\rangle}\oplus\mathcal O_K^\times \\
+	% 	&\cong \widehat\ZZ\oplus\FF_\mf p^\times\oplus(1+\mf p) \\
+	% 	&\cong \widehat\ZZ\oplus\FF_\mf p^\times\oplus\ZZ/p^a\ZZ\oplus\ZZ_p^{[K:\QQ_p]}
+	% \end{align*}
+	% for some sufficiently large $a\in\NN$; here the last isomorphism is by the logarithm map, which exists because $\op{char}K=0$. (For details, see \cite{neukirch-alg-nt}, Proposition II.5.7.)
+\end{example}
+\begin{remark}
+	I'm not sure if such an explicit construction can be extended to other local fields $K$ (say, via Lubin--Tate theory). Because $K^\times$ is not topologically finitely generated when $K$ is in positive characteristic (see for example \cite{neukirch-alg-nt}, Proposition~II.5.7) such a construction must do something subtle.
+\end{remark}
+Let $A$ be a discrete $G$-module. The main goal of this subsection is to be able to provide a notion of a ``compatible system'' of tuples from each individual $H^2(G_i,A)$ to be able to exactly describe an element of $H^2(G,A)$. To effect this, we have the following somewhat annoying checks.
+% \begin{lemma}
+% 	Fix everything as in the profinite set-up, and let $N\subseteq G$ be an open normal subgroup. If $\sigma\in G$ is such that $[\sigma]_N\in G/N$ has finite order $n_\sigma$, then there exists some $i\in\mathcal I$ such that the order of $[\sigma]_{N_i}\in G/N_i=G_i$ has order divisible by $n_\sigma$.
+% \end{lemma}
+% \begin{proof}
+% 	We proceed in steps. Let $1$ denote the identity of $G$.
+% 	\begin{enumerate}
+% 		\item Suppose that $p\coloneqq n_\sigma$ is prime. We proceed by contraposition. Namely, suppose there is no $N_i$ such that $\sigma^p\in N_i$, and we will show that $[\sigma]_N\in G/N$ cannot have order $p$. We may assume that $\sigma^p\in N$, which means that we are actually interested in showing $\sigma\in N$.
+
+% 		Well, we claim that $\sigma$ is a limit point of $\langle\sigma^p\rangle$. To see this, we need to show that any open neighborhood $U$ around $\sigma$ has nontrivial intersection with $\langle\sigma^p\rangle$. Indeed, $\sigma^{-1}U$ is an open set containing the identity, but because the $\{N_i\}_{i\in\mathcal I}$ form a fundamental system of open neighborhoods around the identity, we have $N_i\subseteq\sigma^{-1}U$ for some $i\in\mathcal I$. Thus, it suffices to show that 
+% 		\[\sigma N_i\cap\langle\sigma^p\rangle\ne\emp.\]
+% 		Now, the order of $\sigma N_i$ is not divisible by $p$, so $\langle\sigma^pN_i\rangle=\langle\sigma N_i\rangle$ and in particular $\langle\sigma^pN_i\rangle$ contains $\sigma N_i$. Concretely, let's say $\sigma^{pk}N_i=\sigma N_i$; then $\sigma^{pk}\in\sigma N_i\cap\langle\sigma^p\rangle$, finishing.
+
+% 		In total, because $N$ is an open subgroup and hence closed, we see that $\sigma^p\in N$ must also contain $\langle\sigma^p\rangle$ and hence must contain the limit point $\sigma$. This finishes.
+
+% 		\item Next suppose that $n_\sigma=p^\nu$ is a power of a prime. We proceed by induction on $\nu$. When $\nu=0$, there is nothing to say because the order of a group element is always divisible by $1$; when $\nu=1$, this is the previous step. Otherwise, when $\nu>1$, we note that $\left[\sigma^p\right]_N=[\sigma]_N^p$ has order $p^{\nu-1}$: certainly $[\sigma]_N^{p\cdot p^{\nu-1}}$ vanishes, so the order divides $p^{\nu-1}$, but no smaller of $p$ will do because this would make the order of $[\sigma]_N$ too small.
+
+% 		Thus, by the inductive hypothesis, there exists some $i\in\mathcal I$ such that the order of $[\sigma^p]_{N_i}$ has order divisible by $p^{\nu-1}$. We claim $[\sigma]_{N_i}$ has order divisible by $p^\nu$. Indeed, if not, then there exists some $k$ with $p\nmid k$ such that
+% 		\[[\sigma]_{N_i}^{p^{\nu-1}k}=[1]_{N_i},\]
+% 		from which we conclude that the order of $[\sigma^p]$ divides $p^{\nu-2}k$, which is not divisible by $p^{\nu-1}$.
+
+% 		\item To finish, we show a version of multiplicativity: if the order of $[\sigma]_{N_p}$ is divisible by $n_p$, and the order of $[\sigma]_{N_q}$ is divisible by $n_q$ with $\gcd(n_p,n_q)=1$, then there exists $r\in\mathcal I$ such that the order of $[\sigma]_{N_r}$ is divisible by $n_pn_q$.
+
+% 		Indeed, because $\mathcal I$ is a directed set, there exists some $r\in\mathcal I$ with morphisms $i\to r$ and $j\to r$. These correspond to having morphisms $G_r\to G_i$ and $G_r\to G_j$, and the fact that these morphisms are well-defined requires $N_r\subseteq N_i,N_j$.
+
+% 		Now, let's say that the order of $[\sigma]_{N_r}$ is $n_r$; we want to show $n_pn_q\mid n_r$. Because $\gcd(n_p,n_q)=1$, it suffices (by symmetry) to show $n_p\mid n_r$. Well, $\sigma^{n_r}\in N_r\subseteq N_p$, so
+% 		\[[\sigma]_{N_p}^{n_r}=[1]_{N_p},\]
+% 		so the order of $[\sigma]_{N_p}$ divides $n_r$. In particular, $n_p\mid n_r$.
+% 	\end{enumerate}
+% 	We now note that, for the general case of $n\in\NN$, we can prime-factor $n$ into coprime factors, use step 2 to create a list of $N_i$, one for each prime factor, and then use step 3 to glue them all together. This completes the proof.
+% \end{proof}
+% \begin{lemma}
+% 	Fix everything as in the profinite set-up. Then, for any open normal subgroup $N\subseteq G$, there exists $i\in\mathcal I$ so that $N$ contains $N_i$.
+% \end{lemma}
+% \begin{proof}
+% 	This follows directly from the fact that the collection $\{N_i\}_{i\in\mathcal I}$ is a fundamental system of open neighborhoods around the identity of $G$. In particular, $N$ contains the identity and is open.
+% 	% Because $G$ is compact (it's profinite), we have $[G:N]<\infty$. In particular, for any $\sigma\in G$, we must have $\sigma^{[G:N]}\in N$.
+% 	% Thus, it will roughly speaking be enough to show that, for any $\sigma_k$ and $t\in\NN$, we have $\sigma_k^t\in N_i$ for some $i\in\mathcal I$. We have two cases.
+% 	% \begin{itemize}
+% 	% 	\item Suppose that $\sigma_k\in G$ has infinite order. 
+% 	% \end{itemize}
+% \end{proof}
+\begin{lemma} \label{lem:colimitfiltered}
+	Suppose that $\mathcal P$ is a directed set, and let $\mathcal P'\subseteq\mathcal P$ be a subcategory such that any $x\in\mathcal P$ has some $x'\in\mathcal P'$ such that $x\le x'$. Then, given a functor $F\colon\mathcal P\to\mathcal C$, we have
+	\[\colimit_\mathcal PF\simeq\colimit_{\mathcal P'}F,\]
+	provided that both colimits exist.
+\end{lemma}
+\begin{proof}
+	For concreteness, if $x\le y$ in $\mathcal P$, we will let $f_{yx}\colon x\to y$ be the corresponding morphism; in particular, $x\le y\le z$ has $f_{zx}=f_{zy}f_{yx}$. Now, for brevity, set
+	\[X\coloneqq\colimit_\mathcal PF\qquad\text{and}\qquad X'\coloneqq\colimit_{\mathcal P'}F.\]
+	By the Yoneda lemma, it suffices to fix some object $Y\in\mathcal C$ and show that $\op{Mor}_\mathcal C(X,Y)\simeq\op{Mor}_\mathcal C(X',Y)$. Well, morphsims $X\to Y$ are in (natural) bijection with cones under $F$ with nadir $Y$, and morphisms $X'\to Y$ are in (natural) bijection with cones under $F'\coloneqq F|_{\mathcal P'}$ with nadir $Y$.
+
+	Thus, it suffices to give a natural bijection between cones under $F$ with nadir $Y$ and cones under $F'$ with nadir $Y$. Well, given a cone under $F$ with nadir $Y$, we can simply restrict it to $\mathcal P'$ to get a cone under $F'$. In the other direction, given a cone under $F'$ with nadir $Y$, we can build a cone under $F$ with nadir $Y$ as follows; let $\varphi_{x'}\colon F(x')\to Y$ for $x'\in\mathcal P'$ be the corresponding morphisms in our cone.
+	
+	For any $x\in\mathcal P$, find $x'\in\mathcal P'$ such that $x\le x'$. Then set
+	\[\varphi_x\coloneqq\varphi_{x'}\circ f_{x'x}\]
+	Note that $\varphi_x$ is in fact independent of our choice of $x'$: if $x\le x_1'$ and $x\le x_2'$, then because $\mathcal P$ is a directed set, we can find $y\in\mathcal P$ such that $x_1',x_2'\le y$ and then $y'\in\mathcal P'$ with $y\le y'$. Then
+	\begin{align*}
+		\varphi_{x_\bullet'}\circ f_{x_\bullet'x} &= \varphi_{y'}\circ f_{y'x_\bullet'}\circ f_{x_\bullet'x} \\
+		&= \varphi_{y'}\circ f_{y'x}
+	\end{align*}
+	for $x_\bullet'\in\{x_1',x_2'\}$. Anyway, we can check that the morphisms $\varphi$ do assemble to a cone under $F'$: if $x\le y$ in $\mathcal P$, then find $y'\in\mathcal P$ with $x\le y\le y'$, and we compute
+	\begin{align*}
+		\varphi_y\circ f_{yx} &= \varphi_{y'}\circ f_{y'y}\circ f_{yx} \\
+		&= \varphi_{y'}\circ f_{y'x} \\
+		&= \varphi_x.
+	\end{align*}
+	Thus, we do have a natural, well-defined map sending cones under $F'$ with nadir $Y$ to cones under $F$ with nadir $Y$. It is not too hard to see that these maps are inverse to each other (for example, the cone under $F'$, extended to $F$, does indeed restrict back to $F'$ properly), which completes the proof.
+\end{proof}
+\begin{remark}
+	One can remove the hypothesis that the colimits exist and use essentially the same proof.
+\end{remark}
+\begin{proposition} \label{prop:bettercohomlimit}
+	Fix everything as in the profinite set-up. Then, given a discrete $G$-module $A$,
+	\[H^2(G,A)\simeq\colimit_{i\in\mathcal I}H^2\left(G_i,A^{N_i}\right).\]
+	Here, the morphisms between the collection of $H^2\left(G_i,A^{N_i}\right)$ are induced by inflation: if $i\to j$ in $\mathcal I$, then $G_j\to G_i$ in $\mathrm{FinAbGrp}$, giving an inflation map $\op{Inf}\colon H^2\left(G_i,A^{N_i}\right)\to H^2\left(G_j,A^{N_j}\right)$.
+\end{proposition}
+\begin{proof}
+	Let $\mathcal N$ be the poset category of open normal subgroups of $G$, reverse ordered under inclusion; i.e., $N_1\subseteq N_2$ in $G$ induces a map $N_2\to N_1$. Then it is already known that
+	\[H^2(G,A)\simeq\colimit_{N\in\mathcal N}H^2\left(G/N,A^N\right).\]
+	On the other hand, observe that $i\le j$ in $\mathcal I$ induces $G_j\to G_i$, so $N_j\subseteq N_i$. In other words, $i\mapsto N_i$ will define a functor $\mathcal I\to\mathcal N$; functoriality follows because $\mathcal I$ and $\mathcal N$ are poset categories. Letting $\mathcal N'$ denote the image of $\mathcal I$ in $\mathcal N$, we see
+	\[\colimit_{i\in\mathcal I}H^2\left(G_i,A^{N_i}\right)\simeq\colimit_{N\in\mathcal N'}H^2\left(G/N,A^N\right).\]
+	Notably, the inflation maps $\op{Inf}\colon H^2\left(G_i,A^{N_i}\right)\to H^2\left(G_j,A^{N_j}\right)$ when $i\le j$ become the inflation maps $\op{Inf}\colon H^2\left(G/N,A^N\right)\to H^2\left(G/N',A^{N'}\right)$ when $N'\subseteq N$. So if we let $F\colon\mathcal N\to\op{AbGrp}$ be the functor taking $N$ to $H^2\left(G/N,A^N\right)$ (and $N\subseteq N'$ to the inflation map), we are trying to show
+	\[\colimit_{\mathcal N}F=\colimit_{\mathcal N'}F.\]
+	For this, we use \autoref{lem:colimitfiltered}. Indeed, for a given open normal subgroup $N\in\mathcal N$, we need to find some $N'\in\mathcal N'$ such that $N\le N'$, which means $N'\subseteq N$.
+	
+	However, the elements of $\mathcal N'$ are the collection $\{N_i\}_{i\in\mathcal I}$, which form a fundamental system of open neighborhoods around the identity. Thus, the fact that $N$ is an open set containing the identity implies there is some $N_i\in\mathcal N'$ such that $N_i\subseteq N$. This finishes the proof.
+\end{proof}
+Observe that the above proofs did not use the extra hypotheses on $G$ nor $N_i$ to be products of procyclic groups. We use these hypotheses now.
+% \begin{definition}
+% 	Fix everything as in the profinite set-up, and let $A$ be a discrete $G$-module. Then a \textit{compatible system of $\{\sigma_p\}_{p=1}^m$-tuples} is an indexed set
+% 	\[\left(\{\alpha_{i,p}\},\{\beta_{i,pq}\}\right)_{i\in\mathcal I}\]
+% 	such that $\left(\{\alpha_{i,p}\},\{\beta_{i,pq}\}\right)$ is a $\{\sigma_pN_i\}_{p=1}^m$-tuple (corresponding to a class in $H^2\left(G_i,A^{N_i}\right)$) and
+% 	\[\op{Inf}\left(\{\alpha_{i,p}\},\{\beta_{i,pq}\}\right)\sim\left(\{\alpha_{j,p}\},\{\beta_{j,pq}\}\right)\]
+% 	as tuples corresponding to $H^2\left(G_j,A^{N_j}\right)$, whenever $i\le j$ in $\mathcal I$. We also define the relation $\sim$ of equivalence between compatible systems if and only if they are pointwise equivalent.
+% \end{definition}
+% The precise definition above is one of technical convenience, as we will shortly see.
+To work more concretely, we note that any $i\in\mathcal I$ has
+\[G_i\simeq\frac G{N_i}\simeq\bigoplus_{p=1}^m\overline{\langle\sigma_p\rangle}/\overline{\langle\sigma_p^{t_{i,p}}\rangle}\simeq\bigoplus_{p=1}^m\langle\sigma_p\rangle/\langle\sigma_p^{t_{i,p}}\rangle\subseteq\bigoplus_{p=1}^m\ZZ/t_{i,p}\ZZ\]
+is a finite abelian group generated by the elements $\sigma_pN_i$. As a warning, the order of $\sigma_pN_i$ might not be $t_{i,p}$, for example if $\sigma_p$ itself has some small finite order which $t_{i,p}$ is not properly capitalizing on. More concretely, $\ZZ_5/3\ZZ_5=0$.
+
+Regardless, the main point is that, given a discrete $G$-module $A$, we can consider the $\{\sigma_pN_i\}_{p=1}^m$-tuples $\mathcal T\left(G_i,A^{N_i}\right)$. Now, as discussed above, $i\le j$ in $\mathcal I$ induces a quotient map $G_j\simeq G/N_j\onto G_i/N_i$. From this, we have the following coherence check.
+\begin{lemma} \label{lem:tupleinflationcommutes}
+	Fix everything as in the profinite set-up, and let $A$ be a discrete $G$-module. Then, given $i\le j\le k$ in $\mathcal I$, the diagram
+	% https://q.uiver.app/?q=WzAsMyxbMCwwLCJcXG1hdGhjYWwgVFxcbGVmdChHX2ksQV9pXntOX2l9XFxyaWdodCkiXSxbMSwwLCJcXG1hdGhjYWwgVFxcbGVmdChHX2osQV9qXntOX2p9XFxyaWdodCkiXSxbMSwxLCJcXG1hdGhjYWwgVFxcbGVmdChHX2ssQV9rXntOX2t9XFxyaWdodCkiXSxbMCwxLCJcXG9we0luZn0iXSxbMSwyLCJcXG9we0luZn0iXSxbMCwyLCJcXG9we0luZn0iLDJdXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		{\mathcal T\left(G_i,A^{N_i}\right)} & {\mathcal T\left(G_j,A^{N_j}\right)} \\
+		& {\mathcal T\left(G_k,A^{N_k}\right)}
+		\arrow["{\op{Inf}}", from=1-1, to=1-2]
+		\arrow["{\op{Inf}}", from=1-2, to=2-2]
+		\arrow["{\op{Inf}}"', from=1-1, to=2-2]
+	\end{tikzcd}\]
+	commutes. Here, the $\op{Inf}$ maps are defined as in \autoref{lem:tupleinflation}.
+\end{lemma}
+\begin{proof}
+	For each $i\in\mathcal I$, we let $n_{i,p}$ denote the order of $\sigma_pN_i\in G_i$. Using the definition of $\op{Inf}$ from \autoref{lem:tupleinflation}, we just pick up some $\{\sigma_pN_p\}_{p=1}^m$-tuple $(\{\alpha_p\},\{\beta_{pq}\})$-tuple in $\mathcal T\left(G_i,A^{N_i}\right)$ and track through the diagram as follows.
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCIoXFx7XFxhbHBoYV9wXFx9LFxce1xcYmV0YV97cHF9XFx9KSJdLFsxLDAsIlxcbGVmdChcXGJpZ1xce1xcYWxwaGFfcF57bl97aixwfS9uX3tpLHB9fVxcYmlnXFx9LFxce1xcYmV0YV97cHF9XFx9XFxyaWdodCkiXSxbMSwxLCJcXGxlZnQoXFxiaWdcXHtcXGFscGhhX3BeeyhuX3tqLHB9L25fe2kscH0pKG5fe2sscH0vbl97aixwfSl9XFxiaWdcXH0sXFx7XFxiZXRhX3twcX1cXH1cXHJpZ2h0KSJdLFswLDEsIlxcbGVmdChcXGJpZ1xce1xcYWxwaGFfcF57bl97ayxwfS9uX3tpLHB9fVxcYmlnXFx9LFxce1xcYmV0YV97cHF9XFx9XFxyaWdodCkiXSxbMCwxLCJcXG9we0luZn0iXSxbMSwyLCJcXG9we0luZn0iXSxbMCwzLCJcXG9we0luZn0iLDJdLFszLDIsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		{(\{\alpha_p\},\{\beta_{pq}\})} & {\left(\big\{\alpha_p^{n_{j,p}/n_{i,p}}\big\},\{\beta_{pq}\}\right)} \\
+		{\left(\big\{\alpha_p^{n_{k,p}/n_{i,p}}\big\},\{\beta_{pq}\}\right)} & {\left(\big\{\alpha_p^{(n_{j,p}/n_{i,p})(n_{k,p}/n_{j,p})}\big\},\{\beta_{pq}\}\right)}
+		\arrow["{\op{Inf}}", from=1-1, to=1-2]
+		\arrow["{\op{Inf}}", from=1-2, to=2-2]
+		\arrow["{\op{Inf}}"', from=1-1, to=2-1]
+		\arrow[Rightarrow, no head, from=2-1, to=2-2]
+	\end{tikzcd}\]
+	This completes the proof.
+\end{proof}
+% Now, if we let $n_{i,p}$ denote the actual order of $\sigma_{i,p}N_i\in G_i$, then we may compute the inflation map $\op{Inf}\colon H^2\left(G_i,A^{N_i}\right)\to H^2\left(G_j,A^{N_j}\right)$ by
+% \[\op{Inf}\left(\{\alpha_{i,p}\},\{\beta_{i,pq}\}\right)=\left(\{\alpha_{i,p}^{n_{j,p}}\},\{\beta_{i,pq}\}\right),\]
+% so we are asking for
+% \[\left(\{\alpha_{i,p}^{n_{j,p}}\},\{\beta_{i,pq}\}\right)\sim\left(\{\alpha_{j,p}\},\{\beta_{j,pq}\}\right)\]
+% in the coherence condition for a compatible tuple.
+% \begin{remark}
+% 	From the above description, we can see why we ``have'' to allow the equivalence relation into our notion of compatibility. For example, if one of the $G_i$ is the trivial group, and $A^G$ is trivial, then we would be requiring all the $\beta_{i,pq}$ elements to be trivial for all $i\in\mathcal I$. This is not good.
+% \end{remark}
+And here is the result.
+\begin{theorem}
+	Fix everything as in the profinite set-up, and let $A$ be a discrete $G$-module. Then the isomorphisms of \autoref{thm:classisomorphism} upgrade into an isomorphism
+	\[H^2(G,A)\simeq\colimit_{i\in\mathcal I}\overline{\mathcal T}\left(G_i,A^{N_i}\right).\]
+	Here the morphisms between the $\overline{\mathcal T}\left(G_i,A^{N_i}\right)$ are inflation maps of \autoref{lem:tupleinflation}.
+\end{theorem}
+\begin{proof}
+	Note that the objects $\overline{\mathcal T}\left(G_i,A^{N_i}\right)$ do make a directed system over $\mathcal I$ because of the commutativity of \autoref{lem:tupleinflationcommutes}. Namely, the lemma checks that $\mathcal I\to\op{AbGrp}$ by $i\mapsto\overline{\mathcal T}\left(G_i,A^{N_i}\right)$ is actually functorial; technically we must also check that the maps $\overline{\mathcal T}\left(G_i,A^{N_i}\right)\to\overline{\mathcal T}\left(G_i,A^{N_i}\right)$ are the identity, but this follows from the definition.
+
+	Now, by \autoref{prop:bettercohomlimit}, we have
+	\[H^2(G,A)\simeq\colimit_{i\in\mathcal I}H^2\left(G_i,A^{N_i}\right),\]
+	but now the natural isomorphism induced by \autoref{rem:inflationclasses} induces an isomorphism of direct limits
+	\[\colimit_{i\in\mathcal I}H^2\left(G_i,A^{N_i}\right)\simeq\colimit_{i\in\mathcal I}\overline{\mathcal T}\left(G_i,A^{N_i}\right)\]
+	given by the isomorphism of \autoref{thm:classisomorphism} acting pointwise. This completes the proof.
+\end{proof}
+Because there are reasonably explicit descriptions of direct limits of abelian groups, and we already have an explicit description of each $\overline{\mathcal T}\left(G_i,A^{N_i}\right)$ term in addition to a description of the inflation maps between them, we will be content with our sufficiently explicit description of $H^2(G,A)$. So we call it done here.

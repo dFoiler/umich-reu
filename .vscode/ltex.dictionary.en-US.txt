@@ -49,3 +49,4 @@ colimits
 Yoneda
 morphsims
 functorial
+cohomologically

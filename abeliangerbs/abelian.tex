@@ -481,6 +481,9 @@ In order to be able to apply our theory, we will assume that $G$ is a finite dir
 for some elements $\{\sigma_k\}_{k=1}^m\subseteq G$. Further, we will require that the kernel $N_i$ of the map $G\onto G_i$ to take the form
 \[N_i\coloneqq\overline{\left\langle\sigma_1^{t_{i,1}},\ldots,\sigma_m^{t_{i,m}}\right\rangle}.\]
 In short, our restriction on the $N_i$ will allow our inflation maps to be computable in the sense of \autoref{lem:tupleinflation}. We quickly remark that, because the topology on $G$ is the coarsest one making the projections $G\onto G_i$ continuous, the subsets $\{N_i\}_{i\in\mathcal I}$ give a fundamental system of open neighborhoods around the identity.
+\begin{remark}
+	Of course, one could also start with $G$ being a finite direct sum of procyclic groups and then define the $N_i$ and $G_i$ accordingly. We have chosen the above approach because in application one might only have access to select $G_i$s, and it is not obvious how to choose these from such a ``top-down'' approach.
+\end{remark}
 \begin{example}
 	To show that we are still allowing interesting groups, we can set 
 	\[G_{m,\nu}\coloneqq\op{Gal}\left(\QQ_p(\zeta_{p^m-1})\QQ_p(\zeta_{p^\nu})/\QQ_p\right)\simeq\op{Gal}\left(\QQ_p(\zeta_{p^m-1})/\QQ_p\right)\oplus\op{Gal}\left(\QQ_p(\zeta_{p^\nu})/\QQ_p\right),\]

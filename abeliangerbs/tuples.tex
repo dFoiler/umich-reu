@@ -1170,7 +1170,7 @@ As a quick sanity check that this is a reasonable notion of equivalence of modul
 Anyway, here is the reason why we care about this notion of equivalence.
 \begin{lemma} \label{lem:naturaltransiscupping}
 	Let $G$ be a finite group, and let $X$ and $X'$ be $G$-modules. Suppose that there is a natural transformation
-	\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\to\widehat H^0(G,\op{Hom}_\ZZ(X',-)).\]
+	\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X',-)).\]
 	Then there exists a $G$-module homomorphism $\varphi\colon X'\to X$ such that $\Phi_A([f])=[\varphi]\cup[f]$ for any $f\in\op{Hom}_{\ZZ[G]}(X,A)$.
 \end{lemma}
 \begin{proof}
@@ -1215,7 +1215,7 @@ Anyway, here is the reason why we care about this notion of equivalence.
 \end{remark}
 \begin{proposition} \label{prop:cohomologicaldef}
 	Let $G$ be a finite group, and let $X$ and $X'$ be $G$-modules. Then $X$ and $X'$ are cohomologically equivalent if and only if there is a natural isomorphism
-	\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\to\widehat H^0(G,\op{Hom}_\ZZ(X',-)).\]
+	\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X',-)).\]
 \end{proposition}
 \begin{proof}
 	In the forward direction, suppose $X$ and $X'$ are cohomologically equivalent so that we have $[\varphi]\in\widehat H^0(G,\op{Hom}_\ZZ(X',X))$ and $[\varphi']\in\widehat H^0(G,\op{Hom}_\ZZ(X,X'))$ such that
@@ -1247,12 +1247,18 @@ Anyway, here is the reason why we care about this notion of equivalence.
 \end{remark}
 One might hope that we can get more information by using indices away from $0$, but in fact we cannot.
 \begin{proposition}
-	Let $G$ be a finite group, and let $X$ and $X'$ be $G$-modules. Then $X$ and $X'$ are cohomologically equivalent if and only if there are natural isomorphisms
-	\[\Phi_\bullet^{(i)}\colon\widehat H^i(G,\op{Hom}_\ZZ(X,-))\to\widehat H^i(G,\op{Hom}_\ZZ(X',-))\]
-	for each $i\in\ZZ$.
+	Let $G$ be a finite group, and let $X$ and $X'$ be $G$-modules. Then the following are equivalent.
+	\begin{listalph}
+		\item $X$ and $X'$ are cohomologically equivalent.
+		\item There is a natural isomorphism
+		\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X',-)).\]
+		\item There are natural isomorphisms
+		\[\Phi_\bullet^{(i)}\colon\widehat H^i(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^i(G,\op{Hom}_\ZZ(X',-))\]
+		for all $i\in\ZZ$.
+	\end{listalph}
 \end{proposition}
 \begin{proof}
-	The backwards direction merely requires $i=0$ by \autoref{prop:cohomologicaldef}, so the forwards direction is the more interesting one. It follows from dimension-shifting. Indeed, we must shift $i$ upwards and downwards from $0$, where the $i=0$ case is from \autoref{prop:cohomologicaldef}.
+	Note that (a) and (b) are equivalent by \autoref{prop:cohomologicaldef}. Also, there is nothing to say for (c) implies (b), so the interesting direction is (b) implies (c). This follows from dimension-shifting. Indeed, we must shift $i$ upwards and downwards from its fixed value.
 
 	The proof is similar to \autoref{prop:dimshiftcupisos}, so we will be brief. Indeed, we already know that we have $[\varphi]\in\widehat H^0(G,\op{Hom}_\ZZ(X',X))$ such that
 	\begin{equation}
@@ -1297,32 +1303,37 @@ One might hope that we can get more information by using indices away from $0$, 
 	\end{tikzcd}\]
 	This time around, the top row is an isomorphism by the inductive hypothesis, and the left and row arrows are isomorphisms because the middle terms of \autoref{eq:somesesgoingup} are induced by \autoref{lem:hompreservesinduced}. So the bottom row is an isomorphism as well, finishing.
 \end{proof}
-Anyway, here is our result.
+Anyway, here are some results.
 \begin{cor}
-	Fix notation as in \autoref{sec:overview}. Then a $G$-module $X'$ has natural a natural isomorphism
-	\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X',-))\to\widehat H^2(G,-)\]
-	if and only if $X$ and $X'$ are cohomologically equivalent.
+	Let $G$ be a finite group, and let $p\in\ZZ$ be an index. Then the set of $G$-module $X$ with a natural isomorphism
+	\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^p(G,-)\]
+	make up exactly one cohomological equivalence class.
 \end{cor}
 \begin{proof}
-	Noting that the cup product is natural in both arguments (see, for example, \autoref{lem:cupproductmorphism}), we see that the combination of \autoref{thm:yesitisacocycle} and \autoref{prop:alternativetupleclass} tells us that we have a natural isomorphism
-	\[\Psi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\to\widehat H^2(G,-).\]
-	We now proceed with the proof. If $X$ and $X'$ are cohomologically equivalent, then we can compose the promised natural isomorphism of \autoref{prop:cohomologicaldef} with $\Psi_\bullet$, giving a natural isomorphism
-	\[\widehat H^0(G,\op{Hom}_\ZZ(X',-))\to\widehat H^0(G,\op{Hom}_\ZZ(X,-))\stackrel{\Psi_\bullet}\to\widehat H^2(G,-).\]
+	Fix some $G$-module $X$ with such a natural isomorphism
+	\[\Psi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^p(G,-).\]
+	We would like to show that a $G$-module $X$ has a natural isomorphism $\Phi_\bullet$ between the same functors if and only if $X$ and $X'$ are cohomologically equivalent.
+
+	% Noting that the cup product is natural in both arguments (see, for example, \autoref{lem:cupproductmorphism}), we see that the combination of \autoref{thm:yesitisacocycle} and \autoref{prop:alternativetupleclass} tells us that we have a natural isomorphism
+	% \[\Psi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^2(G,-).\]
+	% We now proceed with the proof.
+	If $X$ and $X'$ are cohomologically equivalent, then we can compose the promised natural isomorphism of \autoref{prop:cohomologicaldef} with $\Psi_\bullet$, giving a natural isomorphism
+	\[\widehat H^0(G,\op{Hom}_\ZZ(X',-))\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X,-))\stackrel{\Psi_\bullet}\Rightarrow\widehat H^p(G,-).\]
 	In the other direction, if we have a natural isomorphism
-	\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X',-))\to\widehat H^2(G,-),\]
+	\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X',-))\Rightarrow\widehat H^p(G,-),\]
 	then we can compose with $\Psi_\bullet^{-1}$ to build a natural isomorphism
-	\[\widehat H^0(G,\op{Hom}_\ZZ(X',-))\stackrel{\Phi_\bullet}\to\widehat H^2(G,-)\stackrel{\Psi^{-1}_\bullet}\to\widehat H^0(G,\op{Hom}_\ZZ(X,-)),\]
+	\[\widehat H^0(G,\op{Hom}_\ZZ(X',-))\stackrel{\Phi_\bullet}\Rightarrow\widehat H^p(G,-)\stackrel{\Psi^{-1}_\bullet}\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X,-)),\]
 	from which it follows that $X$ and $X'$ are cohomologically equivalent by \autoref{prop:cohomologicaldef}.
 \end{proof}
-\begin{remark}
-	In fact, we can see that the natural isomorphism
-	\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X',-))\to\widehat H^2(G,-)\]
-	must be a cup-product map with an element in $\widehat H^2(G,X')$. Namely, we note that $\Phi_\bullet$ is equal to the composite
-	\[\widehat H^0(G,\op{Hom}_\ZZ(X',-))\stackrel{\Phi_\bullet}\to\widehat H^2(G,-)\stackrel{\Psi^{-1}_\bullet}\to\widehat H^0(G,\op{Hom}_\ZZ(X,-))\stackrel{\Psi_\bullet}\to\widehat H^2(G,-).\]
-	However, $\Psi_\bullet$ is a cup-product map with an element in $\widehat H^2(G,X)$ by its construction, and
-	\[\widehat H^0(G,\op{Hom}_\ZZ(X',-))\stackrel{\Phi_\bullet}\to\widehat H^2(G,-)\stackrel{\Psi^{-1}_\bullet}\to\widehat H^0(G,\op{Hom}_\ZZ(X,-))\]
-	is a cup-product map with an element in $\widehat H^0(G,\op{Hom}_\ZZ(X,X'))$ by \autoref{lem:naturaltransiscupping}. Composing our cup-product maps makes a cup-product map with an element in $\widehat H^2(G,X')$.
-\end{remark}
+% \begin{remark}
+% 	In fact, we can see that the natural isomorphism
+% 	\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X',-))\Rightarrow\widehat H^2(G,-)\]
+% 	must be a cup-product map with an element in $\widehat H^2(G,X')$. Namely, we note that $\Phi_\bullet$ is equal to the composite
+% 	\[\widehat H^0(G,\op{Hom}_\ZZ(X',-))\stackrel{\Phi_\bullet}\Rightarrow\widehat H^2(G,-)\stackrel{\Psi^{-1}_\bullet}\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X,-))\stackrel{\Psi_\bullet}\Rightarrow\widehat H^2(G,-).\]
+% 	However, $\Psi_\bullet$ is a cup-product map with an element in $\widehat H^2(G,X)$ by its construction, and
+% 	\[\widehat H^0(G,\op{Hom}_\ZZ(X',-))\stackrel{\Phi_\bullet}\Rightarrow\widehat H^2(G,-)\stackrel{\Psi^{-1}_\bullet}\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X,-))\]
+% 	is a cup-product map with an element in $\widehat H^0(G,\op{Hom}_\ZZ(X,X'))$ by \autoref{lem:naturaltransiscupping}. Composing our cup-product maps makes a cup-product map with an element in $\widehat H^2(G,X')$.
+% \end{remark}
 \begin{example}
 	Fix notation as in \autoref{sec:overview}. If $M$ is any induced module, then we know $M$ is cohomologically equivalent to $0$. So \autoref{lem:monoidequiv} reassures us that $X\oplus M$ is cohomologically equivalent to $X\oplus0\simeq X$.
 \end{example}
@@ -1332,6 +1343,92 @@ Anyway, here is our result.
 	and in fact these isomorphisms are natural by the functoriality of boundary morphisms. It follows that $X$ and $I_G\otimes_\ZZ I_G$ are cohomologically equivalent.
 \end{example}
 The above two examples should give a feeling for why this uniqueness problem is difficult.
+
+One might object that what makes $X$ of \autoref{sec:overview} special is that the natural isomorphism
+\[\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^2(G,-)\]
+is a cup-product map. However, we can show that all such natural transformations come from cup-product maps.
+% \begin{lemma}
+% 	Let $G$ be a finite group, and let $p\ge0$ be an index. Then there exists some $x_p\in\widehat H^p\left(G,I_G^{\otimes p}\right)$ such that
+% 	\[x_p\cup-\colon\widehat H^0\left(G,\op{Hom}_\ZZ(I_G^{\otimes p},-)\right)\Rightarrow H^p(G,-)\]
+% 	is a natural isomorphism.
+% \end{lemma}
+% \begin{proof}
+% 	We quickly remark that (akin to \autoref{rem:cuppingisnatural}), by \autoref{lem:cupproductmorphism} and functoriality of $\widehat H^p(G,-)$, any $x_p\in\widehat H^p(G,I_G^{\otimes p})$ will at least create a natural transformation. So the main point is to make the cup-product into an isomorphism. For $p=0$, we take $x_0\coloneqq[1]\in\widehat H^p(G,\ZZ)$ so that
+% 	\[[1]\cup-\colon\widehat H^0(G,\op{Hom}_\ZZ(\ZZ,-))\Rightarrow\widehat H^0(G,-)\]
+% 	is simply the map taking a $0$-cocycle $c$ to $[1]\cup c=c(1)$, which is the isomorphism $\op{Hom}_\ZZ(\ZZ,A)\simeq A$ for each $A$ anyway.
+
+% 	We will also show $p=1$ by hand. The point here is that, for any $G$-module $A$, we already have (natural) isomorphisms
+% 	\[\widehat H^0(G,\op{Hom}_\ZZ(I_G,A))\simeq\widehat H^1(G,A)\]
+% 	by dimension-shifting, so we just have to track these through. Namely, we have the ($\ZZ$-split) short exact sequence
+% 	\[0\to A\to\op{Hom}_\ZZ(\ZZ[G],A)\to\op{Hom}_\ZZ(I_G,A)\to 0,\]
+% 	so given $[f]\in\widehat H^0(G,\op{Hom}_\ZZ(I_G,A))$ so that $f\in\op{Hom}_{\ZZ[G]}(I_G,A)$, this gets pulled back to the $0$-cochain $c\in\op{Hom}_\ZZ(\ZZ[G],A)$ defined by
+% 	\[c\colon z\mapsto f(z-\varepsilon(z)).\]
+% 	Pushing this down to $Z^1(G,\op{Hom}_\ZZ(\ZZ[G],A))$, we compute
+% 	\begin{align*}
+% 		(dc)(g)(z) &= (gc)(z)-c(z) \\
+% 		&= g\cdot c\left(g^{-1}z\right) - c(z) \\
+% 		&= g\cdot f\left(g^{-1}z-\varepsilon(g^{-1}z)\right) - f(z-\varepsilon(z)) \\
+% 		&= f(z-g\varepsilon(z))-f(z-\varepsilon(z)) \\
+% 		&= \varepsilon(z)\cdot f(1-g),
+% 	\end{align*}
+% 	so we pull back to the $1$-cochain $g\mapsto f(1-g)$ in $H^1(G,A)$. To see this as a cup product, we just note that running $A=I_G$ and $f=\id_{I_G}$ through this argument would reveal that $g\mapsto(1-g)$ is a $1$-cochain in $H^1(G,I_G)$, which we denote by $x_1$. Then returning to a general $G$-module $A$ with $[f]\in\widehat H^1(G,\op{Hom}_\ZZ(I_G,A))$, we see
+% 	\[(x_1\cup[f])\colon g\mapsto(f\circ x_1)(g)=f(1-g)\]
+% 	by construction of the cup product as evaluation.
+% \end{proof}
+\begin{proposition} \label{prop:naturaltransarecups}
+	Let $G$ be a finite group, and let $p\in\ZZ$ be an index. Suppose we have a $G$-module $X$ with a natural transformation
+	\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^p(G,-).\]
+	Then there exists $[x]\in\widehat H^p(G,X)$ such that $\Phi_\bullet$ is the cup-product map $[x]\cup-$.
+\end{proposition}
+\begin{proof}
+	This is analogous to \autoref{lem:naturaltransiscupping}. Namely, this is again essentially the Yoneda lemma. As such, set $[x]\coloneqq\Phi_X([\id_X])$. As before, the point is to fix some $G$-module $A$ and $[f]\in\widehat H^0(G,\op{Hom}_\ZZ(X,A))$ in order to track through the commutativity of the following diagram.
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF4wKEcsXFxvcHtIb219X1xcWlooWCxYKSkiXSxbMSwwLCJcXHdpZGVoYXQgSF4wKEcsXFxvcHtIb219X1xcWlooWCcsWCkpIl0sWzAsMSwiXFx3aWRlaGF0IEheMChHLFxcb3B7SG9tfV9cXFpaKFgsQSkpIl0sWzEsMSwiXFx3aWRlaGF0IEheMChHLFxcb3B7SG9tfV9cXFpaKFgnLEEpKSJdLFswLDEsIlxcUGhpX1giXSxbMCwyLCJmIiwyXSxbMSwzLCJmIiwyXSxbMiwzLCJcXFBoaV9BIl1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\begin{equation}
+		\begin{tikzcd}
+			{\widehat H^0(G,\op{Hom}_\ZZ(X,X))} & {\widehat H^p(G,X)} \\
+			{\widehat H^0(G,\op{Hom}_\ZZ(X,A))} & {\widehat H^p(G,A)}
+			\arrow["{\Phi_X}", from=1-1, to=1-2]
+			\arrow["f"', from=1-1, to=2-1]
+			\arrow["f"', from=1-2, to=2-2]
+			\arrow["{\Phi_A}", from=2-1, to=2-2]
+		\end{tikzcd} \label{eq:cohomologicalyoneda}
+	\end{equation}
+	Because we will need to deal with the cup products with negative indices, we will use the standard resolution of \cite{cassels-frolich}. For example, we interpret $f\in[f]\in\widehat H^0(G,\op{Hom}_\ZZ(X,A))$ as a constant function $f\in\op{Hom}_G(\ZZ[G],\op{Hom}_\ZZ(X,A))$, which means that $f(z)$ is the same $G$-module homomorphism for each $z\in\ZZ[G]$.
+
+	As such, we can track the left arrow of \autoref{eq:cohomologicalyoneda} as
+	\[\arraycolsep=1.4pt\begin{array}{cccc}
+		f\colon& \widehat H^0(G,\op{Hom}_\ZZ(X,X)) &\to& \widehat H^0(G,\op{Hom}_\ZZ(X,A)) \\
+		& {[z\mapsto\id_X]} &\to& {[z\mapsto f(z)\circ\id_X]=[f]}.
+	\end{array}\]
+	So, along the bottom of \autoref{eq:cohomologicalyoneda}, we are evaluating $\Phi_A([f])$.
+
+	Along the top of \autoref{eq:cohomologicalyoneda}, we immediately send $[x]$ to $\Phi_X([z\mapsto\id_X])=[x]$, so to finish the proof, we need to show that
+	\[f([x])\stackrel?=[x]\cup[f],\]
+	which will be enough by the commutativity of \autoref{eq:cohomologicalyoneda}. We have two similar cases to appropriately deal with the cup product.
+	\begin{itemize}
+		\item Suppose that $p\ge0$ so that we can interpret $x$ as an element of $\op{Hom}_{\ZZ[G]}\left(\ZZ[G^{p+1}],X\right)$, using the standard resolution. As such, we compute
+		\[(x\cup f)(g_0,\ldots,g_p) = x(g_0,\ldots,g_p) \otimes f(g_p),\]
+		where our output is in $X\otimes_\ZZ\op{Hom}_\ZZ(X,A)$. Applying evaluation, the cup product is outputting
+		\[(g_0,\ldots,g_p)\mapsto(f(g_p)\circ x)(g_0,\ldots,g_p)\]
+		as our element of $\op{Hom}_{\ZZ[G]}(\ZZ[G^{p+1}],A)$. Indeed, this morphism represents $f([x])$.
+		\item Analogously, suppose that $p<0$ so that we interpret $x$ as an element of $\op{Hom}_{\ZZ[G]}\left(\op{Hom}_\ZZ(\ZZ[G]^p,\ZZ),X\right)$. To decrease headaches, we let $g^*\colon\ZZ[G]\to\ZZ$ denote the $G$-module homomorphism sending $g\mapsto1$ and other group elements to $0$. Then $p$-tuples $(g_1^*,\ldots,g_p^*)$ form a $\ZZ$-basis of $\op{Hom}_\ZZ(\ZZ[G]^p,\ZZ)$, so it's enough to specify
+		\[(x\cup f)(g_1^*,\ldots,g_p^*) = x(g_1^*,\ldots,g_p^*)\otimes f(g_p),\]
+		where the output is in $X\otimes_\ZZ\op{Hom}_\ZZ(X,A)$. Applying evaluation, the cup product is outputting
+		\[(g_1^*,\ldots,g_p^*)\mapsto (f(g_p)\circ x)(g_1^*,\ldots,g_p^*)\]
+		as an element of $\op{Hom}_{\ZZ[G]}\left(\op{Hom}_\ZZ(\ZZ[G]^p,\ZZ),A\right)$. Indeed, this represents $f([x])$.
+	\end{itemize}
+	The above cases finish tracking through \autoref{eq:cohomologicalyoneda} and hence finish the proof.
+\end{proof}
+\begin{example}
+	For $p\ge0$, standard dimension-shifting arguments give natural isomorphisms
+	\[\widehat H^0\left(G,\op{Hom}_\ZZ(I_G^{\otimes p},-)\right)\Rightarrow\widehat H^p(G,A),\]
+	so \autoref{prop:naturaltransarecups} implies that these isomorphisms are cup products with an element of $\widehat H^p(G,I_G^{\otimes p})$. For example, when $p=0$, we have $[1]\in\widehat H^0(G,\ZZ)$; and when $p=1$, we have $g\mapsto(1-g)$ in $\widehat H^1(G,I_G)$.
+\end{example}
+\begin{example}
+	Fix notation as in \autoref{sec:overview}, and take $m=2$. Then there are natural transformations
+	\[\widehat H^2(G,-)\stackrel{[\delta(\overline c)]^\lor\cup-}\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{-1}(G,-)\]
+	sending a $2$-cocycle to its $\{\sigma_i\}_{i=1}^m$-tuple and then to the (class of) $\beta_{10}$. (It turns out that, because $G$ is bicyclic, the equivalence relation on $\beta_{10}$ is exactly what we need to form a class of $\widehat H^{-1}$.) Now, applying \autoref{prop:naturaltransarecups}, we see that the right natural transformation must be a cup-product map, so by associativity of the cup product, the entire natural transformation is a cup-product map.
+\end{example}
 
 % \section{Torus Reciprocity}
 % In this section we will apply the theory we have built to the specific case where $G$ is a Galois group of an extension of local fields $L/K$.

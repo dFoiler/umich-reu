@@ -50,3 +50,5 @@ Yoneda
 morphsims
 functorial
 cohomologically
+surjects
+automorphisms

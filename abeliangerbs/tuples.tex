@@ -1156,14 +1156,14 @@ As a quick sanity check that this is a reasonable notion of equivalence of modul
 	\end{itemize}
 	which are required to satisfy
 	\begin{align*}
-		\varphi\circ\varphi'=\id_X+N_Gf\qquad&\text{and}\qquad\varphi'\circ\varphi=\id_{X'}+N_Gf', \\
-		\psi\circ\psi'=\id_Y+N_Gg\qquad&\text{and}\qquad\psi'\circ\psi=\id_{Y'}+N_Gg'.
+		\varphi\circ\varphi'={\id_X}+N_Gf\qquad&\text{and}\qquad\varphi'\circ\varphi={\id_{X'}}+N_Gf', \\
+		\psi\circ\psi'={\id_Y}+N_Gg\qquad&\text{and}\qquad\psi'\circ\psi={\id_{Y'}}+N_Gg'.
 	\end{align*}
 	Summing everywhere, we get the $G$-module homomorphisms $\varphi\oplus\psi\colon X\oplus Y\to X'\oplus Y'$ and $\varphi'\oplus\psi'\colon X'\oplus Y'\to X\oplus Y$ satisfying
 	\begin{align*}
 		(\varphi\oplus\psi)\circ(\varphi'\oplus\psi') &= (\varphi\circ\varphi')\oplus(\psi\circ\psi') \\
-		&= (\id_X+N_Gf)\oplus(\id_Y+N_Gg) \\
-		&= \id_X\oplus\id_Y+N_G(f\oplus g).
+		&= ({\id_X}+N_Gf)\oplus({\id_Y}+N_Gg) \\
+		&= {\id_X}\oplus{\id_Y}+N_G(f\oplus g).
 	\end{align*}
 	The other check is analogous, switching primed and unprimed variables.
 \end{proof}
@@ -1252,19 +1252,22 @@ One might hope that we can get more information by using indices away from $0$, 
 		\item $X$ and $X'$ are cohomologically equivalent.
 		\item There is a natural isomorphism
 		\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X',-)).\]
+		\item For some (fixed) index $p\in\ZZ$, there is $[\varphi]\in\widehat H^0(G,\op{Hom}_\ZZ(X',X))$ such that
+		\[[\varphi]\cup-\colon\widehat H^p(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^p(G,\op{Hom}_\ZZ(X',-))\]
+		is a natural isomorphism.
 		\item There are natural isomorphisms
 		\[\Phi_\bullet^{(i)}\colon\widehat H^i(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^i(G,\op{Hom}_\ZZ(X',-))\]
 		for all $i\in\ZZ$.
 	\end{listalph}
 \end{proposition}
 \begin{proof}
-	Note that (a) and (b) are equivalent by \autoref{prop:cohomologicaldef}. Also, there is nothing to say for (c) implies (b), so the interesting direction is (b) implies (c). This follows from dimension-shifting. Indeed, we must shift $i$ upwards and downwards from its fixed value.
+	Note that (a) and (b) are equivalent by \autoref{prop:cohomologicaldef}. Also, there is nothing to say for (d) implies (b), and (b) implies (c) follows from taking $p=0$ in (b) and noting that \autoref{lem:naturaltransiscupping} reassures us that this natural transformation (in fact, natural isomorphism) must be a cup-product map. Thus, the interesting direction is (c) implies (d). This follows from dimension-shifting. Indeed, we shift $p$ upwards and downwards from its fixed value to witness our natural isomorphisms.
 
 	The proof is similar to \autoref{prop:dimshiftcupisos}, so we will be brief. Indeed, we already know that we have $[\varphi]\in\widehat H^0(G,\op{Hom}_\ZZ(X',X))$ such that
 	\begin{equation}
 		[\varphi]\cup-\colon\widehat H^i(G,\op{Hom}_\ZZ(X,A))\to\widehat H^i(G,\op{Hom}_\ZZ(X',A)) \label{eq:cupshifting}
 	\end{equation}
-	is an isomorphism for all $G$-modules $A$ at $i=0$. To shift downwards, we suppose that we have an isomorphism always at $i$, and we show that we have an isomorphism always at $i-1$. Well, for any $G$-module $A$, we note the ($\ZZ$-split) short exact sequences
+	is an isomorphism for all $G$-modules $A$ at $i=p$. To shift downwards, we suppose that we have an isomorphism always at $i$, and we show that we have an isomorphism always at $i-1$. Well, for any $G$-module $A$, we note the ($\ZZ$-split) short exact sequences
 	% https://q.uiver.app/?q=WzAsMTAsWzAsMSwiMCJdLFsxLDEsIlxcb3B7SG9tfV9cXFpaKFgsSV9HXFxvdGltZXNfXFxaWiBBKSJdLFsyLDEsIlxcb3B7SG9tfV9cXFpaKFgsXFxaWltHXVxcb3RpbWVzX1xcWlogQSkiXSxbMSwwLCJcXG9we0hvbX1fXFxaWihYJyxJX0dcXG90aW1lc19cXFpaIEEpIl0sWzIsMCwiXFxvcHtIb219X1xcWlooWCcsXFxaWltHXVxcb3RpbWVzX1xcWlogQSkiXSxbMCwwLCIwIl0sWzMsMCwiXFxvcHtIb219X1xcWlooWCcsQSkiXSxbNCwwLCIwIl0sWzQsMSwiMCJdLFszLDEsIlxcb3B7SG9tfV9cXFpaKFgsQSkiXSxbNSwzXSxbMyw0XSxbNCw2XSxbNiw3XSxbOSw4XSxbMiw5XSxbMSwyXSxbMCwxXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
 	\begin{equation}
 		\arraycolsep=1.4pt\begin{array}{ccccccccc}
@@ -1307,7 +1310,7 @@ Anyway, here are some results.
 \begin{cor}
 	Let $G$ be a finite group, and let $p\in\ZZ$ be an index. Then the set of $G$-module $X$ with a natural isomorphism
 	\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^p(G,-)\]
-	make up exactly one cohomological equivalence class.
+	make up exactly one cohomological equivalence class.\todo{Is there a way to encode change of group here?}
 \end{cor}
 \begin{proof}
 	Fix some $G$-module $X$ with such a natural isomorphism

@@ -390,7 +390,7 @@ In general, this is difficult because the structure of a subgroup $H\subseteq G$
 \[H=\langle\sigma_1^{t_1},\ldots,\sigma_m^{t_m}\rangle,\]
 where the $\{t_i\}_{i=1}^m$ are some positive integers. With that said, here are our computations. We begin with inflation.
 \begin{lemma} \label{lem:tupleinflation}
-	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Further, let $H\coloneqq\langle\sigma_1^{t_1},\ldots,\sigma_m^{t_m}\rangle$ be a subgroup, and let $\overline\sigma_i$ be the image of $\sigma_i$ in $G/H$. Consider the inflation map $\op{Inf}\colon H^2\left(G/H,A^H\right)\to H^2(G,A)$.
+	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Further, let $H\coloneqq\langle\sigma_1^{t_1},\ldots,\sigma_m^{t_m}\rangle$ be a subgroup with $t_\bullet\mid n_\bullet$, and let $\overline\sigma_i$ be the image of $\sigma_i$ in $G/H$. Consider the inflation map $\op{Inf}\colon H^2\left(G/H,A^H\right)\to H^2(G,A)$.
 	
 	If the cocycle $\overline c\in Z^2\left(G/H,A^H\right)$ gives the $\left\{\overline\sigma_i\right\}_{i=1}^m$-tuple $(\{\overline\alpha_i\},\{\overline\beta_{ij}\})$ (by \autoref{cor:cocycletuplesection}), then the cocycle $\op{Inf}\overline c\in Z^2(G,A)$ gives the $\{\sigma_i\}_{i=1}^m$-tuple
 	\[\op{Inf}(\{\overline\alpha_i\},\{\overline\beta_{ij}\})\coloneqq(\{\alpha_i\},\{\beta_{ij}\})=\left(\left\{\overline\alpha_i^{n_i/\gcd(t_i,n_i)}\right\},\{\overline\beta_{ij}\}\right).\]
@@ -445,7 +445,7 @@ where the $\{t_i\}_{i=1}^m$ are some positive integers. With that said, here are
 \end{remark}
 Restriction is similar.
 \begin{lemma}
-	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Further, let $H\coloneqq\langle\sigma_1^{t_1},\ldots,\sigma_m^{t_m}\rangle$ be a subgroup. Consider the inflation map $\op{Res}\colon H^2\left(G,A\right)\to H^2(H,A)$.
+	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Further, let $H\coloneqq\langle\sigma_1^{t_1},\ldots,\sigma_m^{t_m}\rangle$ be a subgroup with $t_\bullet\mid n_\bullet$. Consider the inflation map $\op{Res}\colon H^2\left(G,A\right)\to H^2(H,A)$.
 	
 	If the cohomology class $[c]\in H^2\left(G,A\right)$ is represented by the $\left\{\sigma_i\right\}_{i=1}^m$-tuple $(\{\alpha_i\},\{\beta_{ij}\})$, then the cohomology class $[\op{Res}\overline c]$ is represented by the $\{\sigma_i\}_{i=1}^m$-tuple
 	\[(\{\overline\alpha_i\},\{\overline\beta_{ij}\})=\left(\left\{\alpha_i^{1_{n_i\mid t_i}}\right\},\left\{\beta_{ij}^{(\gcd(t_i,n_i)1_{n_i\mid t_i},\,\gcd(t_j,n_j)1_{n_i\mid t_i})}\right\}\right).\]

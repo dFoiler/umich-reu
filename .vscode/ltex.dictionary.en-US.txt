@@ -52,3 +52,5 @@ functorial
 cohomologically
 surjects
 automorphisms
+Kottwitz
+protorus

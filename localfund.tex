@@ -4,6 +4,11 @@
 \newcommand{\nirpdftitle}{Local Fundamental Class}
 \usepackage{import}
 \inputfrom{../notes}{nir}
+\usepackage[backend=biber,
+    style=alphabetic,
+    sorting=ynt
+]{biblatex}
+\addbibresource{bib.bib}
 
 \pagestyle{contentpage}
 
@@ -1078,7 +1083,7 @@ Thus, we have described how to construct our $\gamma$ terms in the tower, from w
 \begin{proof}
 	Well, to begin we have $\gamma_0=\pi_K$, which is fixed by $\sigma$, so the right-hand side is $1$, meaning that we might as well take $\eta_0=1$. We now claim that, given $\eta_i$ satisfying \autoref{eq:etaequation} which is a unit, we can construct $\eta_{i+1}$ with
 	\[\op N_{M_{i+1}L_{i+1}/M_iL_{i+1}}(\eta_{i+1})=\eta_i\]
-	also satisfying \autoref{eq:etaequation} (for $i+1$) which is a unit. For brevity, set ${\op N}\coloneq\op N_{M_{i+1}L_{i+1}/M_iL_{i+1}}$. To begin, we note that $\eta_i$ is a unit in $M_iL_{i+1}$ as well, so because $M_{i+1}L_{i+1}/M_iL_{i+1}$ is unramified, we may simply guess any $\eta\in M_{i+1}L_{i+1}$ such that
+	also satisfying \autoref{eq:etaequation} (for $i+1$) which is a unit. For brevity, set ${\op N}\coloneqq\op N_{M_{i+1}L_{i+1}/M_iL_{i+1}}$. To begin, we note that $\eta_i$ is a unit in $M_iL_{i+1}$ as well, so because $M_{i+1}L_{i+1}/M_iL_{i+1}$ is unramified, we may simply guess any $\eta\in M_{i+1}L_{i+1}$ such that
 	\[\op N(\eta)=\eta_i.\]
 	We now need to correct for \autoref{eq:etaequation}. Well, we start by noting we're pretty close because
 	\begin{align*}
@@ -1104,7 +1109,7 @@ To finish our discussion, we note that because the expressions for the $\alpha_i
 
 As an example, we write this compatibility out for $\alpha_0$; the rest of the terms are similar. We define
 \[\alpha_{0,i}\coloneqq\gamma_i\cdot\prod_{k=0}^{f-1}\sigma_K^k(\eta_{\sigma_K,i})\]
-in accordance with \autoref{cor:fundtriple}. To check that this is compatible in towers, we set ${\op N}\coloneq\op N_{M_{i+1}L_{i+1}/M_iL_{i+1}}$ for some index $i$ and compute
+in accordance with \autoref{cor:fundtriple}. To check that this is compatible in towers, we set ${\op N}\coloneqq\op N_{M_{i+1}L_{i+1}/M_iL_{i+1}}$ for some index $i$ and compute
 \begin{align*}
 	\op N(\alpha_{0,i+1}) &= \op N\Bigg(\gamma_{i+1}\cdot\prod_{k=0}^{f-1}\sigma_K^k(\eta_{\sigma_K,i+1})\Bigg) \\
 	&= \op N\gamma_{i+1}\cdot\prod_{k=0}^{f-1}\sigma_K^k(\op N\eta_{\sigma_K,i+1}) \\
@@ -1112,5 +1117,146 @@ in accordance with \autoref{cor:fundtriple}. To check that this is compatible in
 	&= \alpha_{0,i},
 \end{align*}
 which is what we wanted.
+
+\section{Global Gerbs}
+In this section we provide a concrete description of the Kottwitz gerb $\mathcal E_2$ associated to the global extension $\QQ(\zeta_{p^m})/\QQ$ when $p$ is a prime.
+
+\subsection{Set-Up} \label{sec:globalsetup}
+We quickly recall the construction of $\mathcal E_2$. Given a global field $K$, let $V_K$ denote the set of places of $K$. We follow \cite{kottwitz} and \cite{tate-torus}.
+
+Fix an extension of global fields $L/K$ with Galois group $G\coloneqq\op{Gal}(L/K)$. For later use, we will also let $G_v\subseteq G$ denote the decomposition group of a place $v\in V_L$. Now, we have the two short exact sequences. To begin, we note that the augmentation map $\ZZ[V_K]\onto\ZZ$ induces the short exact sequence
+\[0\to\ZZ[V_L]_0\to\ZZ[V_L]\to\ZZ\to0\label{eq:sesx}\tag{$X$}\]
+where $\ZZ[V_L]$ is the kernel of $\ZZ[V_L]\onto\ZZ$. We also have the short exact sequence
+\[1\to L^\times\to\AA_L^\times\to\AA_L^\times/L^\times\to1\tag{$A$}\]
+where the inclusion $L^\times\into\AA_L^\times$ is diagonal.
+
+Let $\mathbb D_2\coloneqq\op{Hom}_\ZZ(\ZZ[V_L],-)$ denote the protorus with character group $\ZZ[V_L]$. Then $\mathcal E_2(L/K)$ is the Galois gerb associated to a particular class $\alpha_2\in H^2\left(G,\mathbb D(\mathbb A_L)\right)$. To construct this class, we need the following lemma.
+\begin{lemma}[\cite{tate-torus}, p.~714] \label{lem:magicaltate}
+	Let $L/K$ be an extension of global fields with Galois group $G$, and let $V_L$ and $V_K$ denote the set of places of $L$ and $K$ respectively. Given a place $v\in V_L$, let $G_v\subseteq G$ denote its decomposition group. Then, for any $i\in\ZZ$,
+	\[\widehat H^i(G,\op{Hom}_\ZZ(\ZZ[V_L],M))\simeq\prod_{u\in V_K}\widehat H^i(G_{v(u)},M),\]
+	where the product is over places $u\in V_K$ taking a fixed place $v(u)\in V_L$ above $u$.
+\end{lemma}
+\begin{proof}
+	We give the proof for later use. This is essentially a matter of separating our places and then applying Shapiro's lemma. For each $u\in V_K$, let $V_{u}\subseteq V_L$ denote the set of places in $L$ above $u$. Then we see
+	\[\ZZ[V_L]\simeq\bigoplus_{u\in V_K}\ZZ[V_u]\]
+	as $G$-modules because the $G$-orbit of a place $v\in V_L$ lying over a place $u\in V_K$ is exactly $V_u$. Thus, we have the isomorphisms
+	\begin{align*}
+		\widehat H^i(G,\op{Hom}_\ZZ(\ZZ[V_L],M)) &\simeq \widehat H^i\left(G,\op{Hom}_\ZZ\Bigg(\bigoplus_{u\in V_L}\ZZ[V_u],M\Bigg)\right) \\
+		&\simeq \widehat H^i\left(G,\prod_{u\in V_K}\op{Hom}_\ZZ(\ZZ[V_u],M)\right) \\
+		&\simeq \prod_{u\in V_K}\widehat H^i\left(G,\op{Hom}_\ZZ(\ZZ[V_u],M)\right).
+	\end{align*}
+	It remains to show that
+	\[\widehat H^i\left(G,\op{Hom}_\ZZ(\ZZ[V_u],M)\right)\stackrel?\simeq\widehat H^i(G_{v(u)},M).\]
+	Well, for each place $u\in V_K$, find a place $v(u)\in V_L$ above it. As discussed above, $V_u$ is a transitive $G$-set, and the stabilizer of $v(u)$ is $G_{v(u)}$. Thus, $V_u\simeq G_{v(u)}\backslash G$ as $G$-sets (note the distinction between left and right $G$-sets is somewhat irrelevant because $gG_v=G_vg$ for each $g\in G_v$), so $\ZZ[V_u]\simeq\ZZ[G_{v(u)}\backslash G]$ as $G$-modules. Thus, we may write
+	\begin{align*}
+		\widehat H^i\left(G,\op{Hom}_\ZZ(\ZZ[V_u],M)\right) &\simeq \widehat H^i\left(G,\op{Hom}_\ZZ(\ZZ[G_{v(u)}\backslash G],M)\right) \\
+		&\simeq \widehat H^i\left(G,\op{Mor}_{\mathrm{Set}}(G_{v(u)}\backslash G,M)\right) \\
+		&\simeq \widehat H^i\big(G,\op{CoInd}_{G_{v(u)}}^G(M)\big),
+	\end{align*}
+	where the last isomorphism is because $\op{Mor}_{\mathrm{Set}}(G_{v(u)}\backslash G,M)\simeq\op{CoInd}_H^G(M)$ by taking $f\colon G_{v(u)}\backslash G\to M$ to the function $g\mapsto gf\left(G_vg^{-1}\right)$. Now, this last cohomology group is isomorphic to $\widehat H^i(G_{v(u)},M)$ by Shapiro's lemma, thus finishing.
+\end{proof}
+Thus, to specify $\alpha_2\in\widehat H^2(G,\mathbb D_2(\AA_L))$, it is enough to specify a set of classes
+\[\alpha_2(u)\in\widehat H^2\left(G_{v(u)},\AA_L^\times\right)\]
+for each $u\in V_K$. To do so, we note that $G_{v(u)}=\op{Gal}(L_{v(u)}/K_u)$, so we use the natural embedding $i_v\colon L_v\into\AA_L^\times$ (for $u\in V_L$) to set
+\[\alpha_2(u)\coloneqq i_{v(u)}\big(\alpha(L_{v(u)}/K_u)\big),\]
+where $\alpha(L_{v(u)}/K_u)\in\widehat H^2\left(G_{v(u)},L_{v(u)}^\times\right)$ is the local fundamental class.
+
+\subsection{An Explicit Cocycle}
+We continue in the context of \autoref{sec:globalsetup}, in the case of $K\coloneqq\QQ$ and $L\coloneqq\QQ(\zeta_{p^m})$ when $p$ is odd; for brevity, set $\zeta\coloneqq\zeta_{p^m}$. The goal of the computation is to fully reverse \autoref{lem:magicaltate} to be able to write down a $2$-cocycle in $Z^2(G,\mathbb D_2(\AA_L))$ representing $\alpha_2$, which will then specify a gerb in the correct equivalence class of $\mathcal E_2$.
+
+As such, we start from the bottom and work our way upwards. To begin, we need to write down $G\coloneqq\op{Gal}(\QQ(\zeta)/\QQ)$ in some concrete way, so we pick a generator $x\in\left(\ZZ/p^m\ZZ\right)^\times$ (recall that $p$ is odd) so that $\sigma\colon\zeta\mapsto\zeta^x$ is a generator of $G$ of order $n\coloneqq\varphi\left(p^m\right)=(p-1)p^{m-1}$. To be able to properly localize, for each prime $q\ne p$, we define $k_q\ge0$ to have
+\[x^{k_q}\equiv q\pmod p\]
+so that $\sigma^{k_q}\colon\zeta\mapsto\zeta^q$. We also set $d_q\coloneqq\gcd(k_q,n)$ so that $\langle\sigma^{k_q}\rangle=\langle\sigma^{d_q}\rangle$ with order $n/d_q$.
+
+\subsubsection{Defining Local Fundamental Classes}
+To work up \autoref{lem:magicaltate}, we must find explicit $2$-cocycles to represent the various $\alpha(L_{v(u)}/K_u)$s. It will be helpful to be able to change between generators freely, so we pick up the following lemma.
+\begin{lemma} \label{lem:cocyclegenchange}
+	Let $G=\langle\sigma\rangle$ be a finite cyclic group of order $n$. Further, suppose $k\in\ZZ$ has $\gcd(k,n)=1$. Then define $\chi,\chi_d\in Z^2(G,\ZZ)$ by
+	\[\chi\left(\sigma^i,\sigma^j\right)\coloneqq\floor{\frac{i+j}n}\qquad\text{and}\qquad\chi_k\left(\sigma^{ki},\sigma^{kj}\right)\coloneqq\floor{\frac{i+j}n},\]
+	where $0\le i,j<n$. Then $[\chi]=k[\chi_k]$ in $H^2(G,\ZZ)$.
+\end{lemma}
+\begin{proof}
+	It is well-known\todo{Citation?} that
+	\begin{equation}
+		(-\cup[\chi_k])\colon\widehat H^0(G,\ZZ)\to\widehat H^2(G,\ZZ) \label{eq:cycliccupiso}
+	\end{equation}
+	is an isomorphism. Now, for $m\in\ZZ$, we see that $[m]\cup[\chi_k]=[m\chi_k]$, so we see that we can actually invert the above isomorphism explicitly because
+	\[\sum_{g\in G}(m\chi_k)\left(g,\sigma^k\right)=m\sum_{\ell=0}^{n-1}\chi_k\left(\sigma^{\ell k},\sigma^k\right)=m,\]
+	so $[c]\mapsto\Big[\sum_{g\in G}c(g,\sigma^k)\Big]$ describes the inverse of \autoref{eq:cycliccupiso}. As such, we pick up $\chi$ and compute
+	\[\sum_{g\in G}\chi\left(g,\sigma^k\right)=\sum_{\ell=0}^{n-1}\chi\left(\sigma^\ell,\sigma^k\right)=k.\]
+	Thus, $[k]\cup[\chi_k]=[\chi]$, which is what we wanted.
+\end{proof}
+With that out of the way, here are our local fundamental classes.
+\begin{itemize}
+	\item Now, for a finite place $u\coloneqq q\ne p$, we note that $q$ is unramified, so $v(q)\in V_L$ has decomposition group $G_{v(q)}$ cyclic generated by the Frobenius automorphism $\sigma^{k_q}\colon\zeta\mapsto\zeta^{k_q}$. As such, the local fundamental class here is represented by
+	\[\left(\sigma^{k_qi},\sigma^{k_qj}\right)\mapsto q^{\floor{(i+j)/n}}.\]
+	In particular, if we set $\chi_{k_q}\in Z^2(G,\ZZ)$ by $\chi_{k_q}\colon\left(\sigma^{k_qi},\sigma^{k_qj}\right)\mapsto\floor{\frac{i+j}n}$, we see that $\alpha(L_{v(u)}/K_u)=[q]\cup[\chi_{k_q}]$, where $[q]\in\widehat H^0(G,L_{v(u)}^\times)$.
+
+	It will be beneficial, psychologically speaking, to change generators from $\sigma^{k_q}$ to $\sigma^{d_q}$. As such, we set $\chi_{d_q}\in Z^2(G,\ZZ)$ by $\chi_{d_q}\colon\left(\sigma^{d_qi},\sigma^{d_qj}\right)\mapsto\floor{\frac{i+j}n}$. Then \autoref{lem:cocyclegenchange} tells us that
+	\[[\chi_{d_q}]=(k_q/d_q)[\chi_{k_q}].\]
+	Thus, we find $y_q\in\ZZ$ with $y_q\cdot k_q/d_q\equiv1\pmod{n_q}$ so that we can represent $\alpha(L_{v(u)}/K_u)$ by
+	\[(q\cup y_q\chi_{d_q})\colon\left(\sigma^{d_qi},\sigma^{d_qj}\right)\mapsto q^{y_q\floor{(i+j)/n}}.\]
+	For brevity, let this $2$-cocycle be $c_q\in Z^2\big(G_{v(u)},L_{v(u)}^\times\big)$.
+
+	\item For the finite place $u\coloneqq q=p$, we note that $L_{v(p)}/K_p$ is totally ramified. Using Lubin--Tate theory and the fact that the local fundamental class is uniquely determined by the local Artin reciprocity map for cyclic extensions, we can just directly compute that
+	\[\left(\sigma^i,\sigma^j\right)\mapsto x^{\floor{(i+j)/n}}\]
+	represents $\alpha\left(L_{v(p)}/K_p\right)$. Let this $2$-cocycle be $c_p\in Z^2\big(G,L_{v(p)}^\times\big)$.
+
+	\item Lastly, for the infinite place $u\coloneqq\infty$, set $v(\infty)$ to be a complex place $L$. Then $G_v\coloneqq\op{Gal}(L_{v(u)}/K_u)=\op{Gal}(\CC/\RR)$ is cyclic generated by $\sigma^{n/2}$ of order $2$. As such, the $2$-cocycle
+	\[\left(\sigma^{in/2},\sigma^{jn/2}\right)\mapsto(-1)^{\floor{(i+j)/2}}\]
+	represents $\alpha(L_{v(u)}/K_u)$. Let this $2$-cocycle be $c_\infty\in Z^2\big(G_{v(u)},L_{v(\infty)}^\times\big)$.
+\end{itemize}
+In order to talk about our $2$-cocycles in a unified way, we define
+\[\omega_u\coloneqq\begin{cases}
+	q^{y_q} & u=q\ne p\text{ is finite}, \\
+	x & u=p, \\
+	-1 & u=\infty,
+\end{cases}\qquad\text{and}\qquad d_u\coloneqq\begin{cases}
+	d_q & u=q\ne p\text{ is finite}, \\
+	1 & u=p, \\
+	n/2 & u=\infty,
+\end{cases}\]
+and $n_u\coloneqq n/d_u$ for each $u\in V_K$. Thus, we see that $c_u\in Z^2\big(G_{v(u)},L_{v(u)}^\times\big)$ is defined by
+\[c_u\left(\sigma^{d_ui},\sigma^{d_uj}\right)=\omega_u^{\floor{(i+j)/n_u}}\]
+for any place $u\in V_K$. Thus, we see that $\alpha_2(u)$ is now represented by
+\[(i_{v(u)}c_u)\left(\sigma^{d_ui},\sigma^{d_uj}\right)=(i_{v(u)}\omega_u)^{\floor{(i+j)/n_u}},\]
+where $i_{v(u)}\colon L_{v(u)}\into\AA_L$ is the canonical embedding. We quickly observe that our construction of $c_u$ has the remarkable properties that $d_u\mid n$ and $\omega_u\in K$ for each place $u\in V_K$.
+
+\subsubsection{Inverting Shapiro's Lemma}
+The next step in reversing \autoref{lem:magicaltate} is to invert the Shapiro's lemma isomorphism
+\[\widehat H^2\left(G_{v(u)},\AA_L^\times\right)\simeq\widehat H^2\big(G,\op{CoInd}_{G_{v(u)}}^G(\AA_L^\times)\big)\]
+for each place $u\in V_K$. For the purposes of this section, we will fix the place $u\in V_K$ and set $v\coloneqq v(u)\in V_L$ and $H\coloneqq G_v=G_{v(u)}$ for brevity. It is known that (e.g., see \cite{kaletha-invert-shapiro}) this inverse morphism can be constructed as the composite
+\[\widehat H^2\left(H,\AA_L^\times\right)\stackrel{\iota}\to\widehat H^2\big(H,\op{CoInd}^G_H\AA_L^\times\big)\stackrel{\op{cor}}\to\widehat H^2\big(G,\op{CoInd}^G_H\AA_L^\times\big),\]
+where $\iota\colon\AA_L^\times\to\op{CoInd}^G_H\AA_L^\times$ takes $a$ to $\iota(a)\colon g\mapsto\big(g1_{g\in H}\big)a$.
+
+Thus, we have two maps to track on the level of our $2$-cocycles. To track $\iota$, we start by computing
+\[(\iota i_{v}c_u)\left(\sigma^{d_ui},\sigma^{d_uj}\right)\colon\sigma^c\mapsto\left(\sigma^c\iota_v\omega_u\right)^{1_{d_u\mid c}\floor{(i+j)/n_u}}.\]
+Because $\omega_u\in K$, it is fixed by $\sigma^c$, so in fact this is just
+\[(\iota i_{v}c_u)\left(\sigma^{d_ui},\sigma^{d_uj}\right)\colon\sigma^c\mapsto\omega_u^{1_{d_u\mid c}\floor{(i+j)/n_u}}.\]
+Next we must track through $\op{cor}$. This is more difficult; we follow \cite{neukirch-cohom}. We start by noting that we can write the inhomogeneous $2$-cocycle as the homogeneous $2$-cocycle
+\[\left(1,\sigma^{d_ui},\sigma^{d_u(i+j)}\right)\colon\sigma^c\mapsto\iota_v\omega_u^{1_{d_u\mid c}\floor{(i+j)/n_u}}.\]
+Denote this homogeneous $2$-cocycle by $\iota i_{v}\widetilde c_u$. To set up our evaluation of $\op{cor}$, we note that we can represent any coset in $H\backslash G$ by some $\sigma^cH$ with $0\le c<d_u$, and this $c$ is unique; here we are using the fact that $d_u\mid n$. So for any coset $Hg\in H\backslash G$, we let $\overline{Hg}$ denote the correct $\sigma^c$. With this notation, we may compute
+\begin{align*}
+	(\op{cor}\iota i_{v}\widetilde c_u)\left(\sigma^i,\sigma^j\right) &= \sum_{Hg\in H\backslash G}(\overline Hg)^{-1}\cdot(\iota i_{v}\widetilde c_u)\left(1,\overline{Hg}\sigma^i\overline{Hg\sigma^i}^{-1},\overline{Hg}\sigma^{i+j}\overline{Hg\sigma^{i+j}}^{-1}\right) \\
+	&= \sum_{\ell=0}^{d_q-1}\sigma^{-\ell}\cdot(\iota i_{v}\widetilde c_u)\left(1,\sigma^{i+\ell-[i+\ell]_{d_q}},\sigma^{i+j+\ell-[i+j+\ell]_{d_q}}\right).
+\end{align*}
+Now, the $G$-action on $\op{CoInd}^G_H\AA_L^\times$ takes $f\colon G\to\AA_L^\times$ to $(gf)\colon x\mapsto f(xg)$. So when we plug in $\sigma^c\in G$, we get
+\[(\op{cor}\iota i_{v}\widetilde c_u)\left(\sigma^i,\sigma^j\right)\left(\sigma^c\right)=\prod_{\ell=0}^{d_q-1}(\iota i_{v}\widetilde c_u)\left(1,\sigma^{i+\ell-[i+\ell]_{d_q}},\sigma^{i+j+\ell-[i+j+\ell]_{d_q}}\right)\left(\sigma^{c-\ell}\right).\]
+The only opportunity for a factor in the product to not output $1$ is when $d_q$ divides $c-\ell$, so we in fact only care about the term $\ell=[c]_{d_q}$, leaving us with
+\[(\op{cor}\iota i_{v}\widetilde c_u)\left(\sigma^i,\sigma^j\right)\left(\sigma^c\right)=(\iota i_{v}\widetilde c_u)\left(1,\sigma^{i+[c]_{d_q}-[i+c]_{d_q}},\sigma^{i+j+[c]_{d_q}-[i+j+c]_{d_q}}\right)(\sigma^{c-[c]_{d_q}}).\]
+Now, transitioning back to an inhomogeneous $2$-cocycle, we have
+\[(\op{cor}\iota i_{v}\widetilde c_u)\left(\sigma^i,\sigma^j\right)\left(\sigma^c\right)=(\iota i_{v}c_u)\left(\sigma^{i+[c]_{d_q}-[i+c]_{d_q}},\sigma^{j-[i+j+c]_{d_q}+[i+c]_{d_q}}\right)(\sigma^{c-[c]_{d_q}}).\]
+We can simplify this some, but not much. Observe $i+[c]_{d_q}-[i+c]_{d_q}=d_q\floor{\frac{i+[c]_{d_q}}{d_q}}$ and $i+j+[c]_{d_q}-[i+j+c]_{d_q}=d_q\floor{\frac{i+j+[c]_{d_q}}{d_q}}$, so we have
+\[(\op{cor}\iota i_{v}\widetilde c_u)\left(\sigma^i,\sigma^j\right)\left(\sigma^c\right)=\iota_v\omega_u^{\bigg\lfloor{\frac{\big[\big\lfloor\frac{i+[c]_{d_q}}{d_q}\big\rfloor\big]_n+\big[\big\lfloor\frac{i+j+[c]_{d_q}}{d_q}\big\rfloor-\big\lfloor\frac{i+[c]_{d_q}}{d_q}\big\rfloor\big]_n}n}\bigg\rfloor}\]
+as our $2$-cocycle in $Z^2\big(G,\op{CoInd}_H^G\AA_L^\times\big)$.
+
+\subsubsection{Finishing Up}
+We are ready to finish tracking upwards through \autoref{lem:magicaltate}. Our next step is to go from $Z^2\big(G,\op{CoInd}_{G_v}^G\AA_L^\times\big)$ up to $Z^2\big(G,\op{Mor}_{Set}(G_{v(u)}\backslash G,\AA_L^\times)\big)$, for which we note that $f\in\op{CoInd}_{G_v}^G\AA_L^\times$ should be sent to $G_{v(u)}g\mapsto gf\left(g^{-1}\right)$. (This is well-defined because $f(hg)=hf(g)$ for $h\in G_{v(u)}$ here.) This gives the $2$-cocycle
+\[\left(\sigma^i,\sigma^j\right)\mapsto G_{v(u)}\sigma^c\mapsto\iota_v\omega_u^{\bigg\lfloor{\frac{\big[\big\lfloor\frac{i+[-c]_{d_q}}{d_q}\big\rfloor\big]_n+\big[\big\lfloor\frac{i+j+[-c]_{d_q}}{d_q}\big\rfloor-\big\lfloor\frac{i+[-c]_{d_q}}{d_q}\big\rfloor\big]_n}n}\bigg\rfloor},\]
+where we are now assuming $0\le c<d_q$ without loss of generality. The above immediately extends to a $2$-cocycle in $Z^2\big(G,\op{Hom}_\ZZ(\ZZ[G_{v(u)}\backslash G],\AA_L^\times)\big)$, which then turns into the $2$-cocycle
+\[\left(\sigma^i,\sigma^j\right)\mapsto\sigma^cv(u)\mapsto\iota_v\omega_u^{\bigg\lfloor{\frac{\big[\big\lfloor\frac{i+c}{d_q}\big\rfloor\big]_n+\big[\big\lfloor\frac{i+j+c}{d_q}\big\rfloor-\big\lfloor\frac{i+c}{d_q}\big\rfloor\big]_n}n}\bigg\rfloor}\]
+in $Z^2\big(G,\op{Hom}_\ZZ(\ZZ[V_u],\AA_L^\times)\big)$. Lastly, we note that letting $u$ vary in the above expression immediately pushes the $2$-cocycle to $Z^2\big(G,\op{Hom}_\ZZ(\ZZ[V_L],\AA_L^\times)\big)$, which is exactly the representative of $\alpha_2$ we have been looking for.
+
+\printbibliography[heading=bibintoc,title={References}]
 
 \end{document}

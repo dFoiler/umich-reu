@@ -1230,32 +1230,63 @@ for each place $u\in V_K$. For the purposes of this section, we will fix the pla
 where $\iota\colon\AA_L^\times\to\op{CoInd}^G_H\AA_L^\times$ takes $a$ to $\iota(a)\colon g\mapsto\big(g1_{g\in H}\big)a$.
 
 Thus, we have two maps to track on the level of our $2$-cocycles. To track $\iota$, we start by computing
-\[(\iota i_{v}c_u)\left(\sigma^{d_ui},\sigma^{d_uj}\right)\colon\sigma^c\mapsto\left(\sigma^c\iota_v\omega_u\right)^{1_{d_u\mid c}\floor{(i+j)/n_u}}.\]
-Because $\omega_u\in K$, it is fixed by $\sigma^c$, so in fact this is just
-\[(\iota i_{v}c_u)\left(\sigma^{d_ui},\sigma^{d_uj}\right)\colon\sigma^c\mapsto\omega_u^{1_{d_u\mid c}\floor{(i+j)/n_u}}.\]
+\[(\iota i_{v}c_u)\left(\sigma^{d_ui},\sigma^{d_uj}\right)\colon\sigma^c\mapsto\left(\sigma^c i_v\omega_u\right)^{1_{d_u\mid c}\floor{(i+j)/n_u}}.\]
+Because $\omega_u\in K$, it is fixed by $\sigma^c$; further, we only care about the case where $d_u\mid c$, in which case $\sigma^c\in G_v$ and hence $\sigma^cv=v$. Thus, this is just
+\[(\iota i_{v}c_u)\left(\sigma^{d_ui},\sigma^{d_uj}\right)\colon\sigma^c\mapsto i_{v}\omega_u^{1_{d_u\mid c}\floor{(i+j)/n_u}}.\]
 Next we must track through $\op{cor}$. This is more difficult; we follow \cite{neukirch-cohom}. We start by noting that we can write the inhomogeneous $2$-cocycle as the homogeneous $2$-cocycle
-\[\left(1,\sigma^{d_ui},\sigma^{d_u(i+j)}\right)\colon\sigma^c\mapsto\iota_v\omega_u^{1_{d_u\mid c}\floor{(i+j)/n_u}}.\]
-Denote this homogeneous $2$-cocycle by $\iota i_{v}\widetilde c_u$. To set up our evaluation of $\op{cor}$, we note that we can represent any coset in $H\backslash G$ by some $\sigma^cH$ with $0\le c<d_u$, and this $c$ is unique; here we are using the fact that $d_u\mid n$. So for any coset $Hg\in H\backslash G$, we let $\overline{Hg}$ denote the correct $\sigma^c$. With this notation, we may compute
+\[\left(1,\sigma^{d_ui},\sigma^{d_u(i+j)}\right)\colon\sigma^c\mapsto i_{v}\omega_u^{1_{d_u\mid c}\floor{(i+j)/n_u}}.\]
+Denote this homogeneous $2$-cocycle by $\iota i_{v}\widetilde c_u$. To set up our evaluation of $\op{cor}$, we note that we can represent any coset in $H\backslash G$ by some $H\sigma^c$ with $0\le c<d_u$, and this $c$ is unique; here we are using the fact that $d_u\mid n$. So for any coset $Hg\in H\backslash G$, we let $\overline{Hg}$ denote the correct $\sigma^c$. With this notation, we may compute
 \begin{align*}
-	(\op{cor}\iota i_{v}\widetilde c_u)\left(\sigma^i,\sigma^j\right) &= \sum_{Hg\in H\backslash G}(\overline Hg)^{-1}\cdot(\iota i_{v}\widetilde c_u)\left(1,\overline{Hg}\sigma^i\overline{Hg\sigma^i}^{-1},\overline{Hg}\sigma^{i+j}\overline{Hg\sigma^{i+j}}^{-1}\right) \\
-	&= \sum_{\ell=0}^{d_q-1}\sigma^{-\ell}\cdot(\iota i_{v}\widetilde c_u)\left(1,\sigma^{i+\ell-[i+\ell]_{d_q}},\sigma^{i+j+\ell-[i+j+\ell]_{d_q}}\right).
+	(\op{cor}\iota i_{v}c_u)\left(\sigma^i,\sigma^j\right) &= \sum_{Hg\in H\backslash G}(\overline Hg)^{-1}\cdot(\iota i_{v}\widetilde c_u)\left(1,\overline{Hg}\sigma^i\overline{Hg\sigma^i}^{-1},\overline{Hg}\sigma^{i+j}\overline{Hg\sigma^{i+j}}^{-1}\right) \\
+	&= \sum_{\ell=0}^{d_u-1}\sigma^{-\ell}\cdot(\iota i_{v}\widetilde c_u)\left(1,\sigma^{i+\ell-[i+\ell]_{d_u}},\sigma^{i+j+\ell-[i+j+\ell]_{d_u}}\right).
 \end{align*}
 Now, the $G$-action on $\op{CoInd}^G_H\AA_L^\times$ takes $f\colon G\to\AA_L^\times$ to $(gf)\colon x\mapsto f(xg)$. So when we plug in $\sigma^c\in G$, we get
-\[(\op{cor}\iota i_{v}\widetilde c_u)\left(\sigma^i,\sigma^j\right)\left(\sigma^c\right)=\prod_{\ell=0}^{d_q-1}(\iota i_{v}\widetilde c_u)\left(1,\sigma^{i+\ell-[i+\ell]_{d_q}},\sigma^{i+j+\ell-[i+j+\ell]_{d_q}}\right)\left(\sigma^{c-\ell}\right).\]
-The only opportunity for a factor in the product to not output $1$ is when $d_q$ divides $c-\ell$, so we in fact only care about the term $\ell=[c]_{d_q}$, leaving us with
-\[(\op{cor}\iota i_{v}\widetilde c_u)\left(\sigma^i,\sigma^j\right)\left(\sigma^c\right)=(\iota i_{v}\widetilde c_u)\left(1,\sigma^{i+[c]_{d_q}-[i+c]_{d_q}},\sigma^{i+j+[c]_{d_q}-[i+j+c]_{d_q}}\right)(\sigma^{c-[c]_{d_q}}).\]
+\[(\op{cor}\iota i_{v}c_u)\left(\sigma^i,\sigma^j\right)\left(\sigma^c\right)=\prod_{\ell=0}^{d_u-1}(\iota i_{v}\widetilde c_u)\left(1,\sigma^{i+\ell-[i+\ell]_{d_u}},\sigma^{i+j+\ell-[i+j+\ell]_{d_u}}\right)\left(\sigma^{c-\ell}\right).\]
+The only opportunity for a factor in the product to not output $1$ is when $d_u$ divides $c-\ell$, so we in fact only care about the term $\ell=[c]_{d_u}$, leaving us with
+\[(\op{cor}\iota i_{v}c_u)\left(\sigma^i,\sigma^j\right)\left(\sigma^c\right)=(\iota i_{v}\widetilde c_u)\left(1,\sigma^{i+[c]_{d_u}-[i+c]_{d_u}},\sigma^{i+j+[c]_{d_u}-[i+j+c]_{d_u}}\right)(\sigma^{c-[c]_{d_u}}).\]
 Now, transitioning back to an inhomogeneous $2$-cocycle, we have
-\[(\op{cor}\iota i_{v}\widetilde c_u)\left(\sigma^i,\sigma^j\right)\left(\sigma^c\right)=(\iota i_{v}c_u)\left(\sigma^{i+[c]_{d_q}-[i+c]_{d_q}},\sigma^{j-[i+j+c]_{d_q}+[i+c]_{d_q}}\right)(\sigma^{c-[c]_{d_q}}).\]
-We can simplify this some, but not much. Observe $i+[c]_{d_q}-[i+c]_{d_q}=d_q\floor{\frac{i+[c]_{d_q}}{d_q}}$ and $i+j+[c]_{d_q}-[i+j+c]_{d_q}=d_q\floor{\frac{i+j+[c]_{d_q}}{d_q}}$, so we have
-\[(\op{cor}\iota i_{v}\widetilde c_u)\left(\sigma^i,\sigma^j\right)\left(\sigma^c\right)=\iota_v\omega_u^{\bigg\lfloor{\frac{\big[\big\lfloor\frac{i+[c]_{d_q}}{d_q}\big\rfloor\big]_n+\big[\big\lfloor\frac{i+j+[c]_{d_q}}{d_q}\big\rfloor-\big\lfloor\frac{i+[c]_{d_q}}{d_q}\big\rfloor\big]_n}n}\bigg\rfloor}\]
+\[(\op{cor}\iota i_{v}c_u)\left(\sigma^i,\sigma^j\right)\left(\sigma^c\right)=(\iota i_{v}c_u)\left(\sigma^{i+[c]_{d_u}-[i+c]_{d_u}},\sigma^{j-[i+j+c]_{d_u}+[i+c]_{d_u}}\right)(\sigma^{c-[c]_{d_u}}).\]
+We can simplify this some, but not much. Observe $i+[c]_{d_u}-[i+c]_{d_u}=d_u\floor{\frac{i+[c]_{d_u}}{d_u}}$ and $i+j+[c]_{d_u}-[i+j+c]_{d_u}=d_u\floor{\frac{i+j+[c]_{d_u}}{d_u}}$, so we have
+\[(\op{cor}\iota i_{v}c_u)\left(\sigma^i,\sigma^j\right)\left(\sigma^c\right)= i_{v}\omega_u^{\bigg\lfloor{\frac{\big[\big\lfloor\frac{i+[c]_{d_u}}{d_u}\big\rfloor\big]_{n_u}+\big[\big\lfloor\frac{i+j+[c]_{d_u}}{d_u}\big\rfloor-\big\lfloor\frac{i+[c]_{d_u}}{d_u}\big\rfloor\big]_{n_u}}{n_u}}\bigg\rfloor}\]
 as our $2$-cocycle in $Z^2\big(G,\op{CoInd}_H^G\AA_L^\times\big)$.
 
 \subsubsection{Finishing Up}
-We are ready to finish tracking upwards through \autoref{lem:magicaltate}. Our next step is to go from $Z^2\big(G,\op{CoInd}_{G_v}^G\AA_L^\times\big)$ up to $Z^2\big(G,\op{Mor}_{Set}(G_{v(u)}\backslash G,\AA_L^\times)\big)$, for which we note that $f\in\op{CoInd}_{G_v}^G\AA_L^\times$ should be sent to $G_{v(u)}g\mapsto gf\left(g^{-1}\right)$. (This is well-defined because $f(hg)=hf(g)$ for $h\in G_{v(u)}$ here.) This gives the $2$-cocycle
-\[\left(\sigma^i,\sigma^j\right)\mapsto G_{v(u)}\sigma^c\mapsto\iota_v\omega_u^{\bigg\lfloor{\frac{\big[\big\lfloor\frac{i+[-c]_{d_q}}{d_q}\big\rfloor\big]_n+\big[\big\lfloor\frac{i+j+[-c]_{d_q}}{d_q}\big\rfloor-\big\lfloor\frac{i+[-c]_{d_q}}{d_q}\big\rfloor\big]_n}n}\bigg\rfloor},\]
-where we are now assuming $0\le c<d_q$ without loss of generality. The above immediately extends to a $2$-cocycle in $Z^2\big(G,\op{Hom}_\ZZ(\ZZ[G_{v(u)}\backslash G],\AA_L^\times)\big)$, which then turns into the $2$-cocycle
-\[\left(\sigma^i,\sigma^j\right)\mapsto\sigma^cv(u)\mapsto\iota_v\omega_u^{\bigg\lfloor{\frac{\big[\big\lfloor\frac{i+[-c]_{d_q}}{d_q}\big\rfloor\big]_n+\big[\big\lfloor\frac{i+j+[-c]_{d_q}}{d_q}\big\rfloor-\big\lfloor\frac{i+[-c]_{d_q}}{d_q}\big\rfloor\big]_n}n}\bigg\rfloor}\]
-in $Z^2\big(G,\op{Hom}_\ZZ(\ZZ[V_u],\AA_L^\times)\big)$. Lastly, we note that letting $u$ vary in the above expression immediately pushes the $2$-cocycle to $Z^2\big(G,\op{Hom}_\ZZ(\ZZ[V_L],\AA_L^\times)\big)$, which is exactly the representative of $\alpha_2$ we have been looking for.
+We are ready to finish tracking upwards through \autoref{lem:magicaltate}. Our next step is to go from $Z^2\big(G,\op{CoInd}_{G_v}^G\AA_L^\times\big)$ up to $Z^2\big(G,\op{Mor}_{\mathrm{Set}}(G_{v(u)}\backslash G,\AA_L^\times)\big)$, for which we note that $f\in\op{CoInd}_{G_v}^G\AA_L^\times$ should be sent to $G_{v(u)}g\mapsto gf\left(g^{-1}\right)$. (This is well-defined because $f(hg)=hf(g)$ for $h\in G_{v(u)}$ here.) This gives the $2$-cocycle
+\[\left(\sigma^i,\sigma^j\right)\mapsto G_{v(u)}\sigma^c\mapsto i_{\sigma^cv(u)}\omega_u^{\bigg\lfloor{\frac{\big[\big\lfloor\frac{i+[-c]_{d_u}}{d_u}\big\rfloor\big]_{n_u}+\big[\big\lfloor\frac{i+j+[-c]_{d_u}}{d_u}\big\rfloor-\big\lfloor\frac{i+[-c]_{d_u}}{d_u}\big\rfloor\big]_{n_u}}{n_u}}\bigg\rfloor},\]
+where we are now assuming $0\le c<d_u$ without loss of generality; note that we have used the fact $\sigma^c\circ i_v=i_{\sigma^cv}\circ\sigma^c$. The above immediately extends to a $2$-cocycle in $Z^2\big(G,\op{Hom}_\ZZ(\ZZ[G_{v(u)}\backslash G],\AA_L^\times)\big)$, which then turns into the $2$-cocycle
+\[c_2\left(\sigma^i,\sigma^j\right)\colon\sigma^cv(u)\mapsto i_{\sigma^cv(u)}\omega_u^{\bigg\lfloor{\frac{\big[\big\lfloor\frac{i+[-c]_{d_u}}{d_u}\big\rfloor\big]_{n_u}+\big[\big\lfloor\frac{i+j+[-c]_{d_u}}{d_u}\big\rfloor-\big\lfloor\frac{i+[-c]_{d_u}}{d_u}\big\rfloor\big]_{n_u}}{n_u}}\bigg\rfloor}\]
+in $c_2\in Z^2\big(G,\op{Hom}_\ZZ(\ZZ[V_u],\AA_L^\times)\big)$. To finish with this step, we note that letting $u$ vary in the above expression immediately pushes the $2$-cocycle to $c_2\in Z^2\big(G,\op{Hom}_\ZZ(\ZZ[V_L],\AA_L^\times)\big)$, which is exactly the representative of $\alpha_2$ we have been looking for.
+
+As a last addendum, we go ahead and compute the $\alpha$ associated to $c_2$. Namely, we want to compute
+\begin{align*}
+	\alpha\left(\sigma^cv(u)\right) &= \prod_{i=0}^{n-1}c\left(\sigma^i,\sigma\right)\left(\sigma^cv(u)\right) \\
+	&= i_{\sigma^cv(u)}\omega_u^{\displaystyle\sum_{i=0}^{n-1}\bigg\lfloor{\frac{\left[\big\lfloor\frac{i+[-c]_{d_u}}{d_u}\big\rfloor\right]_{n_u}+\left[\big\lfloor\frac{i+1+[-c]_{d_u}}{d_u}\big\rfloor-\big\lfloor\frac{i+[-c]_{d_u}}{d_u}\big\rfloor\right]_{n_u}}{n_u}}\bigg\rfloor}.
+\end{align*}
+It turns out that the giant sum is just $1$, which we outsource to the following lemma.
+\begin{lemma}
+	Let $n,d>0$ be positive integers. Then, for any $c\in[0,d)$, we have
+	\[\sum_{i=0}^{nd-1}\bigg\lfloor{\frac{\left[\big\lfloor\frac{i+c}{d}\big\rfloor\right]_{n}+\left[\big\lfloor\frac{i+1+c}{d}\big\rfloor-\big\lfloor\frac{i+c}{d}\big\rfloor\right]_{n}}{n}}\bigg\rfloor=1.\]
+\end{lemma}
+\begin{proof}
+	Note that each term in the sum is either $0$ or $1$ because the terms take the form $\floor{\frac{a+b}n}$ where $0\le a,b<n$. As such, we are counting the number of nonzero terms in the sum.
+
+	Well, we claim that the term is nonzero if and only if $i=nd-c-1$. Note that $n,d>0$ and $c<d$ implies that $nd-c-1$ is a valid input in $[0,nd-1)$. Anyway, we start by showing that, if the term
+	\[\bigg\lfloor{\frac{\left[\big\lfloor\frac{i+c}{d}\big\rfloor\right]_{n}+\left[\big\lfloor\frac{i+1+c}{d}\big\rfloor-\big\lfloor\frac{i+c}{d}\big\rfloor\right]_{n}}{n}}\bigg\rfloor\]
+	is nonzero, then $i=nd-c-1$. Note that $\big\lfloor\frac{i+1+c}{d}\big\rfloor-\big\lfloor\frac{i+c}{d}\big\rfloor$ must be positive for this to be possible, or else the entire numerator is less than $n$. However, for this to be positive, we need $i+1+c$ to be a multiple of $d$, which means
+	\[i\equiv-c-1\pmod d.\]
+	Even still, we don't get much from this, only that $\big\lfloor\frac{i+1+c}{d}\big\rfloor-\big\lfloor\frac{i+c}{d}\big\rfloor=1$. As such, we're going to need
+	\[\left[\left\lfloor\frac{i+c}{d}\right\rfloor\right]_n=n-1\]
+	for our term to be nonzero. Of course, $i<nd$ and $c<d$, so $\frac{i+c}d<n$, so we don't even have to worry about modding out by $n$ here. As such, we really just need $\frac{i+c}d\ge n-1$, which translates into
+	\[i\ge nd-c-d.\]
+	Combining this with the fact that $i<nd$ and $i\equiv-c-1\pmod d$, we see that we are forced to have $i=nd-c-1$.
+
+	We finish by remarking that $i=nd-c-1$ will give
+	\[\bigg\lfloor{\frac{\left[\big\lfloor\frac{i+c}{d}\big\rfloor\right]_{n}+\left[\big\lfloor\frac{i+1+c}{d}\big\rfloor-\big\lfloor\frac{i+c}{d}\big\rfloor\right]_{n}}{n}}\bigg\rfloor=\floor{\frac{n-1+1}n}=1\]
+	as discussed above. This completes the proof.
+\end{proof}
+In total, our value of $\alpha$ comes out to be
+\[\boxed{\alpha\colon\sigma^cv(u) \mapsto i_{\sigma^cv(u)}\omega_u}.\]
+This completes our computation.
 
 \printbibliography[heading=bibintoc,title={References}]
 

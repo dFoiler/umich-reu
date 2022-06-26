@@ -589,851 +589,128 @@ Though we have proven everything we set out to do in \autoref{sec:overview}, the
 % 	As in the proof of \autoref{cor:computeh2x}, we note $\delta\colon H^1(G,\coker\mathcal F)\to H^2(G,X)$ is an isomorphism, so this follows from \autoref{prop:finishh1cokerFcomputation}.
 % \end{proof}
 
-\subsection{Some Cup Product Computations}
-We take a brief intermission to establish a little theory on cup products. In this section, we let $G$ denote a generic finite group (not necessarily assumed to be abelian) and $A$ a $G$-module.
-\begin{lemma}[\cite{bonn-lectures}, Proposition~I.5.3] \label{lem:cupproductmorphism}
-	Let $G$ be a finite group. Given any $G$-modules $A,B,C$ with a $G$-module homomorphism $\varphi\colon B\to C$, the following diagram commutes for any $p,q\in\ZZ$ and $[a]\in\widehat H^p(G,A)$.
-	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF5wKEcsQikiXSxbMSwwLCJcXHdpZGVoYXQgSF5wKEcsQykiXSxbMCwxLCJcXHdpZGVoYXQgSF57cCtxfShHLEFcXG90aW1lc19cXFpaIEIpIl0sWzEsMSwiXFx3aWRlaGF0IEhee3ArcX0oRyxBXFxvdGltZXNfXFxaWiBDKSJdLFswLDEsIlxcdmFycGhpIl0sWzIsMywiXFx2YXJwaGkiXSxbMCwyLCJhXFxjdXAgLSIsMl0sWzEsMywiYVxcY3VwIC0iXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		{\widehat H^q(G,B)} & {\widehat H^q(G,C)} \\
-		{\widehat H^{p+q}(G,A\otimes_\ZZ B)} & {\widehat H^{p+q}(G,A\otimes_\ZZ C)}
-		\arrow["\varphi", from=1-1, to=1-2]
-		\arrow["\id_A\otimes\varphi", from=2-1, to=2-2]
-		\arrow["{[a]\cup -}"', from=1-1, to=2-1]
-		\arrow["{[a]\cup -}", from=1-2, to=2-2]
-	\end{tikzcd}\]
-\end{lemma}
-\begin{proof}
-	When $p,q\ge0$, we can argue directly. Indeed, we claim that the diagram commutes on the level of homogeneous cochains: let $[a]\in\widehat H^p(G,A)$ and $[b]\in\widehat H^q(G,B)$ be cohomology classes represented by the homogeneous cochains $a\in[a]$ and $b\in[b]$. Tracking along the top of the diagram, we see
-	\begin{align*}
-		(a\cup\varphi(b))(g_0,\ldots,g_{p+q}) &= a(g_0,\ldots,g_p)\otimes\varphi(b)(g_p,\ldots,g_{p+1}) \\
-		&= a(g_0,\ldots,g_p)\otimes\varphi(b(g_p,\ldots,g_{p+1})).
-	\end{align*}
-	Tracking along the bottom of the diagram, we see
-	\begin{align*}
-		(\id_A\otimes\varphi)(a\cup b)(g_0,\ldots,g_{p+q}) &= (\id_A\otimes\varphi)(a(g_0,\ldots,g_p)\otimes b(g_p,\ldots,g_{p+q})) \\
-		&= a(g_0,\ldots,g_p)\otimes\varphi(b(g_p,\ldots,g_{p+q})),
-	\end{align*}
-	which is equal. This completes the proof in the case of $p,q\ge0$.
-
-	We will only need the case of $p,q\ge0$ in the application, but we will go ahead and do the general case now; we dimension-shift $p$ and $q$ downwards. For example, to shift $p$ downwards, we note that the (split) short exact sequence
-	\begin{equation}
-		0\to A\otimes_\ZZ I_G\to A\otimes_\ZZ\ZZ[G]\to A\to0 \label{eq:standardashift}
-	\end{equation}
-	induces the isomorphism $\delta\colon\widehat H^{p-1}(G,A)\to\widehat H^p(G,I_G\otimes_\ZZ A)$. As such, given $a\in\widehat H^{p-1}(G,A)$, the inductive hypothesis reassures that the following diagram commutes.
-	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF5wKEcsQikiXSxbMSwwLCJcXHdpZGVoYXQgSF5wKEcsQykiXSxbMCwxLCJcXHdpZGVoYXQgSF57cCtxfShHLElfR1xcb3RpbWVzX1xcWlogQVxcb3RpbWVzX1xcWlogQikiXSxbMSwxLCJcXHdpZGVoYXQgSF57cCtxfShHLElfR1xcb3RpbWVzX1xcWlogQVxcb3RpbWVzX1xcWlogQykiXSxbMCwxLCJcXHZhcnBoaSJdLFsyLDMsIlxcdmFycGhpIl0sWzAsMiwiXFxkZWx0YShhKVxcY3VwIC0iLDJdLFsxLDMsIlxcZGVsdGEoYSlcXGN1cCAtIl1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		{\widehat H^q(G,B)} & {\widehat H^q(G,C)} \\
-		{\widehat H^{p+q}(G,I_G\otimes_\ZZ A\otimes_\ZZ B)} & {\widehat H^{p+q}(G,I_G\otimes_\ZZ A\otimes_\ZZ C)}
-		\arrow["\varphi", from=1-1, to=1-2]
-		\arrow["\varphi", from=2-1, to=2-2]
-		\arrow["{\delta(a)\cup -}"', from=1-1, to=2-1]
-		\arrow["{\delta(a)\cup -}", from=1-2, to=2-2]
-	\end{tikzcd}\]
-	In other words, all $b\in\widehat H^q(G,B)$ have $\varphi(\delta(a)\cup b)=\delta(a)\cup\varphi(b)$.
-	
-	Now, because \autoref{eq:standardashift} is split, we can hit it with $-\otimes_\ZZ B$ and $-\otimes_\ZZ C$ to induce the following commutative diagram with exact rows.
-	% https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIkFcXG90aW1lc19cXFpaIElfR1xcb3RpbWVzX1xcWlogQiJdLFsyLDAsIkFcXG90aW1lc19cXFpaXFxaWltHXVxcb3RpbWVzX1xcWlogQiJdLFszLDAsIkFcXG90aW1lc19cXFpaIEIiXSxbNCwwLCIwIl0sWzEsMSwiQVxcb3RpbWVzX1xcWlogSV9HXFxvdGltZXNfXFxaWiBDIl0sWzIsMSwiQVxcb3RpbWVzX1xcWlpcXFpaW0ddXFxvdGltZXNfXFxaWiBDIl0sWzMsMSwiQVxcb3RpbWVzX1xcWlogQyJdLFswLDEsIjAiXSxbNCwxLCIwIl0sWzAsMV0sWzEsMl0sWzIsM10sWzMsNF0sWzgsNV0sWzUsNl0sWzYsN10sWzcsOV0sWzEsNSwiXFx2YXJwaGkiLDJdLFsyLDYsIlxcdmFycGhpIiwyXSxbMyw3LCJcXHZhcnBoaSIsMl1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		0 & {A\otimes_\ZZ I_G\otimes_\ZZ B} & {A\otimes_\ZZ\ZZ[G]\otimes_\ZZ B} & {A\otimes_\ZZ B} & 0 \\
-		0 & {A\otimes_\ZZ I_G\otimes_\ZZ C} & {A\otimes_\ZZ\ZZ[G]\otimes_\ZZ C} & {A\otimes_\ZZ C} & 0
-		\arrow[from=1-1, to=1-2]
-		\arrow[from=1-2, to=1-3]
-		\arrow[from=1-3, to=1-4]
-		\arrow[from=1-4, to=1-5]
-		\arrow[from=2-1, to=2-2]
-		\arrow[from=2-2, to=2-3]
-		\arrow[from=2-3, to=2-4]
-		\arrow[from=2-4, to=2-5]
-		\arrow["\varphi"', from=1-2, to=2-2]
-		\arrow["\varphi"', from=1-3, to=2-3]
-		\arrow["\varphi"', from=1-4, to=2-4]
-	\end{tikzcd}\]
-	Letting $\delta_B\colon\widehat H^{p-1}(A\otimes_\ZZ B)\to\widehat H^p(I_G\otimes_\ZZ A\otimes_\ZZ B)$ and $\delta_C\colon\widehat H^{p-1}(A\otimes_\ZZ B)\to\widehat H^p(I_G\otimes_\ZZ A\otimes_\ZZ B)$ denote the corresponding isomorphisms (note that the middle terms are induced and hence acyclic), we note that the functoriality of boundary morphisms tells us that $\varphi\delta_B=\delta_C\varphi$. In total, it follows that $b\in\widehat H^q(G,B)$ will have
-	\[\delta_C(\varphi(a\cup b))=\varphi(\delta_B(a\cup b))=\varphi(\delta(a)\cup b)\stackrel*=\delta(a)\cup\varphi(b)=\delta_C(a\cup\varphi(b)),\]
-	where we have used the inductive hypothesis at $\stackrel*=$. Because $\delta_C$ is an isomorphism, this completes the step to shift $p$ downwards to $p-1$.
-
-	Shifting $q$ downwards is similar. This time we start with the following commutative diagram whose rows are (split) short exact sequences.
-	% https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIklfR1xcb3RpbWVzX1xcWlogQiJdLFsyLDAsIlxcWlpbR11cXG90aW1lc19cXFpaIEIiXSxbMywwLCJCIl0sWzQsMCwiMCJdLFsxLDEsIklfR1xcb3RpbWVzX1xcWlogQyJdLFsyLDEsIlxcWlpbR11cXG90aW1lc19cXFpaIEMiXSxbMywxLCJDIl0sWzAsMSwiMCJdLFs0LDEsIjAiXSxbMCwxXSxbMSwyXSxbMiwzXSxbMyw0XSxbOCw1XSxbNSw2XSxbNiw3XSxbNyw5XSxbMSw1LCJcXHZhcnBoaSIsMl0sWzIsNiwiXFx2YXJwaGkiLDJdLFszLDcsIlxcdmFycGhpIiwyXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		0 & {I_G\otimes_\ZZ B} & {\ZZ[G]\otimes_\ZZ B} & B & 0 \\
-		0 & {I_G\otimes_\ZZ C} & {\ZZ[G]\otimes_\ZZ C} & C & 0
-		\arrow[from=1-1, to=1-2]
-		\arrow[from=1-2, to=1-3]
-		\arrow[from=1-3, to=1-4]
-		\arrow[from=1-4, to=1-5]
-		\arrow[from=2-1, to=2-2]
-		\arrow[from=2-2, to=2-3]
-		\arrow[from=2-3, to=2-4]
-		\arrow[from=2-4, to=2-5]
-		\arrow["\varphi"', from=1-2, to=2-2]
-		\arrow["\varphi"', from=1-3, to=2-3]
-		\arrow["\varphi"', from=1-4, to=2-4]
-	\end{tikzcd}\]
-	In particular, we let $\delta_B'\colon\widehat H^{q-1}(G,B)\to\widehat H^q(G,I_G\otimes_\ZZ B)$ and $\delta_C'\colon\widehat H^{q-1}(G,B)\to\widehat H^q(G,I_G\otimes_\ZZ C)$ denote the induced isomorphisms, and again functoriality of the boundary morphisms tells us that $\varphi\delta_B=\delta_C\varphi$. Now, the inductive hypothesis tells us that the following diagram commutes for any $a\in\widehat H^p(G,A)$.
-	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF5wKEcsSV9HXFxvdGltZXNfXFxaWiBCKSJdLFsxLDAsIlxcd2lkZWhhdCBIXnAoRyxJX0dcXG90aW1lc19cXFpaIEMpIl0sWzAsMSwiXFx3aWRlaGF0IEhee3ArcX0oRyxBXFxvdGltZXNfXFxaWiBJX0dcXG90aW1lc19cXFpaIEIpIl0sWzEsMSwiXFx3aWRlaGF0IEhee3ArcX0oRyxBXFxvdGltZXNfXFxaWiBJX0dcXG90aW1lc19cXFpaIEMpIl0sWzAsMSwiXFx2YXJwaGkiXSxbMiwzLCJcXHZhcnBoaSJdLFswLDIsImFcXGN1cCAtIiwyXSxbMSwzLCJhXFxjdXAgLSJdXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		{\widehat H^q(G,I_G\otimes_\ZZ B)} & {\widehat H^q(G,I_G\otimes_\ZZ C)} \\
-		{\widehat H^{p+q}(G,A\otimes_\ZZ I_G\otimes_\ZZ B)} & {\widehat H^{p+q}(G,A\otimes_\ZZ I_G\otimes_\ZZ C)}
-		\arrow["\varphi", from=1-1, to=1-2]
-		\arrow["\varphi", from=2-1, to=2-2]
-		\arrow["{a\cup -}"', from=1-1, to=2-1]
-		\arrow["{a\cup -}", from=1-2, to=2-2]
-	\end{tikzcd}\]
-	Namely, any $b\in\widehat H^{p-1}(G,B)$ has
-	\begin{align*}
-		\delta_C'(a\cup\varphi(b)) &= (-1)^p\big(a\cup\delta_C'(\varphi(b))\big) \\
-		&= (-1)^p\big(a\cup\varphi(\delta_B'(b))\big) \\
-		&\stackrel*= (-1)^p\varphi(a\cup\delta_B'(b)) \\
-		&= (-1)^p\cdot(-1)^p\varphi(\delta_B'(a\cup b)) \\
-		&= \delta_C'(\varphi(a\cup b)),
-	\end{align*}
-	where we've applied the inductive hypothesis at $\stackrel*=$. Because $\delta_C'$ is an isomorphism, this completes shifting $q$ downwards to $q-1$.
-\end{proof}
-\begin{remark}
-	An analogous argument shows that a $G$-module homomorphism $\psi\colon A\to B$ induces the following commutative diagram, for any $p,q\in\ZZ$ and $c\in\widehat H^q(G,C)$.
-	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF5wKEcsQSkiXSxbMSwwLCJcXHdpZGVoYXQgSF5wKEcsQikiXSxbMCwxLCJcXHdpZGVoYXQgSF57cCtxfShHLEFcXG90aW1lc19cXFpaIEMpIl0sWzEsMSwiXFx3aWRlaGF0IEhee3ArcX0oRyxCXFxvdGltZXNfXFxaWiBDKSJdLFswLDEsIlxccHNpIl0sWzIsMywiXFxwc2kiXSxbMCwyLCItXFxjdXAgYyIsMl0sWzEsMywiLVxcY3VwIGMiLDJdXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		{\widehat H^p(G,A)} & {\widehat H^p(G,B)} \\
-		{\widehat H^{p+q}(G,A\otimes_\ZZ C)} & {\widehat H^{p+q}(G,B\otimes_\ZZ C)}
-		\arrow["\psi", from=1-1, to=1-2]
-		\arrow["\psi", from=2-1, to=2-2]
-		\arrow["{-\cup c}"', from=1-1, to=2-1]
-		\arrow["{-\cup c}"', from=1-2, to=2-2]
-	\end{tikzcd}\]
-\end{remark}
-In a different direction, we will want a duality result. To begin, we recall the following.
-\begin{prop}[\cite{cartan-eilenberg}, Corollary~XII.6.5] \label{prop:ceduality}
-	Let $G$ be a finite group and $A$ be any $G$-module. Then the cup-product pairing induces an isomorphism
-	\[\widehat H^{i-1}(G,\op{Hom}_\ZZ(A,\QQ/\ZZ))\to\op{Hom}_\ZZ\left(\widehat H^{-i}(G,A),\widehat H^{-1}(G,\QQ/\ZZ)\right)\]
-	for all $i\in\ZZ$. Indeed, this is a duality upon identifying $\widehat H^{-1}(G,\QQ/\ZZ)$ with $\QQ/\ZZ$.
-\end{prop}
-We will use this to prove the following.
-\begin{proposition} \label{prop:abstractintegralduality}
-	Let $G$ be a finite group, and let $X$ be a finitely generated $\ZZ$-free $G$-module. Then the cup-product pairing induces an isomorphism
-	\[\widehat H^i(G,\op{Hom}_\ZZ(X,\ZZ))\to\op{Hom}_\ZZ\left(\widehat H^{-i}(G,X),\widehat H^0(G,\ZZ)\right)\]
-	for all $i\in\ZZ$. Indeed, this is a duality upon identifying $\widehat H^0(G,\ZZ)$ with $\frac1{\#G}\ZZ/\ZZ\subseteq\QQ/\ZZ$.
-\end{proposition}
-\begin{proof}
-	This proof is analogous to \cite{cartan-eilenberg}, Theorem XII.6.6. The key to the proof is the short exact sequence
-	\begin{equation}
-		0\to\ZZ\to\QQ\to\QQ/\ZZ\to0. \label{eq:divisibleses}
-	\end{equation}
-	The main point is that $X$ being finitely generated and $\ZZ$-free implies that $X$ is projective (as an abelian group), so we can apply $\op{Hom}_\ZZ(X,-)$ to get out the short exact sequence
-	\begin{equation}
-		0\to\op{Hom}_\ZZ(X,\ZZ)\to\op{Hom}_\ZZ(X,\QQ)\to\op{Hom}_\ZZ(X,\QQ/\ZZ)\to0. \label{eq:homdivisibleses}
-	\end{equation}
-	Now, note that the multiplication-by-$n$ endomorphism on $\op{Hom}_\ZZ(X,\QQ)$ is an isomorphism (namely, $\QQ$ is a divisible abelian group), so the same will be true of $\widehat H^i(G,\op{Hom}_\ZZ(X,\QQ))$ for any $i\in\ZZ$. However, these cohomology groups must be $\#G$-torsion, so in fact $\widehat H^i(G,\op{Hom}_\ZZ(X,\QQ))=0$ for all $i\in\ZZ$.
-
-	Similarly, we note that we can hit \autoref{eq:homdivisibleses} with the functor $-\otimes_\ZZ X$ to get another short exact sequence
-	\begin{equation}
-		0\to\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ X\to\op{Hom}_\ZZ(X,\QQ)\otimes_\ZZ X\to\op{Hom}_\ZZ(X,\QQ/\ZZ)\otimes_\ZZ X\to0. \label{eq:tensorhomdivisibleses}
-	\end{equation}
-	Notably, this is exact because $X$ is a finitely generated, torsion-free $\ZZ$-module and hence flat as a $\ZZ$-module. Now, $\op{Hom}_\ZZ(X,\QQ)\otimes_\ZZ X$ is still a divisible abelian group, so again $\widehat H^i(G,\op{Hom}_\ZZ(X,\QQ))=0$ for all $i\in\ZZ$.
-
-	The rest of the proof is tracking boundary morphisms around. Fix some $i\in\ZZ$. Note \autoref{eq:divisibleses} and \autoref{eq:homdivisibleses} and \autoref{eq:tensorhomdivisibleses} induce boundary isomorphisms
-	\[\arraycolsep=1.4pt\begin{array}{rlcl}
-		\delta \colon& \widehat H^{-1}(G,\QQ/\ZZ) &\to& \widehat H^0(G,\ZZ) \\
-		\delta_h \colon& \widehat H^{i-1}(G,\op{Hom}_\ZZ(X,\QQ/\ZZ))&\to&\widehat H^i(G,\op{Hom}_\ZZ(X,\ZZ)) \\
-		\delta_t \colon& \widehat H^{-1}(G,\op{Hom}_\ZZ(\QQ/\ZZ)\otimes_\ZZ X)&\to&\widehat H^0(G,\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ X).
-	\end{array}\]
-	We also note that we have a morphism of short exact sequences
-	% https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIlxcb3B7SG9tfV9cXFpaKFgsXFxaWilcXG90aW1lc19cXFpaIFgiXSxbMiwwLCJcXG9we0hvbX1fXFxaWihYLFxcUVEpXFxvdGltZXNfXFxaWiBYIl0sWzMsMCwiXFxvcHtIb219X1xcWlooWCxcXFFRL1xcWlopXFxvdGltZXNfXFxaWiBYIl0sWzAsMSwiMCJdLFs0LDAsIjAiXSxbNCwxLCIwIl0sWzEsMSwiXFxaWiJdLFsyLDEsIlxcUVEiXSxbMywxLCJcXFFRL1xcWloiXSxbMCwxXSxbMSwyXSxbMiwzXSxbMyw1XSxbNCw3XSxbNyw4XSxbOCw5XSxbOSw2XSxbMSw3LCJcXGV0YV9cXFpaIiwyXSxbMiw4LCJcXGV0YV9cXFFRIiwyXSxbMyw5LCJcXGV0YV97XFxRUS9cXFpafSIsMl1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		0 & {\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ X} & {\op{Hom}_\ZZ(X,\QQ)\otimes_\ZZ X} & {\op{Hom}_\ZZ(X,\QQ/\ZZ)\otimes_\ZZ X} & 0 \\
-		0 & \ZZ & \QQ & {\QQ/\ZZ} & 0
-		\arrow[from=1-1, to=1-2]
-		\arrow[from=1-2, to=1-3]
-		\arrow[from=1-3, to=1-4]
-		\arrow[from=1-4, to=1-5]
-		\arrow[from=2-1, to=2-2]
-		\arrow[from=2-2, to=2-3]
-		\arrow[from=2-3, to=2-4]
-		\arrow[from=2-4, to=2-5]
-		\arrow["{\eta_\ZZ}"', from=1-2, to=2-2]
-		\arrow["{\eta_\QQ}"', from=1-3, to=2-3]
-		\arrow["{\eta_{\QQ/\ZZ}}"', from=1-4, to=2-4]
-	\end{tikzcd}\]
-	where the $\eta_\bullet$ are evaluation maps. For peace of mind, we can check that the squares commute by the following lemma.
-	\begin{lemma} \label{lem:evcommutes}
-		Let $G$ be a group and $A,B,C$ be $G$-modules with a $G$-module homomorphism $\varphi\colon B\to C$. Then the diagram
-		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJBXFxvdGltZXNfXFxaWlxcb3B7SG9tfShBLEIpIl0sWzEsMCwiQVxcb3RpbWVzX1xcWlooQSxDKSJdLFswLDEsIkIiXSxbMSwxLCJDIl0sWzAsMSwiXFx2YXJwaGkiXSxbMiwzLCJcXHZhcnBoaSJdLFswLDJdLFsxLDNdXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-		\[\begin{tikzcd}
-			{A\otimes_\ZZ\op{Hom}_\ZZ(A,B)} & {A\otimes_\ZZ\op{Hom}_\ZZ(A,C)} \\
-			B & C
-			\arrow["\varphi", from=1-1, to=1-2]
-			\arrow["\varphi", from=2-1, to=2-2]
-			\arrow[from=1-1, to=2-1]
-			\arrow[from=1-2, to=2-2]
-		\end{tikzcd}\]
-		commutes, where the vertical homomorphisms are evaluation.
-	\end{lemma}
-	\begin{proof}
-		We simply pick up some $a\otimes f\in A\otimes_\ZZ\op{Hom}_\ZZ(A,B)$ and track through
-		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJhXFxvdGltZXMgZiJdLFsxLDAsImFcXG90aW1lc1xcdmFycGhpXFxjaXJjIGYiXSxbMCwxLCJmKGEpIl0sWzEsMSwiXFx2YXJwaGkoZihhKSkiXSxbMCwxLCJcXHZhcnBoaSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMiwzLCJcXHZhcnBoaSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMCwyLCIiLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzEsMywiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-		\[\begin{tikzcd}
-			{a\otimes f} & {a\otimes\varphi\circ f} \\
-			{f(a)} & {\varphi(f(a))}
-			\arrow["\varphi", maps to, from=1-1, to=1-2]
-			\arrow["\varphi", maps to, from=2-1, to=2-2]
-			\arrow[maps to, from=1-1, to=2-1]
-			\arrow[maps to, from=1-2, to=2-2]
-		\end{tikzcd}\]
-		which finishes the proof.
-	\end{proof}
-	Now, \autoref{prop:ceduality} tells us that
-	\[\arraycolsep=1.4pt\begin{array}{ccc}
-		\widehat H^{i-1}(G,\op{Hom}_\ZZ(X,\QQ/\ZZ)) &\to& \op{Hom}_\ZZ\left(\widehat H^{-i}(G,X),\widehat H^{-1}(G,\QQ/\ZZ)\right) \\
-		a &\mapsto& (b\mapsto\eta_{\QQ/\ZZ}(a\cup b))
-	\end{array}\]
-	is an isomorphism. Composing this with various other isomorphisms, we can build the isomorphism
-	\[\arraycolsep=1.4pt\begin{array}{ccccccc}
-		\widehat H^i(G,X_*) &\to& \widehat H^{i-1}(G,X^*) &\to& \op{Hom}\left(\widehat H^{-i}(G,X),\widehat H^{-1}(G,\QQ/\ZZ)\right) &\to& \op{Hom}\left(\widehat H^{-i}(G,X),\widehat H^0(G,\QQ/\ZZ)\right)  \\
-		a &\mapsto& \delta_h^{-1}a &\mapsto& \left(b\mapsto\eta_{\QQ/\ZZ}(\delta_h^{-1}a\cup b)\right) &\mapsto& \left(b\mapsto\delta\eta_{\QQ/\ZZ}(\delta_h^{-1}a\cup b)\right)
-	\end{array}\]
-	where $X_*\coloneqq\op{Hom}_\ZZ(X,\ZZ)$ and $X^*\coloneqq\op{Hom}_\ZZ(X,\QQ/\ZZ)$, for brevity. This gives an isomorphism between the desired objects, but to prove the result we need to show that the above map is $a\mapsto(b\mapsto\eta_\ZZ(a\cup b))$. Well, given $a\in\widehat H^i(G,\op{Hom}_\ZZ(X,\ZZ))$ and $b\in\widehat H^{-i}(G,X)$, properties of the boundary morphisms tells us
-	\begin{align*}
-		\delta\eta_{\QQ/\ZZ}\left(\delta_h^{-1}a\cup b\right) &= \eta_\ZZ\delta_t\left(\delta_h^{-1}a\cup b\right) \\
-		&= \eta_\ZZ\left(\delta_h\delta_h^{-1}a\cup b\right) \\
-		&= \eta_\ZZ(a\cup b),
-	\end{align*}
-	which is what we wanted.
-\end{proof}
-\begin{remark}
-	The hypothesis that $X$ be $\ZZ$-free is necessary: the statement is false for $X=\ZZ/\#G\ZZ$ and $i=0$, for example.
-\end{remark}
-We close this subsection with a dimension-shifting result.
-\begin{lemma} \label{lem:hompreservesinduced}
-	Let $G$ be a finite group and $X$ a $G$-module. If $M$ is an induced $G$-module, then $\op{Hom}_\ZZ(X,M)$ is also an induced $G$-module.
-\end{lemma}
-\begin{proof}
-	By definition, we can write $M\coloneqq\op{Hom}_\ZZ(\ZZ[G],A)$ for some $G$-module $A$, where $A$ has perhaps trivial $G$-action. Now, we claim that
-	\[\arraycolsep=1.4pt\begin{array}{cccc}
-		\varphi\colon& \op{Hom}_\ZZ(X,\op{Hom}_\ZZ(\ZZ[G],A)) &\simeq& \op{Hom}_\ZZ(\ZZ[G],\op{Hom}_\ZZ(X,A)) \\
-		\varphi\colon& f &\mapsto& \big(z\mapsto(x\mapsto f(x)(z))\big)
-	\end{array}\]
-	is an isomorphism of $G$-modules. This will finish because the right-hand $G$-module is induced.
-	
-	Now, $\varphi$ s a homomorphism of abelian groups because
-	\[\varphi(f+f')(z)(x)=(f+g)(x)(z)=\varphi(f)(z)(x)+\varphi(f')(z)(x)\]
-	for any $x$ and $z$ and $f,f'\in\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(\ZZ[G],A))$. This is a $G$-module homomorphism because any $g\in G$ and $f\in\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(\ZZ[G],A))$ has
-	\begin{align*}
-		\varphi(gf)(z)(x) &= \big(g\cdot\varphi(f)(g^{-1}z)\big)(x) \\
-		&= g\cdot\varphi(f)(g^{-1}z)(g^{-1}x) \\
-		&= g\cdot f(g^{-1}x)(g^{-1}z) \\
-		&= \big(g\cdot f(g^{-1}x)\big)(z) \\
-		&= (gf)(x)(z) \\
-		&= \varphi(gf)(x)(z)
-	\end{align*}
-	for each $x$ and $z$.
-
-	Now, we define
-	\[\arraycolsep=1.4pt\begin{array}{cccc}
-		\psi\colon& \op{Hom}_\ZZ(\ZZ[G],\op{Hom}_\ZZ(X,A)) &\simeq& \op{Hom}_\ZZ(X,\op{Hom}_\ZZ(\ZZ[G],A)) \\
-		\psi\colon& f &\mapsto& \big(x\mapsto(z\mapsto f(z)(x))\big)
-	\end{array}\]
-	to be the inverse morphism. The exact same checks show that this is a $G$-module homomorphism, and it is not hard to see that
-	\[\varphi\psi(f)(z)(x)=\psi(f)(z)(x)=f(x)(z),\]
-	so $\varphi\circ\psi$ is the identity; similarly, $\psi\circ\varphi$ is the identity.
-\end{proof}
-\begin{proposition} \label{prop:dimshiftcupisos}
-	Let $G$ be a finite group and $X$ a $G$-module. Further, suppose that we have indices $p,q\in\ZZ$ and $c\in H^p(G,X)$ such that the cup-product map
-	\[c\cup-\colon\widehat H^q(G,\op{Hom}_\ZZ(X,A))\to\widehat H^{p+q}(G,A)\]
-	is an isomorphism for all $G$-modules $A$. Then the cup-product map
-	\[c\cup-\colon\widehat H^j(G,\op{Hom}_\ZZ(X,A))\to\widehat H^{p+j}(G,A)\]
-	is an isomorphism for all $G$-modules $A$ and indices $j\in\ZZ$.
-\end{proposition}
-\begin{proof}
-	We merely have to shift $q$ up and down. To shift downwards, we suppose that the cup-product map is always an isomorphism for $j$, and we show that it is always an isomorphism $j-1$. Namely, fix a $G$-module $A$, and we are interested in showing that the cup-product map
-	\[c\cup-\colon\widehat H^{j-1}(G,\op{Hom}_\ZZ(X,Z))\to\widehat H^{p+j-1}(G,A)\]
-	is an isomorphism. To do so, we note the short exact sequence
-	\begin{equation}
-		0\to I_G\to\ZZ[G]\to\ZZ\to0 \label{eq:shiftingses}
-	\end{equation}
-	which splits over $\ZZ$ and thus gives us the short exact sequences
-	% https://q.uiver.app/?q=WzAsMTUsWzAsMCwiMCJdLFsxLDAsIlxcb3B7SG9tfV9cXFpaKFgsSV9HXFxvdGltZXNfXFxaWiBBKSJdLFsyLDAsIlxcb3B7SG9tfV9cXFpaKFgsXFxaWltHXVxcb3RpbWVzX1xcWlogQSkiXSxbMywwLCJcXG9we0hvbX1fXFxaWihYLEEpIl0sWzQsMCwiMCJdLFswLDEsIjAiXSxbNCwxLCIwIl0sWzEsMSwiWFxcb3RpbWVzX1xcWlpcXG9we0hvbX1fXFxaWihYLElfR1xcb3RpbWVzX1xcWlogQSkiXSxbMiwxLCJYXFxvdGltZXNfXFxaWlxcb3B7SG9tfV9cXFpaKFgsXFxaWltHXVxcb3RpbWVzX1xcWlogQSkiXSxbMywxLCJYXFxvdGltZXNfXFxaWlxcb3B7SG9tfV9cXFpaKFgsQSkiXSxbMCwyLCIwIl0sWzEsMiwiSV9HXFxvdGltZXNfXFxaWiBBIl0sWzIsMiwiXFxaWltHXVxcb3RpbWVzX1xcWlogQSJdLFszLDIsIkEiXSxbNCwyLCIwIl0sWzAsMV0sWzEsMl0sWzIsM10sWzMsNF0sWzUsN10sWzcsOF0sWzgsOV0sWzksNl0sWzEwLDExXSxbMTEsMTJdLFsxMiwxM10sWzEzLDE0XSxbNywxMSwiXFxldGFfe0lfR30iLDJdLFs4LDEyLCJcXGV0YV97XFxaWltHXX0iLDJdLFs5LDEzLCJcXGV0YV9BIiwyXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		0 & {\op{Hom}_\ZZ(X,I_G\otimes_\ZZ A)} & {\op{Hom}_\ZZ(X,\ZZ[G]\otimes_\ZZ A)} & {\op{Hom}_\ZZ(X,A)} & 0 \\
-		0 & {X\otimes_\ZZ\op{Hom}_\ZZ(X,I_G\otimes_\ZZ A)} & {X\otimes_\ZZ\op{Hom}_\ZZ(X,\ZZ[G]\otimes_\ZZ A)} & {X\otimes_\ZZ\op{Hom}_\ZZ(X,A)} & 0 \\
-		0 & {I_G\otimes_\ZZ A} & {\ZZ[G]\otimes_\ZZ A} & A & 0
-		\arrow[from=1-1, to=1-2]
-		\arrow[from=1-2, to=1-3]
-		\arrow[from=1-3, to=1-4]
-		\arrow[from=1-4, to=1-5]
-		\arrow[from=2-1, to=2-2]
-		\arrow[from=2-2, to=2-3]
-		\arrow[from=2-3, to=2-4]
-		\arrow[from=2-4, to=2-5]
-		\arrow[from=3-1, to=3-2]
-		\arrow[from=3-2, to=3-3]
-		\arrow[from=3-3, to=3-4]
-		\arrow[from=3-4, to=3-5]
-		\arrow["{\eta_{I_G}}"', from=2-2, to=3-2]
-		\arrow["{\eta_{\ZZ[G]}}"', from=2-3, to=3-3]
-		\arrow["{\eta_A}"', from=2-4, to=3-4]
-	\end{tikzcd}\]
-	where the $\eta_\bullet$s are evaluation maps; in particular, the bottom two rows commute by \autoref{lem:evcommutes} and thus give a morphism of short exact sequences. These short exact sequences give us boundary morphisms
-	\[\arraycolsep=1.4pt\begin{array}{rlcl}
-		\delta\colon& \widehat H^{p+j-1}(G,A) &\to& \widehat H^{p+j}(G,I_G\otimes_\ZZ A) \\
-		\delta_h\colon& \widehat H^{j-1}(G,\op{Hom}_\ZZ(X,A)) &\to& \widehat H^j(G,\op{Hom}_\ZZ(X,I_G\otimes_\ZZ A)) \\
-		\delta_t\colon& \widehat H^{p+j-1}(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,A)) &\to& \widehat H^{p+j}(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,I_G\otimes_\ZZ A)).
-	\end{array}\]
-	Notably, $\delta$ is an isomorphism because $\ZZ[G]\otimes_\ZZ A$ is induced; from this it follows that $\op{Hom}_\ZZ(X,\ZZ[G]\otimes_\ZZ A)$ is also induced by \autoref{lem:hompreservesinduced}, implying that $\delta_h$ is also an isomorphism.
-	
-	Now, the key to this dimension-shifting is claiming that the diagram
-	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF57ai0xfShHLFxcb3B7SG9tfV9cXFpaKFgsQSkpIl0sWzEsMCwiXFx3aWRlaGF0IEhee3Arai0xfShHLEEpIl0sWzAsMSwiXFx3aWRlaGF0IEhee2p9KEcsXFxvcHtIb219X1xcWlooWCxJX0dcXG90aW1lc19cXFpaIEEpKSJdLFsxLDEsIlxcd2lkZWhhdCBIXntwK2p9KEcsSV9HXFxvdGltZXNfXFxaWiBBKSJdLFswLDEsImNcXGN1cC0iXSxbMiwzLCJjXFxjdXAtIl0sWzAsMiwiXFxkZWx0YV9oIiwyXSxbMSwzLCJcXGRlbHRhIiwyXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		{\widehat H^{j-1}(G,\op{Hom}_\ZZ(X,A))} & {\widehat H^{p+j-1}(G,A)} \\
-		{\widehat H^{j}(G,\op{Hom}_\ZZ(X,I_G\otimes_\ZZ A))} & {\widehat H^{p+j}(G,I_G\otimes_\ZZ A)}
-		\arrow["{c\cup-}", from=1-1, to=1-2]
-		\arrow["{c\cup-}", from=2-1, to=2-2]
-		\arrow["{\delta_h}"', from=1-1, to=2-1]
-		\arrow["(-1)^p\delta"', from=1-2, to=2-2]
-	\end{tikzcd}\]
-	commutes. Indeed, this will be enough because the bottom row is an isomorphism by the inductive hypothesis, and the left and morphisms are isomorphisms as discussed above, which makes the top row into an isomorphism. Well, to see that the diagram commutes, we expand the diagram as follows.
-	% https://q.uiver.app/?q=WzAsNixbMCwwLCJcXHdpZGVoYXQgSF57ai0xfShHLFxcb3B7SG9tfV9cXFpaKFgsQSkpIl0sWzEsMCwiXFx3aWRlaGF0IEhee3Aran0oRyxYXFxvdGltZXNfXFxaWlxcb3B7SG9tfV9cXFpaKEEpKSJdLFswLDEsIlxcd2lkZWhhdCBIXntqfShHLFxcb3B7SG9tfV9cXFpaKFgsSV9HXFxvdGltZXNfXFxaWiBBKSkiXSxbMSwxLCJcXHdpZGVoYXQgSF57cCtqfShHLFhcXG90aW1lc19cXFpaXFxvcHtIb219X1xcWlooSV9HXFxvdGltZXNfXFxaWiBBKSkiXSxbMiwwLCJcXHdpZGVoYXQgSF57cCtqLTF9KEcsQSkiXSxbMiwxLCJcXHdpZGVoYXQgSF57cCtqfShHLElfR1xcb3RpbWVzX1xcWlogQSkiXSxbMCwxLCJjXFxjdXAtIl0sWzIsMywiY1xcY3VwLSJdLFswLDIsIlxcZGVsdGFfaCIsMl0sWzEsMywiXFxkZWx0YV90IiwyXSxbMSw0LCJcXGV0YV9BIl0sWzMsNSwiXFxldGFfe0lfR30iXSxbNCw1LCJcXGRlbHRhIiwyXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		{\widehat H^{j-1}(G,\op{Hom}_\ZZ(X,A))} & {\widehat H^{p+j-1}(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,A))} & {\widehat H^{p+j-1}(G,A)} \\
-		{\widehat H^{j}(G,\op{Hom}_\ZZ(X,I_G\otimes_\ZZ A))} & {\widehat H^{p+j}(G,X\otimes_\ZZ\op{Hom}_\ZZ(X.I_G\otimes_\ZZ A))} & {\widehat H^{p+j}(G,I_G\otimes_\ZZ A)}
-		\arrow["{c\cup-}", from=1-1, to=1-2]
-		\arrow["{c\cup-}", from=2-1, to=2-2]
-		\arrow["{\delta_h}"', from=1-1, to=2-1]
-		\arrow["{(-1)^p\delta_t}"', from=1-2, to=2-2]
-		\arrow["{\eta_A}", from=1-2, to=1-3]
-		\arrow["{\eta_{I_G}}", from=2-2, to=2-3]
-		\arrow["(-1)^p\delta"', from=1-3, to=2-3]
-	\end{tikzcd}\]
-	The left square commutes because cup products commute with boundary morphisms; the right square commutes by functoriality of boundary morphisms.
-
-	Shifting upwards is similar. Suppose that the cup-product in question is always an isomorphism for $j$, and we show that it is always an isomorphism for $j+1$. Namely, fix a $G$-module $A$, and we are interested in showing that the cup-product map
-	\[c\cup-\colon\widehat H^{j+1}(G,\op{Hom}_\ZZ(X,A))\to\widehat H^{p+j+1}(G,A)\]
-	is an isomorphism. As before, we use \autoref{eq:shiftingses} to induce the short exact sequences
-	% https://q.uiver.app/?q=WzAsMTUsWzAsMCwiMCJdLFsxLDAsIlxcb3B7SG9tfV9cXFpaKFgsQSkiXSxbMiwwLCJcXG9we0hvbX1fXFxaWihYLFxcb3B7SG9tfV9cXFpaKFxcWlpbR10sQSkpIl0sWzMsMCwiXFxvcHtIb219X1xcWlooWCxcXG9we0hvbX1fXFxaWihJX0csQSkpIl0sWzQsMCwiMCJdLFswLDEsIjAiXSxbNCwxLCIwIl0sWzEsMSwiWFxcb3RpbWVzX1xcWlpcXG9we0hvbX1fXFxaWihYLEEpIl0sWzIsMSwiWFxcb3RpbWVzX1xcWlpcXG9we0hvbX1fXFxaWihYLFxcb3B7SG9tfV9cXFpaKFxcWlpbR10sQSkpIl0sWzMsMSwiWFxcb3RpbWVzX1xcWlpcXG9we0hvbX1fXFxaWihYLFxcb3B7SG9tfV9cXFpaKElfRyxBKSkiXSxbMCwyLCIwIl0sWzEsMiwiQSJdLFsyLDIsIlxcb3B7SG9tfV9cXFpaKFxcWlpbR10sQSkiXSxbMywyLCJcXG9we0hvbX1fXFxaWihJX0csQSkiXSxbNCwyLCIwIl0sWzAsMV0sWzEsMl0sWzIsM10sWzMsNF0sWzUsN10sWzcsOF0sWzgsOV0sWzksNl0sWzEwLDExXSxbMTEsMTJdLFsxMiwxM10sWzEzLDE0XSxbNywxMSwiXFxldGFfQSIsMl0sWzgsMTIsIlxcZXRhX3tcXFpaW0ddfSIsMl0sWzksMTMsIlxcZXRhX3tJX0d9IiwyXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}[column sep=12pt]
-		0 & {\op{Hom}_\ZZ(X,A)} & {\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(\ZZ[G],A))} & {\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(I_G,A))} & 0 \\
-		0 & {X\otimes_\ZZ\op{Hom}_\ZZ(X,A)} & {X\otimes_\ZZ\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(\ZZ[G],A))} & {X\otimes_\ZZ\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(I_G,A))} & 0 \\
-		0 & A & {\op{Hom}_\ZZ(\ZZ[G],A)} & {\op{Hom}_\ZZ(I_G,A)} & 0
-		\arrow[from=1-1, to=1-2]
-		\arrow[from=1-2, to=1-3]
-		\arrow[from=1-3, to=1-4]
-		\arrow[from=1-4, to=1-5]
-		\arrow[from=2-1, to=2-2]
-		\arrow[from=2-2, to=2-3]
-		\arrow[from=2-3, to=2-4]
-		\arrow[from=2-4, to=2-5]
-		\arrow[from=3-1, to=3-2]
-		\arrow[from=3-2, to=3-3]
-		\arrow[from=3-3, to=3-4]
-		\arrow[from=3-4, to=3-5]
-		\arrow["{\eta_A}"', from=2-2, to=3-2]
-		\arrow["{\eta_{\ZZ[G]}}"', from=2-3, to=3-3]
-		\arrow["{\eta_{I_G}}"', from=2-4, to=3-4]
-	\end{tikzcd}\]
-	where the $\eta_\bullet$s are (renamed) evaluation maps. Again, the bottom rows commute by \autoref{lem:evcommutes} and hence given a morphism of short exact sequences. As before, we have the boundary morphisms
-	\[\arraycolsep=1.4pt\begin{array}{rlcl}
-		\delta\colon& \widehat H^{p+j}(G,\op{Hom}_\ZZ(I_G,A)) &\to& \widehat H^{p+j+1}(G,A) \\
-		\delta_h\colon& \widehat H^{j}(G,\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(I_G,A))) &\to& \widehat H^{j+1}(G,\op{Hom}_\ZZ(X,A)) \\
-		\delta_t\colon& \widehat H^{p+j}(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(I_G,A))) &\to& \widehat H^{p+j+1}(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,A)).
-	\end{array}\]
-	We again note that $\delta$ is an isomorphism because $\op{Hom}_\ZZ(\ZZ[G],A)$ is an induced module; thus, \autoref{lem:hompreservesinduced} tells us that $\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(\ZZ[G],A))$ is also induced, making $\delta_h$ an isomorphism as well.
-
-	Once more, the key to the dimension-shifting will be the claim that the diagram
-	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF57an0oRyxcXG9we0hvbX1fXFxaWihYLFxcb3B7SG9tfV9cXFpaKElfRyxBKSkpIl0sWzAsMSwiXFx3aWRlaGF0IEhee2orMX0oRyxcXG9we0hvbX1fXFxaWihYLEEpKSJdLFsxLDAsIlxcd2lkZWhhdCBIXntwK2p9KEcsXFxvcHtIb219X1xcWlooSV9HLEEpKSJdLFsxLDEsIlxcd2lkZWhhdCBIXntwK2orMX0oRyxBKSJdLFswLDEsIlxcZGVsdGFfaCIsMl0sWzIsMywiXFxkZWx0YSIsMl0sWzAsMiwiY1xcY3VwLSJdLFsxLDMsImNcXGN1cC0iXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		{\widehat H^{j}(G,\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(I_G,A)))} & {\widehat H^{p+j}(G,\op{Hom}_\ZZ(I_G,A))} \\
-		{\widehat H^{j+1}(G,\op{Hom}_\ZZ(X,A))} & {\widehat H^{p+j+1}(G,A)}
-		\arrow["{\delta_h}"', from=1-1, to=2-1]
-		\arrow["(-1)^p\delta"', from=1-2, to=2-2]
-		\arrow["{c\cup-}", from=1-1, to=1-2]
-		\arrow["{c\cup-}", from=2-1, to=2-2]
-	\end{tikzcd}\]
-	commutes. This will be enough because the top arrow is an isomorphism by the inductive hypothesis, and the left and right arrows are isomorphisms as discussed above, thus making the bottom arrow also an isomorphism. Now, to see that the diagram commutes, we expand out our cup products as follows.
-	% https://q.uiver.app/?q=WzAsNixbMCwwLCJcXHdpZGVoYXQgSF57an0oRyxcXG9we0hvbX1fXFxaWihYLFxcb3B7SG9tfV9cXFpaKElfRyxBKSkpIl0sWzAsMSwiXFx3aWRlaGF0IEhee2orMX0oRyxcXG9we0hvbX1fXFxaWihYLEEpKSJdLFsxLDAsIlxcd2lkZWhhdCBIXntwK2p9KEcsWFxcb3RpbWVzX1xcWlpcXG9we0hvbX1fXFxaWihJX0csQSkpIl0sWzEsMSwiXFx3aWRlaGF0IEhee3AraisxfShHLFhcXG90aW1lc19cXFpaXFxvcHtIb219X1xcWlooWCxBKSkiXSxbMiwxLCJcXHdpZGVoYXQgSF57cCtqKzF9KEcsQSkiXSxbMiwwLCJcXHdpZGVoYXQgSF57cCtqfShHLFxcb3B7SG9tfV9cXFpaKElfRyxBKSkiXSxbMCwxLCJcXGRlbHRhX2giLDJdLFsyLDMsIigtMSlecFxcZGVsdGFfdCIsMl0sWzAsMiwiY1xcY3VwLSJdLFsxLDMsImNcXGN1cC0iXSxbMiw1LCJcXGV0YV97SV9HfSJdLFszLDQsIlxcZXRhX0EiXSxbNSw0LCIoLTEpXnBcXGRlbHRhIiwyXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		{\widehat H^{j}(G,\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(I_G,A)))} & {\widehat H^{p+j}(G,X\otimes_\ZZ\op{Hom}_\ZZ(I_G,A))} & {\widehat H^{p+j}(G,\op{Hom}_\ZZ(I_G,A))} \\
-		{\widehat H^{j+1}(G,\op{Hom}_\ZZ(X,A))} & {\widehat H^{p+j+1}(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,A))} & {\widehat H^{p+j+1}(G,A)}
-		\arrow["{\delta_h}"', from=1-1, to=2-1]
-		\arrow["{(-1)^p\delta_t}"', from=1-2, to=2-2]
-		\arrow["{c\cup-}", from=1-1, to=1-2]
-		\arrow["{c\cup-}", from=2-1, to=2-2]
-		\arrow["{\eta_{I_G}}", from=1-2, to=1-3]
-		\arrow["{\eta_A}", from=2-2, to=2-3]
-		\arrow["{(-1)^p\delta}"', from=1-3, to=2-3]
-	\end{tikzcd}\]
-	The left square commutes because cup products commute with boundary morphisms, and the right square commutes by functoriality of boundary morphisms. This finishes.
-\end{proof}
-And here are some nice corollaries, tying back into our theory.
-\begin{cor} \label{cor:xhasallcupisos}
-	Fix notation as in \autoref{sec:overview}. Then, for any $G$-module $A$ and index $i\in\ZZ$, the cup-product map
-	\[[\delta(\overline c)]\cup-\colon\widehat H^i(G,\op{Hom}_\ZZ(X,A))\to\widehat H^{i+2}(G,A)\]
-	is an isomorphism.
-\end{cor}
-\begin{proof}
-	Set $p=2$ and $q=0$ and $c$ to $[\delta(\overline c)]$ in \autoref{prop:dimshiftcupisos}; the hypothesis is satisfied by combining the cup-product map of \autoref{thm:yesitisacocycle} with \autoref{prop:alternativetupleclass}. (Namely, the cup-product map is sending an equivalence class of tuples to the corresponding cohomology class, which is an isomorphism by \autoref{thm:classisomorphism}.) Anyway, \autoref{prop:dimshiftcupisos} does indeed give the result.
-\end{proof}
-\begin{cor} \label{cor:h2xcomputation}
-	Fix notation as in \autoref{sec:overview}. Then $\widehat H^2(G,X)\simeq\ZZ/\#G\ZZ$, generated by $[\delta(\overline c)]$.
-\end{cor}
-\begin{proof}
-	For brevity, set $n\coloneqq\#G$. By \autoref{cor:xhasallcupisos}, we have the isomorphism
-	\[[\delta(\overline c)]\cup-\colon\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ))\to\widehat H^0(G,\ZZ)=\ZZ/n\ZZ.\]
-	In particular, $\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ))\simeq\ZZ/n\ZZ$, generated by some element $[\delta(\overline c)]^\lor$ such that $[\delta(\overline c)]\cup[\delta(\overline c)]^\lor=[1]$.
-
-	Now, note that the embedding $\mathcal F\colon X\into\ZZ[G]^m$ implies that $X$ is $\ZZ$-free, so we may apply \autoref{prop:abstractintegralduality} to say that the cup-product pairing induces an isomorphism
-	\[\ZZ/n\ZZ\simeq\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ))\to\op{Hom}_\ZZ\left(\widehat H^2(G,X),\widehat H^0(G,\ZZ)\right)\simeq\op{Hom}_\ZZ\left(\widehat H^2(G,X),\textstyle\frac1n\ZZ/\ZZ\right).\]
-	Because $\widehat H^2(G,X)$ is $n$-torsion, homomorphisms $\widehat H^2(G,X)\to\QQ/\ZZ$ must have image in $\frac1n\ZZ/\ZZ$, so in fact the rightmost group is the dual of $\widehat H^2(G,X)$. Because an abelian group is isomorphic to its dual, we see that $\widehat H^2(G,X)$ is in fact cyclic of order $n$.
-
-	It remains to show that $[\delta(\overline c)]$ is a generator; for this, we show that $[\delta(\overline c)]$ has order at least $n$, which will be enough because $H^2(G,X)$ is cyclic of order $n$. Well, if $k[\delta(\overline c)]=0$, then
-	\[[k]=k\big([\delta(\overline c)]\cup[\delta(\overline c)]^\lor\big)=k[\delta(\overline c)]\cup[\delta(\overline c)]^\lor=[0]\cup[\delta(\overline c)]^\lor=[0]\]
-	in $\widehat H^0(G,\ZZ)$, so $n\mid k$. This finishes.
-\end{proof}
-
-\subsection{A Perfect Pairing}
-The main goal of this subsection is to prove the following result.
-\begin{theorem} \label{thm:abstractperfectpairing}
-	Let $G$ be a finite group, and let $X$ and $A$ be $G$-modules. Then, if there exists an element $c\in H^2(G,X)$ such that the cup-product maps
-	\begin{align*}
-		c\cup-&\colon\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ))\to\widehat H^0(G,\ZZ) \\
-		c\cup-&\colon\widehat H^0(G,\op{Hom}_\ZZ(X,A))\to\widehat H^{2}(G,A)
-	\end{align*}
-	are isomorphisms, then the cup-product pairing induces an isomorphism
-	\[\widehat H^2(G,A)\to\op{Hom}_\ZZ\left(\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ)),\widehat H^0(G,\op{Hom}_\ZZ(X,A))\right).\]
-\end{theorem}
-The main step in the proof is the following lemma.
-\begin{lemma}
-	Let $G$ be a finite group, and let $X$ and $A$ be $G$-modules. Pick up another $G$-module $A$. Then, given any $i\in\ZZ$ and $c\in\widehat H^2(G,X)$ and $u\in\widehat H^2(G,A)$, the following diagram commutes, where all arrows are cup-product maps.
-	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF57aS0yfShHLFxcb3B7SG9tfV9cXFpaKFgsXFxaWikpIl0sWzEsMCwiXFx3aWRlaGF0IEheaShHLFxcb3B7SG9tfV9cXFpaKFgsQSkpIl0sWzAsMSwiXFx3aWRlaGF0IEheaShHLFxcWlopIl0sWzEsMSwiXFx3aWRlaGF0IEhee2krMn0oRyxBKSJdLFswLDEsIi1cXGN1cCB1Il0sWzAsMiwiY1xcY3VwLSIsMl0sWzIsMywiLVxcY3VwIHUiLDJdLFsxLDMsImNcXGN1cC0iXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		{\widehat H^{i-2}(G,\op{Hom}_\ZZ(X,\ZZ))} & {\widehat H^i(G,\op{Hom}_\ZZ(X,A))} \\
-		{\widehat H^i(G,\ZZ)} & {\widehat H^{i+2}(G,A)}
-		\arrow["{-\cup u}", from=1-1, to=1-2]
-		\arrow["{c\cup-}"', from=1-1, to=2-1]
-		\arrow["{-\cup u}"', from=2-1, to=2-2]
-		\arrow["{c\cup-}", from=1-2, to=2-2]
-	\end{tikzcd}\]
-\end{lemma}
-\begin{proof}
-	Formally, our cup-product maps are induced by the following ``evaluation morphisms.''
-	\begin{itemize}
-		\item For the left arrow, we have $\eta_L\colon X\otimes_\ZZ\op{Hom}_\ZZ(X,\ZZ)\to\ZZ$ by evaluation.
-		\item For the top arrow, we have $\eta_T\colon\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ A\to\op{Hom}_\ZZ(X,A)$ by $f\otimes a\mapsto(x\mapsto f(x)a)$.
-		\item For the bottom arrow, we have $\eta_B\colon\ZZ\otimes_\ZZ A\to A$ by $k\otimes a\mapsto ka$.
-		\item For the right arrow, we have $\eta_R\colon X\otimes_\ZZ\op{Hom}_\ZZ(X,A)\to A$ by evaluation.
-	\end{itemize}
-	In particular, these maps are defined so that the following diagram commutes.
-	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJYXFxvdGltZXNfXFxaWlxcb3B7SG9tfV9cXFpaKFgsXFxaWilcXG90aW1lc19cXFpaIEEiXSxbMSwwLCJYXFxvdGltZXNfXFxaWlxcb3B7SG9tfV9cXFpaKFgsQSkiXSxbMCwxLCJcXFpaXFxvdGltZXNfXFxaWiBBIl0sWzEsMSwiQSJdLFswLDEsIlxcZXRhX1QiXSxbMCwyLCJcXGV0YV9MIiwyXSxbMSwzLCJcXGV0YV9SIl0sWzIsMywiXFxldGFfQiIsMl1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\begin{equation}
-		\begin{tikzcd}
-			{X\otimes_\ZZ\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ A} & {X\otimes_\ZZ\op{Hom}_\ZZ(X,A)} \\
-			{\ZZ\otimes_\ZZ A} & A
-			\arrow["{\eta_T}", from=1-1, to=1-2]
-			\arrow["{\eta_L}"', from=1-1, to=2-1]
-			\arrow["{\eta_R}", from=1-2, to=2-2]
-			\arrow["{\eta_B}"', from=2-1, to=2-2]
-		\end{tikzcd} \label{eq:innermorphismcoherence}
-	\end{equation}
-	Indeed, we can just compute along the following diagram.
-	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJ4XFxvdGltZXMgZlxcb3RpbWVzIGEiXSxbMSwwLCJ4XFxvdGltZXMoeCdcXG1hcHN0byBmKHgnKWEpIl0sWzAsMSwiZih4KVxcb3RpbWVzIGEiXSxbMSwxLCJmKHgpYSJdLFswLDEsIlxcZXRhX1QiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzAsMiwiXFxldGFfTCIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMSwzLCJcXGV0YV9SIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsyLDMsIlxcZXRhX0IiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		{x\otimes f\otimes a} & {x\otimes(x'\mapsto f(x')a)} \\
-		{f(x)\otimes a} & {f(x)a}
-		\arrow["{\eta_T}", maps to, from=1-1, to=1-2]
-		\arrow["{\eta_L}"', maps to, from=1-1, to=2-1]
-		\arrow["{\eta_R}", maps to, from=1-2, to=2-2]
-		\arrow["{\eta_B}"', maps to, from=2-1, to=2-2]
-	\end{tikzcd}\]
-	Now, the core of the proof is in drawing the following very large diagram.
-	% https://q.uiver.app/?q=WzAsOSxbMCwwLCJcXHdpZGVoYXQgSF57aS0yfShHLFxcb3B7SG9tfV9cXFpaKFgsXFxaWikpIl0sWzEsMCwiXFx3aWRlaGF0IEheaShHLFxcb3B7SG9tfV9cXFpaKFgsXFxaWilcXG90aW1lc19cXFpaIEEpIl0sWzIsMCwiXFx3aWRlaGF0IEheaShHLFxcb3B7SG9tfV9cXFpaKFgsQSkpIl0sWzAsMSwiXFx3aWRlaGF0IEheaShHLFhcXG90aW1lc19cXFpaXFxvcHtIb219X1xcWlooWCxcXFpaKSkiXSxbMSwxLCJcXHdpZGVoYXQgSF57aSsyfShHLFhcXG90aW1lc19cXFpaXFxvcHtIb219X1xcWlooWCxcXFpaKVxcb3RpbWVzX1xcWlogQSkiXSxbMiwxLCJcXHdpZGVoYXQgSF57aSsyfShHLFhcXG90aW1lc19cXFpaXFxvcHtIb219X1xcWlooWCxBKSkiXSxbMiwyLCJcXHdpZGVoYXQgSF57aSsyfShHLEEpIl0sWzAsMiwiXFx3aWRlaGF0IEheaShHLFxcWlopIl0sWzEsMiwiXFx3aWRlaGF0IEheMihHLFhcXG90aW1lc19cXFpaIEEpIl0sWzAsMSwiLVxcY3VwIHUiXSxbMyw0LCItXFxjdXAgdSJdLFs3LDgsIi1cXGN1cCB1Il0sWzAsMywiY1xcY3VwIC0iLDJdLFsxLDQsImNcXGN1cCAtIiwyXSxbMiw1LCJjXFxjdXAgLSIsMl0sWzEsMiwiXFxldGFfVCJdLFs0LDUsIlxcZXRhX1QiXSxbOCw2LCJcXGV0YV9CIl0sWzMsNywiXFxldGFfTCIsMl0sWzQsOCwiXFxldGFfTCIsMl0sWzUsNiwiXFxldGFfUiIsMl0sWzEyLDEzLCIoMSkiLDMseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMTMsMTQsIigyKSIsMyx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxOCwxOSwiKDMpIiwzLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzE5LDIwLCIoNCkiLDMseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		{\widehat H^{i-2}(G,\op{Hom}_\ZZ(X,\ZZ))} & {\widehat H^i(G,\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ A)} & {\widehat H^i(G,\op{Hom}_\ZZ(X,A))} \\
-		{\widehat H^i(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,\ZZ))} & {\widehat H^{i+2}(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ A)} & {\widehat H^{i+2}(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,A))} \\
-		{\widehat H^i(G,\ZZ)} & {\widehat H^{i+2}(G,X\otimes_\ZZ A)} & {\widehat H^{i+2}(G,A)}
-		\arrow["{-\cup u}", from=1-1, to=1-2]
-		\arrow["{-\cup u}", from=2-1, to=2-2]
-		\arrow["{-\cup u}", from=3-1, to=3-2]
-		\arrow[""{name=0, anchor=center, inner sep=0}, "{c\cup -}"', from=1-1, to=2-1]
-		\arrow[""{name=1, anchor=center, inner sep=0}, "{c\cup -}"', from=1-2, to=2-2]
-		\arrow[""{name=2, anchor=center, inner sep=0}, "{c\cup -}"', from=1-3, to=2-3]
-		\arrow["{\eta_T}", from=1-2, to=1-3]
-		\arrow["{\eta_T}", from=2-2, to=2-3]
-		\arrow["{\eta_B}", from=3-2, to=3-3]
-		\arrow[""{name=3, anchor=center, inner sep=0}, "{\eta_L}"', from=2-1, to=3-1]
-		\arrow[""{name=4, anchor=center, inner sep=0}, "{\eta_L}"', from=2-2, to=3-2]
-		\arrow[""{name=5, anchor=center, inner sep=0}, "{\eta_R}"', from=2-3, to=3-3]
-		\arrow["{(1)}"{marking}, Rightarrow, draw=none, from=0, to=1]
-		\arrow["{(2)}"{marking}, Rightarrow, draw=none, from=1, to=2]
-		\arrow["{(3)}"{marking}, Rightarrow, draw=none, from=3, to=4]
-		\arrow["{(4)}"{marking}, Rightarrow, draw=none, from=4, to=5]
-	\end{tikzcd}\]
-	We are being asked to show that the outer square commutes; we will show that each inner square commutes, which will be enough.
-	\begin{enumerate}[label=(\arabic*)]
-		\item This square commutes by the associativity of the cup product.
-		\item This square commutes by \autoref{lem:cupproductmorphism}.
-		\item This square commutes by \autoref{lem:cupproductmorphism}.
-		\item This square commutes by functoriality of $\widehat H^{i+2}(G,-)$ applied to \autoref{eq:innermorphismcoherence}.
-	\end{enumerate}
-	The above checks complete the proof.
-\end{proof}
-We may now proceed directly with \autoref{thm:abstractperfectpairing}.
-\begin{proof}[Proof of \autoref{thm:abstractperfectpairing}]
-	We use the lemma to assert that, for any $u\in H^2(G,A)$, the diagram
-	\[\begin{tikzcd}
-		{\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ))} & {\widehat H^0(G,\op{Hom}_\ZZ(X,A))} \\
-		{\widehat H^0(G,\ZZ)} & {\widehat H^{2}(G,A)}
-		\arrow["{-\cup u}", from=1-1, to=1-2]
-		\arrow["{c\cup-}"', from=1-1, to=2-1]
-		\arrow["{-\cup u}"', from=2-1, to=2-2]
-		\arrow["{c\cup-}", from=1-2, to=2-2]
-	\end{tikzcd}\]
-	commutes. By hypothesis, the left and right arrows are isomorphisms, so the commutativity means that showing
-	\[\arraycolsep=1.4pt\begin{array}{ccc}
-		\widehat H^2(G,A) &\to& \op{Hom}_\ZZ\left(\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ)),\widehat H^0(G,\op{Hom}_\ZZ(X,A))\right) \\
-		u &\mapsto& (a\mapsto (a\cup u))
-	\end{array}\]
-	is an isomorphism is the same as showing that
-	\[\arraycolsep=1.4pt\begin{array}{ccc}
-		\widehat H^2(G,A) &\to& \op{Hom}_\ZZ\left(\widehat H^0(G,\ZZ),\widehat H^2(G,A)\right) \\
-		u &\mapsto& (k\mapsto (k\cup u))
-	\end{array}\]
-	is an isomorphism. Setting $n\coloneqq\#G$, we see $\widehat H^0(G,\ZZ)=\ZZ/n\ZZ$, and the cup product we are looking at sends $k\in\ZZ/n\ZZ$ and $u\in\widehat H^2(G,A)$ to $k\cup u=ku$ by how the ``evaluation'' map $\ZZ\otimes_\ZZ A\simeq A$ behaves. Thus, we are showing that
-	\[\arraycolsep=1.4pt\begin{array}{ccc}
-		\widehat H^2(G,A) &\to& \op{Hom}_\ZZ\left(\ZZ/n\ZZ,\widehat H^2(G,A)\right) \\
-		u &\mapsto& (k\mapsto ku)
-	\end{array}\]
-	is an isomorphism.
-	
-	However, $\widehat H^2(G,A)$ is $n$-torsion, so in fact maps $\ZZ\to\widehat H^2(G,A)$ automatically have $n\ZZ$ in their kernel and hence reduce to maps $\ZZ/n\ZZ\to\widehat H^2(G,A)$. Conversely, any map $\ZZ/n\ZZ\to\widehat H^2(G,A)$ can be extended by $\ZZ\onto\ZZ/n\ZZ$ to a map $\ZZ\to\widehat H^2(G,A)$, so we have a natural isomorphism
-	\[\arraycolsep=1.4pt\begin{array}{ccc}
-		\op{Hom}_\ZZ\left(\ZZ/n\ZZ,\widehat H^2(G,A)\right) &\simeq& \op{Hom}_\ZZ\left(\ZZ,\widehat H^2(G,A)\right) \\
-		f &\mapsto& (k\mapsto f([k])) \\
-		([k]\mapsto f(k)) &\mapsfrom& f.
-	\end{array}\]
-	In particular, it suffices to show that
-	\[\arraycolsep=1.4pt\begin{array}{ccc}
-		\widehat H^2(G,A) &\to& \op{Hom}_\ZZ\left(\ZZ,\widehat H^2(G,A)\right) \\
-		u &\mapsto& (k\mapsto ku)
-	\end{array}\]
-	is an isomorphism. But this is a standard fact about the functor $\op{Hom}_\ZZ\colon\mathrm{AbGrp}\to\mathrm{AbGrp}$, so we are done.
-\end{proof}
-We now synthesize the theory we have been building.
-\begin{cor}
-	Fix notation as in \autoref{sec:overview}. Then, given a $G$-module $A$, the cup-product pairing induces an isomorphism
-	\[\widehat H^2(G,A)\to\op{Hom}_\ZZ\left(\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ)),\widehat H^0(G,\op{Hom}_\ZZ(X,A))\right).\]
-\end{cor}
-\begin{proof}
-	We apply \autoref{thm:abstractperfectpairing} to our case; here $X$ is defined as in \autoref{sec:overview}, and we take $c$ to be $[\delta(\overline c)]$. Note $X$ is $\ZZ$-free because of the embedding $\mathcal F\colon X\into\ZZ[G]^m$. The cup-product maps in question are isomorphisms by \autoref{cor:xhasallcupisos}. Thus, \autoref{thm:abstractperfectpairing} kicks in, completing the proof.
-\end{proof}
-\begin{remark}
-	The other side of the pairing
-	\[\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ))\to\op{Hom}_\ZZ\left(\widehat H^2(G,A),\widehat H^0(G,\op{Hom}_\ZZ(X,A))\right)\]
-	need not be an isomorphism; for example, take $A=0$.
-\end{remark}
-
-\subsection{Uniqueness}
-Let $G$ be a finite group. In this subsection we investigate how unique the $X$ constructed in \autoref{sec:overview}. To this end, we introduce the following notion of equivalence.
-\begin{definition}
-	Let $G$ be a finite group. We say that two $G$-modules $X,X'$ are \textit{cohomologically equivalent} if and only if there exist morphisms $[\varphi]\in\widehat H^0(G,\op{Hom}_\ZZ(X',X))$ and $[\varphi']\in\widehat H^0(G,\op{Hom}_\ZZ(X,X'))$ such that
-	\[[\varphi\circ\varphi']=[\id_X]\in\widehat H^0(G,\op{Hom}_\ZZ(X,X))\qquad\text{and}\qquad[\varphi'\circ\varphi]=[\id_{X'}]\in\widehat H^0(G,\op{Hom}_\ZZ(X',X')).\]
-\end{definition}
-\begin{example}
-	All induced modules $X$ are cohomologically equivalent to $0$. To see this, we set $\varphi\colon 0\to X$ and $\varphi'\colon X\to0$ equal to the zero maps (which are our only options). Then note that $\op{Hom}_\ZZ(X,X)$ is induced by \autoref{lem:hompreservesinduced} and $\op{Hom}_\ZZ(0,0)=0$, so
-	\[\widehat H^0(G,\op{Hom}_\ZZ(X,X))=\widehat H^0(G,\op{Hom}_\ZZ(X',X'))=0,\]
-	making the checks on $\varphi$ and $\varphi'$ both trivial.
-\end{example}
-More concretely, $X$ and $X'$ are cohomologically equivalent if and only if we have two $G$-module morphisms $\varphi\colon X'\to X$ and $\varphi'\colon X\to X'$ and two $\ZZ$-module morphisms $f\colon X\to X$ and $f'\colon X'\to X'$ such that
-\[\varphi\circ\varphi'=\id_X+N_Gf\qquad\text{and}\qquad\varphi'\circ\varphi=\id_{X'}+N_Gf'.\]
-As a quick sanity check that this is a reasonable notion of equivalence of modules, we have the following.
-\begin{lemma} \label{lem:monoidequiv}
-	Let $G$ be a finite group. If the $G$-modules $X$ and $X'$ are equivalent and $Y$ and $Y'$ are equivalent, then $X\oplus X'$ is equivalent to $Y\oplus Y'$.
-\end{lemma}
-\begin{proof}
-	We are promised the morphisms
-	\begin{itemize}
-		\item $\varphi\colon X'\to X$ and $\varphi'\colon X\to X'$ (as morphisms of $G$-modules),
-		\item $f\colon X\to X$ and $f'\colon X'\to X'$ (as morphisms of $\ZZ$-modules),
-		\item $\psi\colon Y'\to Y$ and $\psi'\colon Y\to Y'$ (as morphisms of $G$-modules),
-		\item $g\colon Y\to Y$ and $g'\colon Y'\to Y'$ (as morphisms of $\ZZ$-modules),
-	\end{itemize}
-	which are required to satisfy
-	\begin{align*}
-		\varphi\circ\varphi'={\id_X}+N_Gf\qquad&\text{and}\qquad\varphi'\circ\varphi={\id_{X'}}+N_Gf', \\
-		\psi\circ\psi'={\id_Y}+N_Gg\qquad&\text{and}\qquad\psi'\circ\psi={\id_{Y'}}+N_Gg'.
-	\end{align*}
-	Summing everywhere, we get the $G$-module homomorphisms $\varphi\oplus\psi\colon X\oplus Y\to X'\oplus Y'$ and $\varphi'\oplus\psi'\colon X'\oplus Y'\to X\oplus Y$ satisfying
-	\begin{align*}
-		(\varphi\oplus\psi)\circ(\varphi'\oplus\psi') &= (\varphi\circ\varphi')\oplus(\psi\circ\psi') \\
-		&= ({\id_X}+N_Gf)\oplus({\id_Y}+N_Gg) \\
-		&= {\id_X}\oplus{\id_Y}+N_G(f\oplus g).
-	\end{align*}
-	The other check is analogous, switching primed and unprimed variables.
-\end{proof}
-Anyway, here is the reason why we care about this notion of equivalence.
-\begin{lemma} \label{lem:naturaltransiscupping}
-	Let $G$ be a finite group, and let $X$ and $X'$ be $G$-modules. Suppose that there is a natural transformation
-	\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X',-)).\]
-	Then there exists a $G$-module homomorphism $\varphi\colon X'\to X$ such that $\Phi_A([f])=[\varphi]\cup[f]$ for any $f\in\op{Hom}_{\ZZ[G]}(X,A)$.
-\end{lemma}
-\begin{proof}
-	This is essentially the Yoneda lemma. Choose $\varphi\colon X'\to X$ to represent $[\varphi]=\Phi_X([\id_X])$. Then tracking through the commutativity of
-	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF4wKEcsXFxvcHtIb219X1xcWlooWCxYKSkiXSxbMSwwLCJcXHdpZGVoYXQgSF4wKEcsXFxvcHtIb219X1xcWlooWCcsWCkpIl0sWzAsMSwiXFx3aWRlaGF0IEheMChHLFxcb3B7SG9tfV9cXFpaKFgsQSkpIl0sWzEsMSwiXFx3aWRlaGF0IEheMChHLFxcb3B7SG9tfV9cXFpaKFgnLEEpKSJdLFswLDEsIlxcUGhpX1giXSxbMCwyLCJmIiwyXSxbMSwzLCJmIiwyXSxbMiwzLCJcXFBoaV9BIl1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		{\widehat H^0(G,\op{Hom}_\ZZ(X,X))} & {\widehat H^0(G,\op{Hom}_\ZZ(X',X))} \\
-		{\widehat H^0(G,\op{Hom}_\ZZ(X,A))} & {\widehat H^0(G,\op{Hom}_\ZZ(X',A))}
-		\arrow["{\Phi_X}", from=1-1, to=1-2]
-		\arrow["f"', from=1-1, to=2-1]
-		\arrow["f"', from=1-2, to=2-2]
-		\arrow["{\Phi_A}", from=2-1, to=2-2]
-	\end{tikzcd}\]
-	reveals that
-	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJbXFxpZF9YXSJdLFsxLDAsIltcXHZhcnBoaV0iXSxbMCwxLCJbZl0iXSxbMSwxLCJcXFBoaV9BKFtmXSk9W2ZcXGNpcmNcXHZhcnBoaV0iXSxbMCwxLCJcXFBoaV9YIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFswLDIsImYiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzEsMywiZiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMiwzLCJcXFBoaV9BIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		{[\id_X]} & {[\varphi]} \\
-		{[f]} & {\Phi_A([f])=[f\circ\varphi]}
-		\arrow["{\Phi_X}", maps to, from=1-1, to=1-2]
-		\arrow["f"', maps to, from=1-1, to=2-1]
-		\arrow["f"', maps to, from=1-2, to=2-2]
-		\arrow["{\Phi_A}", maps to, from=2-1, to=2-2]
-	\end{tikzcd}\]
-	after plugging in. To finish, we note that $[\varphi]\cup[f]=[\varphi\otimes f]$ goes to $[f\circ\varphi]$ under the canonical evaluation map $\op{Hom}_\ZZ(X',X)\otimes_\ZZ\op{Hom}_\ZZ(X,A)\to\op{Hom}_\ZZ(X',A)$. This finishes.
-\end{proof}
-\begin{remark} \label{rem:cuppingisnatural}
-	Of course, the converse also holds because the diagram
-	% https://q.uiver.app/?q=WzAsOCxbMSwwLCJcXHdpZGVoYXQgSF4wKEcsXFxvcHtIb219X1xcWlooWCxBKSkiXSxbMiwwLCJcXHdpZGVoYXQgSF4wKEcsXFxvcHtIb219X1xcWlooWCcsWClcXG90aW1lc19cXFpaXFxvcHtIb219X1xcWlooWCxBKSkiXSxbMSwxLCJcXHdpZGVoYXQgSF4wKEcsXFxvcHtIb219X1xcWlooWCxCKSkiXSxbMCwwLCJBIl0sWzAsMSwiQiJdLFsyLDEsIlxcd2lkZWhhdCBIXjAoRyxcXG9we0hvbX1fXFxaWihYJyxYKVxcb3RpbWVzX1xcWlpcXG9we0hvbX1fXFxaWihYLEIpKSJdLFszLDAsIlxcd2lkZWhhdCBIXjAoRyxcXG9we0hvbX1fXFxaWihYJyxBKSkiXSxbMywxLCJcXHdpZGVoYXQgSF4wKEcsXFxvcHtIb219X1xcWlooWCcsQSkpIl0sWzAsMSwiXFx2YXJwaGlcXGN1cC0iXSxbMyw0LCJmIiwyXSxbMiw1LCJcXHZhcnBoaVxcY3VwLSJdLFswLDIsImYiLDJdLFsxLDUsImYiLDJdLFs2LDcsImYiLDJdLFsxLDZdLFs1LDddXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}[column sep=12pt]
-		A & {\widehat H^0(G,\op{Hom}_\ZZ(X,A))} & {\widehat H^0(G,\op{Hom}_\ZZ(X',X)\otimes_\ZZ\op{Hom}_\ZZ(X,A))} & {\widehat H^0(G,\op{Hom}_\ZZ(X',A))} \\
-		B & {\widehat H^0(G,\op{Hom}_\ZZ(X,B))} & {\widehat H^0(G,\op{Hom}_\ZZ(X',X)\otimes_\ZZ\op{Hom}_\ZZ(X,B))} & {\widehat H^0(G,\op{Hom}_\ZZ(X',A))}
-		\arrow["{\varphi\cup-}", from=1-2, to=1-3]
-		\arrow["f"', from=1-1, to=2-1]
-		\arrow["{\varphi\cup-}", from=2-2, to=2-3]
-		\arrow["f"', from=1-2, to=2-2]
-		\arrow["f"', from=1-3, to=2-3]
-		\arrow["f"', from=1-4, to=2-4]
-		\arrow[from=1-3, to=1-4]
-		\arrow[from=2-3, to=2-4]
-	\end{tikzcd}\]
-	commutes.
-\end{remark}
-\begin{proposition} \label{prop:cohomologicaldef}
-	Let $G$ be a finite group, and let $X$ and $X'$ be $G$-modules. Then $X$ and $X'$ are cohomologically equivalent if and only if there is a natural isomorphism
-	\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X',-)).\]
-\end{proposition}
-\begin{proof}
-	In the forward direction, suppose $X$ and $X'$ are cohomologically equivalent so that we have $[\varphi]\in\widehat H^0(G,\op{Hom}_\ZZ(X',X))$ and $[\varphi']\in\widehat H^0(G,\op{Hom}_\ZZ(X,X'))$ such that
-	\[[\varphi]\cup[\varphi']=[\varphi\circ\varphi']=[\id_X]\qquad\text{and}\qquad[\varphi']\cup[\varphi]=[\varphi'\circ\varphi]=[\id_{X'}],\]
-	where we are using the canonical evaluation maps for the cup products. Now, we note that, for any $G$-module $A$, we have inverse morphisms
-	\begin{equation}
-		\arraycolsep=1.4pt\begin{array}{ccc}
-			\widehat H^0(G,\op{Hom}_\ZZ(X,A)) &\simeq& \widehat H^0(G,\op{Hom}_\ZZ(X,A)) \\
-			{[f]} &\mapsto& {[\varphi]}\cup {[f]} \\
-			{[\varphi']\cup[f']} & \mapsfrom & {[f']}.
-		\end{array} \label{eq:makenaturaliso}
-	\end{equation}
-	Indeed, these are mutually inverse because
-	\[[\varphi']\cup[\varphi]\cup[f]=[f\circ\varphi\circ\varphi']=[f]\]
-	and similar for the other inverse check. (Technically, we are using the commutativity of our evaluation maps in the associativity of the cup product.) To finish, we note that the isomorphisms \autoref{eq:makenaturaliso} assemble into a natural isomorphism by \autoref{rem:cuppingisnatural}.
-
-	We now show the backwards direction. Suppose we have a natural isomorphism $\Phi_\bullet$. Then \autoref{lem:naturaltransiscupping} promises us $[\varphi]\in\widehat H^0(G,\op{Hom}_\ZZ(X',X))$ and $[\varphi']\in\widehat H^0(G,\op{Hom}_\ZZ(X,X'))$ such that the morphisms
-	\[\arraycolsep=1.4pt\begin{array}{cccc}
-		\Phi_\bullet\colon& \widehat H^0(G,\op{Hom}_\ZZ(X,-)) &\simeq& \widehat H^0(G,\op{Hom}_\ZZ(X,-)) \\
-		&{[f]} &\mapsto& {[\varphi]}\cup {[f]} \\
-		&{[\varphi']\cup[f']} & \mapsfrom & {[f']}
-	\end{array}\]
-	are mutually inverse. In particular, we see that
-	\[[\id_X]=[\varphi']\cup[\varphi]\cup[\id_X]=[{\id_X}\circ\varphi\circ\varphi']=[\varphi\circ\varphi'],\]
-	so $[\varphi\circ\varphi']=[\id_X]$. Swapping primed and unprimed variables, we see $[\varphi'\circ\varphi]=[\id_{X'}]$ as well.
-\end{proof}
-\begin{remark}
-	The above result makes it fairly clear that cohomological equivalence actually makes an equivalence relation. In particular, we can invert and compose natural isomorphisms, which gives symmetry and transitivity of cohomological equivalence respectively.
-\end{remark}
-One might hope that we can get more information by using indices away from $0$, but in fact we cannot.
-\begin{proposition}
-	Let $G$ be a finite group, and let $X$ and $X'$ be $G$-modules. Then the following are equivalent.
-	\begin{listalph}
-		\item $X$ and $X'$ are cohomologically equivalent.
-		\item There is a natural isomorphism
-		\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X',-)).\]
-		\item For some (fixed) index $p\in\ZZ$, there is $[\varphi]\in\widehat H^0(G,\op{Hom}_\ZZ(X',X))$ such that
-		\[[\varphi]\cup-\colon\widehat H^p(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^p(G,\op{Hom}_\ZZ(X',-))\]
-		is a natural isomorphism.
-		\item There are natural isomorphisms
-		\[\Phi_\bullet^{(i)}\colon\widehat H^i(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^i(G,\op{Hom}_\ZZ(X',-))\]
-		for all $i\in\ZZ$.
-	\end{listalph}
-\end{proposition}
-\begin{proof}
-	Note that (a) and (b) are equivalent by \autoref{prop:cohomologicaldef}. Also, there is nothing to say for (d) implies (b), and (b) implies (c) follows from taking $p=0$ in (b) and noting that \autoref{lem:naturaltransiscupping} reassures us that this natural transformation (in fact, natural isomorphism) must be a cup-product map. Thus, the interesting direction is (c) implies (d). This follows from dimension-shifting. Indeed, we shift $p$ upwards and downwards from its fixed value to witness our natural isomorphisms.
-
-	The proof is similar to \autoref{prop:dimshiftcupisos}, so we will be brief. Indeed, we already know that we have $[\varphi]\in\widehat H^0(G,\op{Hom}_\ZZ(X',X))$ such that
-	\begin{equation}
-		[\varphi]\cup-\colon\widehat H^i(G,\op{Hom}_\ZZ(X,A))\to\widehat H^i(G,\op{Hom}_\ZZ(X',A)) \label{eq:cupshifting}
-	\end{equation}
-	is an isomorphism for all $G$-modules $A$ at $i=p$. To shift downwards, we suppose that we have an isomorphism always at $i$, and we show that we have an isomorphism always at $i-1$. Well, for any $G$-module $A$, we note the ($\ZZ$-split) short exact sequences
-	% https://q.uiver.app/?q=WzAsMTAsWzAsMSwiMCJdLFsxLDEsIlxcb3B7SG9tfV9cXFpaKFgsSV9HXFxvdGltZXNfXFxaWiBBKSJdLFsyLDEsIlxcb3B7SG9tfV9cXFpaKFgsXFxaWltHXVxcb3RpbWVzX1xcWlogQSkiXSxbMSwwLCJcXG9we0hvbX1fXFxaWihYJyxJX0dcXG90aW1lc19cXFpaIEEpIl0sWzIsMCwiXFxvcHtIb219X1xcWlooWCcsXFxaWltHXVxcb3RpbWVzX1xcWlogQSkiXSxbMCwwLCIwIl0sWzMsMCwiXFxvcHtIb219X1xcWlooWCcsQSkiXSxbNCwwLCIwIl0sWzQsMSwiMCJdLFszLDEsIlxcb3B7SG9tfV9cXFpaKFgsQSkiXSxbNSwzXSxbMyw0XSxbNCw2XSxbNiw3XSxbOSw4XSxbMiw5XSxbMSwyXSxbMCwxXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\begin{equation}
-		\arraycolsep=1.4pt\begin{array}{ccccccccc}
-			0 &\to&{\op{Hom}_\ZZ(X',I_G\otimes_\ZZ A)} &\to&{\op{Hom}_\ZZ(X',\ZZ[G]\otimes_\ZZ A)} &\to&{\op{Hom}_\ZZ(X',A)} &\to&0 \\
-			0 &\to&{\op{Hom}_\ZZ(X,I_G\otimes_\ZZ A)} &\to&{\op{Hom}_\ZZ(X,\ZZ[G]\otimes_\ZZ A)} &\to&{\op{Hom}_\ZZ(X,A)} &\to&0 \\
-		\end{array} \label{eq:somesesgoingdown}
-	\end{equation}
-	whose boundary morphisms induce the following commutative square.
-	% https://q.uiver.app/?q=WzAsNCxbMSwwLCJcXHdpZGVoYXQgSF57aS0xfShHLFxcb3B7SG9tfV9cXFpaKFgnLEEpKSJdLFswLDAsIlxcd2lkZWhhdCBIXntpLTF9KEcsXFxvcHtIb219X1xcWlooWCxBKSkiXSxbMCwxLCJcXHdpZGVoYXQgSF4wKEcsXFxvcHtIb219X1xcWlooWCxJX0dcXG90aW1lc19cXFpaIEEpIl0sWzEsMSwiXFx3aWRlaGF0IEheMChHLFxcb3B7SG9tfV9cXFpaKFgnLElfR1xcb3RpbWVzX1xcWlogQSkiXSxbMSwwLCJcXHZhcnBoaVxcY3VwLSJdLFsyLDMsIlxcdmFycGhpXFxjdXAtIl0sWzEsMiwiXFxkZWx0YSIsMl0sWzAsMywiXFxkZWx0YSIsMl1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		{\widehat H^{i-1}(G,\op{Hom}_\ZZ(X,A))} & {\widehat H^{i-1}(G,\op{Hom}_\ZZ(X',A))} \\
-		{\widehat H^i(G,\op{Hom}_\ZZ(X,I_G\otimes_\ZZ A))} & {\widehat H^i(G,\op{Hom}_\ZZ(X',I_G\otimes_\ZZ A))}
-		\arrow["{\varphi\cup-}", from=1-1, to=1-2]
-		\arrow["{\varphi\cup-}", from=2-1, to=2-2]
-		\arrow["\delta"', from=1-1, to=2-1]
-		\arrow["\delta"', from=1-2, to=2-2]
-	\end{tikzcd}\]
-	(Technically, the commutativity here is using the commutativity of $\delta$s with the cup product in addition to the functoriality of boundary morphisms.) In particular, the inductive hypothesis tells us that the bottom row is an isomorphism, and the fact that both middle terms of \autoref{eq:somesesgoingdown} are induced by \autoref{lem:hompreservesinduced} implies that the $\delta$s on either side are also isomorphisms. So the top row is an isomorphism, finishing.
-
-	Similarly, to shift upwards, we suppose that \autoref{eq:cupshifting} is always an isomorphism at $i$, and we show that we have an isomorphism always at $i+1$. Well, for any $G$-module $A$, we note the ($\ZZ$-split) short exact sequences
-	\begin{equation}
-		\arraycolsep=1.4pt\begin{array}{ccccccccc}
-			0 &\to&{\op{Hom}_\ZZ(X',A)} &\to&{\op{Hom}_\ZZ(X',\op{Hom}_\ZZ(\ZZ[G],A))} &\to&{\op{Hom}_\ZZ(X',\op{Hom}_\ZZ(I_G,A))} &\to&0 \\
-			0 &\to&{\op{Hom}_\ZZ(X,A)} &\to&{\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(\ZZ[G],A))} &\to&{\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(I_G,A))} &\to&0 \\
-		\end{array} \label{eq:somesesgoingup}
-	\end{equation}
-	whose boundary morphisms induce the following commutative square.
-	% https://q.uiver.app/?q=WzAsNCxbMSwwLCJcXHdpZGVoYXQgSF57aX0oRyxcXG9we0hvbX1fXFxaWihYJyxcXG9we0hvbX1fXFxaWihJX0csQSkpKSJdLFswLDAsIlxcd2lkZWhhdCBIXntpfShHLFxcb3B7SG9tfV9cXFpaKFgsXFxvcHtIb219X1xcWlooSV9HLEEpKSkiXSxbMCwxLCJcXHdpZGVoYXQgSF57aSsxfShHLFxcb3B7SG9tfV9cXFpaKFgsQSkiXSxbMSwxLCJcXHdpZGVoYXQgSF57aSsxfShHLFxcb3B7SG9tfV9cXFpaKFgnLEEpIl0sWzEsMCwiXFx2YXJwaGlcXGN1cC0iXSxbMiwzLCJcXHZhcnBoaVxcY3VwLSJdLFsxLDIsIlxcZGVsdGEiLDJdLFswLDMsIlxcZGVsdGEiLDJdXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\[\begin{tikzcd}
-		{\widehat H^{i}(G,\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(I_G,A)))} & {\widehat H^{i}(G,\op{Hom}_\ZZ(X',\op{Hom}_\ZZ(I_G,A)))} \\
-		{\widehat H^{i+1}(G,\op{Hom}_\ZZ(X,A))} & {\widehat H^{i+1}(G,\op{Hom}_\ZZ(X',A))}
-		\arrow["{\varphi\cup-}", from=1-1, to=1-2]
-		\arrow["{\varphi\cup-}", from=2-1, to=2-2]
-		\arrow["\delta"', from=1-1, to=2-1]
-		\arrow["\delta"', from=1-2, to=2-2]
-	\end{tikzcd}\]
-	This time around, the top row is an isomorphism by the inductive hypothesis, and the left and row arrows are isomorphisms because the middle terms of \autoref{eq:somesesgoingup} are induced by \autoref{lem:hompreservesinduced}. So the bottom row is an isomorphism as well, finishing.
-\end{proof}
-Anyway, here are some results.
-\begin{cor}
-	Let $G$ be a finite group, and let $p\in\ZZ$ be an index. Then the set of $G$-module $X$ with a natural isomorphism
-	\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^p(G,-)\]
-	make up exactly one cohomological equivalence class.\todo{Is there a way to encode change of group here?}
-\end{cor}
-\begin{proof}
-	Fix some $G$-module $X$ with such a natural isomorphism
-	\[\Psi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^p(G,-).\]
-	We would like to show that a $G$-module $X$ has a natural isomorphism $\Phi_\bullet$ between the same functors if and only if $X$ and $X'$ are cohomologically equivalent.
-
-	% Noting that the cup product is natural in both arguments (see, for example, \autoref{lem:cupproductmorphism}), we see that the combination of \autoref{thm:yesitisacocycle} and \autoref{prop:alternativetupleclass} tells us that we have a natural isomorphism
-	% \[\Psi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^2(G,-).\]
-	% We now proceed with the proof.
-	If $X$ and $X'$ are cohomologically equivalent, then we can compose the promised natural isomorphism of \autoref{prop:cohomologicaldef} with $\Psi_\bullet$, giving a natural isomorphism
-	\[\widehat H^0(G,\op{Hom}_\ZZ(X',-))\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X,-))\stackrel{\Psi_\bullet}\Rightarrow\widehat H^p(G,-).\]
-	In the other direction, if we have a natural isomorphism
-	\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X',-))\Rightarrow\widehat H^p(G,-),\]
-	then we can compose with $\Psi_\bullet^{-1}$ to build a natural isomorphism
-	\[\widehat H^0(G,\op{Hom}_\ZZ(X',-))\stackrel{\Phi_\bullet}\Rightarrow\widehat H^p(G,-)\stackrel{\Psi^{-1}_\bullet}\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X,-)),\]
-	from which it follows that $X$ and $X'$ are cohomologically equivalent by \autoref{prop:cohomologicaldef}.
-\end{proof}
-% \begin{remark}
-% 	In fact, we can see that the natural isomorphism
-% 	\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X',-))\Rightarrow\widehat H^2(G,-)\]
-% 	must be a cup-product map with an element in $\widehat H^2(G,X')$. Namely, we note that $\Phi_\bullet$ is equal to the composite
-% 	\[\widehat H^0(G,\op{Hom}_\ZZ(X',-))\stackrel{\Phi_\bullet}\Rightarrow\widehat H^2(G,-)\stackrel{\Psi^{-1}_\bullet}\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X,-))\stackrel{\Psi_\bullet}\Rightarrow\widehat H^2(G,-).\]
-% 	However, $\Psi_\bullet$ is a cup-product map with an element in $\widehat H^2(G,X)$ by its construction, and
-% 	\[\widehat H^0(G,\op{Hom}_\ZZ(X',-))\stackrel{\Phi_\bullet}\Rightarrow\widehat H^2(G,-)\stackrel{\Psi^{-1}_\bullet}\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X,-))\]
-% 	is a cup-product map with an element in $\widehat H^0(G,\op{Hom}_\ZZ(X,X'))$ by \autoref{lem:naturaltransiscupping}. Composing our cup-product maps makes a cup-product map with an element in $\widehat H^2(G,X')$.
-% \end{remark}
-\begin{example}
-	Fix notation as in \autoref{sec:overview}. If $M$ is any induced module, then we know $M$ is cohomologically equivalent to $0$. So \autoref{lem:monoidequiv} reassures us that $X\oplus M$ is cohomologically equivalent to $X\oplus0\simeq X$.
-\end{example}
-\begin{example}
-	Fix notation as in \autoref{sec:overview}. Note that any $G$-module $A$ has
-	\[\widehat H^2(G,A)\simeq\widehat H^1(G,\op{Hom}_\ZZ(I_G,A))\simeq\widehat H^0(G,\op{Hom}_\ZZ(I_G,\op{Hom}_\ZZ(I_G,A)))\simeq\widehat H^0(G,\op{Hom}_\ZZ(I_G\otimes_\ZZ I_G,A)),\]
-	and in fact these isomorphisms are natural by the functoriality of boundary morphisms. It follows that $X$ and $I_G\otimes_\ZZ I_G$ are cohomologically equivalent.
-\end{example}
-The above two examples should give a feeling for why this uniqueness problem is difficult.
-
-One might object that what makes $X$ of \autoref{sec:overview} special is that the natural isomorphism
-\[\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^2(G,-)\]
-is a cup-product map. However, we can show that all such natural transformations come from cup-product maps.
-% \begin{lemma}
-% 	Let $G$ be a finite group, and let $p\ge0$ be an index. Then there exists some $x_p\in\widehat H^p\left(G,I_G^{\otimes p}\right)$ such that
-% 	\[x_p\cup-\colon\widehat H^0\left(G,\op{Hom}_\ZZ(I_G^{\otimes p},-)\right)\Rightarrow H^p(G,-)\]
-% 	is a natural isomorphism.
+% \subsection{Some Cup Product Computations}
+% We take a brief intermission to establish a little theory on cup products. In this section, we let $G$ denote a generic finite group (not necessarily assumed to be abelian) and $A$ a $G$-module.
+% \begin{lemma}[\cite{bonn-lectures}, Proposition~I.5.3] \label{lem:cupproductmorphism}
+% 	Let $G$ be a finite group. Given any $G$-modules $A,B,C$ with a $G$-module homomorphism $\varphi\colon B\to C$, the following diagram commutes for any $p,q\in\ZZ$ and $[a]\in\widehat H^p(G,A)$.
+% 	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF5wKEcsQikiXSxbMSwwLCJcXHdpZGVoYXQgSF5wKEcsQykiXSxbMCwxLCJcXHdpZGVoYXQgSF57cCtxfShHLEFcXG90aW1lc19cXFpaIEIpIl0sWzEsMSwiXFx3aWRlaGF0IEhee3ArcX0oRyxBXFxvdGltZXNfXFxaWiBDKSJdLFswLDEsIlxcdmFycGhpIl0sWzIsMywiXFx2YXJwaGkiXSxbMCwyLCJhXFxjdXAgLSIsMl0sWzEsMywiYVxcY3VwIC0iXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+% 	\[\begin{tikzcd}
+% 		{\widehat H^q(G,B)} & {\widehat H^q(G,C)} \\
+% 		{\widehat H^{p+q}(G,A\otimes_\ZZ B)} & {\widehat H^{p+q}(G,A\otimes_\ZZ C)}
+% 		\arrow["\varphi", from=1-1, to=1-2]
+% 		\arrow["\id_A\otimes\varphi", from=2-1, to=2-2]
+% 		\arrow["{[a]\cup -}"', from=1-1, to=2-1]
+% 		\arrow["{[a]\cup -}", from=1-2, to=2-2]
+% 	\end{tikzcd}\]
 % \end{lemma}
 % \begin{proof}
-% 	We quickly remark that (akin to \autoref{rem:cuppingisnatural}), by \autoref{lem:cupproductmorphism} and functoriality of $\widehat H^p(G,-)$, any $x_p\in\widehat H^p(G,I_G^{\otimes p})$ will at least create a natural transformation. So the main point is to make the cup-product into an isomorphism. For $p=0$, we take $x_0\coloneqq[1]\in\widehat H^p(G,\ZZ)$ so that
-% 	\[[1]\cup-\colon\widehat H^0(G,\op{Hom}_\ZZ(\ZZ,-))\Rightarrow\widehat H^0(G,-)\]
-% 	is simply the map taking a $0$-cocycle $c$ to $[1]\cup c=c(1)$, which is the isomorphism $\op{Hom}_\ZZ(\ZZ,A)\simeq A$ for each $A$ anyway.
-
-% 	We will also show $p=1$ by hand. The point here is that, for any $G$-module $A$, we already have (natural) isomorphisms
-% 	\[\widehat H^0(G,\op{Hom}_\ZZ(I_G,A))\simeq\widehat H^1(G,A)\]
-% 	by dimension-shifting, so we just have to track these through. Namely, we have the ($\ZZ$-split) short exact sequence
-% 	\[0\to A\to\op{Hom}_\ZZ(\ZZ[G],A)\to\op{Hom}_\ZZ(I_G,A)\to 0,\]
-% 	so given $[f]\in\widehat H^0(G,\op{Hom}_\ZZ(I_G,A))$ so that $f\in\op{Hom}_{\ZZ[G]}(I_G,A)$, this gets pulled back to the $0$-cochain $c\in\op{Hom}_\ZZ(\ZZ[G],A)$ defined by
-% 	\[c\colon z\mapsto f(z-\varepsilon(z)).\]
-% 	Pushing this down to $Z^1(G,\op{Hom}_\ZZ(\ZZ[G],A))$, we compute
+% 	When $p,q\ge0$, we can argue directly. Indeed, we claim that the diagram commutes on the level of homogeneous cochains: let $[a]\in\widehat H^p(G,A)$ and $[b]\in\widehat H^q(G,B)$ be cohomology classes represented by the homogeneous cochains $a\in[a]$ and $b\in[b]$. Tracking along the top of the diagram, we see
 % 	\begin{align*}
-% 		(dc)(g)(z) &= (gc)(z)-c(z) \\
-% 		&= g\cdot c\left(g^{-1}z\right) - c(z) \\
-% 		&= g\cdot f\left(g^{-1}z-\varepsilon(g^{-1}z)\right) - f(z-\varepsilon(z)) \\
-% 		&= f(z-g\varepsilon(z))-f(z-\varepsilon(z)) \\
-% 		&= \varepsilon(z)\cdot f(1-g),
+% 		(a\cup\varphi(b))(g_0,\ldots,g_{p+q}) &= a(g_0,\ldots,g_p)\otimes\varphi(b)(g_p,\ldots,g_{p+1}) \\
+% 		&= a(g_0,\ldots,g_p)\otimes\varphi(b(g_p,\ldots,g_{p+1})).
 % 	\end{align*}
-% 	so we pull back to the $1$-cochain $g\mapsto f(1-g)$ in $H^1(G,A)$. To see this as a cup product, we just note that running $A=I_G$ and $f=\id_{I_G}$ through this argument would reveal that $g\mapsto(1-g)$ is a $1$-cochain in $H^1(G,I_G)$, which we denote by $x_1$. Then returning to a general $G$-module $A$ with $[f]\in\widehat H^1(G,\op{Hom}_\ZZ(I_G,A))$, we see
-% 	\[(x_1\cup[f])\colon g\mapsto(f\circ x_1)(g)=f(1-g)\]
-% 	by construction of the cup product as evaluation.
+% 	Tracking along the bottom of the diagram, we see
+% 	\begin{align*}
+% 		(\id_A\otimes\varphi)(a\cup b)(g_0,\ldots,g_{p+q}) &= (\id_A\otimes\varphi)(a(g_0,\ldots,g_p)\otimes b(g_p,\ldots,g_{p+q})) \\
+% 		&= a(g_0,\ldots,g_p)\otimes\varphi(b(g_p,\ldots,g_{p+q})),
+% 	\end{align*}
+% 	which is equal. This completes the proof in the case of $p,q\ge0$.
+
+% 	We will only need the case of $p,q\ge0$ in the application, but we will go ahead and do the general case now; we dimension-shift $p$ and $q$ downwards. For example, to shift $p$ downwards, we note that the (split) short exact sequence
+% 	\begin{equation}
+% 		0\to A\otimes_\ZZ I_G\to A\otimes_\ZZ\ZZ[G]\to A\to0 \label{eq:standardashift}
+% 	\end{equation}
+% 	induces the isomorphism $\delta\colon\widehat H^{p-1}(G,A)\to\widehat H^p(G,I_G\otimes_\ZZ A)$. As such, given $a\in\widehat H^{p-1}(G,A)$, the inductive hypothesis reassures that the following diagram commutes.
+% 	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF5wKEcsQikiXSxbMSwwLCJcXHdpZGVoYXQgSF5wKEcsQykiXSxbMCwxLCJcXHdpZGVoYXQgSF57cCtxfShHLElfR1xcb3RpbWVzX1xcWlogQVxcb3RpbWVzX1xcWlogQikiXSxbMSwxLCJcXHdpZGVoYXQgSF57cCtxfShHLElfR1xcb3RpbWVzX1xcWlogQVxcb3RpbWVzX1xcWlogQykiXSxbMCwxLCJcXHZhcnBoaSJdLFsyLDMsIlxcdmFycGhpIl0sWzAsMiwiXFxkZWx0YShhKVxcY3VwIC0iLDJdLFsxLDMsIlxcZGVsdGEoYSlcXGN1cCAtIl1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+% 	\[\begin{tikzcd}
+% 		{\widehat H^q(G,B)} & {\widehat H^q(G,C)} \\
+% 		{\widehat H^{p+q}(G,I_G\otimes_\ZZ A\otimes_\ZZ B)} & {\widehat H^{p+q}(G,I_G\otimes_\ZZ A\otimes_\ZZ C)}
+% 		\arrow["\varphi", from=1-1, to=1-2]
+% 		\arrow["\varphi", from=2-1, to=2-2]
+% 		\arrow["{\delta(a)\cup -}"', from=1-1, to=2-1]
+% 		\arrow["{\delta(a)\cup -}", from=1-2, to=2-2]
+% 	\end{tikzcd}\]
+% 	In other words, all $b\in\widehat H^q(G,B)$ have $\varphi(\delta(a)\cup b)=\delta(a)\cup\varphi(b)$.
+	
+% 	Now, because \autoref{eq:standardashift} is split, we can hit it with $-\otimes_\ZZ B$ and $-\otimes_\ZZ C$ to induce the following commutative diagram with exact rows.
+% 	% https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIkFcXG90aW1lc19cXFpaIElfR1xcb3RpbWVzX1xcWlogQiJdLFsyLDAsIkFcXG90aW1lc19cXFpaXFxaWltHXVxcb3RpbWVzX1xcWlogQiJdLFszLDAsIkFcXG90aW1lc19cXFpaIEIiXSxbNCwwLCIwIl0sWzEsMSwiQVxcb3RpbWVzX1xcWlogSV9HXFxvdGltZXNfXFxaWiBDIl0sWzIsMSwiQVxcb3RpbWVzX1xcWlpcXFpaW0ddXFxvdGltZXNfXFxaWiBDIl0sWzMsMSwiQVxcb3RpbWVzX1xcWlogQyJdLFswLDEsIjAiXSxbNCwxLCIwIl0sWzAsMV0sWzEsMl0sWzIsM10sWzMsNF0sWzgsNV0sWzUsNl0sWzYsN10sWzcsOV0sWzEsNSwiXFx2YXJwaGkiLDJdLFsyLDYsIlxcdmFycGhpIiwyXSxbMyw3LCJcXHZhcnBoaSIsMl1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+% 	\[\begin{tikzcd}
+% 		0 & {A\otimes_\ZZ I_G\otimes_\ZZ B} & {A\otimes_\ZZ\ZZ[G]\otimes_\ZZ B} & {A\otimes_\ZZ B} & 0 \\
+% 		0 & {A\otimes_\ZZ I_G\otimes_\ZZ C} & {A\otimes_\ZZ\ZZ[G]\otimes_\ZZ C} & {A\otimes_\ZZ C} & 0
+% 		\arrow[from=1-1, to=1-2]
+% 		\arrow[from=1-2, to=1-3]
+% 		\arrow[from=1-3, to=1-4]
+% 		\arrow[from=1-4, to=1-5]
+% 		\arrow[from=2-1, to=2-2]
+% 		\arrow[from=2-2, to=2-3]
+% 		\arrow[from=2-3, to=2-4]
+% 		\arrow[from=2-4, to=2-5]
+% 		\arrow["\varphi"', from=1-2, to=2-2]
+% 		\arrow["\varphi"', from=1-3, to=2-3]
+% 		\arrow["\varphi"', from=1-4, to=2-4]
+% 	\end{tikzcd}\]
+% 	Letting $\delta_B\colon\widehat H^{p-1}(A\otimes_\ZZ B)\to\widehat H^p(I_G\otimes_\ZZ A\otimes_\ZZ B)$ and $\delta_C\colon\widehat H^{p-1}(A\otimes_\ZZ B)\to\widehat H^p(I_G\otimes_\ZZ A\otimes_\ZZ B)$ denote the corresponding isomorphisms (note that the middle terms are induced and hence acyclic), we note that the functoriality of boundary morphisms tells us that $\varphi\delta_B=\delta_C\varphi$. In total, it follows that $b\in\widehat H^q(G,B)$ will have
+% 	\[\delta_C(\varphi(a\cup b))=\varphi(\delta_B(a\cup b))=\varphi(\delta(a)\cup b)\stackrel*=\delta(a)\cup\varphi(b)=\delta_C(a\cup\varphi(b)),\]
+% 	where we have used the inductive hypothesis at $\stackrel*=$. Because $\delta_C$ is an isomorphism, this completes the step to shift $p$ downwards to $p-1$.
+
+% 	Shifting $q$ downwards is similar. This time we start with the following commutative diagram whose rows are (split) short exact sequences.
+% 	% https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIklfR1xcb3RpbWVzX1xcWlogQiJdLFsyLDAsIlxcWlpbR11cXG90aW1lc19cXFpaIEIiXSxbMywwLCJCIl0sWzQsMCwiMCJdLFsxLDEsIklfR1xcb3RpbWVzX1xcWlogQyJdLFsyLDEsIlxcWlpbR11cXG90aW1lc19cXFpaIEMiXSxbMywxLCJDIl0sWzAsMSwiMCJdLFs0LDEsIjAiXSxbMCwxXSxbMSwyXSxbMiwzXSxbMyw0XSxbOCw1XSxbNSw2XSxbNiw3XSxbNyw5XSxbMSw1LCJcXHZhcnBoaSIsMl0sWzIsNiwiXFx2YXJwaGkiLDJdLFszLDcsIlxcdmFycGhpIiwyXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+% 	\[\begin{tikzcd}
+% 		0 & {I_G\otimes_\ZZ B} & {\ZZ[G]\otimes_\ZZ B} & B & 0 \\
+% 		0 & {I_G\otimes_\ZZ C} & {\ZZ[G]\otimes_\ZZ C} & C & 0
+% 		\arrow[from=1-1, to=1-2]
+% 		\arrow[from=1-2, to=1-3]
+% 		\arrow[from=1-3, to=1-4]
+% 		\arrow[from=1-4, to=1-5]
+% 		\arrow[from=2-1, to=2-2]
+% 		\arrow[from=2-2, to=2-3]
+% 		\arrow[from=2-3, to=2-4]
+% 		\arrow[from=2-4, to=2-5]
+% 		\arrow["\varphi"', from=1-2, to=2-2]
+% 		\arrow["\varphi"', from=1-3, to=2-3]
+% 		\arrow["\varphi"', from=1-4, to=2-4]
+% 	\end{tikzcd}\]
+% 	In particular, we let $\delta_B'\colon\widehat H^{q-1}(G,B)\to\widehat H^q(G,I_G\otimes_\ZZ B)$ and $\delta_C'\colon\widehat H^{q-1}(G,B)\to\widehat H^q(G,I_G\otimes_\ZZ C)$ denote the induced isomorphisms, and again functoriality of the boundary morphisms tells us that $\varphi\delta_B=\delta_C\varphi$. Now, the inductive hypothesis tells us that the following diagram commutes for any $a\in\widehat H^p(G,A)$.
+% 	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF5wKEcsSV9HXFxvdGltZXNfXFxaWiBCKSJdLFsxLDAsIlxcd2lkZWhhdCBIXnAoRyxJX0dcXG90aW1lc19cXFpaIEMpIl0sWzAsMSwiXFx3aWRlaGF0IEhee3ArcX0oRyxBXFxvdGltZXNfXFxaWiBJX0dcXG90aW1lc19cXFpaIEIpIl0sWzEsMSwiXFx3aWRlaGF0IEhee3ArcX0oRyxBXFxvdGltZXNfXFxaWiBJX0dcXG90aW1lc19cXFpaIEMpIl0sWzAsMSwiXFx2YXJwaGkiXSxbMiwzLCJcXHZhcnBoaSJdLFswLDIsImFcXGN1cCAtIiwyXSxbMSwzLCJhXFxjdXAgLSJdXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+% 	\[\begin{tikzcd}
+% 		{\widehat H^q(G,I_G\otimes_\ZZ B)} & {\widehat H^q(G,I_G\otimes_\ZZ C)} \\
+% 		{\widehat H^{p+q}(G,A\otimes_\ZZ I_G\otimes_\ZZ B)} & {\widehat H^{p+q}(G,A\otimes_\ZZ I_G\otimes_\ZZ C)}
+% 		\arrow["\varphi", from=1-1, to=1-2]
+% 		\arrow["\varphi", from=2-1, to=2-2]
+% 		\arrow["{a\cup -}"', from=1-1, to=2-1]
+% 		\arrow["{a\cup -}", from=1-2, to=2-2]
+% 	\end{tikzcd}\]
+% 	Namely, any $b\in\widehat H^{p-1}(G,B)$ has
+% 	\begin{align*}
+% 		\delta_C'(a\cup\varphi(b)) &= (-1)^p\big(a\cup\delta_C'(\varphi(b))\big) \\
+% 		&= (-1)^p\big(a\cup\varphi(\delta_B'(b))\big) \\
+% 		&\stackrel*= (-1)^p\varphi(a\cup\delta_B'(b)) \\
+% 		&= (-1)^p\cdot(-1)^p\varphi(\delta_B'(a\cup b)) \\
+% 		&= \delta_C'(\varphi(a\cup b)),
+% 	\end{align*}
+% 	where we've applied the inductive hypothesis at $\stackrel*=$. Because $\delta_C'$ is an isomorphism, this completes shifting $q$ downwards to $q-1$.
 % \end{proof}
-\begin{proposition} \label{prop:naturaltransarecups}
-	Let $G$ be a finite group, and let $p\in\ZZ$ be an index. Suppose we have a $G$-module $X$ with a natural transformation
-	\[\Phi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^p(G,-).\]
-	Then there exists $[x]\in\widehat H^p(G,X)$ such that $\Phi_\bullet$ is the cup-product map $[x]\cup-$.
-\end{proposition}
-\begin{proof}
-	This is analogous to \autoref{lem:naturaltransiscupping}. Namely, this is again essentially the Yoneda lemma. As such, set $[x]\coloneqq\Phi_X([\id_X])$. As before, the point is to fix some $G$-module $A$ and $[f]\in\widehat H^0(G,\op{Hom}_\ZZ(X,A))$ in order to track through the commutativity of the following diagram.
-	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF4wKEcsXFxvcHtIb219X1xcWlooWCxYKSkiXSxbMSwwLCJcXHdpZGVoYXQgSF4wKEcsXFxvcHtIb219X1xcWlooWCcsWCkpIl0sWzAsMSwiXFx3aWRlaGF0IEheMChHLFxcb3B7SG9tfV9cXFpaKFgsQSkpIl0sWzEsMSwiXFx3aWRlaGF0IEheMChHLFxcb3B7SG9tfV9cXFpaKFgnLEEpKSJdLFswLDEsIlxcUGhpX1giXSxbMCwyLCJmIiwyXSxbMSwzLCJmIiwyXSxbMiwzLCJcXFBoaV9BIl1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
-	\begin{equation}
-		\begin{tikzcd}
-			{\widehat H^0(G,\op{Hom}_\ZZ(X,X))} & {\widehat H^p(G,X)} \\
-			{\widehat H^0(G,\op{Hom}_\ZZ(X,A))} & {\widehat H^p(G,A)}
-			\arrow["{\Phi_X}", from=1-1, to=1-2]
-			\arrow["f"', from=1-1, to=2-1]
-			\arrow["f"', from=1-2, to=2-2]
-			\arrow["{\Phi_A}", from=2-1, to=2-2]
-		\end{tikzcd} \label{eq:cohomologicalyoneda}
-	\end{equation}
-	Because we will need to deal with the cup products with negative indices, we will use the standard resolution of \cite{cassels-frolich}. For example, we interpret $f\in[f]\in\widehat H^0(G,\op{Hom}_\ZZ(X,A))$ as a constant function $f\in\op{Hom}_G(\ZZ[G],\op{Hom}_\ZZ(X,A))$, which means that $f(z)$ is the same $G$-module homomorphism for each $z\in\ZZ[G]$.
-
-	As such, we can track the left arrow of \autoref{eq:cohomologicalyoneda} as
-	\[\arraycolsep=1.4pt\begin{array}{cccc}
-		f\colon& \widehat H^0(G,\op{Hom}_\ZZ(X,X)) &\to& \widehat H^0(G,\op{Hom}_\ZZ(X,A)) \\
-		& {[z\mapsto\id_X]} &\to& {[z\mapsto f(z)\circ\id_X]=[f]}.
-	\end{array}\]
-	So, along the bottom of \autoref{eq:cohomologicalyoneda}, we are evaluating $\Phi_A([f])$.
-
-	Along the top of \autoref{eq:cohomologicalyoneda}, we immediately send $[x]$ to $\Phi_X([z\mapsto\id_X])=[x]$, so to finish the proof, we need to show that
-	\[f([x])\stackrel?=[x]\cup[f],\]
-	which will be enough by the commutativity of \autoref{eq:cohomologicalyoneda}. We have two similar cases to appropriately deal with the cup product.
-	\begin{itemize}
-		\item Suppose that $p\ge0$ so that we can interpret $x$ as an element of $\op{Hom}_{\ZZ[G]}\left(\ZZ[G^{p+1}],X\right)$, using the standard resolution. As such, we compute
-		\[(x\cup f)(g_0,\ldots,g_p) = x(g_0,\ldots,g_p) \otimes f(g_p),\]
-		where our output is in $X\otimes_\ZZ\op{Hom}_\ZZ(X,A)$. Applying evaluation, the cup product is outputting
-		\[(g_0,\ldots,g_p)\mapsto(f(g_p)\circ x)(g_0,\ldots,g_p)\]
-		as our element of $\op{Hom}_{\ZZ[G]}(\ZZ[G^{p+1}],A)$. Indeed, this morphism represents $f([x])$.
-		\item Analogously, suppose that $p<0$ so that we interpret $x$ as an element of $\op{Hom}_{\ZZ[G]}\left(\op{Hom}_\ZZ(\ZZ[G]^p,\ZZ),X\right)$. To decrease headaches, we let $g^*\colon\ZZ[G]\to\ZZ$ denote the $G$-module homomorphism sending $g\mapsto1$ and other group elements to $0$. Then $p$-tuples $(g_1^*,\ldots,g_p^*)$ form a $\ZZ$-basis of $\op{Hom}_\ZZ(\ZZ[G]^p,\ZZ)$, so it's enough to specify
-		\[(x\cup f)(g_1^*,\ldots,g_p^*) = x(g_1^*,\ldots,g_p^*)\otimes f(g_p),\]
-		where the output is in $X\otimes_\ZZ\op{Hom}_\ZZ(X,A)$. Applying evaluation, the cup product is outputting
-		\[(g_1^*,\ldots,g_p^*)\mapsto (f(g_p)\circ x)(g_1^*,\ldots,g_p^*)\]
-		as an element of $\op{Hom}_{\ZZ[G]}\left(\op{Hom}_\ZZ(\ZZ[G]^p,\ZZ),A\right)$. Indeed, this represents $f([x])$.
-	\end{itemize}
-	The above cases finish tracking through \autoref{eq:cohomologicalyoneda} and hence finish the proof.
-\end{proof}
-\begin{example}
-	For $p\ge0$, standard dimension-shifting arguments give natural isomorphisms
-	\[\widehat H^0\left(G,\op{Hom}_\ZZ(I_G^{\otimes p},-)\right)\Rightarrow\widehat H^p(G,A),\]
-	so \autoref{prop:naturaltransarecups} implies that these isomorphisms are cup products with an element of $\widehat H^p(G,I_G^{\otimes p})$. For example, when $p=0$, we have $[1]\in\widehat H^0(G,\ZZ)$; and when $p=1$, we have $g\mapsto(1-g)$ in $\widehat H^1(G,I_G)$.
-\end{example}
-\begin{example}
-	Fix notation as in \autoref{sec:overview}, and take $m=2$. Then there are natural transformations
-	\[\widehat H^2(G,-)\stackrel{[\delta(\overline c)]^\lor\cup-}\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{-1}(G,-)\]
-	sending a $2$-cocycle to its $\{\sigma_i\}_{i=1}^m$-tuple and then to the (class of) $\beta_{10}$. (It turns out that, because $G$ is bicyclic, the equivalence relation on $\beta_{10}$ is exactly what we need to form a class of $\widehat H^{-1}$.) Now, applying \autoref{prop:naturaltransarecups}, we see that the right natural transformation must be a cup-product map, so by associativity of the cup product, the entire natural transformation is a cup-product map.
-
-	Thus, analogously to what \autoref{cor:alphaiscupproduct} says for $\alpha$s, we can describe the projection from $2$-cocycles to $\beta$s purely via (restricted) cup products.
-\end{example}
+% \begin{remark}
+% 	An analogous argument shows that a $G$-module homomorphism $\psi\colon A\to B$ induces the following commutative diagram, for any $p,q\in\ZZ$ and $c\in\widehat H^q(G,C)$.
+% 	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF5wKEcsQSkiXSxbMSwwLCJcXHdpZGVoYXQgSF5wKEcsQikiXSxbMCwxLCJcXHdpZGVoYXQgSF57cCtxfShHLEFcXG90aW1lc19cXFpaIEMpIl0sWzEsMSwiXFx3aWRlaGF0IEhee3ArcX0oRyxCXFxvdGltZXNfXFxaWiBDKSJdLFswLDEsIlxccHNpIl0sWzIsMywiXFxwc2kiXSxbMCwyLCItXFxjdXAgYyIsMl0sWzEsMywiLVxcY3VwIGMiLDJdXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+% 	\[\begin{tikzcd}
+% 		{\widehat H^p(G,A)} & {\widehat H^p(G,B)} \\
+% 		{\widehat H^{p+q}(G,A\otimes_\ZZ C)} & {\widehat H^{p+q}(G,B\otimes_\ZZ C)}
+% 		\arrow["\psi", from=1-1, to=1-2]
+% 		\arrow["\psi", from=2-1, to=2-2]
+% 		\arrow["{-\cup c}"', from=1-1, to=2-1]
+% 		\arrow["{-\cup c}"', from=1-2, to=2-2]
+% 	\end{tikzcd}\]
+% \end{remark}
+% And here are some corollaries, tying back into our theory.
+% \begin{cor} \label{cor:xhasallcupisos}
+% 	Fix notation as in \autoref{sec:overview}. Then, for any $G$-module $A$ and index $i\in\ZZ$, the cup-product map
+% 	\[[\delta(\overline c)]\cup-\colon\widehat H^i(G,\op{Hom}_\ZZ(X,A))\to\widehat H^{i+2}(G,A)\]
+% 	is an isomorphism.
+% \end{cor}
+% \begin{proof}
+% 	Set $p=2$ and $q=0$ and $c$ to $[\delta(\overline c)]$ in \autoref{prop:dimshiftcupisos}; the hypothesis is satisfied by combining the cup-product map of \autoref{thm:yesitisacocycle} with \autoref{prop:alternativetupleclass}. (Namely, the cup-product map is sending an equivalence class of tuples to the corresponding cohomology class, which is an isomorphism by \autoref{thm:classisomorphism}.) Anyway, \autoref{prop:dimshiftcupisos} does indeed give the result.
+% \end{proof}
 
 % \section{Torus Reciprocity}
 % In this section we will apply the theory we have built to the specific case where $G$ is a Galois group of an extension of local fields $L/K$.
@@ -1532,7 +809,7 @@ is a cup-product map. However, we can show that all such natural transformations
 % 	\[\sum_{s_1,s_2\in G}c(g_0,s_1,s_2)\otimes x(s_2^*,s_1^*)\otimes u(g_0,g_1,g_2)-\sum_{s_1,s_2\in G}c(g_0,g_1,g_2)\otimes x(s_1^*,s_2^*)\otimes u(s_2,s_1,g_0)\]
 % 	lives in $B^2(G,X^*(T)\otimes_\ZZ X_*(T)\otimes_\ZZ L^\times)$. Passing this all through the evaluation map $X^*(T)\otimes_\ZZ X_*(T)\otimes_\ZZ L^\times\to L^\times$ by $(f\otimes g\otimes z)\mapsto(f\circ g)(z)$, we see that the map sending $(g_0,g_1,g_2)$ to
 % 	\[\prod_{s_1,s_2\in G}\big(c(g_0,s_1,s_2)\circ x(s_2^*,s_1^*)\big)\big(u(g_0,g_1,g_2)\big)\bigg/\prod_{s_1,s_2\in G}\big(c(g_0,g_1,g_2)\circ x(s_1^*,s_2^*)\big)\big(u(s_2,s_1,g_2)\big)\]
-% 	is a coboundary in $B^2(G,L^\times)$. (Namely, homomorphisms $M\to M'$ induce homomorphisms $B^\bullet(G,M)\to B^\bullet(G,M)$.) Thus, \autoref{eq:cupsleft} and \autoref{eq:cupsright} are indeed in the same cocycle class.\todo{Run this check without gimmicks. Maybe general indices?}
+% 	is a coboundary in $B^2(G,L^\times)$. (Namely, homomorphisms $M\to M'$ induce homomorphisms $B^\bullet(G,M)\to B^\bullet(G,M)$.) Thus, \autoref{eq:cupsleft} and \autoref{eq:cupsright} are indeed in the same cocycle class.
 % \end{proof}
 % The point of \autoref{lem:torusdiagram} is the following result.
 % \begin{theorem} \label{thm:goodcuppairing}
@@ -1575,3 +852,47 @@ is a cup-product map. However, we can show that all such natural transformations
 % 	\[[\delta(\overline c)]\cup-\colon\widehat H^0(L/K,T(L))\to\widehat H^2(L/K,L^\times)\]
 % 	is an isomorphism. No such element exists when $T=\mathbb G_m$ and $G$ is non-cyclic because the above groups need not even be isomorphic!
 % \end{remark}
+
+\subsection{Algebraic Corollaries}
+We continue in the set-up of the previous subsection. Observe that \autoref{prop:alternativetupleclass} combined with \autoref{thm:classisomorphism} tells us that we have isomorphisms
+\[\delta(\overline c)\cup-\colon\widehat H^0(G,\op{Hom}_\ZZ(X,A))\to\widehat H^2(G,A).\]
+In fact, \autoref{lem:cuppingisnatural} tells us that these isomorphisms assemble into a natural isomorphism, so we have the following result.
+\begin{theorem}
+	Fix everything as in the set-up. Then $X$ is a $2$-encoding module.
+\end{theorem}
+\begin{proof}
+	This follows from the above discussion.
+\end{proof}
+Now that we have a $2$-encoding module, we can apply all the theory we built in \autoref{sec:crackpot}. For example, it might have felt like magic that the isomorphism sending a tuple to its cohomology class was induced by a cup product, but in fact this must have been true all along by \autoref{cor:encodingsarecups}.
+
+Here are some other results.
+\begin{cor}
+	Fix everything as in the set-up. Then $X$ is cohomologically equivalent to $I_G\otimes_\ZZ I_G$.
+\end{cor}
+\begin{proof}
+	We know that $I_G\otimes_\ZZ I_G$ is a $2$-encoding module by \autoref{ex:igisencoding}, from which \autoref{cor:encodingmodules} finishes.
+\end{proof}
+\begin{cor}
+	Fix everything as in the set-up. Then we have natural isomorphisms
+	\[[\delta(\overline c)]\cup-\colon\widehat H^i(G,\op{Hom}_\ZZ(X,A))\to\widehat H^{i+2}(G,A)\]
+	for all $i\in\ZZ$.
+\end{cor}
+\begin{proof}
+	We get $i=0$ from the above discussion and then (roughly speaking) extend to all indices by \autoref{prop:dimshiftcupisos}. Alternatively, one can just follow the proof of \autoref{cor:betterencodingdef} through by setting $x=[\delta(\overline c)]$.
+\end{proof}
+\begin{cor}
+	Fix everything as in the set-up. Then $\widehat H^2(G,X)$ is cyclic of order $\#G$ generated by $[\delta(\overline c)]$.
+\end{cor}
+\begin{proof}
+	This follows from \autoref{cor:h2xcomputation}.
+\end{proof}
+\begin{remark}
+	Fix notation as in \autoref{sec:overview}, and take $m=2$. Then there are natural transformations
+	\[\widehat H^2(G,-)\stackrel{[\delta(\overline c)]^\lor\cup-}\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{-1}(G,-)\]
+	sending a $2$-cocycle to its $\{\sigma_i\}_{i=1}^m$-tuple and then to the (class of) $\beta_{10}$. (It turns out that, because $G$ is bicyclic, the equivalence relation on $\beta_{10}$ is exactly what we need to form a class of $\widehat H^{-1}$.) Now, applying \autoref{cor:encodingsarecups}, we see that the right natural transformation must be a cup-product map, so by associativity of the cup product, the entire natural transformation is a cup-product map.
+
+	Thus, analogously to what \autoref{cor:alphaiscupproduct} says for $\alpha$s, we can describe the projection from $2$-cocycles to $\beta$s purely via (restricted) cup products.
+\end{remark}
+\begin{remark}
+	Noting that $\mathcal F\colon X\into\ZZ[G]^m$ implies that $X$ is $\ZZ$-free, there is a torus $T\coloneqq\op{Hom}_\ZZ(X,\mathbb G_m)$. It is conceivable that one could realize the approach of \autoref{rem:artinreciptaste} for our torus $T$.
+\end{remark}

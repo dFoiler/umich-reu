@@ -26,3 +26,4 @@
 {"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QThis square commutes by \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
 {"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QThis square commutes by functoriality of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q applied to \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
 {"rule":"TO_NON_BASE","sentence":"^\\QHowever, \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q-torsion, so in fact maps \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q automatically have \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q in their kernel and hence reduce to maps \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QThis square commutes by functoriality of cup products.\\E$"}

@@ -55,3 +55,14 @@ automorphisms
 Kottwitz
 protorus
 homological
+Étale
+ÉTALE
+étale
+Weil
+Betti
+Noetherian
+Artinian
+monic
+protori
+adjunction
+hom

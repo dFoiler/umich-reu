@@ -58,6 +58,14 @@ Our key example of a shiftable functor will be $\op{Hom}_\ZZ(X,-)$ for $G$-modul
 \end{proof}
 With that said, we also remark that shifting functors are rather expansive, and we will need a little more freedom in applications.
 \begin{lemma}
+	Let $G$ be a finite group and $X$ a $G$-module. Then $\op{Hom}_\ZZ(-,X)$ is a (contravariant) shiftable functor.
+\end{lemma}
+\begin{proof}
+	As usual, we already know that our functor is additive, so the main check is that we send induced modules to induced modules. Well, without loss of generality, let $\ZZ[G]\otimes_\ZZ M$ be our induced module. Then the tensor--hom adjunction gives
+	\[\op{Hom}_\ZZ(\ZZ[G]\otimes_\ZZ M,X)\simeq\op{Hom}_\ZZ(\ZZ[G],\op{Hom}_\ZZ(M,X)),\]
+	which is also a $G$-module isomorphism. This finishes.
+\end{proof}
+\begin{lemma}
 	Let $G$ be a finite group and $X$ a $G$-module. Then $X\otimes_\ZZ-$ is a shiftable functor.
 \end{lemma}
 \begin{proof}
@@ -341,7 +349,7 @@ To begin, we show this result for $i=0$.
 	As such, we can track the left arrow of \autoref{eq:cohomologicalyoneda} as
 	\[\arraycolsep=1.4pt\begin{array}{cccc}
 		\overline f\colon& \widehat H^0(G,\op{Hom}_\ZZ(X,X)) &\to& \widehat H^0(G,\op{Hom}_\ZZ(X,A)) \\
-		& {[z\mapsto\id_X]} &\to& {[z\mapsto f(z)\circ\id_X]=[\overline f]}.
+		& {[z\mapsto\id_X]} &\mapsto& {[z\mapsto f(z)\circ\id_X]=[\overline f]}.
 	\end{array}\]
 	So, along the bottom of \autoref{eq:cohomologicalyoneda}, we are evaluating $\Phi_A([\overline f])$.
 
@@ -352,13 +360,13 @@ To begin, we show this result for $i=0$.
 		\item Suppose that $p\ge0$ so that we can interpret $x$ as an element of $\op{Hom}_{\ZZ[G]}\left(\ZZ[G^{p+1}],X\right)$, using the standard resolution. As such, we compute
 		\[(x\cup f)(g_0,\ldots,g_p) = x(g_0,\ldots,g_p) \otimes f(g_p),\]
 		where our output is in $\op{Hom}_\ZZ(X',X)\otimes_\ZZ\op{Hom}_\ZZ(X,A)$. Applying evaluation, the cup product is outputting
-		\[(g_0,\ldots,g_p)\mapsto(f(g_p)\circ x)(g_0,\ldots,g_p)\]
-		as our element of $\op{Hom}_{\ZZ[G]}(\ZZ[G^{p+1}],A)$. Indeed, this morphism represents $\overline f([x])$.
+		\[(g_0,\ldots,g_p)\mapsto f(g_p)\circ x(g_0,\ldots,g_p)\]
+		as our element of $\op{Hom}_{\ZZ[G]}(\ZZ[G^{p+1}],\op{Hom}_\ZZ(X',A))$. Indeed, this morphism represents $\overline f([x])$.
 		\item Analogously, suppose that $p<0$ so that we interpret $x$ as an element of $\op{Hom}_{\ZZ[G]}\left(\op{Hom}_\ZZ(\ZZ[G]^p,\ZZ),X\right)$. To decrease headaches, we let $g^*\colon\ZZ[G]\to\ZZ$ denote the $G$-module homomorphism sending $g\mapsto1$ and other group elements to $0$. Then $p$-tuples $(g_1^*,\ldots,g_p^*)$ form a $\ZZ$-basis of $\op{Hom}_\ZZ(\ZZ[G]^p,\ZZ)$, so it's enough to specify
 		\[(x\cup f)(g_1^*,\ldots,g_p^*) = x(g_1^*,\ldots,g_p^*)\otimes f(g_p),\]
 		where the output is in $\op{Hom}_\ZZ(X',X)\otimes_\ZZ\op{Hom}_\ZZ(X,A)$. Applying evaluation, the cup product is outputting
-		\[(g_1^*,\ldots,g_p^*)\mapsto (f(g_p)\circ x)(g_1^*,\ldots,g_p^*)\]
-		as an element of $\op{Hom}_{\ZZ[G]}\left(\op{Hom}_\ZZ(\ZZ[G]^p,\ZZ),A\right)$. Indeed, this represents $\overline f([x])$.
+		\[(g_1^*,\ldots,g_p^*)\mapsto f(g_p)\circ x(g_1^*,\ldots,g_p^*)\]
+		as an element of $\op{Hom}_{\ZZ[G]}\left(\op{Hom}_\ZZ(\ZZ[G]^p,\ZZ),\op{Hom}_\ZZ(X',A)\right)$. Indeed, this represents $\overline f([x])$.
 	\end{itemize}
 	The above cases finish tracking through \autoref{eq:cohomologicalyoneda} and hence finish the proof.
 	% This is essentially the Yoneda lemma. Choose $\varphi\colon X'\to X$ to represent $[\varphi]=\Phi_X([\id_X])$. Then tracking through the commutativity of
@@ -864,6 +872,9 @@ Cohomological equivalence is exactly what we need to talk about uniqueness.
 	\[\widehat H^q(G,A)\simeq\widehat H^p\left(G,\op{Hom}_\ZZ(I_G^{\otimes (q-p)},A)\right),\]
 	and in fact these isomorphisms are natural by the functoriality of boundary morphisms. So the equivalence class of \autoref{cor:encodingmodules} is represented by $I_G^{\otimes(q-p)}$.
 \end{example}
+\begin{example} \label{ex:notalltorsionfree}
+	Not all $p$-encoding modules are torsion-free. For example, if $M$ is a $p$-encoding module, and $A$ is induced, then $M\oplus A$ is cohomologically equivalent to $M$, so $M\oplus A$ is a $p$-encoding module. However, not all induced modules $A$ are torsion-free.
+\end{example}
 % The above two examples should give a feeling for why this uniqueness problem is difficult.
 In fact, akin to the classification of natural transformations from \autoref{prop:allnaturaltransarecups}, we can show that these encoding maps must be cup products.
 % \begin{lemma}
@@ -978,7 +989,7 @@ And here is our computation.
 	It follows that $\Phi_\bullet'=k\Phi_\bullet$.
 \end{proof}
 
-\subsection{Encoding under Restriction}
+\subsection{The Dual Element}
 Let $X$ be a $p$-encoding module, and conjure $x\in\widehat H^p(G,X)$ from \autoref{cor:betterencodingdef}. Then note that our proof of \autoref{cor:h2xcomputation} found $x^\lor\in\widehat H^{-p-1}(G,\op{Hom}_\ZZ(X,\QQ/\ZZ))$ such that
 \[x\cup x^\lor=[1/n]\in\widehat H^{-1}(G,\QQ/\ZZ).\]
 This is fairly close to saying that the operation of $x\cup-$ can be inverted with the correct $x^\lor\cup-$ operation (and maybe a sign), but cupping with $[1/n]$ would then not necessarily by the identity transformation.
@@ -988,7 +999,7 @@ In particular, we would like to actually be in $\widehat H^0(G,\ZZ)$, whose cup 
 	Let $G$ be a finite group, and let $X$ be a $G$-module with index $p\in\ZZ$. The following are equivalent.
 	\begin{listalph}
 		\item $X$ is a $p$-encoding module.
-		\item There are $x\in\widehat H^p(G,X)$ and $x^\lor\in\widehat H^{-p}(G,\op{Hom}_\ZZ(X,X))$ such that
+		\item There are $x\in\widehat H^p(G,X)$ and $x^\lor\in\widehat H^{-p}(G,\op{Hom}_\ZZ(X,\ZZ))$ such that
 		\[x\cup x^\lor=[1]\in\widehat H^0(G,\ZZ)\qquad\text{and}\qquad x^\lor\cup x=[{\id_X}]\in\widehat H^0(G,\op{Hom}_\ZZ(X,X)).\]
 	\end{listalph}
 \end{prop}
@@ -1096,13 +1107,13 @@ Here is an amusing corollary we get from this.
 	\begin{align*}
 		\op{Res}x\cup\op{Res}x^\lor &= \op{Res}(x\cup x^\lor) \\
 		&= \op{Res}[1] \\
-		&= 1\in\widehat H^(H,\ZZ),
+		&= [1]\in\widehat H^0(H,\ZZ),
 	\end{align*}
 	and
 	\begin{align*}
-		\op{Res}x^\lor\cup\op{Res}x &= \op{Res}(x^\lor\cup x^) \\
+		\op{Res}x^\lor\cup\op{Res}x &= \op{Res}(x^\lor\cup x) \\
 		&= \op{Res}[{\id_X}] \\
-		&= [{\id_X}]\in\widehat H^(H,\op{Hom}_\ZZ(X,X)),
+		&= [{\id_X}]\in\widehat H^0(H,\op{Hom}_\ZZ(X,X)),
 	\end{align*}
 	which is enough by \autoref{prop:intdualelement}.
 \end{proof}
@@ -1133,6 +1144,75 @@ We close by noting that the proof of \autoref{prop:intdualelement} actually mana
 \begin{proof}
 	The case of $i=0$ follows directly from the proof of \autoref{prop:intdualelement}. The general case follows by literally shifting all the indices in the proof of \autoref{prop:intdualelement} away from $i=0$ to a general $i\in\ZZ$; nothing in the logic changes.
 \end{proof}
+
+\subsection{New Encoding Modules From Old}
+The goal of this section is to build encoding modules up from smaller ones.
+\begin{proposition}
+	Let $G$ be a finite group. Given a $p$-encoding module $A$ and a $q$-encoding module $B$, the $G$-module $A\otimes_\ZZ B$ is a $(p+q)$-encoding module.
+\end{proposition}
+\begin{proof}
+	By \autoref{cor:betterencodingdef}, we have natural isomorphisms
+	\[\widehat H^0(G,\op{Hom}_\ZZ(A,-))\simeq\widehat H^p(G,-)\qquad\text{and}\qquad\widehat H^p(G,\op{Hom}_\ZZ(B,-))\simeq\widehat H^{p+q}(G,-).\]
+	As such, we have a natural isomorphism
+	\begin{align*}
+		\widehat H^0(G,\op{Hom}_\ZZ(A\otimes_\ZZ B,-)) &\simeq \widehat H^0(G,\op{Hom}_\ZZ(A,\op{Hom}_\ZZ(B,-))) \\
+		&\simeq \widehat H^p(G,\op{Hom}_\ZZ(B,-)) \\
+		&\simeq \widehat H^{p+q}(G,-),
+	\end{align*}
+	which is what we wanted.
+\end{proof}
+\begin{proposition} \label{prop:dualmodule}
+	Let $G$ be a finite group, and let $X$ be a $p$-encoding module. Then $\op{Hom}_\ZZ(X,\ZZ)$ is a $(-p)$-encoding module.
+\end{proposition}
+\begin{proof}
+	We use \autoref{prop:intdualelement}. For brevity, we set $X^*\coloneqq\op{Hom}_\ZZ(X,\ZZ)$ and $X^{**}\coloneqq\op{Hom}_\ZZ(X^*,\ZZ)$. Observe that there is a (canonical) map $\varphi\colon X\to X^{**}$ by
+	\[\varphi\colon f\mapsto f\circ\varphi.\]
+	By \autoref{prop:intdualelement}, we may find $x\in\widehat H^p(G,X)$ and $x^\lor\in\widehat H^{-p}(G,X^*)$ such that
+	\[x\cup x^\lor=[1]\in\widehat H^0(G,\ZZ)\qquad\text{and}\qquad x^\lor\cup x=[{\id_X}]\in\widehat H^0(G,\op{Hom}_\ZZ(X,X)).\]
+	As such, we set $y\coloneqq x^\lor$ and $y^\lor\coloneqq(-1)^p\varphi(x)$. The commutative diagram
+	% https://q.uiver.app/?q=WzAsOCxbMCwwLCJYXFxvdGltZXNfXFxaWiBYXioiXSxbMSwwLCJcXFpaIl0sWzAsMSwiWF57Kip9XFxvdGltZXNfXFxaWiBYXioiXSxbMSwxLCJcXFpaIl0sWzIsMCwieFxcb3RpbWVzIGYiXSxbMiwxLCIoZ1xcbWFwc3RvIGcoeCkpXFxvdGltZXMgZiJdLFszLDAsImYoeCkiXSxbMywxLCJmKHgpIl0sWzEsMywiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwxXSxbMiwzXSxbMCwyLCJcXHZhcnBoaVxcb3RpbWVze1xcaWR9IiwyXSxbNCw2LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzQsNSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFs1LDcsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbNiw3LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		{X\otimes_\ZZ X^*} & \ZZ & {x\otimes f} & {f(x)} \\
+		{X^{**}\otimes_\ZZ X^*} & \ZZ & {(g\mapsto g(x))\otimes f} & {f(x)}
+		\arrow[Rightarrow, no head, from=1-2, to=2-2]
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=2-1, to=2-2]
+		\arrow["{\varphi\otimes{\id}}"', from=1-1, to=2-1]
+		\arrow[maps to, from=1-3, to=1-4]
+		\arrow[maps to, from=1-3, to=2-3]
+		\arrow[maps to, from=2-3, to=2-4]
+		\arrow[maps to, from=1-4, to=2-4]
+	\end{tikzcd}\]
+	tells us that we may evaluate
+	\[\varphi(x)\cup x^\lor=x\cup x^\lor=[1]\in\widehat H^0(G,\ZZ),\]
+	so $y\cup y^\lor=[1]\in\widehat H^0(G,\ZZ)$ after being careful with signs.
+
+	On the other hand, we set $A=B=X$ for clarity and note that the map $\psi\colon\op{Hom}_\ZZ(A,B)\to\op{Hom}_\ZZ(B^*,A^*)$ by
+	\[\psi\colon f\mapsto(g\mapsto g\circ f)\]
+	gives the commutative diagram
+	% https://q.uiver.app/?q=WzAsOCxbMCwwLCJBXipcXG90aW1lc19cXFpaIEIiXSxbMSwwLCJcXG9we0hvbX1fXFxaWihBLEIpIl0sWzAsMSwiQV4qXFxvdGltZXNfXFxaWlxcb3B7SG9tfV9cXFpaKEJeKixcXFpaKSJdLFsxLDEsIlxcb3B7SG9tfV9cXFpaKEJeKixBXiopIl0sWzIsMCwiZlxcb3RpbWVzIGIiXSxbMywwLCJcXGJpZyhhXFxtYXBzdG8gZihhKWJcXGJpZykiXSxbMiwxLCJmXFxvdGltZXNcXGJpZyhnXFxtYXBzdG8gZyhiKVxcYmlnKSJdLFszLDEsIlxcYmlnKGdcXG1hcHN0byBnKGIpZlxcYmlnKSJdLFsxLDMsIlxccHNpIl0sWzAsMV0sWzAsMiwie1xcaWR9XFxvdGltZXNcXHZhcnBoaSIsMl0sWzIsM10sWzQsNiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFs2LDcsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbNSw3LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzQsNSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		{A^*\otimes_\ZZ B} & {\op{Hom}_\ZZ(A,B)} & {f\otimes b} & {\big(a\mapsto f(a)b\big)} \\
+		{A^*\otimes_\ZZ\op{Hom}_\ZZ(B^*,\ZZ)} & {\op{Hom}_\ZZ(B^*,A^*)} & {f\otimes\big(g\mapsto g(b)\big)} & {\big(g\mapsto g(b)f\big)}
+		\arrow["\psi", from=1-2, to=2-2]
+		\arrow[from=1-1, to=1-2]
+		\arrow["{{\id}\otimes\varphi}"', from=1-1, to=2-1]
+		\arrow[from=2-1, to=2-2]
+		\arrow[maps to, from=1-3, to=2-3]
+		\arrow[maps to, from=2-3, to=2-4]
+		\arrow[maps to, from=1-4, to=2-4]
+		\arrow[maps to, from=1-3, to=1-4]
+	\end{tikzcd}\]
+	which tells us that we may evaluate
+	\[x^\lor\cup\varphi(x)=\psi(x^\lor\cup x)=\psi([\id_X])=[\id_{X^*}]\in\widehat H^0(G,\op{Hom}_\ZZ(X^*,X^*)),\]
+	so $y^\lor\cup y=[{\id_{X^*}}]$ after being careful with signs. This completes the proof.
+\end{proof}
+\begin{example}
+	\autoref{ex:igisencoding} established that $I_G^{\otimes p}$ is a $p$-encoding module for $p\ge0$. As such, $\op{Hom}_\ZZ\left(I_G^{\otimes p},\ZZ\right)$ is a $(-p)$-encoding module for $-p\le0$. Thus, we have established existence for $p$-encoding modules for all $p\in\ZZ$.
+\end{example}
+\begin{remark}
+	Even though \autoref{ex:notalltorsionfree} asserts that not all $p$-encoding modules $X$ are torsion-free, \autoref{prop:dualmodule} explains that we can canonically obtain a torsion-free $p$-encoding module from $X$ in the form of $\op{Hom}_\ZZ(\op{Hom}_\ZZ(X,\ZZ),\ZZ)$.
+\end{remark}
 
 % \subsection{Using Duality}
 % \autoref{prop:ceduality} was able to provide us with some duality for $\widehat H^p(G,X)$, which enabled us to prove that $\widehat H^p(G,X)\simeq\ZZ/\#G\ZZ$. However, we saw in \autoref{prop:intdualelement}, that somehow the correct dual element is supposed to live in $\widehat H^{-p}(G,\op{Hom}_\ZZ(X,\ZZ))$.
@@ -1261,7 +1341,7 @@ We close this section with a hint of Artin reciprocity. The main goal of this su
 \end{theorem}
 The main step in the proof is the following lemma.
 \begin{lemma}
-	Let $G$ be a finite group, and let $X$ and $A$ be $G$-modules. Pick up another $G$-module $A$. Then, given any $i\in\ZZ$ and $c\in\widehat H^p(G,X)$ and $u\in\widehat H^2(G,A)$, the following diagram commutes, where all arrows are cup-product maps.
+	Let $G$ be a finite group, and let $X$ and $A$ be $G$-modules. Pick up another $G$-module $A$. Then, given any $i\in\ZZ$ and $c\in\widehat H^p(G,X)$ and $u\in\widehat H^p(G,A)$, the following diagram commutes, where all arrows are cup-product maps.
 	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF57aS0yfShHLFxcb3B7SG9tfV9cXFpaKFgsXFxaWikpIl0sWzEsMCwiXFx3aWRlaGF0IEheaShHLFxcb3B7SG9tfV9cXFpaKFgsQSkpIl0sWzAsMSwiXFx3aWRlaGF0IEheaShHLFxcWlopIl0sWzEsMSwiXFx3aWRlaGF0IEhee2krMn0oRyxBKSJdLFswLDEsIi1cXGN1cCB1Il0sWzAsMiwiY1xcY3VwLSIsMl0sWzIsMywiLVxcY3VwIHUiLDJdLFsxLDMsImNcXGN1cC0iXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
 	\[\begin{tikzcd}
 		{\widehat H^{i-p}(G,\op{Hom}_\ZZ(X,\ZZ))} & {\widehat H^i(G,\op{Hom}_\ZZ(X,A))} \\
@@ -1306,8 +1386,8 @@ The main step in the proof is the following lemma.
 	% https://q.uiver.app/?q=WzAsOSxbMCwwLCJcXHdpZGVoYXQgSF57aS0yfShHLFxcb3B7SG9tfV9cXFpaKFgsXFxaWikpIl0sWzEsMCwiXFx3aWRlaGF0IEheaShHLFxcb3B7SG9tfV9cXFpaKFgsXFxaWilcXG90aW1lc19cXFpaIEEpIl0sWzIsMCwiXFx3aWRlaGF0IEheaShHLFxcb3B7SG9tfV9cXFpaKFgsQSkpIl0sWzAsMSwiXFx3aWRlaGF0IEheaShHLFhcXG90aW1lc19cXFpaXFxvcHtIb219X1xcWlooWCxcXFpaKSkiXSxbMSwxLCJcXHdpZGVoYXQgSF57aSsyfShHLFhcXG90aW1lc19cXFpaXFxvcHtIb219X1xcWlooWCxcXFpaKVxcb3RpbWVzX1xcWlogQSkiXSxbMiwxLCJcXHdpZGVoYXQgSF57aSsyfShHLFhcXG90aW1lc19cXFpaXFxvcHtIb219X1xcWlooWCxBKSkiXSxbMiwyLCJcXHdpZGVoYXQgSF57aSsyfShHLEEpIl0sWzAsMiwiXFx3aWRlaGF0IEheaShHLFxcWlopIl0sWzEsMiwiXFx3aWRlaGF0IEheMihHLFhcXG90aW1lc19cXFpaIEEpIl0sWzAsMSwiLVxcY3VwIHUiXSxbMyw0LCItXFxjdXAgdSJdLFs3LDgsIi1cXGN1cCB1Il0sWzAsMywiY1xcY3VwIC0iLDJdLFsxLDQsImNcXGN1cCAtIiwyXSxbMiw1LCJjXFxjdXAgLSIsMl0sWzEsMiwiXFxldGFfVCJdLFs0LDUsIlxcZXRhX1QiXSxbOCw2LCJcXGV0YV9CIl0sWzMsNywiXFxldGFfTCIsMl0sWzQsOCwiXFxldGFfTCIsMl0sWzUsNiwiXFxldGFfUiIsMl0sWzEyLDEzLCIoMSkiLDMseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMTMsMTQsIigyKSIsMyx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxOCwxOSwiKDMpIiwzLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzE5LDIwLCIoNCkiLDMseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
 	\[\begin{tikzcd}
 		{\widehat H^{i-p}(G,\op{Hom}_\ZZ(X,\ZZ))} & {\widehat H^i(G,\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ A)} & {\widehat H^i(G,\op{Hom}_\ZZ(X,A))} \\
-		{\widehat H^i(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,\ZZ))} & {\widehat H^{i+p}(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ A)} & {\widehat H^{i+2}(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,A))} \\
-		{\widehat H^i(G,\ZZ)} & {\widehat H^{i+2}(G,X\otimes_\ZZ A)} & {\widehat H^{i+2}(G,A)}
+		{\widehat H^i(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,\ZZ))} & {\widehat H^{i+p}(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ A)} & {\widehat H^{i+p}(G,X\otimes_\ZZ\op{Hom}_\ZZ(X,A))} \\
+		{\widehat H^i(G,\ZZ)} & {\widehat H^{i+p}(G,X\otimes_\ZZ A)} & {\widehat H^{i+p}(G,A)}
 		\arrow["{-\cup u}", from=1-1, to=1-2]
 		\arrow["{-\cup u}", from=2-1, to=2-2]
 		\arrow["{-\cup u}", from=3-1, to=3-2]
@@ -1336,10 +1416,10 @@ The main step in the proof is the following lemma.
 \end{proof}
 We may now proceed directly with \autoref{thm:abstractperfectpairing}.
 \begin{proof}[Proof of \autoref{thm:abstractperfectpairing}]
-	We use the lemma to assert that, for any $u\in H^2(G,A)$, the diagram
+	We use the lemma to assert that, for any $u\in H^p(G,A)$, the diagram
 	\[\begin{tikzcd}
-		{\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ))} & {\widehat H^0(G,\op{Hom}_\ZZ(X,A))} \\
-		{\widehat H^0(G,\ZZ)} & {\widehat H^{2}(G,A)}
+		{\widehat H^{-p}(G,\op{Hom}_\ZZ(X,\ZZ))} & {\widehat H^0(G,\op{Hom}_\ZZ(X,A))} \\
+		{\widehat H^0(G,\ZZ)} & {\widehat H^{p}(G,A)}
 		\arrow["{-\cup u}", from=1-1, to=1-2]
 		\arrow["{c\cup-}"', from=1-1, to=2-1]
 		\arrow["{-\cup u}"', from=2-1, to=2-2]
@@ -1347,30 +1427,30 @@ We may now proceed directly with \autoref{thm:abstractperfectpairing}.
 	\end{tikzcd}\]
 	commutes. By hypothesis, the left and right arrows are isomorphisms, so the commutativity means that showing
 	\[\arraycolsep=1.4pt\begin{array}{ccc}
-		\widehat H^2(G,A) &\to& \op{Hom}_\ZZ\left(\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ)),\widehat H^0(G,\op{Hom}_\ZZ(X,A))\right) \\
+		\widehat H^p(G,A) &\to& \op{Hom}_\ZZ\left(\widehat H^{-p}(G,\op{Hom}_\ZZ(X,\ZZ)),\widehat H^0(G,\op{Hom}_\ZZ(X,A))\right) \\
 		u &\mapsto& (a\mapsto (a\cup u))
 	\end{array}\]
 	is an isomorphism is the same as showing that
 	\[\arraycolsep=1.4pt\begin{array}{ccc}
-		\widehat H^2(G,A) &\to& \op{Hom}_\ZZ\left(\widehat H^0(G,\ZZ),\widehat H^2(G,A)\right) \\
+		\widehat H^p(G,A) &\to& \op{Hom}_\ZZ\left(\widehat H^0(G,\ZZ),\widehat H^p(G,A)\right) \\
 		u &\mapsto& (k\mapsto (k\cup u))
 	\end{array}\]
 	is an isomorphism. Setting $n\coloneqq\#G$, we see $\widehat H^0(G,\ZZ)=\ZZ/n\ZZ$, and the cup product we are looking at sends $k\in\ZZ/n\ZZ$ and $u\in\widehat H^2(G,A)$ to $k\cup u=ku$ by how the ``evaluation'' map $\ZZ\otimes_\ZZ A\simeq A$ behaves. Thus, we are showing that
 	\[\arraycolsep=1.4pt\begin{array}{ccc}
-		\widehat H^2(G,A) &\to& \op{Hom}_\ZZ\left(\ZZ/n\ZZ,\widehat H^2(G,A)\right) \\
+		\widehat H^p(G,A) &\to& \op{Hom}_\ZZ\left(\ZZ/n\ZZ,\widehat H^p(G,A)\right) \\
 		u &\mapsto& (k\mapsto ku)
 	\end{array}\]
 	is an isomorphism.
 	
-	However, $\widehat H^2(G,A)$ is $n$-torsion, so in fact maps $\ZZ\to\widehat H^2(G,A)$ automatically have $n\ZZ$ in their kernel and hence reduce to maps $\ZZ/n\ZZ\to\widehat H^2(G,A)$. Conversely, any map $\ZZ/n\ZZ\to\widehat H^2(G,A)$ can be extended by $\ZZ\onto\ZZ/n\ZZ$ to a map $\ZZ\to\widehat H^2(G,A)$, so we have a natural isomorphism
+	However, $\widehat H^p(G,A)$ is $n$-torsion, so in fact maps $\ZZ\to\widehat H^p(G,A)$ automatically have $n\ZZ$ in their kernel and hence reduce to maps $\ZZ/n\ZZ\to\widehat H^p(G,A)$. Conversely, any map $\ZZ/n\ZZ\to\widehat H^p(G,A)$ can be extended by $\ZZ\onto\ZZ/n\ZZ$ to a map $\ZZ\to\widehat H^p(G,A)$, so we have a natural isomorphism
 	\[\arraycolsep=1.4pt\begin{array}{ccc}
-		\op{Hom}_\ZZ\left(\ZZ/n\ZZ,\widehat H^2(G,A)\right) &\simeq& \op{Hom}_\ZZ\left(\ZZ,\widehat H^2(G,A)\right) \\
+		\op{Hom}_\ZZ\left(\ZZ/n\ZZ,\widehat H^p(G,A)\right) &\simeq& \op{Hom}_\ZZ\left(\ZZ,\widehat H^p(G,A)\right) \\
 		f &\mapsto& (k\mapsto f([k])) \\
 		([k]\mapsto f(k)) &\mapsfrom& f.
 	\end{array}\]
 	In particular, it suffices to show that
 	\[\arraycolsep=1.4pt\begin{array}{ccc}
-		\widehat H^2(G,A) &\to& \op{Hom}_\ZZ\left(\ZZ,\widehat H^2(G,A)\right) \\
+		\widehat H^p(G,A) &\to& \op{Hom}_\ZZ\left(\ZZ,\widehat H^p(G,A)\right) \\
 		u &\mapsto& (k\mapsto ku)
 	\end{array}\]
 	is an isomorphism. But this is a standard fact about the functor $\op{Hom}_\ZZ\colon\mathrm{AbGrp}\to\mathrm{AbGrp}$, so we are done.

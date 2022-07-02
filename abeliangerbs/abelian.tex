@@ -290,7 +290,7 @@ We continue in the modified set-up. We would like to make \autoref{cor:cocycletu
 However, we did have a notion that the data of a $\{\sigma_i\}_{i=1}^m$ should be enough to specify the group law of the extension that the tuple comes from, so we do expect to be able to define all extensions---and hence achieve all cohomology classes---from a specially chosen $\{\sigma_i\}_{i=1}^m$-tuple.
 
 To make this precise, we want to define an equivalence relation on tuples which go to the same cohomology class and then show that the map \autoref{thm:getcocycle} is surjective on these equivalence classes. The correct equivalence relation is taken from \autoref{lem:explicitalphabeta}.
-\begin{definition}
+\begin{definition} \label{defi:tupleequiv}
 	Fix everything as in the modified set-up. We say that two $\{\sigma_i\}_{i=1}^m$-tuples $(\{\alpha_i\},\{\beta_{ij}\})$ and $(\{\alpha_i'\},\{\beta_{ij}'\})$ are \textit{equivalent} if and only if there exist elements $x_1,\ldots,x_m\in A$ such that
 	\[\alpha_i=N_i(x_i)\cdot\alpha_i'\qquad\text{and}\qquad\beta_{ij}=\frac{x_i}{\sigma_j(x_i)}\cdot\frac{\sigma_i(x_j)}{x_j}\cdot\beta_{ij}'\]
 	for each $\alpha_i$ and $\beta_{ij}$. We may notate this by $(\{\alpha_i\},\{\beta_{ij}\})\sim(\{\alpha_i'\},\{\beta_{ij}'\})$.

@@ -57,7 +57,7 @@ Our key example of a shiftable functor will be $\op{Hom}_\ZZ(X,-)$ for $G$-modul
 	so $\varphi\circ\psi$ is the identity; similarly, $\psi\circ\varphi$ is the identity.
 \end{proof}
 With that said, we also remark that shifting functors are rather expansive, and we will need a little more freedom in applications.
-\begin{lemma}
+\begin{lemma} \label{lem:contravariantshiftable}
 	Let $G$ be a finite group and $X$ a $G$-module. Then $\op{Hom}_\ZZ(-,X)$ is a (contravariant) shiftable functor.
 \end{lemma}
 \begin{proof}
@@ -873,7 +873,7 @@ Cohomological equivalence is exactly what we need to talk about uniqueness.
 	and in fact these isomorphisms are natural by the functoriality of boundary morphisms. So the equivalence class of \autoref{cor:encodingmodules} is represented by $I_G^{\otimes(q-p)}$.
 \end{example}
 \begin{example} \label{ex:notalltorsionfree}
-	Not all $p$-encoding modules are torsion-free. For example, if $M$ is a $p$-encoding module, and $A$ is induced, then $M\oplus A$ is cohomologically equivalent to $M$, so $M\oplus A$ is a $p$-encoding module. However, not all induced modules $A$ are torsion-free.
+	Not all $p$-encoding modules are $\ZZ$-torsion-free. For example, if $M$ is a $p$-encoding module, and $A$ is induced, then $M\oplus A$ is cohomologically equivalent to $M$, so $M\oplus A$ is a $p$-encoding module. However, not all induced modules $A$ are $\ZZ$-torsion-free.
 \end{example}
 % The above two examples should give a feeling for why this uniqueness problem is difficult.
 In fact, akin to the classification of natural transformations from \autoref{prop:allnaturaltransarecups}, we can show that these encoding maps must be cup products.
@@ -972,6 +972,13 @@ And here is our computation.
 	\[[k/n]=k\big(x\cup x^\lor\big)=kx\cup x^\lor=[0]\cup x^\lor=[0]\]
 	in $\widehat H^{-1}(G,\QQ/\ZZ)\simeq\frac1n\ZZ/\ZZ$, so $n\mid k$. This finishes.
 \end{proof}
+\begin{remark}
+	Conversely, if $x\in\widehat H^p(G,X)$ is any generator, then
+	\[x\cup-\colon\widehat H^i(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{i+p}(G,-)\]
+	is a natural isomorphism. Indeed, certainly some generator $x_0\in\widehat H^p(G,X)$ conjured from \autoref{cor:betterencodingdef} suffices, but then $x=kx_0$ for some $k\in(\ZZ/n\ZZ)^\times$, so we have the equality
+	\[(x\cup-)=(kx_0)\cup-=k(x_0\cup-)\]
+	of natural transformations. But multiplication by $k$ is a natural isomorphism $\widehat H^\bullet(G,-)\Rightarrow\widehat H^\bullet(G,-)$ because these cohomology groups are $\#G$-torsion, so we conclude $(x\cup-)=k(x_0\cup-)$ is a natural isomorphism.
+\end{remark}
 \begin{cor}
 	Let $G$ be a finite group, and let $X$ be a $p$-encoding module. Then, given $i\in\ZZ$ and two natural isomorphisms
 	\[\Phi_\bullet,\Phi_\bullet'\colon\widehat H^i(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{i+p}(G,-),\]
@@ -1210,9 +1217,80 @@ The goal of this section is to build encoding modules up from smaller ones.
 \begin{example}
 	\autoref{ex:igisencoding} established that $I_G^{\otimes p}$ is a $p$-encoding module for $p\ge0$. As such, $\op{Hom}_\ZZ\left(I_G^{\otimes p},\ZZ\right)$ is a $(-p)$-encoding module for $-p\le0$. Thus, we have established existence for $p$-encoding modules for all $p\in\ZZ$.
 \end{example}
+\begin{cor} \label{cor:getfreeencoder}
+	Let $G$ be a finite group, and let $X$ be a finitely generated $p$-encoding module. Letting $X_t$ denote the $\ZZ$-torsion subgroup of $X$, we have that $X_t$ is a $G$-submodule of $X$, and $X/X_t$ is a $p$-encoding module.
+\end{cor}
+\begin{proof}
+	To see that $X_t$ is a $G$-submodule, we note that any $x\in X_t$ has some $k\in\ZZ$ such that $kx=0$, so any $g\in G$ will have
+	\[k\cdot gx=g(kx)=g\cdot0=0.\]
+	Thus, $X_t\subseteq X$ is preserved by $G$.
+
+	It remains to show that $X_f\coloneqq X/X_t$ is a $p$-encoding module. Well, we claim that
+	\begin{equation}
+		\op{Hom}_\ZZ(\op{Hom}_\ZZ(X,\ZZ),\ZZ)\cong\op{Hom}_\ZZ(\op{Hom}_\ZZ(X_f,\ZZ),\ZZ) \label{eq:isodoubledual}
+	\end{equation}
+	as $G$-modules; by \autoref{prop:dualmodule}, this will imply that $\op{Hom}_\ZZ(\op{Hom}_\ZZ(X_f,\ZZ),\ZZ)$ is a $p$-encoding module. To see this, we note that the short exact sequence
+	\[0\to X_t\to X\to X_f\to 0\]
+	becomes the left exact sequence
+	\[0\to\op{Hom}_\ZZ(X_f,\ZZ)\to\op{Hom}_\ZZ(X,\ZZ)\to\op{Hom}_\ZZ(X_t,\ZZ).\]
+	However, $\op{Hom}_\ZZ(X_t,\ZZ)=0$ because $X_t$ is $\ZZ$-torsion, so the above left exact sequence witnesses the isomorphism $\op{Hom}_\ZZ(X_f,\ZZ)\cong\op{Hom}_\ZZ(X,\ZZ)$. Applying $\op{Hom}_\ZZ(-,\ZZ)$ again yields \autoref{eq:isodoubledual}.
+
+	To finish, we note that
+	\[\varphi\colon X_f\to\op{Hom}_\ZZ(\op{Hom}_\ZZ(X_f,\ZZ),\ZZ)\]
+	by $x\mapsto(f\mapsto f(x))$ is a $G$-module morphism and isomorphism of abelian groups because $X_f$ is torsion-free and finitely generated and hence $\ZZ$-free. Thus, $\varphi$ is an isomorphism of $G$-modules, implying that $X_f$ is a $p$-encoding module.
+\end{proof}
 \begin{remark}
-	Even though \autoref{ex:notalltorsionfree} asserts that not all $p$-encoding modules $X$ are torsion-free, \autoref{prop:dualmodule} explains that we can canonically obtain a torsion-free $p$-encoding module from $X$ in the form of $\op{Hom}_\ZZ(\op{Hom}_\ZZ(X,\ZZ),\ZZ)$.
+	Even though \autoref{ex:notalltorsionfree} asserts that not all $p$-encoding modules $X$ are $\ZZ$-torsion-free, \autoref{cor:getfreeencoder} explains that we can canonically obtain a $\ZZ$-torsion-free $p$-encoding module from $X$ in the form of $\op{Hom}_\ZZ(\op{Hom}_\ZZ(X,\ZZ),\ZZ)\cong X/X_t$.
 \end{remark}
+\begin{proposition} \label{prop:encodingses}
+	Let $G$ be a finite group, and let
+	\[0\to X'\to M\to X\to 0\]
+	be a split short exact sequence such that $M$ is an induced $G$-module. Then $X$ is a $p$-encoding module if and only if $X'$ is a $(p+1)$-encoding module.
+\end{proposition}
+\begin{proof}
+	Given a $G$-module $A$, we recall that $\op{Hom}_\ZZ(-,A)$ is a shiftable functor by \autoref{lem:contravariantshiftable}, so $\op{Hom}_\ZZ(M,A)$ is induced. Now, because the short exact sequence is split, we have the short exact sequence
+	\[0\to\op{Hom}_\ZZ(X,A)\to\op{Hom}_\ZZ(M,A)\to\op{Hom}_\ZZ(M,X')\to0\]
+	which gives the isomorphism
+	\[\delta_A\colon\widehat H^0(G,\op{Hom}_\ZZ(X',A))\to\widehat H^1(G,\op{Hom}_\ZZ(X,A))\]
+	because $\op{Hom}_\ZZ(M,A)$ is induced. In fact, the $\delta_A$ make a natural isomorphism $\delta_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X',-))\Rightarrow\widehat H^1(G,\op{Hom}_\ZZ(X,-))$: given a $G$-module morphism $f\colon A\to B$, the morphism of short exact sequences
+	% https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIlxcb3B7SG9tfV9cXFpaKFgsQSkiXSxbMiwwLCJcXG9we0hvbX1fXFxaWihNLEEpIl0sWzMsMCwiXFxvcHtIb219X1xcWlooWCcsQSkiXSxbNCwwLCIwIl0sWzEsMSwiXFxvcHtIb219X1xcWlooWCxCKSJdLFsyLDEsIlxcb3B7SG9tfV9cXFpaKE0sQikiXSxbMywxLCJcXG9we0hvbX1fXFxaWihYJyxCKSJdLFs0LDEsIjAiXSxbMCwxLCIwIl0sWzAsMV0sWzEsMl0sWzIsM10sWzMsNF0sWzksNV0sWzUsNl0sWzYsN10sWzcsOF0sWzEsNSwiZiIsMl0sWzIsNiwiZiIsMl0sWzMsNywiZiIsMl1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		0 & {\op{Hom}_\ZZ(X,A)} & {\op{Hom}_\ZZ(M,A)} & {\op{Hom}_\ZZ(X',A)} & 0 \\
+		0 & {\op{Hom}_\ZZ(X,B)} & {\op{Hom}_\ZZ(M,B)} & {\op{Hom}_\ZZ(X',B)} & 0
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+		\arrow[from=2-1, to=2-2]
+		\arrow[from=2-2, to=2-3]
+		\arrow[from=2-3, to=2-4]
+		\arrow[from=2-4, to=2-5]
+		\arrow["f"', from=1-2, to=2-2]
+		\arrow["f"', from=1-3, to=2-3]
+		\arrow["f"', from=1-4, to=2-4]
+	\end{tikzcd}\]
+	induces the desired commuting square, as follows.
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF4wKEcsXFxvcHtIb219X1xcWlooWCcsQSkpIl0sWzEsMCwiXFx3aWRlaGF0IEheMShHLFxcb3B7SG9tfV9cXFpaKFgsQSkpIl0sWzAsMSwiXFx3aWRlaGF0IEheMChHLFxcb3B7SG9tfV9cXFpaKFgnLEIpKSJdLFsxLDEsIlxcd2lkZWhhdCBIXjEoRyxcXG9we0hvbX1fXFxaWihYLEEpKSJdLFswLDEsIlxcZGVsdGFfQSJdLFsyLDMsIlxcZGVsdGFfQiJdLFswLDIsImYiLDJdLFsxLDMsImYiLDJdXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		{\widehat H^0(G,\op{Hom}_\ZZ(X',A))} & {\widehat H^1(G,\op{Hom}_\ZZ(X,A))} \\
+		{\widehat H^0(G,\op{Hom}_\ZZ(X',B))} & {\widehat H^1(G,\op{Hom}_\ZZ(X,B))}
+		\arrow["{\delta_A}", from=1-1, to=1-2]
+		\arrow["{\delta_B}", from=2-1, to=2-2]
+		\arrow["f"', from=1-1, to=2-1]
+		\arrow["f"', from=1-2, to=2-2]
+	\end{tikzcd}\]
+	We now proceed with the proof. In one direction, if $X$ is a $p$-encoding module, then \autoref{cor:betterencodingdef} promises us a natural isomorphism
+	\[\Phi_\bullet\colon\widehat H^1(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{p+1}(G,-),\]
+	so the composite
+	\[\widehat H^0(G,\op{Hom}_\ZZ(X',-))\stackrel{\delta_\bullet}\Rightarrow\widehat H^1(G,\op{Hom}_\ZZ(X,-))\stackrel{\Phi_\bullet}\Rightarrow\widehat H^{p+1}(G,-)\]
+	shows that $X'$ is a $(p+1)$-encoding module. The other direction is analogous, concatenating with $\delta_\bullet^{-1}$.
+\end{proof}
+\begin{example}
+	Fix a finite group $G=\{\sigma_1,\ldots,\sigma_n\}$, and let $M\coloneqq\ZZ[G]^{\#G}$ have basis $\{e_i\}_{i=1}^m$. Then there is a projection $\pi\colon\ZZ[G]^{\#G}\onto I_G$ by sending $e_i\mapsto(\sigma_i-1)$, giving the short exact sequence
+	\[0\to\ker\pi\to\ZZ[G]^{\#G}\to I_G\to0.\]
+	Because $\ZZ[G]^{\#G}\cong\ZZ[G]\otimes_\ZZ\ZZ^{\#G}$ is induced and $I_G$ is a $1$-encoding module, we conclude that $\ker\pi$ is a $2$-encoding module by \autoref{prop:encodingses}.
+\end{example}
+By this point, we have a wide array of ways of making $p$-encoding modules, so we call it quits here.
 
 % \subsection{Using Duality}
 % \autoref{prop:ceduality} was able to provide us with some duality for $\widehat H^p(G,X)$, which enabled us to prove that $\widehat H^p(G,X)\simeq\ZZ/\#G\ZZ$. However, we saw in \autoref{prop:intdualelement}, that somehow the correct dual element is supposed to live in $\widehat H^{-p}(G,\op{Hom}_\ZZ(X,\ZZ))$.

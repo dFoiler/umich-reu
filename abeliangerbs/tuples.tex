@@ -863,6 +863,11 @@ In fact, \autoref{lem:cuppingisnatural} tells us that these isomorphisms assembl
 \begin{proof}
 	This follows from the above discussion.
 \end{proof}
+\begin{remark}
+	It is possible to show that $X$ is a $2$-encoding module, without the need to digress to tuples as done in \autoref{prop:alternativetupleclass}. Indeed, we recall that
+	\[0\to X\to\ZZ[G]^m\to\coker\mathcal F\to0\]
+	splits by \autoref{lem:sessplits}, so because $\ZZ[G]^m\cong\ZZ[G]\otimes_\ZZ\ZZ^m$ is induced, it suffices to show that $\coker\mathcal F$ is a $1$-encoding module by \autoref{prop:encodingses}. For this, we can use \autoref{prop:intdualelement} and manually give $x$ and $x^\lor$; here, $x=[\overline c]$ will work, and one can solve for $x^\lor$.
+\end{remark}
 Now that we have a $2$-encoding module, we can apply all the theory we built in \autoref{sec:crackpot}. For example, it might have felt like magic that the isomorphism sending a tuple to its cohomology class was induced by a cup product, but in fact this must have been true all along by \autoref{cor:encodingsarecups}.
 
 Here are some other results.

@@ -66,3 +66,4 @@ monic
 protori
 adjunction
 hom
+Sylow

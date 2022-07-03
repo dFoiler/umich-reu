@@ -677,7 +677,7 @@ More concretely, $X$ and $X'$ are cohomologically equivalent if and only if we h
 \[\varphi\circ\varphi'=\id_X+N_Gf\qquad\text{and}\qquad\varphi'\circ\varphi=\id_{X'}+N_Gf'.\]
 As a quick sanity check that this is a reasonable notion of equivalence of modules, we have the following.
 \begin{lemma} \label{lem:monoidequiv}
-	Let $G$ be a finite group. If the $G$-modules $X$ and $X'$ are equivalent and $Y$ and $Y'$ are equivalent, then $X\oplus X'$ is equivalent to $Y\oplus Y'$.
+	Let $G$ be a finite group. If the $G$-modules $X$ and $X'$ are equivalent and $Y$ and $Y'$ are equivalent, then $X\oplus Y$ is equivalent to $X'\oplus Y'$.
 \end{lemma}
 \begin{proof}
 	We are promised the morphisms
@@ -733,6 +733,29 @@ We now show that this notion of equivalence correctly translates to shiftable fu
 \begin{remark}
 	The above result makes it fairly clear that cohomological equivalence actually makes an equivalence relation. In particular, we can invert and compose natural isomorphisms, which gives symmetry and transitivity of cohomological equivalence respectively.
 \end{remark}
+This alternate definition also provides us with a way to multiply.
+\begin{cor}
+	Let $G$ be a finite group. If $X$ and $X'$ are equivalent and $Y$ and $Y'$ are equivalent, then $X\otimes_\ZZ X'$ is equivalent to $Y\otimes_\ZZ Y'$.
+\end{cor}
+\begin{proof}
+	We are granted natural isomorphisms as follows.
+	\[\arraycolsep=1.4pt\begin{array}{cccc}
+		\Phi_\bullet\colon &\widehat H^0(G,\op{Hom}_\ZZ(X,-))&\Rightarrow&\widehat H^0(G,\op{Hom}_\ZZ(X',-)) \\
+		\Psi_\bullet\colon &\widehat H^0(G,\op{Hom}_\ZZ(Y,-))&\Rightarrow&\widehat H^0(G,\op{Hom}_\ZZ(Y',-))
+	\end{array}\]
+	Now, repeatedly using the hom--tensor adjunction, we can chain together natural isomorphisms
+	\begin{align*}
+		\widehat H^0(G,\op{Hom}_\ZZ(X\otimes_\ZZ Y,-)) &\simeq \widehat H^0(G,\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(Y,-))) \\
+		&\stackrel{\Phi\op{Hom}(Y,-)}\simeq \widehat H^0(G,\op{Hom}_\ZZ(X',\op{Hom}_\ZZ(Y,-))) \\
+		&\simeq \widehat H^0(G,\op{Hom}_\ZZ(X'\otimes_\ZZ Y,-)) \\
+		&\simeq \widehat H^0(G,\op{Hom}_\ZZ(Y\otimes_\ZZ X',-)) \\
+		&\simeq \widehat H^0(G,\op{Hom}_\ZZ(Y,\op{Hom}_\ZZ( X',-))) \\
+		&\stackrel{\Psi\op{Hom}_\ZZ(X',-)}\simeq \widehat H^0(G,\op{Hom}_\ZZ(Y',\op{Hom}_\ZZ(X',-))) \\
+		&\simeq \widehat H^0(G,\op{Hom}_\ZZ(Y'\otimes_\ZZ X',-)) \\
+		&\simeq \widehat H^0(G,\op{Hom}_\ZZ(X'\otimes_\ZZ Y',-)),
+	\end{align*}
+	which is what we wanted.
+\end{proof}
 One might hope that we can get more information by using indices away from $0$, but in fact we cannot.
 \begin{proposition} \label{prop:betterocohomdef}
 	Let $G$ be a finite group, and let $X$ and $X'$ be $G$-modules. Then the following are equivalent.
@@ -825,7 +848,7 @@ One might hope that we can get more information by using indices away from $0$, 
 \subsection{Encoding Modules}
 Lastly, we arrive at the application we care about: encoding cohomology.
 \begin{definition}
-	Let $G$ be a finite group and $p\in\ZZ$ be an index. Then a $G$-module $X$ is a \textit{$p$-encoding module} if and only if there is a natural isomorphism
+	Let $G$ be a finite group and $p\in\ZZ$ be an index. Then a $G$-module $X$ is a \textit{$p$-encoding $G$-module} if and only if there is a natural isomorphism
 	\[\Phi_\bullet\colon\widehat H^i(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{i+p}(G,-)\]
 	for some $i\in\ZZ$.
 \end{definition}
@@ -1132,6 +1155,10 @@ Here is an amusing corollary we get from this.
 \begin{remark}
 	Essentially the same proof should hold for inflation.
 \end{remark}
+\begin{example}
+	It is not true that, if $X$ is a $p$-encoding $G_q$-module for all Sylow $q$-subgroups $G_q\subseteq G$, then $X$ is a $p$-encoding $G$-module. Indeed, take $X=\ZZ$ and $G=S_3$: all Sylow $q$-subgroups of $S_3$ are cyclic, so $\ZZ$ is a $2$-encoding module for all these subgroups. However, $S_3$ is not cyclic, so
+	\[\widehat H^{-2}(G,\op{Hom}_\ZZ(X,\ZZ))\simeq\widehat H^{-2}(G,\ZZ)\simeq S_3/[S_3,S_3]\not\cong\ZZ/6\ZZ=\widehat H^0(G,\ZZ).\]
+\end{example}
 We close by noting that the proof of \autoref{prop:intdualelement} actually managed to conjure the inverse natural transformation to $x\cup-$.
 \begin{cor}
 	Let $G$ be a finite group, and let $X$ be a $p$-encoding module. Constructing $x\in\widehat H^p(G,X)$ and $x^\lor\in\widehat H^{-p}(G,\op{Hom}_\ZZ(X,\ZZ))$ from \autoref{prop:intdualelement}, the natural transformations
@@ -1252,7 +1279,7 @@ And here is our result.
 	\end{listalph}
 \end{prop}
 \begin{proof}
-	For brevity, set $n\coloneqq\#G$. That (a) implies (b) is not too deep: \autoref{cor:h2xcomputation} tells us that $\widehat H^p(G,X)\cong\ZZ/n\ZZ$, and then being a $p$-encoding module promises an isomorphism
+	For brevity, set $n\coloneqq\#G$. That (a) implies (b) is not hard: \autoref{cor:h2xcomputation} tells us that $\widehat H^p(G,X)\cong\ZZ/n\ZZ$, and then being a $p$-encoding module promises an isomorphism
 	\[\widehat H^0(G,\op{Hom}_\ZZ(X,X))\simeq\widehat H^p(G,X)\cong\ZZ/n\ZZ.\]
 	Thus, the interesting direction is showing that (b) implies (a).
 	
@@ -1309,6 +1336,25 @@ And here is our result.
 	\[\widehat H^0(G,\op{Hom}_\ZZ(X,X))\not\cong\widehat H^0(G,X),\]
 	so $X$ is not a $0$-encoding module even though $X$ is $\ZZ$-free and $\widehat H^0(G,X)\cong\ZZ/\#G\ZZ$.
 \end{example}
+In some sense, the issue with the above example is that we could decompose our $G$-module into $A\oplus B$ when in fact there is no reason to talk about these sorts of $G$-modules as encoding modules.
+\begin{cor} \label{cor:indecomposable}
+	Let $G$ be a finite $q$-group. If $A\oplus B$ is a (finitely generated) $\ZZ$-free $p$-encoding module, then one of $A$ or $B$ is a $p$-encoding module.
+\end{cor}
+\begin{proof}
+	This follows quickly from the check in \autoref{prop:finitecohomcheck}. On one hand,
+	\begin{align*}
+		\widehat H^0(G,\op{Hom}_\ZZ(A\oplus B,A\oplus B)) &\simeq \widehat H^0(G,\op{Hom}_\ZZ(A,A))\oplus\widehat H^0(G,\op{Hom}_\ZZ(A,B)) \\
+		&\qquad\oplus\widehat H^0(G,\op{Hom}_\ZZ(B,A))\oplus\widehat H^0(G,\op{Hom}_\ZZ(B,B))
+	\end{align*}
+	tells us that both $\widehat H^0(G,\op{Hom}_\ZZ(A,A))$ and $\widehat H^0(G,\op{Hom}_\ZZ(B,B))$ are both cyclic because $\widehat H^0(G,\op{Hom}_\ZZ(A\oplus B,A\oplus B))$ is.
+
+	On the other hand, we note
+	\[\widehat H^p(G,A)\oplus\widehat H^p(G,B)\simeq\widehat H^p(G,A\oplus B)\cong\ZZ/\#G\ZZ,\]
+	so we are forced to have $\widehat H^p(G,A)\cong\ZZ/\#G\ZZ$ or $\widehat H^p(G,B)\cong\ZZ/\#G\ZZ$ because $G$ is a finite $q$-group. This finishes.
+\end{proof}
+\begin{remark}
+	It is conceivable that \autoref{cor:indecomposable} is true without requiring $A\oplus B$ to be $\ZZ$-free nor $G$ to be a $q$-group.
+\end{remark}
 
 \subsection{New Encoding Modules From Old}
 The goal of this section is to build encoding modules up from smaller ones.
@@ -1444,9 +1490,9 @@ The goal of this section is to build encoding modules up from smaller ones.
 	shows that $X'$ is a $(p+1)$-encoding module. The other direction is analogous, concatenating with $\delta_\bullet^{-1}$.
 \end{proof}
 \begin{example}
-	Fix a finite group $G=\{\sigma_1,\ldots,\sigma_n\}$, and let $M\coloneqq\ZZ[G]^{\#G}$ have basis $\{e_i\}_{i=1}^m$. Then there is a projection $\pi\colon\ZZ[G]^{\#G}\onto I_G$ by sending $e_i\mapsto(\sigma_i-1)$, giving the short exact sequence
-	\[0\to\ker\pi\to\ZZ[G]^{\#G}\to I_G\to0.\]
-	This short exact sequence is $\ZZ$-split because $I_G$ is $\ZZ$-free. Because $\ZZ[G]^{\#G}\cong\ZZ[G]\otimes_\ZZ\ZZ^{\#G}$ is induced and $I_G$ is a $1$-encoding module, we conclude that $\ker\pi$ is a $2$-encoding module by \autoref{prop:encodingses}.
+	Fix a finite group $G$ generated by $S\coloneqq\langle\sigma_1,\ldots,\sigma_n\rangle$, and let $M\coloneqq\ZZ[G]^{\#S}$ have basis $\{e_i\}_{i=1}^m$. Then there is a projection $\pi\colon\ZZ[G]^{\#G}\onto I_G$ by sending $e_i\mapsto(\sigma_i-1)$, giving the short exact sequence
+	\[0\to\ker\pi\to\ZZ[G]^{\#S}\to I_G\to0.\]
+	This short exact sequence is $\ZZ$-split because $I_G$ is $\ZZ$-free. Because $\ZZ[G]^{\#S}\cong\ZZ[G]\otimes_\ZZ\ZZ^{\#S}$ is induced and $I_G$ is a $1$-encoding module, we conclude that $\ker\pi$ is a $2$-encoding module by \autoref{prop:encodingses}.
 \end{example}
 By this point, we have a wide array of ways of making $p$-encoding modules, so we call it quits here.
 

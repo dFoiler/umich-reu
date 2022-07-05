@@ -1,14 +1,46 @@
 % !TEX root = ../abeliangerbs.tex
 
+Throughout this section, let $G$ be a finite group. When $G=\langle\sigma\rangle$ is a cyclic group of order $n$, it is an amazing feature that there is some $\chi\in\widehat H^2(G,\ZZ)$ granting isomorphisms
+\begin{equation}
+	(\chi\cup-)\colon\widehat H^0(G,M)\to\widehat H^2(G,M) \label{eq:motivatingcycliccohom}
+\end{equation}
+for any $G$-module $M$. In fact, it is not too hard to write down $\chi$ as being represented by the ``carrying'' $2$-cocycle
+\[\left(\sigma^i,\sigma^j\right)\mapsto\floor{\frac{i+j}n},\]
+so \autoref{eq:motivatingcycliccohom} is telling us that we can represent each cohomology class of $\widehat H^2(G,M)$ by a $2$-cocycle of the form
+\[\left(\sigma^i,\sigma^j\right)\mapsto\floor{\frac{i+j}n}\alpha\]
+for some $\alpha\in M^G$. This ``classification'' of $2$-cocycles in $\widehat H^2(G,M)$ is incredibly useful and makes cyclic groups very easy to work with computationally.
+
+From one perspective, this classification of $2$-cocycles for cyclic groups says that we can retrieve all $2$-cocycles by keeping track of the single element $\alpha\in M^G$, modulo some equivalence relation coming from Tate cohomology. The algebraic way to choose a single element of $M^G$ is by elements in
+\[\op{Hom}_\ZZ\left(\ZZ,M^G\right).\]
+As such, one can phrase \autoref{eq:motivatingcycliccohom} as providing a natural isomorphism
+\[\widehat H^0(G,\op{Hom}_\ZZ(\ZZ,-))\Rightarrow\widehat H^2(G,-).\]
+Here, the choice of $G$-module $\ZZ$ in some sense ``encodes'' $2$-cocycles from $\widehat H^2(G,M)$ into a single morphism from $\ZZ$ to $M$, modulo some equivalence relations.
+
+More generally, permit $G$ to be non-cyclic, and suppose we have a $G$-module $\ZZ[G]^m/I$ for some $m\ge0$ and $G$-submodule $I$ with isomorphisms
+\[\widehat H^0\left(G,\op{Hom}_\ZZ(\ZZ[G]^m/I,M)\right)\Rightarrow\widehat H^2(G,M),\]
+for any $G$-module $M$. In this case, we see we are still encoding $2$-cocycles into morphisms, where these morphisms look like
+\[\widehat H^0\left(G,\op{Hom}_\ZZ(\ZZ[G]^m/I,M)\right)=\frac{\op{Hom}_{\ZZ[G]}\left(\ZZ[G]^m/I,M\right)}{N_G\op{Hom}_\ZZ(\ZZ[G]^m/I,M)}.\]
+To see the encoding here, view the numerator as choosing out an $m$-tuple of elements of $M$ in the same way that we would choose morphisms $\op{Hom}_{\ZZ[G]}\left(\ZZ[G]^m,M\right)$, but we can't just choose any $m$ elements because they must saitsfy some relations dictated by $I$. Then the denominator provides an equivalence relation of the $m$-tuples which determines if two tuples live in the same ``class.''
+
+The above discussion is intended to motivate the following definition.
+\begin{definition}
+	Let $G$ be a finite group and $p\in\ZZ$ be an index. Then a $G$-module $X$ is a \textit{$p$-encoding $G$-module} if and only if there is a natural isomorphism
+	\[\Phi_\bullet\colon\widehat H^i(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{i+p}(G,-)\]
+	for some $i\in\ZZ$.
+\end{definition}
+It will turn out that the index $i\in\ZZ$ is more or less irrelevant.
+
 The goal of this section is to separate out what we can, a priori, expect from our cohomology-encoding modules from what is a special property of the specific cohomology-encoding module we study in the rest of the paper.
 
-Throughout this section, $G$ will be a finite group. To motivate where we are going, we will go ahead and say that a $p$-encoding $G$-module $X$ is a $G$-module equipped with a natural isomorphism
-\[\widehat H^i(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{i+p}(G,-).\]
-The idea is that, in the case of $i=0$ for a specific $G$-modulee $A$, we are taking cohomology of $\widehat H^p(G,A)$ and encoding this data as
-\[\widehat H^0(G,\op{Hom}_\ZZ(X,A))=\frac{\op{Hom}_{\ZZ[G]}(X,A)}{N_G\op{Hom}_\ZZ(X,A)}.\]
-If $X$ is finitely generated, we can write $X=\ZZ[G]^m/M$ for some $m\ge0$ and $G$-module $M$, so this object essentially picks out $m$ elements of $A$ and encodes some relations among them. In other words, an $m$-tuple of elements in $A$ (satisfying some special relations) is able to encode cohomology.
+% Throughout this section, $G$ will be a finite group. To motivate where we are going, we will go ahead and say that a $p$-encoding $G$-module $X$ is a $G$-module equipped with a natural isomorphism
+% \[\widehat H^i(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{i+p}(G,-).\]
+% The idea is that, in the case of $i=0$ for a specific $G$-modulee $A$, we are taking cohomology of $\widehat H^p(G,A)$ and encoding this data as
+% \[\widehat H^0(G,\op{Hom}_\ZZ(X,A))=\frac{\op{Hom}_{\ZZ[G]}(X,A)}{N_G\op{Hom}_\ZZ(X,A)}.\]
+% If $X$ is finitely generated, we can write $X=\ZZ[G]^m/M$ for some $m\ge0$ and $G$-module $M$, so this object essentially picks out $m$ elements of $A$ and encodes some relations among them. In other words, an $m$-tuple of elements in $A$ (satisfying some special relations) is able to encode cohomology.
 
-When we may take $X=\ZZ$, we are essentially studying groups with periodic cohomology, so some results in this section will mimic these results. However, periodic cohomology requires somewhat stringent conditions on the group itself, and allowing this ``free parameter'' $X$ will permit general groups at the cost of a perhaps more complex $X$. For example, when $p\ge0$, we can take $X=I_G^{\otimes p}$, though this $G$-module is quite rough to handle.
+When we may take $X=\ZZ$ (e.g., when $G$ is cyclic), we are essentially studying groups with periodic cohomology, so some results in this section will mimic these results. However, periodic cohomology requires somewhat stringent conditions on the group itself, and allowing this ``free parameter'' $X$ will permit general groups at the cost of a perhaps more complex $X$. For example, when $p\ge0$, we can take $X=I_G^{\otimes p}$ for any finite group $G$, though this $G$-module is quite rough to handle.
+
+In general, it can be an interesting question what specified abelian groups $X$ can be turned into encoding modules or dually what the encoding modules for a given group $G$ look like. Many of the results in this section are motivated by a desire to provide partial answers or intuition towards answers to these questions.
 
 \subsection{Shiftable Functors}
 The main point of this section is to set up some theory around what we call shiftable functors.
@@ -27,34 +59,42 @@ Our key example of a shiftable functor will be $\op{Hom}_\ZZ(X,-)$ for $G$-modul
 	Let $G$ be a finite group and $X$ a $G$-module. Then $\op{Hom}_\ZZ(X,-)$ is a shiftable functor.
 \end{lemma}
 \begin{proof}
-	It is known that $\op{Hom}_\ZZ(X,-)$ is an additive functor, so we just need to check that it sends induced modules to induced modules. Let $M$ be an induced module, and we want to show that $\op{Hom}_\ZZ(X,M)$ is also induced. By definition, we can write $M\coloneqq\op{Hom}_\ZZ(\ZZ[G],A)$ for some $G$-module $A$, where $A$ has perhaps trivial $G$-action. Now, we claim that
-	\[\arraycolsep=1.4pt\begin{array}{cccc}
-		\varphi\colon& \op{Hom}_\ZZ(X,\op{Hom}_\ZZ(\ZZ[G],A)) &\simeq& \op{Hom}_\ZZ(\ZZ[G],\op{Hom}_\ZZ(X,A)) \\
-		\varphi\colon& f &\mapsto& \big(z\mapsto(x\mapsto f(x)(z))\big)
-	\end{array}\]
-	is an isomorphism of $G$-modules. This will finish because the right-hand $G$-module is induced.
-	
-	Now, $\varphi$ s a homomorphism of abelian groups because
-	\[\varphi(f+f')(z)(x)=(f+g)(x)(z)=\varphi(f)(z)(x)+\varphi(f')(z)(x)\]
-	for any $x$ and $z$ and $f,f'\in\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(\ZZ[G],A))$. This is a $G$-module homomorphism because any $g\in G$ and $f\in\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(\ZZ[G],A))$ has
+	It is known that $\op{Hom}_\ZZ(X,-)$ is an additive functor, so we just need to check that it sends induced modules to induced modules. Let $M$ be an induced module, and we want to show that $\op{Hom}_\ZZ(X,M)$ is also induced. By definition, we can write $M\coloneqq\op{Hom}_\ZZ(\ZZ[G],A)$ for some $G$-module $A$. Now, we can track through the isomorphisms of $G$-modules to see
 	\begin{align*}
-		\varphi(gf)(z)(x) &= \big(g\cdot\varphi(f)(g^{-1}z)\big)(x) \\
-		&= g\cdot\varphi(f)(g^{-1}z)(g^{-1}x) \\
-		&= g\cdot f(g^{-1}x)(g^{-1}z) \\
-		&= \big(g\cdot f(g^{-1}x)\big)(z) \\
-		&= (gf)(x)(z) \\
-		&= \varphi(gf)(x)(z)
+		\op{Hom}_\ZZ(X,M) &= \op{Hom}_\ZZ(X,\op{Hom}_\ZZ(\ZZ[G],A)) \\
+		&\simeq \op{Hom}_\ZZ(X\otimes_\ZZ\ZZ[G],A) \\
+		&\simeq \op{Hom}_\ZZ(\ZZ[G]\otimes_\ZZ X,A) \\
+		&\simeq \op{Hom}_\ZZ(\ZZ[G],\op{Hom}_\ZZ(X,A)),
 	\end{align*}
-	for each $x$ and $z$.
-
-	Now, we define
-	\[\arraycolsep=1.4pt\begin{array}{cccc}
-		\psi\colon& \op{Hom}_\ZZ(\ZZ[G],\op{Hom}_\ZZ(X,A)) &\simeq& \op{Hom}_\ZZ(X,\op{Hom}_\ZZ(\ZZ[G],A)) \\
-		\psi\colon& f &\mapsto& \big(x\mapsto(z\mapsto f(z)(x))\big)
-	\end{array}\]
-	to be the inverse morphism. The exact same checks show that this is a $G$-module homomorphism, and it is not hard to see that
-	\[\varphi\psi(f)(z)(x)=\psi(f)(z)(x)=f(x)(z),\]
-	so $\varphi\circ\psi$ is the identity; similarly, $\psi\circ\varphi$ is the identity.
+	which is induced.
+	% Now, we claim that
+	% \[\arraycolsep=1.4pt\begin{array}{cccc}
+	% 	\varphi\colon& \op{Hom}_\ZZ(X,\op{Hom}_\ZZ(\ZZ[G],A)) &\simeq& \op{Hom}_\ZZ(\ZZ[G],\op{Hom}_\ZZ(X,A)) \\
+	% 	\varphi\colon& f &\mapsto& \big(z\mapsto(x\mapsto f(x)(z))\big)
+	% \end{array}\]
+	% is an isomorphism of $G$-modules. This will finish because the right-hand $G$-module is induced.
+	%
+	% Now, $\varphi$ s a homomorphism of abelian groups because
+	% \[\varphi(f+f')(z)(x)=(f+g)(x)(z)=\varphi(f)(z)(x)+\varphi(f')(z)(x)\]
+	% for any $x$ and $z$ and $f,f'\in\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(\ZZ[G],A))$. This is a $G$-module homomorphism because any $g\in G$ and $f\in\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(\ZZ[G],A))$ has
+	% \begin{align*}
+	% 	\varphi(gf)(z)(x) &= \big(g\cdot\varphi(f)(g^{-1}z)\big)(x) \\
+	% 	&= g\cdot\varphi(f)(g^{-1}z)(g^{-1}x) \\
+	% 	&= g\cdot f(g^{-1}x)(g^{-1}z) \\
+	% 	&= \big(g\cdot f(g^{-1}x)\big)(z) \\
+	% 	&= (gf)(x)(z) \\
+	% 	&= \varphi(gf)(x)(z)
+	% \end{align*}
+	% for each $x$ and $z$.
+	%
+	% Now, we define
+	% \[\arraycolsep=1.4pt\begin{array}{cccc}
+	% 	\psi\colon& \op{Hom}_\ZZ(\ZZ[G],\op{Hom}_\ZZ(X,A)) &\simeq& \op{Hom}_\ZZ(X,\op{Hom}_\ZZ(\ZZ[G],A)) \\
+	% 	\psi\colon& f &\mapsto& \big(x\mapsto(z\mapsto f(z)(x))\big)
+	% \end{array}\]
+	% to be the inverse morphism. The exact same checks show that this is a $G$-module homomorphism, and it is not hard to see that
+	% \[\varphi\psi(f)(z)(x)=\psi(f)(z)(x)=f(x)(z),\]
+	% so $\varphi\circ\psi$ is the identity; similarly, $\psi\circ\varphi$ is the identity.
 \end{proof}
 With that said, we also remark that shifting functors are rather expansive, and we will need a little more freedom in applications.
 \begin{lemma} \label{lem:contravariantshiftable}
@@ -81,7 +121,7 @@ With that said, we also remark that shifting functors are rather expansive, and 
 \end{proof}
 \begin{example}
 	The functor
-	\[A\mapsto\op{Hom}_\ZZ(I_G,I_G\otimes_\ZZ A)\]
+	\[A\mapsto\op{Hom}_\ZZ\big(A\otimes_\ZZ\op{Hom}_\ZZ(I_G,I_G\otimes_\ZZ A),I_G\big)\]
 	is a shiftable functor.
 \end{example}
 
@@ -91,6 +131,7 @@ A key property of shiftable functors is how we will be able to relate them to ea
 	Let $G$ be a finite group. Then we define a \textit{shifting pair} $(F,F',X,\eta)$ to be a pair of shiftable functors $F$ and $F'$ equipped with a natural transformation
 	\[\eta_\bullet\colon X\otimes_\ZZ F\Rightarrow F'.\]
 \end{definition}
+The following will be our key example.
 \begin{example} \label{ex:shiftingpair}
 	Given $G$-modules $X$ and $X'$, there is a canonical pre-composition map
 	\[\eta_\bullet\colon\op{Hom}_\ZZ(X',X)\otimes_\ZZ\op{Hom}_\ZZ(X,-)\Rightarrow\op{Hom}_\ZZ(X',-),\]
@@ -746,11 +787,11 @@ This alternate definition also provides us with a way to multiply.
 	Now, repeatedly using the hom--tensor adjunction, we can chain together natural isomorphisms
 	\begin{align*}
 		\widehat H^0(G,\op{Hom}_\ZZ(X\otimes_\ZZ Y,-)) &\simeq \widehat H^0(G,\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(Y,-))) \\
-		&\stackrel{\Phi\op{Hom}(Y,-)}\simeq \widehat H^0(G,\op{Hom}_\ZZ(X',\op{Hom}_\ZZ(Y,-))) \\
+		&\hspace{-1.78em}\stackrel{\Phi\op{Hom}(Y,-)}\simeq \widehat H^0(G,\op{Hom}_\ZZ(X',\op{Hom}_\ZZ(Y,-))) \\
 		&\simeq \widehat H^0(G,\op{Hom}_\ZZ(X'\otimes_\ZZ Y,-)) \\
 		&\simeq \widehat H^0(G,\op{Hom}_\ZZ(Y\otimes_\ZZ X',-)) \\
 		&\simeq \widehat H^0(G,\op{Hom}_\ZZ(Y,\op{Hom}_\ZZ( X',-))) \\
-		&\stackrel{\Psi\op{Hom}_\ZZ(X',-)}\simeq \widehat H^0(G,\op{Hom}_\ZZ(Y',\op{Hom}_\ZZ(X',-))) \\
+		&\hspace{-2.25em}\stackrel{\Psi\op{Hom}_\ZZ(X',-)}\simeq \widehat H^0(G,\op{Hom}_\ZZ(Y',\op{Hom}_\ZZ(X',-))) \\
 		&\simeq \widehat H^0(G,\op{Hom}_\ZZ(Y'\otimes_\ZZ X',-)) \\
 		&\simeq \widehat H^0(G,\op{Hom}_\ZZ(X'\otimes_\ZZ Y',-)),
 	\end{align*}
@@ -846,32 +887,26 @@ One might hope that we can get more information by using indices away from $0$, 
 \end{proof}
 
 \subsection{Encoding Modules}
-Lastly, we arrive at the application we care about: encoding cohomology.
-\begin{definition}
-	Let $G$ be a finite group and $p\in\ZZ$ be an index. Then a $G$-module $X$ is a \textit{$p$-encoding $G$-module} if and only if there is a natural isomorphism
-	\[\Phi_\bullet\colon\widehat H^i(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{i+p}(G,-)\]
-	for some $i\in\ZZ$.
-\end{definition}
-Cohomological equivalence is exactly what we need to talk about uniqueness.
+Lastly, we arrive at the application we care about: encoding cohomology. Cohomological equivalence is exactly what we need to talk about uniqueness.
 \begin{cor} \label{cor:encodingmodules}
-	Let $G$ be a finite group, and let $p,q\in\ZZ$ be indices. Then the set of $G$-module $X$ with a natural isomorphism
-	\[\Phi_\bullet\colon\widehat H^p(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^q(G,-)\]
+	Let $G$ be a finite group, and let $p,q\in\ZZ$ be indices. Then, if nonempty, the set of $G$-module $X$ with a natural isomorphism
+	\[\Phi_\bullet\colon\widehat H^p(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{p+q}(G,-)\]
 	make up exactly one cohomological equivalence class.
 \end{cor}
 \begin{proof}
 	Fix some $G$-module $X$ with such a natural isomorphism
-	\[\Psi_\bullet\colon\widehat H^p(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^q(G,-).\]
-	We would like to show that a $G$-module $X$ has a natural isomorphism $\Phi_\bullet$ between the same functors if and only if $X$ and $X'$ are cohomologically equivalent.
+	\[\Psi_\bullet\colon\widehat H^p(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{p+q}(G,-).\]
+	We would like to show that a $G$-module $X'$ has a natural isomorphism $\Phi_\bullet$ between the analogous functors if and only if $X$ and $X'$ are cohomologically equivalent.
 
 	% Noting that the cup product is natural in both arguments (see, for example, \autoref{}), we see that the combination of \autoref{thm:yesitisacocycle} and \autoref{prop:alternativetupleclass} tells us that we have a natural isomorphism
 	% \[\Psi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^2(G,-).\]
 	% We now proceed with the proof.
 	If $X$ and $X'$ are cohomologically equivalent, then we can compose the promised natural isomorphism of \autoref{prop:betterocohomdef} (c) with $\Psi_\bullet$, giving a natural isomorphism
-	\[\widehat H^p(G,\op{Hom}_\ZZ(X',-))\Rightarrow\widehat H^p(G,\op{Hom}_\ZZ(X,-))\stackrel{\Psi_\bullet}\Rightarrow\widehat H^q(G,-).\]
+	\[\widehat H^p(G,\op{Hom}_\ZZ(X',-))\Rightarrow\widehat H^p(G,\op{Hom}_\ZZ(X,-))\stackrel{\Psi_\bullet}\Rightarrow\widehat H^{p+q}(G,-).\]
 	In the other direction, if we have a natural isomorphism
-	\[\Phi_\bullet\colon\widehat H^p(G,\op{Hom}_\ZZ(X',-))\Rightarrow\widehat H^q(G,-),\]
+	\[\Phi_\bullet\colon\widehat H^p(G,\op{Hom}_\ZZ(X',-))\Rightarrow\widehat H^{p+q}(G,-),\]
 	then we can compose with $\Psi_\bullet^{-1}$ to build a natural isomorphism
-	\[\widehat H^p(G,\op{Hom}_\ZZ(X',-))\stackrel{\Phi_\bullet}\Rightarrow\widehat H^q(G,-)\stackrel{\Psi^{-1}_\bullet}\Rightarrow\widehat H^p(G,\op{Hom}_\ZZ(X,-)),\]
+	\[\widehat H^p(G,\op{Hom}_\ZZ(X',-))\stackrel{\Phi_\bullet}\Rightarrow\widehat H^{p+q}(G,-)\stackrel{\Psi^{-1}_\bullet}\Rightarrow\widehat H^p(G,\op{Hom}_\ZZ(X,-)),\]
 	from which it follows that $X$ and $X'$ are cohomologically equivalent by \autoref{prop:cohomologicaldef} (b).
 \end{proof}
 % \begin{remark}
@@ -889,12 +924,15 @@ Cohomological equivalence is exactly what we need to talk about uniqueness.
 % 	If $M$ is any induced module, then we know $M$ is cohomologically equivalent to $0$. So \autoref{lem:monoidequiv} reassures us that $X\oplus M$ is cohomologically equivalent to $X\oplus0\simeq X$.
 % \end{example}
 \begin{example} \label{ex:igisencoding}
-	Take $q\ge p$. Dimension-shifting iteratively with the short exact sequence
+	Take $q\ge 0$. Dimension-shifting iteratively with the short exact sequence
 	\[0\to I_G\otimes_\ZZ A\to\ZZ[G]\otimes_\ZZ A\to A\to0\]
 	shows that
-	\[\widehat H^q(G,A)\simeq\widehat H^p\left(G,\op{Hom}_\ZZ(I_G^{\otimes (q-p)},A)\right),\]
+	\[\widehat H^{p+q}(G,A)\simeq\widehat H^p\left(G,\op{Hom}_\ZZ(I_G^{\otimes (q-p)},A)\right),\]
 	and in fact these isomorphisms are natural by the functoriality of boundary morphisms. So the equivalence class of \autoref{cor:encodingmodules} is represented by $I_G^{\otimes(q-p)}$.
 \end{example}
+\begin{remark}
+	We will show in \autoref{ex:allencoderesexist} that all of these equivalence classes are nonempty.
+\end{remark}
 \begin{example} \label{ex:notalltorsionfree}
 	Not all $p$-encoding modules are $\ZZ$-torsion-free. For example, if $M$ is a $p$-encoding module, and $A$ is induced, then $M\oplus A$ is cohomologically equivalent to $M$, so $M\oplus A$ is a $p$-encoding module. However, not all induced modules $A$ are $\ZZ$-torsion-free.
 \end{example}
@@ -958,7 +996,8 @@ Because cup products are better-behaved than just general natural transformation
 	
 	To finish, we extend $x\cup-$ being a natural isomorphism from a single $i$ to all $i\in\ZZ$ by using \autoref{prop:dimshiftcupisos}. Indeed, take $F=\op{Hom}_\ZZ(X,-)$ and $F'=\mathrm{id}$ and $X=X$ and $\eta\colon X\otimes_\ZZ\op{Hom}_\ZZ(X,-)\Rightarrow\mathrm{id}$ to be the canonical evaluation maps. This finishes.
 \end{proof}
-\begin{remark}
+% thank you https://math.stackexchange.com/a/44503/869257
+\begin{remark} \label{rem:neednaturality}
 	Taking $X=\ZZ$ above, we are asserting that, if $G$ is a group such that all $G$-modules admit period-$p$ cohomology which is natural in some sense at a single index $i$, then this periodicity extends to all indices and arises from a cup product with an element of $\widehat H^p(G,\ZZ)$.
 	
 	Observe that the naturality in the isomorphisms is important: letting $G\coloneqq\ZZ/p\ZZ$ act on $A\coloneqq\ZZ/p\ZZ$ trivially,
@@ -998,7 +1037,7 @@ And here is our computation.
 \begin{remark}
 	Conversely, if $x\in\widehat H^p(G,X)$ is any generator, then
 	\[x\cup-\colon\widehat H^i(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{i+p}(G,-)\]
-	is a natural isomorphism. Indeed, certainly some generator $x_0\in\widehat H^p(G,X)$ conjured from \autoref{cor:betterencodingdef} suffices, but then $x=kx_0$ for some $k\in(\ZZ/n\ZZ)^\times$, so we have the equality
+	is a natural isomorphism. Indeed, certainly some generator $x_0\in\widehat H^p(G,X)$ conjured from \autoref{cor:betterencodingdef} suffices, but then $x=kx_0$ for some $k\in(\ZZ/\#G\ZZ)^\times$, so we have the equality
 	\[(x\cup-)=(kx_0)\cup-=k(x_0\cup-)\]
 	of natural transformations. But multiplication by $k$ is a natural isomorphism $\widehat H^\bullet(G,-)\Rightarrow\widehat H^\bullet(G,-)$ because these cohomology groups are $\#G$-torsion, so we conclude $(x\cup-)=k(x_0\cup-)$ is a natural isomorphism.
 \end{remark}
@@ -1321,6 +1360,12 @@ And here is our result.
 	\[x\cup(x^\lor\cup x)=x=x\cup[{\id_X}]\]
 	as discussed previously, so we conclude $x^\lor\cup x=[{\id_X}]$. This finishes.
 \end{proof}
+\begin{example}
+	The $\ZZ$-free condition is necessary. As in \autoref{rem:neednaturality}, let $G\coloneqq\ZZ/p\ZZ$ act on $X\coloneqq\ZZ/p\ZZ$ trivially. Then
+	\[\widehat H^0(G,\op{Hom}_\ZZ(X,X))\simeq\widehat H^0(G,X)\cong\widehat H^{-1}(G,X)=\ZZ/p\ZZ.\]
+	However, $X$ is not a $(-1)$-encoding module because
+	\[\widehat H^1(G,\op{Hom}_\ZZ(X,\ZZ))\simeq\widehat H^1(G,0)=0\not\cong\ZZ/p\ZZ=\widehat H^0(G,\ZZ).\]
+\end{example}
 \begin{remark}
 	As discussed in \autoref{rem:almosttorsionfree}, the requirement that $X$ be $\ZZ$-free is not too serious.
 \end{remark}
@@ -1418,7 +1463,7 @@ The goal of this section is to build encoding modules up from smaller ones.
 	\[x^\lor\cup\varphi(x)=\psi(x^\lor\cup x)=\psi([\id_X])=[\id_{X^*}]\in\widehat H^0(G,\op{Hom}_\ZZ(X^*,X^*)),\]
 	so $y^\lor\cup y=[{\id_{X^*}}]$ after being careful with signs. This completes the proof.
 \end{proof}
-\begin{example}
+\begin{example} \label{ex:allencoderesexist}
 	\autoref{ex:igisencoding} established that $I_G^{\otimes p}$ is a $p$-encoding module for $p\ge0$. As such, $\op{Hom}_\ZZ\left(I_G^{\otimes p},\ZZ\right)$ is a $(-p)$-encoding module for $-p\le0$. Thus, we have established existence for $p$-encoding modules for all $p\in\ZZ$.
 \end{example}
 \begin{cor} \label{cor:getfreeencoder}

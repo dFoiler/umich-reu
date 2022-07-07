@@ -1,0 +1,131 @@
+In this section we run some checks and discuss some consequences of \autoref{thm:fundtriple}, in the form of \autoref{cor:fundtriple}. For these results, we recall that we set $L\coloneqq\QQ_p(\zeta_N)$ and $L_1\coloneqq\QQ_p(\zeta_{p^\nu})$ and $L_2\coloneqq\QQ_p(\zeta_m)$ so that $\overline\sigma_K=\sigma_K|_{L_1}$ generates $\op{Gal}(L/L_1)$ and $\sigma_x$ generates $\op{Gal}(L/L_2)$.
+
+In the discussion which follows, we will make repeated use of the fact that (using notation of \autoref{cor:fundtriple})
+\[\sigma_K^f\left(\eta_K\right)=\frac{\gamma}{\sigma_K(\gamma)}\cdot \eta_K\qquad\text{and}\qquad\sigma_K^f\left(\eta_i\right)=\frac\gamma{\tau_i(\gamma)}\cdot \eta_i.\]
+And here are our checks; we start by showing that our elements are in the right field.
+\begin{lemma}
+	Fix a tuple $(\alpha_0,\alpha_i),(\beta_{ij})$ as in \autoref{cor:fundtriple}. Then the following are true.
+	\begin{listalph}
+		\item $\alpha_0\in K_{\pi,\nu}^\times$.
+		\item $\alpha_i\in L_i^\times$ for each $i\ge1$.
+		\item $\beta_{ij}\in L^\times$ for each $i>j$.
+	\end{listalph}
+\end{lemma}
+\begin{proof}
+	We run the checks one at a time.
+	\begin{listalph}
+		\item It suffices to show that $\alpha_0$ is fixed by $\op{Gal}(M/K_{\pi,\nu})=\langle\sigma_K\rangle$. As such, we simply compute
+		\begin{align*}
+			\sigma_K(\alpha_0) &= \sigma_K\left(\gamma\cdot\prod_{i=0}^{f-1}\sigma_K^i\left(\eta_K\right)\right) \\
+			&= \sigma_K(\gamma)\cdot\prod_{i=0}^{f-1}\sigma_K^{i+1}\left(\eta_K\right) \\
+			&= \sigma_K(\gamma)\cdot\sigma_K^f\left(\eta_K\right)\prod_{i=1}^{f-1}\sigma_K^{i+1}\left(\eta_K\right) \\
+			&= \gamma\cdot \eta_K\prod_{i=1}^{f-1}\sigma_K^{i+1}\left(\eta_K\right) \\
+			&= \gamma\cdot\prod_{i=0}^{f-1}\sigma_K^{i+1}\left(\eta_K\right) \\
+			&= \alpha_0.
+		\end{align*}
+		\item It suffices to show that $\alpha_i$ is fixed by $\op{Gal}(M/L_i)=\langle\sigma_K^f,\tau_i\rangle$. On one hand,
+		\begin{align*}
+			\sigma_K^f(\alpha_i) &= \sigma_K^f\left(\prod_{p=0}^{n_i-1}\tau_i^p\left(\eta_i\right)\right) \\
+			&= \prod_{p=0}^{n_i-1}\tau_i^p\left(\sigma_K^f\eta_i\right) \\
+			&= \left(\prod_{p=0}^{n_i-1}\tau_i^p\left(\frac{\gamma}{\tau_i(\gamma)}\right)\right)\cdot\left(\prod_{p=0}^{n_i-1}\tau_i^p\left(\eta_i\right)\right) \\
+			&= \left(\prod_{p=0}^{n_i-1}\frac{\tau_i^p(\gamma)}{\tau_i^{p+1}(\gamma)}\right)\cdot\alpha_i \\
+			&= \alpha_i,
+		\end{align*}
+		where the product telescopes because $\tau_i$ has order $n_i$.
+
+		On the other hand,
+		\begin{align*}
+			\tau_i(\alpha_i) &= \tau_i\left(\prod_{p=0}^{n_i-1}\tau_i^p\left(\eta_i\right)\right) \\
+			&= \prod_{p=0}^{n_i-1}\tau_i^{p+1}\left(\eta_i\right) \\
+			&= \prod_{p=0}^{n_i-1}\tau_i^p\left(\eta_i\right),
+		\end{align*}
+		where we have again used the fact that $\tau_i$ has order $n_i$. This last product is $\alpha_i$, so we are done.
+		\item It suffices to show that $\beta_{ij}$ is fixed by $\op{Gal}(M/L)=\langle\sigma_K^f\rangle$. Applying force, we see
+		\begin{align*}
+			\sigma_K^f(\beta_{ij}) &= \sigma_K^f\left(\frac{\eta_{i}}{\tau_j\eta_i}\cdot\frac{\tau_i\eta_j}{\eta_{j}}\right) \\
+			&= \frac{\sigma_K^f\eta_{i}}{\tau_j\sigma_K^f\eta_i}\cdot\frac{\tau_i\sigma_K^f\eta_j}{\sigma_K^f\eta_{j}} \\
+			&= \frac{\eta_i\cdot\gamma/\tau_i\gamma}{\tau_j\eta_i\cdot\tau_j\gamma/\tau_i\tau_j\gamma}\cdot
+			\frac{\eta_j\cdot\tau_i\gamma/\tau_i\tau_j\gamma}{\eta_j\cdot\gamma/\tau_j\gamma} \\
+			&= \frac{\eta_i}{\tau_j\eta_i}\cdot
+			\frac{\eta_j}{\eta_j} \\
+			&= \beta_{ij}.
+		\end{align*}
+	\end{listalph}
+	The above checks complete the proof.
+\end{proof}
+Next we show the relations between the $\alpha$s and $\beta$s.
+\begin{lemma}
+	Fix a tuple $(\alpha_0,\alpha_i),(\beta_{ij})$ as in \autoref{cor:fundtriple}. Then the following are true.
+	\begin{listalph}
+		\item $\op N_{L/L_i}(\beta_{ij})=\alpha_i/\tau_j\alpha_i$ for $i>j\ge0$.
+		\item $\op N_{L/L_0}(\beta_{i0}^{-1})=\alpha_0/\tau_i\alpha_0$.
+		\item $\op N_{L/L_j}(\beta_{ij}^{-1})=\alpha_j/\tau_i\alpha_j$ for $i>j>0$.
+	\end{listalph}
+\end{lemma}
+\begin{proof}
+	We go one at a time.
+	\begin{listalph}
+		\item Note $\op{Gal}(L/L_i)=\langle\tau_i\rangle$, so we compute
+		\begin{align*}
+			\op N_{L/L_i}(\beta_{ij}) &= \prod_{p=0}^{n_i-1}
+			\tau_i^p(\beta_{ij}) \\
+			&= \prod_{p=0}^{n_i-1}
+			\tau_i^p\left(\frac{\eta_{i}}{\tau_j\eta_i}\cdot\frac{\tau_i\eta_j}{\eta_{j}}\right) \\
+			&= \prod_{p=0}^{n_i-1}
+			\frac{\tau_i^p\eta_{i}}{\tau_j\tau_i^p\eta_i}\cdot\prod_{p=0}^{n_i-1}\frac{\tau_i^{p+1}\eta_j}{\tau_i^p\eta_{j}} \\
+			&= \left(\prod_{p=0}^{n_i-1}\tau_i^p\eta_{i}\bigg/\tau_j\prod_{p=0}^{n_i-1}\tau_i^p\eta_i\right)\cdot\frac{\tau_i^{n_i}\eta_j}{\eta_{j}},
+		\end{align*}
+		which collapses into $\alpha_i/\tau_j\alpha_i$, as needed.
+		\item Note $\op{Gal}(L/L_0)=\langle\overline\sigma_K\rangle$. In particular, $\overline\sigma_K$ has order $f$, so we can just compute out
+		\begin{align*}
+			\op N_{L/L_0}(\beta_{i0}) &= \prod_{p=0}^{f-1}\sigma_K^p(\beta_{i0}) \\
+			&= \prod_{p=0}^{f-1}\sigma_K^p\left(\frac{\eta_i}{\sigma_K\eta_i}\cdot\frac{\tau_i\eta_K}{\eta_K}\right) \\
+			&= \prod_{p=0}^{f-1}\frac{\sigma_K^p\eta_i}{\sigma_K^{p+1}\eta_i}\cdot\prod_{p=0}^{f-1}\frac{\tau_i\sigma_K^p\eta_K}{\sigma_K^p\eta_K} \\
+			&= \frac{\eta_i}{\sigma_K^f\eta_i}\cdot\prod_{p=0}^{f-1}\tau_i\sigma_K^p\eta_K\bigg/\prod_{p=0}^{f-1}\sigma_K^p\eta_K \\
+			&= \tau_i\Bigg(\gamma\prod_{p=0}^{f-1}\sigma_K^p\eta_K\Bigg)\bigg/\Bigg(\gamma\prod_{p=0}^{f-1}\sigma_K^p\eta_K\Bigg),
+		\end{align*}
+		which is what we wanted after taking reciprocals.
+		\item This time around, we have $\op{Gal}(L/L_j)=\langle\tau_j\rangle$. As such, we proceed similarly to (a), writing
+		\begin{align*}
+			\op N_{L/L_j}(\beta_{ij}) &= \prod_{p=0}^{n_j-1}
+			\tau_j^p(\beta_{ij}) \\
+			&= \prod_{p=0}^{n_j-1}
+			\tau_j^p\left(\frac{\eta_{i}}{\tau_j\eta_i}\cdot\frac{\tau_i\eta_j}{\eta_{j}}\right) \\
+			&= \prod_{p=0}^{n_j-1}
+			\frac{\tau_j^p\eta_{i}}{\tau_j^{p+1}\eta_i}\cdot\prod_{p=0}^{n_j-1}\frac{\tau_i\tau_j^p\eta_j}{\tau_j^p\eta_{j}} \\
+			&= \frac{\eta_i}{\tau_j^{n_j}\eta_i}\cdot\left(\tau_i\prod_{p=0}^{n_j-1}\tau_j^p\eta_j\bigg/\prod_{p=0}^{n_j-1}\tau_j^p\eta_j\right),
+		\end{align*}
+		which again collapses into $\tau_i\alpha_j/\alpha_j$. Taking reciprocals finishes.
+	\end{listalph}
+	The above checks complete the proof.
+\end{proof}
+Lastly, here are the relations between the $\beta$s.
+\begin{lemma}
+	Fix a tuple $(\alpha_0,\alpha_i),(\beta_{ij})$ as in \autoref{cor:fundtriple}. Then, for $i>j>k$, we have
+	\[\frac{\tau_j\beta_{ik}}{\beta_{ik}}=\frac{\tau_k\beta_{ij}}{\beta_{ij}}\cdot\frac{\tau_i\beta_{jk}}{\beta_{jk}}.\]
+\end{lemma}
+\begin{proof}
+	As usual, we apply force. Note
+	\begin{align*}
+		\frac{\tau_k\beta_{ij}}{\beta_{ij}}\cdot\frac{\tau_i\beta_{jk}}{\beta_{jk}} &= \frac{\displaystyle\frac{\tau_k\eta_i}{\tau_k\tau_j\eta_i}\cdot\frac{\tau_k\tau_i\eta_j}{\tau_k\eta_j}}
+		{\displaystyle\frac{\eta_i}{\tau_j\eta_i}\cdot\frac{\tau_i\eta_j}{\eta_j}}\cdot
+		\frac{\displaystyle\frac{\tau_i\eta_j}{\tau_i\tau_k\eta_j}\cdot\frac{\tau_i\tau_j\eta_k}{\tau_i\eta_k}}
+		{\displaystyle\frac{\eta_j}{\tau_k\eta_j}\cdot\frac{\tau_j\eta_k}{\eta_k}} \\
+		&= \frac{\tau_k\eta_i}{\tau_k\tau_j\eta_i}\cdot\frac{\tau_k\tau_i\eta_j}{\tau_k\eta_j}\cdot
+		\frac{\tau_j\eta_i}{\eta_i}\cdot\frac{\eta_j}{\tau_i\eta_j}\cdot
+		\frac{\tau_i\eta_j}{\tau_i\tau_k\eta_j}\cdot\frac{\tau_i\tau_j\eta_k}{\tau_i\eta_k}\cdot
+		\frac{\tau_k\eta_j}{\eta_j}\cdot\frac{\eta_k}{\tau_j\eta_k} \\
+		&= \frac{\tau_k\eta_i}{\tau_k\tau_j\eta_i}\cdot
+		\frac11\cdot
+		\frac{\tau_j\eta_i}{\eta_i}\cdot
+		\frac11\cdot
+		\frac11\cdot
+		\frac{\tau_i\tau_j\eta_k}{\tau_i\eta_k}\cdot
+		\frac11\cdot\frac{\eta_k}{\tau_j\eta_k} \\
+		&= \frac{\tau_j\eta_i}{\tau_k\tau_j\eta_i}\cdot
+		\frac{\tau_i\tau_j\eta_k}{\tau_j\eta_k}\cdot
+		\frac{\tau_k\eta_i}{\eta_i}\cdot
+		\frac{\eta_k}{\tau_i\eta_k},
+	\end{align*}
+	which is what we wanted.
+\end{proof}

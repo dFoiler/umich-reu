@@ -1,0 +1,262 @@
+Throughout this section, $G$ will be a group (usually finite) and $H\subseteq G$ will be a subgroup (usually normal). We denote $\ZZ[G]$ by the group ring and $I_G\subseteq\ZZ[G]$ by the augmentation ideal, defined as the kernel of the map $\varepsilon\colon\ZZ[G]\to\ZZ$ which sends $g\mapsto1$ for all $g\in G$.
+
+We begin by recalling the statement of the Inflation--Restriction exact sequence.
+\begin{theorem}[Inflation--Restriction] \label{thm:infres}
+	Let $G$ be a finite group with normal subgroup $H\subseteq G$. Given a $G$-module $A$, suppose that the $H^i(H,A)=0$ for $1\le i<q$ for some index $q\ge1$. Then the sequence
+	\[0\to H^q\left(G/H,A^H\right)\stackrel{\op{Inf}}\to H^q(G,A)\stackrel{\op{Res}}\to H^q(H,A)\]
+	is exact.
+\end{theorem}
+\begin{proof}[Sketch]
+	The proof is by induction on $q$, via dimension shifting. For $q=1$, we can just directly check this on $1$-cocycles. The main point is the exactness at $H^q(G,A)$: if $c\in Z^1(G,A)$ has $\op{Res}(c)\in B^1(H,A)$, then find $a\in A$ with
+	\[\op{Res}(c)(a)\coloneqq h\cdot a-a.\]
+	As such, we define $f_a\in B^1(G,A)$ by $f_a(g)\coloneqq g\cdot a-a$, which implies that $c-f_a$ vanishes on $H$. It is then possible to stare at the $1$-cocycle condition
+	\[(c-f_a)(gg')=(c-f_a)(g)+g\cdot(c-f_a)(g')\]
+	to check that $c-f_a$ only depends on the cosets of $H$ (e.g., by taking $g'\in H$) and that $\im(c-f_a)\subseteq A^H$ (e.g., by taking $g\in H$).
+
+	For $q>1$, we use dimension shifting via the following lemma.
+	\begin{lemma}[Dimension shifting] \label{lem:dimshift}
+		Let $G$ be a group with subgroup $H\subseteq G$. Given a $G$-module $A$, all indices $q\ge1$ have
+		\[\delta\colon H^q(H,\op{Hom}_\ZZ(I_G,A))\simeq H^{q+1}(H,A).\]
+	\end{lemma}
+	\begin{proof}[Sketch]
+		Recall that we have the short exact sequence of $\ZZ[H]$-modules
+		\[0\to I_G\to\ZZ[G]\to\ZZ\to0.\]
+		In fact, this short exact sequence splits over $\ZZ$, so it will still be short exact after applying $\op{Hom}_\ZZ(-,A)$, which gives the short exact sequence
+		\[0\to A\to\op{Hom}_\ZZ(\ZZ[G],A)\to\op{Hom}_\ZZ(I_G,A)\to0\]
+		of $\ZZ[H]$-modules. The result now follows from the long exact sequence of cohomology upon noting that $\op{Hom}_\ZZ(\ZZ[G],A)$ is coinduced and hence acyclic for cohomology.
+	\end{proof}
+	Using the above lemma, we have the following the commutative diagram with vertical arrows which are isomorphisms.
+	% https://q.uiver.app/?q=WzAsOCxbMCwwLCIwIl0sWzAsMSwiMCJdLFsxLDAsIkhecVxcbGVmdChHL0gsXFxvcHtIb219X1xcWlooSV9HLEEpXkhcXHJpZ2h0KSJdLFsxLDEsIkhee3ErMX1cXGxlZnQoRy9ILEFeSFxccmlnaHQpIl0sWzIsMSwiSF57cSsxfShHLEEpIl0sWzIsMCwiSF5xKEcsXFxvcHtIb219X1xcWlooSV9HLEEpKSJdLFszLDEsIkhee3ErMX0oSCxBKSJdLFszLDAsIkhecShILFxcb3B7SG9tfV9cXFpaKElfRyxBKSkiXSxbMSwzXSxbMyw0XSxbNCw2XSxbMiwzLCJcXGRlbHRhIl0sWzUsNCwiXFxkZWx0YSJdLFs3LDYsIlxcZGVsdGEiXSxbNSw3XSxbMiw1XSxbMCwyXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		0 & {H^q\left(G/H,\op{Hom}_\ZZ(I_G,A)^H\right)} & {H^q(G,\op{Hom}_\ZZ(I_G,A))} & {H^q(H,\op{Hom}_\ZZ(I_G,A))} \\
+		0 & {H^{q+1}\left(G/H,A^H\right)} & {H^{q+1}(G,A)} & {H^{q+1}(H,A)}
+		\arrow[from=2-1, to=2-2]
+		\arrow[from=2-2, to=2-3]
+		\arrow[from=2-3, to=2-4]
+		\arrow["\delta", from=1-2, to=2-2]
+		\arrow["\delta", from=1-3, to=2-3]
+		\arrow["\delta", from=1-4, to=2-4]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-2, to=1-3]
+		\arrow[from=1-1, to=1-2]
+	\end{tikzcd}\]
+	The top row is exact by the inductive hypothesis, so the bottom row is therefore also exact.
+\end{proof}
+Our goal is to make the above proof explicit in the case of $q=2$, which is the only reason we sketched the above proofs at all. We begin by making the dimension shifting explicit.
+\begin{lemma} \label{lem:explicitdimshift}
+	Let $G$ be a group with subgroup $H\subseteq G$, and let $\{g_\alpha\}_{\alpha\in\lambda}$ be coset representatives for $H\backslash G$. Now, given a $G$-module $A$, the maps
+	\begin{align*}
+		\delta_H\colon Z^1(H,\op{Hom}_\ZZ(I_G,A))&\to Z^2(H,A) \\
+		c&\mapsto\left[(h,h')\mapsto h\cdot c(h')(h^{-1}-1)\right] \\
+		\left[h\mapsto\big((h'g_\bullet-1)\mapsto h'\cdot u((h')^{-1},h)\big)\right]&\mapsfrom u
+	\end{align*}
+	are group homomorphisms which descend to the isomorphism $\overline\delta\colon H^1(H,\op{Hom}_\ZZ(I_G,A))\simeq H^2(H,A)$ of \autoref{lem:dimshift}. The map $\delta$ above is surjective, and the reverse map is a section; when $H=G$, these are isomorphisms.
+\end{lemma}
+\begin{proof}
+	We begin by noting that our short exact sequence can be written more explicitly as follows.
+	% https://q.uiver.app/?q=WzAsOSxbMCwwLCIwIl0sWzEsMCwiQSJdLFsyLDAsIlxcb3B7SG9tfV9cXFpaKFxcWlpbR10sQSkiXSxbMywwLCJcXG9we0hvbX1fXFxaWihJX0csQSkiXSxbNCwwLCIwIl0sWzEsMSwiYSJdLFsyLDEsImFcXG1hcHN0byh6XFxtYXBzdG9cXHZhcmVwc2lsb24oeilhKSJdLFsyLDIsImYiXSxbMywyLCJmfF97SV9HfSJdLFswLDFdLFsxLDJdLFsyLDNdLFszLDRdLFs1LDYsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbNyw4LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}[row sep=0.0em]
+		0 & A & {\op{Hom}_\ZZ(\ZZ[G],A)} & {\op{Hom}_\ZZ(I_G,A)} & 0 \\
+		& a & {(z\mapsto\varepsilon(z)a)} \\
+		&& f & {f|_{I_G}}
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+		\arrow[maps to, from=2-2, to=2-3]
+		\arrow[maps to, from=3-3, to=3-4]
+	\end{tikzcd}\]
+	We now track through the induced boundary morphism $\delta\colon H^1(H,\op{Hom}_\ZZ(I_G,A))\to H^2(H,Q)$.
+	\begin{itemize}
+		\item We begin with $c\in Z^1(H,\op{Hom}_\ZZ(I_G,A))$, which means that we have $c(h)\colon I_G\to A$ for each $h,h'\in H$, and we satisfy
+		\[c(hh')=c(h)+h\cdot c(h').\]
+		Tracking through the action of $H$ on $\op{Hom}_\ZZ(I_G,A)$, this means that
+		\[c(hh')(g-1)=c(h)(g-1)+h\cdot c(h')(h^{-1}g-h^{-1})\]
+		for any $g\in G$.
+		\item To pull $c$ back to $C^1(H,\op{Hom}_\ZZ(\ZZ[G],A))$, we need to lift $c(h)\colon I_G\to A$ to a $\widetilde c(h)\colon\ZZ[G]\to A$. Recalling that we only need to preserve group structure, we simply precompose $c(h)$ with the map $\ZZ[G]\to I_G$ given by $z\mapsto z-\varepsilon(z)$. That is, we define
+		\[\widetilde c(h)(z)\coloneqq c(h)(z-\varepsilon(z)).\]
+		\item We now push $\widetilde c$ through $d\colon C^1(H,\op{Hom}_\ZZ(\ZZ[G],A))\to Z^2(H,\op{Hom}_\ZZ(\ZZ[G],A))$. This gives
+		\[(d\widetilde c)(h,h')=g\widetilde c(h')-\widetilde c(hh')+\widetilde c(h)\]
+		for any $h,h'\in H$. Concretely, plugging in some $z\in\ZZ[G]$ makes this look like
+		\begin{align*}
+			(d\widetilde{c})(h,h')(z) &= (h\widetilde c(h'))(z)-\widetilde c(hh')(z)+\widetilde c(h)(z) \\
+			&= h\cdot c(h')\left(h^{-1}z-\varepsilon(h^{-1}z)\right)-c(hh')(z-\varepsilon(z))+c(h)(z-\varepsilon(z)) \\
+			&= h\cdot c(h')\left(h^{-1}z-\varepsilon(z)\right)-c(hh')(z-\varepsilon(z))+c(h)(z-\varepsilon(z)).
+		\end{align*}
+		Now, from the $1$-cocycle condition on $c$, we recall
+		\[-c(hh')(z-\varepsilon(z))+c(h)(z-\varepsilon(z))=-h\cdot(c(h')(h^{-1}z-\varepsilon(z)h^{-1})),\]
+		so
+		\begin{align*}
+			(d\widetilde{c})(h,h')(z) &= h\cdot c(h')\left(\varepsilon(z)h^{-1}-\varepsilon(z)\right) \\
+			&= \varepsilon(z)\cdot\left(h\cdot c(h')\left(h^{-1}-1\right)\right).
+		\end{align*}
+		In particular, we see that $d\widetilde c\in Z^2(H,\op{Hom}_\ZZ(\ZZ[G],A))$ pulls back to $(h,h')\mapsto h\cdot c(h')\left(h^{-1}-1\right)$ in $Z^2(H,A)$. It is not too difficult to check that we have in fact defined a $2$-cocycle, but we will not do so because it is not necessary for the proof.
+	\end{itemize}
+	Now, we do know that $\delta_H$ is a homomorphism abstractly on elements of our cohomology classes by the Snake lemma, but it is also not too hard to see that
+	\[\delta_H\colon Z^1(H,\op{Hom}_\ZZ(I_G,A))\to Z^2(H,A)\]
+	is in fact a homomorphism of groups directly from the construction. In short,
+	\[\delta_H(c+c')(h,h')=h'\cdot c(h)\left(h^{-1}-1\right)+h'\cdot c'(h)\left(h^{-1}-1\right)=(\delta_H(c)+\delta_H(c'))(h,h')\]
+	for any $h,h'\in H$.
+
+	It remains to prove the last sentence. We run the following checks; given $u\in Z^2(H,A)$, define $c_u\in C^1(H,\op{Hom}_\ZZ(I_G,A))$ by
+	\[c_u(h)(h'g_\bullet-1)=h'\cdot u\left((h')^{-1},h\right).\]
+	Note that this is enough data to define $c_u(h)\colon I_G\to A$ because $I_G$ is a free $\ZZ$-module generated by $\{g-1:g\in G\}$.
+	\begin{itemize}
+		\item We verify that $c_u$ is a $1$-cocycle. This is a matter of force. Pick up $h,h'\in H$ and $g_\bullet h''\in G$ and write
+		\begin{align*}
+			&\phantom{{}={}}(hc_u(h'))(h''g_\bullet-1)+c_u(hh')(h''g_\bullet-1)+c_u(h)(h''g_\bullet-1) \\
+			&= h\cdot c_u(h')\left(h^{-1}h''g_\bullet -h^{-1}\right)+c_u(hh')(h''g_\bullet-1)+c_u(h)(h''g_\bullet-1) \\
+			&= h\cdot\left(h^{-1}h''u\left((h'')^{-1}h,h'\right)-h^{-1}u(h,h')\right)+h''u\left((h'')^{-1},hh'\right)+h''u\left((h'')^{-1},h\right) \\
+			&= h''u\left((h'')^{-1}h,h'\right)-u(h,h')+h''u\left((h'')^{-1},hh'\right)+h''u\left((h'')^{-1},h\right).
+		\end{align*}
+		This is just the $2$-cocycle condition for $u$ upon dividing out by $h''$, so we are done.
+		\item For $u\in Z^2(H,A)$, we verify that $\delta_H(c_u)=u$. Indeed, given $h,h'\in H$, we check
+		\begin{align*}
+			\delta_H(c_u)(h,h') &= h\cdot c_u(h')\left(h^{-1}-1\right) \\
+			&= h\cdot h^{-1}\cdot u(h,h') \\
+			&= u(h,h').
+		\end{align*}
+	\end{itemize}
+	So far we have verified that $\delta$ has section $u\mapsto c_u$ and hence must be surjective. Lastly, we take $H=G$ and show that $c_{\delta c}=c$ to finish. Indeed, for $g,g'\in G=H$, we write
+	\begin{align*}
+		c_{\delta_H c}(g)(g'-1) &= g'\cdot(\delta_H c)\left((g')^{-1},g\right) \\
+		&= g'(g')^{-1}\cdot c(g)(g'-1) \\
+		&= c(g)(g'-1),
+	\end{align*}
+	which is what we wanted.
+\end{proof}
+We also have used dimension shifting to show that $H^1\left(G/H,\op{Hom}_\ZZ(I_G,A)^H\right)\to H^2\left(G/H,A^H\right)$ is an isomorphism, but this requires a little more trickery. To begin, we discuss how to lift from $\op{Hom}_\ZZ(I_G,A)^H$ to $\op{Hom}_\ZZ(\ZZ[G],A)^H$.
+\begin{lemma} \label{lem:howtolift}
+	Let $G$ be a group with subgroup $H\subseteq G$. Fix a $G$-module $A$ with $H^1(H,A)=0$. Then, for any $\psi\in\op{Hom}_\ZZ(I_G,A)^H$, the function $h\mapsto h\psi\left(h^{-1}-1\right)$ is a cocycle in $Z^1(H,A)=B^1(H,A)$, so we can define a function $\eta_\bullet\colon\op{Hom}_\ZZ(I_G,A)^H\to A$ such that
+	\[\psi(h-1)=h\cdot \eta_\varphi-\eta_\varphi\]
+	for all $h\in H$. In fact, given $\varphi\in\op{Hom}_\ZZ(I_G,A)^H$, we can construct $\widetilde\varphi\in\op{Hom}_\ZZ(\ZZ[G],A)^H$ by
+	\[\widetilde\varphi(z)\coloneqq\varphi(z-\varepsilon(z))+\varepsilon(z)\eta_\varphi\]
+	so that $\widetilde\varphi|_{I_G}=\varphi$.
+\end{lemma}
+\begin{proof}
+	We will just run the checks directly.
+	\begin{itemize}
+		\item We start by checking $\psi\in\op{Hom}_\ZZ(I_G,A)^H$ give $1$-cocycles $c(h)\coloneqq \varphi\left(h-1\right)$ in $Z^1(A,H)$. To begin, we note that $\psi\in\op{Hom}_\ZZ(I_G,A)^H$ simply means that any $z-\varepsilon(z)\in I_G$ has
+		\[\psi(z-\varepsilon(z))=(h\psi)(z-\varepsilon(z))=h\psi\left(h^{-1}z-h^{-1}\varepsilon(z)\right)\]
+		for all $h\in H$. In particular, replacing $h$ with $h^{-1}$ tells us that
+		\[h\psi(z-\varepsilon(z))=\psi(hz-h\varepsilon(z)).\]
+		Now, we can just compute
+		\begin{align*}
+			(dc)(h,h') &= hc(h')-c(hh')+c(h) \\
+			&= hc\left(h'-1\right)-c\left(hh'-1\right)+c\left(h-1\right) \\
+			&= c\left(hh'-h\right)-c\left(hh'-1\right)+c\left(h-1\right),
+		\end{align*}
+		where in the last equality we used the fact that $\psi\in\op{Hom}_\ZZ(I_G,A)^H$. Now, $(dc)(h,h')$ manifestly vanishes, so we are done.
+		\item Note that $\widetilde\varphi\in\op{Hom}_\ZZ(\ZZ[G],A)$ because it is a linear combination of (compositions of) homomorphisms.
+		\item Note that any $z\in I_G$ has $\varepsilon(z)=0$, so
+		\[\widetilde\varphi(z)=\varphi(z-0)+0\cdot \eta_\varphi=\varphi(z),\]
+		so $\widetilde\varphi|_{I_G}=\varphi$.
+		\item It remains to check that $\widetilde\varphi$ is fixed by $H$. This requires a little more effort. Recall that $\varphi\in\op{Hom}_\ZZ(I_G,A)^H$ means that any $z-\varepsilon(z)\in I_G$ has
+		\[h\varphi(z-\varepsilon(z))=\varphi\left(hz-h\varepsilon(z)\right)\]
+		for any $h\in H$. Now, we just compute
+		\begin{align*}
+			(h\widetilde\varphi)(z) &= h\widetilde\varphi\left(h^{-1}z\right) \\
+			&= h\left(\varphi\left(h^{-1}z-\varepsilon(h^{-1}z)\right)+\varepsilon(h^{-1}z)\eta_\varphi\right) \\
+			&= \varphi\left(z-h\varepsilon(z)\right)+\varepsilon(z)\cdot h\eta_\varphi \\
+			&= \varphi\left(z-h\varepsilon(z)\right)+\varepsilon(z)\varphi(h-1)+\varepsilon(z)\eta_\varphi \\
+			&= \varphi(z-\varepsilon(z))+\varepsilon(z)\eta_\varphi \\
+			&= \widetilde\varphi(z).
+		\end{align*}
+	\end{itemize}
+	The above checks complete the proof.
+\end{proof}
+\begin{remark}
+	For motivation, the $\widetilde\varphi$ was constructed by tracking through the following diagram.
+	% https://q.uiver.app/?q=WzAsOCxbMSwwLCJcXGRpc3BsYXlzdHlsZVxcZnJhY3tDXjAoSCxBKX17Ql4wKEgsQSl9Il0sWzEsMSwiWl4xKEgsQSk9Ql4xKEgsQSkiXSxbMiwxLCJaXjEoSCxcXG9we0hvbX1fXFxaWihcXFpaW0ddLEEpKSJdLFszLDEsIlpeMShILFxcb3B7SG9tfV9cXFpaKElfRyxBKSkiXSxbMywwLCJcXGRpc3BsYXlzdHlsZVxcZnJhY3tDXjAoSCxcXG9we0hvbX1fXFxaWihJX0csQSkpfXtCXjAoSCxcXG9we0hvbX1fXFxaWihJX0csQSkpfSJdLFsyLDAsIlxcZGlzcGxheXN0eWxlXFxmcmFje0NeMChILFxcb3B7SG9tfV9cXFpaKFxcWlpbR10sQSkpfXtCXjAoSCxcXG9we0hvbX1fXFxaWihcXFpaW0ddLEEpKX0iXSxbNCwwLCIwIl0sWzAsMSwiMCJdLFs3LDFdLFsxLDJdLFsyLDNdLFswLDVdLFs1LDRdLFs0LDZdLFswLDFdLFs1LDJdLFs0LDNdXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+	\[\begin{tikzcd}
+		& {\displaystyle\frac{C^0(H,A)}{B^0(H,A)}} & {\displaystyle\frac{C^0(H,\op{Hom}_\ZZ(\ZZ[G],A))}{B^0(H,\op{Hom}_\ZZ(\ZZ[G],A))}} & {\displaystyle\frac{C^0(H,\op{Hom}_\ZZ(I_G,A))}{B^0(H,\op{Hom}_\ZZ(I_G,A))}} & 0 \\
+		0 & {Z^1(H,A)=B^1(H,A)} & {Z^1(H,\op{Hom}_\ZZ(\ZZ[G],A))} & {Z^1(H,\op{Hom}_\ZZ(I_G,A))}
+		\arrow[from=2-1, to=2-2]
+		\arrow[from=2-2, to=2-3]
+		\arrow[from=2-3, to=2-4]
+		\arrow[from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+		\arrow[from=1-2, to=2-2]
+		\arrow[from=1-3, to=2-3]
+		\arrow[from=1-4, to=2-4]
+	\end{tikzcd}\]
+	In short, take $\varphi\in Z^0(H,\op{Hom}_\ZZ(I_G,A))=\op{Hom}_\ZZ(I_G,A)^H$, pull it back to $z\mapsto\varphi(z-\varepsilon(z))$. Pushing this down to $Z^1(H,\op{Hom}_\ZZ(\ZZ[G],A))$ and pulling back to $Z^1(H,A)$ takes us to the $1$-cocycle $h\mapsto h\varphi\left(h^{-1}-1\right)$. Here we use the $H^1(H,A)=0$ condition above and adjust our lift $z\mapsto\varphi(z-\varepsilon(z))$ accordingly.
+\end{remark}
+And now we can now make our dimension shifting explicit.
+\begin{lemma} \label{lem:dimshift2}
+	Work in the context of \autoref{lem:howtolift} and assume that $H\subseteq G$ is normal. We track through the isomorphism
+	\[\delta\colon H^1\left(G/H,\op{Hom}_\ZZ(I_G,A)^H\right)\simeq H^2\left(G/H,A^H\right)\]
+	given by the exact sequence
+	\[0\to A^H\to\op{Hom}_\ZZ(\ZZ[G],A)^H\to\op{Hom}_\ZZ(I_G,A)^H\to0.\]
+\end{lemma}
+\begin{proof}
+	We begin with some $c\in H^1\left(G/H,\op{Hom}_\ZZ(I_G,A)^H\right)$. To track through the $\delta$, we define
+	\[\widetilde c(gH)\coloneqq c(gH)(z-\varepsilon(z))+\eta_{c(gH)}\varepsilon(z)\]
+	to be the lift given in \autoref{lem:howtolift}. Now, we are given that $dc=0$, which here means that any $z\in\ZZ[G]$ and $gH,g'H\in G/H$ will have
+	\begin{align*}
+		0 &= (dc)(gH,g'H)(z-\varepsilon(z)) \\
+		0 &= (gH\cdot c(g'H)-c(gg'H)+c(gH))(z-\varepsilon(z)) \\
+		0 &= g\cdot c(g'H)\left(g^{-1}z-g^{-1}\varepsilon(z)\right)-c(gg'H)(z-\varepsilon(z))+c(gH)(z-\varepsilon(z)) \\
+		g\cdot c(g'H)\left(g^{-1}-1\right)\varepsilon(z) &= g\cdot c(g'H)\left(g^{-1}z-\varepsilon(z)\right)-c(gg'H)(z-\varepsilon(z))+c(gH)(z-\varepsilon(z)) \\
+		g\cdot c(g'H)\left(g^{-1}-1\right)\varepsilon(z) &= g\cdot c(g'H)\left(g^{-1}z-\varepsilon(g^{-1}z)\right)-c(gg'H)(z-\varepsilon(z))+c(gH)(z-\varepsilon(z)).
+	\end{align*}
+	We now directly compute that
+	\begin{align*}
+		(d\widetilde c)(gH,g'H)(z) &= (gH\cdot c(g'H)-c(gg'H)+c(gH))(z) \\
+		&= g\cdot c(g'H)\left(g^{-1}z-\varepsilon(g^{-1}z)\right)+g\eta_{c(g'H)}\varepsilon(z) \\
+		&\phantom{{}={}}-c(gg'H)(z-\varepsilon(z))-\eta_{c(gg'H)}\varepsilon(z) \\
+		&\phantom{{}={}}+c(gH)(z-\varepsilon(z))+\eta_{c(gH)}\varepsilon(z) \\
+		&= \left(g\cdot c(g'H)\left(g^{-1}-1\right)+g\cdot \eta_{c(g'H)}-\eta_{c(gg'H)}+\eta_{c(gH)}\right)\varepsilon(z)
+	\end{align*}
+	% We quickly recall that $c(g'H)\in\op{Hom}_\ZZ(I_G,A)^H$ implies that $h\cdot c(g'H)(z)=(h\cdot c(g'H))\left(h^{-1}z\right)=c(g'H)\left(h^{-1}-1\right)$, so in fact we can write
+	% \[(d\widetilde c)(gH,g'H)(z) = \left(c(g'H)\left(1-g\right)-g\cdot \eta_{c(g'H)}+\eta_{c(gg'H)}-\eta_{c(gH)}\right)\varepsilon(z).\]
+	As such, we have pulled ourselves back to the $2$-cocycle given by
+	\[\boxed{u(gH,g'H)\coloneqq g\cdot c(g'H)\left(g^{-1}-1\right)+g\cdot \eta_{c(g'H)}-\eta_{c(gg'H)}+\eta_{c(gH)}}.\]
+	We quickly note that this is in fact independent of our choice of representative $g\in gH$: changing representative of $g$ to $gh$ for $h\in H$ will only affect the terms
+	\[h\cdot c(g'H)\left(h^{-1}g^{-1}-1\right)+h\eta_{c(g'H)}=c(g'H)\left(g^{-1}-h\right)+c(g'H)\left(h-1\right)+\eta_{c(g'H)}=c(g'H)\left(g^{-1}-1\right)+\eta_{c(g'H)},\]
+	so we are indeed safe. This completes the proof.
+	% Even though it is not necessary, we will run the following checks on $u$.
+	% \begin{itemize}
+	% 	\item We verify that $\im u\subseteq A^H$. The main point is that any $h\in H$ will have $h\cdot \eta_\varphi=h\varphi\left(h^{-1}-1\right)+\eta_\varphi=\varphi(1-h)+\eta_\varphi$ for any $\varphi\in\op{Hom}_\ZZ(I_G,A)^H$. Thus,
+	% 	\begin{align*}
+	% 		h\cdot u(gH,g'H) &= hg\cdot c(g'H)\left(g^{-1}-1\right)-hg\eta_{c(g'H)}+h\eta_{c(gg'H)}-h\eta_{c(gH)} \\
+	% 		&= gg^{-1}hg\cdot c(g'H)\left(g^{-1}-1\right)-gg^{-1}hg\eta_{c(g'H)}+h\eta_{c(gg'H)}-h\eta_{c(gH)} \\
+	% 		&= g\cdot c(g'H)\left(g^{-1}h-g^{-1}hg\right) \\
+	% 		&\phantom{{}={}}-g\left(c(g'H)(1-g^{-1}hg)+\eta_{c(g'H)}\right) \\
+	% 		&\phantom{{}={}}+c(gg'H)(1-h)+\eta_{c(gg'H)} \\
+	% 		&\phantom{{}={}}-c(gH)(1-h)-\eta_{c(gH)} \\
+	% 		&= g\cdot c(g'H)(g^{-1}h-1)+c(gg'H)(1-h)-c(gH)(1-h)-g\eta_{c(g'H)}+\eta_{c(gg'H)}-\eta_{c(gH)} \\
+	% 		&= g\cdot c(g'H)(g^{-1}h-1)+g\cdot c(g'H)(1-h)-g\eta_{c(g'H)}+\eta_{c(gg'H)}-\eta_{c(gH)} \\
+	% 		&= g\cdot c(g'H)(g^{-1}h-h)-g\eta_{c(g'H)}+\eta_{c(gg'H)}-\eta_{c(gH)} \\
+	% 	\end{align*}
+	% 	Because 
+	% \end{itemize}
+\end{proof}
+We now make \autoref{thm:infres} explicit in the case of $q=2$.
+\begin{lemma} \label{lem:explicitresinf}
+	Let $G$ be a group with normal subgroup $H\subseteq G$. Fix a $G$-module $A$ with $H^1(H,A)=0$, and define the function $\eta_\bullet\colon\op{Hom}_\ZZ(I_G,A)^H\to A$ of \autoref{lem:howtolift}. Given $c\in Z^2(G,A)$ such that $\op{Res}^G_Hc\in B^2(H,A)$; in particular, suppose we have $b\in\op{Hom}_\ZZ(I_G,A)$ such that all $h\in H$ have
+	\[\op{Res}^G_H(\delta^{-1}c)(h)=(db)(h)=h\cdot b-h,\]
+	where $\delta^{-1}$ is the inverse isomorphism of \autoref{lem:explicitdimshift}. Then we find $u\in Z^2\left(G/H,A^H\right)$ such that
+	\[[\op{Inf}u]=[c]\]
+	in $H^2(G,A)$.
+\end{lemma}
+\begin{proof}
+	The main point is that boundary morphisms $\delta$ commute with $\op{Res}$ and $\op{Inf}$. By construction, we have that $\left(\op{Res}^G_H\delta^{-1}c\right)-db=0$ in $Z^1(H,\op{Hom}_\ZZ(I_G,A))$. Pulling back to $Z^1(G,\op{Hom}_\ZZ(I_G,A))$, we note that
+	\[c'\coloneqq\left(\delta^{-1}c-db\right)\in Z^1(G,\op{Hom}_\ZZ(I_G,A))\]
+	vanishes on $H$ by hypothesis. Because $\delta^{-1}c-db$ is a $1$-cocycle, we are able to write
+	\[c'(gg')=c'(g)+gc'(g').\]
+	Letting $g'$ vary over $H$, we see that $\delta^{-1}c-db$ is well-defined on $G/H$. On the other hand, for any $h\in H$ and $g\in G$, we note that $g^{-1}hg\in H$, so
+	\[c'(g)=c'\left(g\cdot g^{-1}hg\right)=c'\left(hg\right)=c'\left(h\right)+hc(g),\]
+	implying that $c'(g)\in\op{Hom}_\ZZ(I_G,A)^H$.
+
+	We are now ready to apply \autoref{lem:dimshift2}, which we use on $c'$, thus defining $u\coloneqq\delta(c')$. Explicitly, we have
+	\[
+		\boxed{u(gH,g'H) = g\cdot c'(g'H)\left(g^{-1}-1\right)+g\cdot \eta_{c'(g'H)}-\eta_{c'(gg'H)}+\eta_{c'(gH)}}.
+	\]
+	This is explicit enough for our purposes. Observe that $[\op{Inf}u]=[c]$ because $[\op{Inf}c']=[\delta^{-1}c]$, and $\delta$ commutes with $\op{Inf}$.
+	% Thus, we define $\overline c'\in C^1\left(G/H,\op{Hom}_\ZZ(I_G,A)^H\right)$ by $\overline c'(gH)\coloneqq c'(g)$. Note $\overline c'\in Z^1\left(G/H,\op{Hom}_\ZZ(I_G,A)^H\right)$ because each $g,g'\in G$ give
+	% \[\overline c'(gH\cdot g'H)=c'(gg')=c'(g)+gc'(g')=\overline c'(gH)+gH\cdot \overline c'(gH).\]
+	% We take a moment to understand $\op{Hom}_\ZZ(I_G,A)^H$. Given $f\in\op{Hom}_\ZZ(I_G,A)$, the condition that $f$ is fixed by $H$ is saying that all $h\in H$ will have $hf=f$. Concretely, we require each $g\in G$ to have
+	% \[f(g-1)=(hf)(g-1)=h\cdot f\left(h^{-1}g-h^{-1}\right).\]
+\end{proof}

@@ -68,3 +68,5 @@ adjunction
 hom
 Sylow
 saitsfy
+Chebotarev
+circulant

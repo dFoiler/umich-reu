@@ -70,3 +70,4 @@ Sylow
 saitsfy
 Chebotarev
 circulant
+duals

@@ -29,3 +29,5 @@
 {"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QThis square commutes by functoriality of cup products.\\E$"}
 {"rule":"SENTENCE_WHITESPACE","sentence":"^\\QE3.\\E$"}
 {"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QThis becomes the morphism sending \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q to \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QGiven an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q-encoding module \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q and an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q-encoding module \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, the \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q-module \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q-encoding module.\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QThen \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q-encoding module if and only if \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q-encoding module.\\E$"}

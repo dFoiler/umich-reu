@@ -33,7 +33,7 @@ Only now will we bring in tuples. The first result provides an alternate descrip
 \end{restatable}
 \noindent The second result brings in the last ingredient, the cup product.
 \begin{restatable}{theorem}{thmyesitisacocycle} \label{thm:yesitisacocycle}
-	Fix everything as in the set-up. Further, fix a $G$-module $A$ and a $\{\sigma_i\}_{i=1}^m$-tuple $\left(\{\alpha_i\},\{\beta_{ij}\}\right)$. Then observe there is a natural cup product map
+	Fix everything as in the set-up. Also, fix a $G$-module $A$ and a $\{\sigma_i\}_{i=1}^m$-tuple $\left(\{\alpha_i\},\{\beta_{ij}\}\right)$. Then observe there is a natural cup product map
 	\[\cup\colon H^2(G,X)\times H^0(G,\op{Hom}_\ZZ(X,A))\to H^2(G,A)\]
 	by using the evaluation map $X\otimes_\ZZ\op{Hom}_\ZZ(X,A)\to A$. Then, using the isomorphism of \autoref{prop:alternativetuple}, the cocycle defined in \autoref{thm:getcocycle} is simply the output of $\delta(\overline c)\cup\left(\{\alpha_i\},\{\beta_{ij}\}\right)$ on cocycles.
 \end{restatable}
@@ -875,14 +875,14 @@ In fact, \autoref{lem:cuppingisnatural} tells us that these isomorphisms assembl
 	
 	For this, we can use \autoref{prop:intdualelement} and manually give $x$ and $x^\lor$; here, $x=[\overline c]$ will work, and one can solve for $x^\lor$. Alternatively, one could check the cohomology groups from \autoref{prop:finitecohomcheck}. One could even solve for $[\delta(\overline c)]^\lor$ explicitly, though this is harder.
 \end{remark}
-Now that we have a $2$-encoding module, we can apply all the theory we built in \autoref{sec:crackpot}. For example, it might have felt like magic that the isomorphism sending a tuple to its cohomology class was induced by a cup product, but in fact this must have been true all along by \autoref{cor:encodingsarecups}.
+Now that we have a $2$-encoding module, we can apply all the theory we built in \autoref{sec:crackpot}. For example, it might have felt like magic that the isomorphism sending a tuple to its cohomology class was induced by a cup product, but in fact this must have been true all along by \autoref{prop:encodingsarecups}.
 
 Here are some other results.
 \begin{cor}
 	Fix everything as in the set-up. Then $X$ is cohomologically equivalent to $I_G\otimes_\ZZ I_G$.
 \end{cor}
 \begin{proof}
-	We know that $I_G\otimes_\ZZ I_G$ is a $2$-encoding module by \autoref{ex:igisencoding}, from which \autoref{cor:encodingmodules} finishes.
+	We know that $I_G\otimes_\ZZ I_G$ is a $2$-encoding module by \autoref{ex:igisencoding}, from which \autoref{prop:encodingmodules} finishes.
 \end{proof}
 \begin{cor}
 	Fix everything as in the set-up. Then, for any $i\in\ZZ$ and subgroup $H\subseteq G$, we have natural isomorphisms
@@ -903,7 +903,7 @@ Here are some other results.
 \begin{remark}
 	Fix notation as in \autoref{sec:overview}, and take $m=2$. Then there are natural transformations
 	\[\widehat H^2(G,-)\stackrel{[\delta(\overline c)]^\lor\cup-}\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{-1}(G,-)\]
-	sending a $2$-cocycle to its $\{\sigma_i\}_{i=1}^m$-tuple and then to the (class of) $\beta_{10}$. (It turns out that, because $G$ is bicyclic, the equivalence relation on $\beta_{10}$ is exactly what we need to form a class of $\widehat H^{-1}$.) Now, applying \autoref{cor:encodingsarecups}, we see that the right natural transformation must be a cup-product map, so by associativity of the cup product, the entire natural transformation is a cup-product map.
+	sending a $2$-cocycle to its $\{\sigma_i\}_{i=1}^m$-tuple and then to the (class of) $\beta_{10}$. (It turns out that, because $G$ is bicyclic, the equivalence relation on $\beta_{10}$ is exactly what we need to form a class of $\widehat H^{-1}$.) Now, applying \autoref{prop:encodingsarecups}, we see that the right natural transformation must be a cup-product map, so by associativity of the cup product, the entire natural transformation is a cup-product map.
 
 	Thus, analogously to what \autoref{cor:alphaiscupproduct} says for $\alpha$s, we can describe the projection from $2$-cocycles to $\beta$s purely via (restricted) cup products.
 \end{remark}

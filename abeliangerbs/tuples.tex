@@ -1,6 +1,8 @@
 % !TEX root = ../abeliangerbs.tex
 
-The story so far has been able to generalize the one-variable results from \autoref{sec:general} to results using all generators of an abelian group in \autoref{sec:abelian}. It remains to prove \autoref{thm:getcocycle}, which is the main goal of this section.
+% The story so far has been able to generalize the one-variable results from \autoref{sec:general} to results using all generators of an abelian group in \autoref{sec:abelian}. It remains to prove \autoref{thm:getcocycle}, which is the main goal of this section.
+
+The story from \autoref{sec:general} was able to encode a cohomology class in $H^2(G,A)$ into a (somewhat complex) tuple of elements in $A$. This mirrors the introductory comments from \autoref{sec:crackpot}, so we will spend this section connecting the two stories.
 
 \subsection{Set-Up and Overview} \label{sec:overview}
 The approach here will be to attempt to abstract our data away from the $ G$-module $A$ as much as possible. To set up our discussion, we continue with
@@ -37,7 +39,7 @@ Only now will we bring in tuples. The first result provides an alternate descrip
 	\[\cup\colon H^2(G,X)\times H^0(G,\op{Hom}_\ZZ(X,A))\to H^2(G,A)\]
 	by using the evaluation map $X\otimes_\ZZ\op{Hom}_\ZZ(X,A)\to A$. Then, using the isomorphism of \autoref{prop:alternativetuple}, the cocycle defined in \autoref{thm:getcocycle} is simply the output of $\delta(\overline c)\cup\left(\{\alpha_i\},\{\beta_{ij}\}\right)$ on cocycles.
 \end{restatable}
-\noindent Because we know that the cup product sends cocycles to cocycles, this will show that the cocycle of \autoref{thm:getcocycle} is in fact well-defined.
+\noindent Because we know that the cup product sends cocycles to cocycles, this will show that the cocycle of \autoref{thm:getcocycle} is in fact well-defined. More importantly, $X$ will be a $2$-encoding module.
 
 % it might be worth stating the main results we are going to prove here, but they are somewhat notation-heavy
 

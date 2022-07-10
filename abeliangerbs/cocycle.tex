@@ -3,10 +3,12 @@
 In this section, we verify \autoref{thm:getcocycle}. As such, in this section, we will work under the modified set-up, forgetting about the extension $\mc E$ but letting $(\{\alpha_i\},\{\beta_{ij}\})$ be some $\{\sigma_i\}_{i=1}^m$-tuple.
 
 Here the formula looks like
-\[c(g,g')\coloneqq\left[\prod_{1\le j<i\le m}\Bigg(\prod_{1\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\beta_{ij}^{(a_ib_j)}\right]\left[\prod_{i=1}^m\Bigg(\prod_{1\le k<i}\sigma_k^{a_k+b_k}\Bigg)\alpha_i^{\floor{\frac{a_i+b_i}{n_i}}}\right],\]
+\[c(g,g')\coloneqq\left[\prod_{1\le j<i\le m}\Bigg(\prod_{1\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\sigma_i^{(a_i)}\sigma_j^{(b_j)}\beta_{ij}\right]\left[\prod_{i=1}^m\Bigg(\prod_{1\le k<i}\sigma_k^{a_k+b_k}\Bigg)\alpha_i^{\floor{\frac{a_i+b_i}{n_i}}}\right],\]
 where $g=\prod_i\sigma_i^{a_i}$ and $g'=\prod_i\sigma_i^{b_i}$ with $0\le a_i,b_i<n_i$ and $q_i\coloneqq\floor{(a_i+b_i)/n_i}$. To make this more digestible, we define
 \[g_i\coloneqq\prod_{1\le k<i}\sigma_k^{a_k}\]
-for any $g=\prod_i\sigma_i^{a_i}\in G$, so we can write down our formula as
+for any $g=\prod_i\sigma_i^{a_i}\in G$. Also, for extra brevity, we will define
+\[\beta_{ij}^{(a_ib_j)}\coloneqq\sigma_i^{(a_i)}\sigma_j^{(b_j)}\beta_{ij},\]
+so we can write down our formula as
 \[c(g,g')\coloneqq\left[\prod_{1\le j<i\le m}g_ig'_j\beta_{ij}^{(a_ib_j)}\right]\left[\prod_{i=1}^mg_ig'_i\alpha_i^{\floor{\frac{a_i+b_i}{n_i}}}\right].\]
 Now, given $g,g',g''\in G$, we would like to check
 \[gc(g',g'')\cdot c(g,g'g'')\stackrel?=c(gg',g'')\cdot c(g,g'),\]

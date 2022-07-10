@@ -812,7 +812,7 @@ It might be the case that ``many'' different shiftable functors give the same co
 	Let $G$ be a finite group. We say that two $G$-modules $X,X'$ are \textit{cohomologically equivalent} if and only if there exist morphisms $[\varphi]\in\widehat H^0(G,\op{Hom}_\ZZ(X',X))$ and $[\varphi']\in\widehat H^0(G,\op{Hom}_\ZZ(X,X'))$ such that
 	\[[\varphi\circ\varphi']=[\id_X]\in\widehat H^0(G,\op{Hom}_\ZZ(X,X))\qquad\text{and}\qquad[\varphi'\circ\varphi]=[\id_{X'}]\in\widehat H^0(G,\op{Hom}_\ZZ(X',X')).\]
 \end{definition}
-\begin{example}
+\begin{example} \label{ex:inducediszero}
 	All induced modules $X$ are cohomologically equivalent to $0$. To see this, we set $\varphi\colon 0\to X$ and $\varphi'\colon X\to0$ equal to the zero maps (which are our only options). Then note that $\op{Hom}_\ZZ(X,X)$ is induced by \autoref{lem:hompreservesinduced} and $\op{Hom}_\ZZ(0,0)=0$, so
 	\[\widehat H^0(G,\op{Hom}_\ZZ(X,X))=\widehat H^0(G,\op{Hom}_\ZZ(X',X'))=0,\]
 	making the checks on $\varphi$ and $\varphi'$ both trivial.
@@ -898,6 +898,21 @@ We now show that this notion of equivalence correctly translates to shiftable fu
 	\[\widehat H^0(G,\op{Hom}_\ZZ(\ZZ,\ZZ))\cong\ZZ/2\ZZ\not\cong0\cong\widehat H^0(G,\op{Hom}_\ZZ(\ZZ,\ZZ i)).\]
 	Namely, $\op{Hom}_\ZZ(\ZZ,\ZZ i)=0$ as $G$-modules.
 \end{ex}
+\begin{cor} \label{cor:additiontozero}
+	Let $G$ be a finite group, and let $A$ and $B$ be $G$-modules. Then, if $A\oplus B$ is cohomologically equivalent to $0$, then both $A$ and $B$ are cohomologically equivalent to $0$.
+\end{cor}
+\begin{proof}
+	This is not too hard to see directly, but it falls immediately out of using \autoref{cor:bettercohomequivzero} and writing
+	\begin{align*}
+		0 &= \widehat H^0(G,\op{Hom}_\ZZ(A\oplus B,A\oplus B)) \\
+		&\simeq \widehat H^0(G,\op{Hom}_\ZZ(A,A))\oplus\widehat H^0(G,\op{Hom}_\ZZ(A,B))\oplus{} \\
+		&\qquad\widehat H^0(G,\op{Hom}_\ZZ(B,A))\oplus\widehat H^0(G,\op{Hom}_\ZZ(B,B)),
+	\end{align*}
+	from which $\widehat H^0(G,\op{Hom}_\ZZ(A,A))=\widehat H^0(G,\op{Hom}_\ZZ(B,B))=0$ is forced.
+\end{proof}
+\begin{example}
+	By \autoref{ex:inducediszero}, free $\ZZ[G]$-modules $\ZZ[G]^S\simeq\ZZ[G]\otimes_\ZZ\ZZ^S$ for sets $S$ are cohomologically equivalent to $0$. It follows that all projective $\ZZ[G]$-modules are cohomologically equivalent to $0$ from \autoref{cor:additiontozero}.
+\end{example}
 This alternate definition also provides us with a way to multiply.
 \begin{cor}
 	Let $G$ be a finite group. If $X$ and $X'$ are cohomologically equivalent and $Y$ and $Y'$ are cohomologically equivalent, then $X\otimes_\ZZ X'$ is cohomologically equivalent to $Y\otimes_\ZZ Y'$.

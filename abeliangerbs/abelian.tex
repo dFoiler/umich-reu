@@ -1,8 +1,8 @@
 % !TEX root = ../abeliangerbs.tex
 
-\subsection{Extensions to Tuples}
-The above proofs technically don't even require that the group $ G$ is abelian. If we want to keep track of the fact our group is abelian, we should extract the elements of $A$ which can do so.
-\begin{lemma} \label{lem:constructalphabeta}
+\subsection{Tuple Data}
+The results from \autoref{sec:singlevar} are very focused on single elements, which are only enough when our group $G$ is cyclic. Our goal will be to be able to cover all abelian groups, so if we want to keep track of the fact our group is abelian, we should extract the elements of $A$ which can do so.
+\begin{lemma}[{\cite[Lemma~1.2]{abelian-crossed}}] \label{lem:constructalphabeta}
 	Let $A$ be a $ G$-module, and let 
 	\[1\to A\to\mc E\stackrel\pi\to G\to1\]
 	be a group extension. Further, fix some $F_1,F_2\in\mc E$ and define $\sigma_i\coloneqq\pi(F_i)$ for $i\in\{1,2\}$, and let $\sigma_i\in G$ have order $n_i$. Then, setting
@@ -41,7 +41,7 @@ The above proofs technically don't even require that the group $ G$ is abelian. 
 	The above computations finish the proof.
 \end{proof}
 The proof of (b) above might appear magical, but in fact it comes from a more general idea.
-\begin{lemma} \label{lem:switchtwo}
+\begin{lemma}[{\cite[Lemma~1.1(b)]{abelian-crossed}}] \label{lem:switchtwo}
 	Fix everything as in \autoref{lem:constructalphabeta}. Then, for $x,y\ge0$, we have
 	\[F_1^xF_2^y=\prod_{k=0}^{x-1}\prod_{\ell=0}^{y-1}\sigma_1^k\sigma_2^\ell(\beta)F_2^yF_1^x.\]
 \end{lemma}
@@ -75,7 +75,7 @@ The proof of (b) above might appear magical, but in fact it comes from a more ge
 	Setting $x=n_1$ and $y=1$ recovers $\op N_{L/L^{\langle\sigma_1\rangle}}(\beta)=\alpha_1/\sigma_2(\alpha_1)$.
 \end{remark}
 In particular, \autoref{rem:alphabetarelation} tells us that coherence of the group law in $\mc E$ should give rise to relations between our elements of $A$. Here is a more complex example.
-\begin{lemma} \label{lem:betarelations}
+\begin{lemma}[{\cite[Lemma~1.2]{abelian-crossed}}] \label{lem:betarelations}
 	Let $A$ be a $ G$-module, and let 
 	\[1\to A\to\mc E\stackrel\pi\to G\to1\]
 	be a group extension. Further, fix some $F_1,F_2,F_3\in\mc E$ and define $\sigma_i\coloneqq\pi(F_i)$ for $i\in\{1,2,3\}$, and let $\sigma_i\in G$ have order $n_i$. Then, setting
@@ -109,7 +109,7 @@ In particular, \autoref{rem:alphabetarelation} tells us that coherence of the gr
 
 \subsection{Tuples to Cocycles}
 \subsubsection{The Set-Up}
-The proceeding lemma is intended to give intuition that the element $\beta$ is helping to specify the group law on $\mc E$.
+The proceeding lemmas \autoref{lem:constructalphabeta} and \autoref{lem:betarelations} is intended to give intuition that the element $\beta$ is helping to specify the group law on $\mc E$.
 
 More concretely, we will take the following set-up for the following results: fix a $ G$-module $A$, and let
 \[1\to A\to\mc E\to G\to1\]
@@ -117,7 +117,7 @@ be a group extension. Once we choose elements $\{\sigma_i\}_{i=1}^m$ generating 
 \[\alpha_i\coloneqq F_i^{n_i}\]
 for each index $i$ and
 \[\beta_{ij}\coloneqq F_iF_jF_i^{-1}F_j^{-1}\]
-for each index $1\le j<i\le m$. Notably, we will not need more $\beta$s: indeed, $\beta_{ii}=1$ and $\beta_{ij}=\beta_{ji}^{-1}$ for any $i$ and $j$. Setting $A_i\coloneqq A^{\langle\sigma_i\rangle}$ and $N_i\coloneqq\sum_{p=0}^{n_i-1}\sigma_i^p$, the story so far is that
+for each index $1\le j,i\le m$. Notably, it suffices to only work with $j<i$: indeed, $\beta_{ii}=1$ and $\beta_{ij}=\beta_{ji}^{-1}$ for any $i$ and $j$. Setting $A_i\coloneqq A^{\langle\sigma_i\rangle}$ and $N_i\coloneqq\sum_{p=0}^{n_i-1}\sigma_i^p$, the story so far is that
 \begin{equation}
 	\alpha_i\in A_i\text{ for each }i\qquad\text{and}\qquad\beta_{ij}\in A\text{ for each }i>j \label{eq:tuplefields}
 \end{equation}
@@ -140,7 +140,9 @@ Note that this definition is independent of $\mc E$, but a choice of extension $
 We also know from \autoref{lem:switchtwo} that
 \[F_i^xF_j^y=\prod_{k=0}^{x-1}\prod_{\ell=0}^{y-1}\sigma_i^k\sigma_j^\ell(\beta_{ij})F_j^yF_i^x\]
 for $i>j$ and $x,y\ge0$. It will be helpful to have some notation for the residue term in $A$, so we define
-\[\beta_{ij}^{(xy)}\coloneqq\prod_{k=0}^{x-1}\prod_{\ell=0}^{y-1}\sigma_i^k\sigma_j^\ell(\beta_{ij}).\]
+\[\sigma^{(x)}\coloneqq\sum_{i=0}^{x-1}\sigma^i\]
+so that we can write
+\[\sigma_i^{(x)}\sigma_j^{(y)}\beta_{ij}=\prod_{k=0}^{x-1}\prod_{\ell=0}^{y-1}\sigma_i^k\sigma_j^\ell(\beta_{ij}).\]
 Now, combined with the fact that $F_ix=\sigma_i(x)F_i$ for each $F_i$ and $x\in A$, we have been approximately told how the group operation works in $\mc E$. Namely, we could conceivably write any element of $\mc E$ in the form
 \[xF_1^{a_1}\cdots F_m^{a_m}\]
 for $x\in A$ and $a_i\in\ZZ/n_i\ZZ$ because we know how to make these elements commute and generate $\mc E$. Further, we can multiply out two terms of the form
@@ -148,52 +150,53 @@ for $x\in A$ and $a_i\in\ZZ/n_i\ZZ$ because we know how to make these elements c
 into a term of the form $zF_1^{c_1}\cdots F_m^{c_m}$. In fact, it will be helpful for us to see how to do this.
 \begin{proposition} \label{prop:multiplytwoelements}
 	Fix everything as in the set-up, except drop the assumption that $\{\sigma_i\}_{i=1}^m$ generate $ G$. Then, choosing $a_i,b_i\in\NN$ for each $i$, we have
-	\[\left(\prod_{i=1}^mF_i^{a_i}\right)\left(\prod_{i=1}^mF_i^{b_i}\right)=\left[\prod_{1\le j<i\le m}\Bigg(\prod_{1\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\beta_{ij}^{(a_ib_j)}\right]\left(\prod_{i=1}^mF_i^{a_i+b_i}\right).\]
+	\[\left(\prod_{i=1}^mF_i^{a_i}\right)\left(\prod_{i=1}^mF_i^{b_i}\right)=\left[\prod_{1\le j<i\le m}\Bigg(\prod_{1\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\sigma_i^{(a_i)}\sigma_j^{(b_j)}\beta_{ij}\right]\left(\prod_{i=1}^mF_i^{a_i+b_i}\right).\]
 \end{proposition}
 \begin{proof}
 	The reason that we dropped the assumption on $\{\sigma_i\}_{i=1}^m$ is so that we may induct directly on $m$. We start by showing that
-	\[\left(\prod_{i=1}^mF_i^{a_i}\right)F_1^{b_1}=\left[\prod_{1<i\le m}\left(\prod_{1\le k<i}\sigma_k^{a_k}\right)\beta_{i1}^{(a_ib_1)}\right]F_1^{a_1+b_1}\prod_{i=2}^mF_i^{a_i}.\]
+	\[\left(\prod_{i=1}^mF_i^{a_i}\right)F_1^{b_1}=\left[\prod_{1<i\le m}\left(\prod_{1\le k<i}\sigma_k^{a_k}\right)\sigma_i^{(a_i)}\sigma_1^{(b_1)}\beta_{i1}\right]F_1^{a_1+b_1}\prod_{i=2}^mF_i^{a_i}.\]
 	We do this by induction on $m$. When $m=0$ and even for $m=1$, there is nothing to say. For the inductive step, we assume
-	\[\left(\prod_{i=1}^mF_i^{a_i}\right)F_1^{b_1}=\left[\prod_{1<i\le m}\left(\prod_{1\le k<i}\sigma_k^{a_k}\right)\beta_{i1}^{(a_ib_1)}\right]F_1^{a_1+b_1}\prod_{i=2}^mF_i^{a_i}\]
+	\[\left(\prod_{i=1}^mF_i^{a_i}\right)F_1^{b_1}=\left[\prod_{1<i\le m}\left(\prod_{1\le k<i}\sigma_k^{a_k}\right)\sigma_i^{(a_i)}\sigma_1^{(b_1)}\beta_{i1}\right]F_1^{a_1+b_1}\prod_{i=2}^mF_i^{a_i}\]
 	and compute
 	\begin{align*}
 		\left(\prod_{i=1}^{m+1}F_i^{a_i}\right)F_1^{b_1} &= \left(\prod_{i=1}^{m}F_i^{a_i}\right)F_{m+1}^{a_{m+1}}F_1^{b_1} \\
-		&= \left(\prod_{i=1}^{m}F_i^{a_i}\right)\beta_{m+1,1}^{(a_{m+1}b_1)}F_1^{b_1}F_{m+1}^{a_{m+1}} \\
-		&= \left[\left(\prod_{k=1}^m\sigma_k^{a_k}\right)\beta_{m+1,1}^{(a_{m+1}b_1)}\right]\left[\prod_{1<i\le m}\left(\prod_{1\le k<i}\sigma_k^{a_k}\right)\beta_{i1}^{(a_ib_1)}\right]F_1^{a_1+b_1}\left(\prod_{i=2}^mF_i^{a_i}\right)F_{m+1}^{a_{m+1}} \\
-		&= \left[\prod_{1<i\le m+1}\left(\prod_{1\le k<i}\sigma_k^{a_k}\right)\beta_{i1}^{(a_ib_1)}\right]F_1^{a_1+b_1}\left(\prod_{i=2}^{m+1}F_i^{a_i}\right),
+		&= \left(\prod_{i=1}^{m}F_i^{a_i}\right)\sigma_{m+1}^{(a_{m+1})}\sigma_1^{(b_1)}\beta_{m+1,1}F_1^{b_1}F_{m+1}^{a_{m+1}} \\
+		&= \left[\left(\prod_{k=1}^m\sigma_k^{a_k}\right)\sigma_{m+1}^{(a_{m+1})}\sigma_1^{(b_1)}\beta_{m+1,1}\right]\left[\prod_{1<i\le m}\bigg(\prod_{1\le k<i}\sigma_k^{a_k}\bigg)\sigma_i^{(a_i)}\sigma_1^{(b_1)}\beta_{i1}\right]\cdot{} \\
+		&\qquad F_1^{a_1+b_1}\left(\prod_{i=2}^mF_i^{a_i}\right)F_{m+1}^{a_{m+1}} \\
+		&= \left[\prod_{1<i\le m+1}\left(\prod_{1\le k<i}\sigma_k^{a_k}\right)\sigma_i^{(a_i)}\sigma_1^{(b_1)}\beta_{i1}\right]F_1^{a_1+b_1}\left(\prod_{i=2}^{m+1}F_i^{a_i}\right),
 	\end{align*}
 	which completes our inductive step.
 
 	We now attack the statement of the proposition directly, again inducting on $m$. For $m=0$ and even for $m=1$, there is again nothing to say. For the inductive step, take $m>1$, and we get to assume that
-	\[\left(\prod_{i=2}^mF_i^{a_i}\right)\left(\prod_{i=2}^mF_i^{b_i}\right)=\left[\prod_{2\le j<i\le m}\Bigg(\prod_{2\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\beta_{ij}^{(a_ib_j)}\right]\left(\prod_{i=2}^mF_i^{a_i+b_i}\right).\]
+	\[\left(\prod_{i=2}^mF_i^{a_i}\right)\left(\prod_{i=2}^mF_i^{b_i}\right)=\left[\prod_{2\le j<i\le m}\Bigg(\prod_{2\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\sigma_i^{(a_i)}\sigma_j^{(b_j)}\beta_{ij}\right]\left(\prod_{i=2}^mF_i^{a_i+b_i}\right).\]
 	From here, we can compute
 	\begin{align*}
 		\left(\prod_{i=1}^mF_i^{a_i}\right)\left(\prod_{i=1}^mF_i^{b_i}\right) &= \left(\prod_{i=1}^mF_i^{a_i}\right)F_1^{b_1}\left(\prod_{i=2}^mF_i^{b_i}\right) \\
-		&= \left[\prod_{1<i\le m}\Bigg(\prod_{1\le k<i}\sigma_k^{a_k}\Bigg)\beta_{i1}^{(a_ib_1)}\right]F_1^{a_1+b_1}\left(\prod_{i=2}^mF_i^{a_i}\right)\left(\prod_{i=2}^mF_i^{b_i}\right) \\
-		&= \left[\prod_{1<i\le m}\Bigg(\prod_{1\le k<i}\sigma_k^{a_k}\Bigg)\beta_{i1}^{(a_ib_1)}\right]F_1^{a_1+b_1}\cdot \\
-		&\qquad\qquad\left[\prod_{2\le j<i\le m}\Bigg(\prod_{2\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\beta_{ij}^{(a_ib_j)}\right]\left(\prod_{i=2}^mF_i^{a_i+b_i}\right) \\
-		&= \left[\prod_{1<i\le m}\Bigg(\prod_{1\le k<i}\sigma_k^{a_k}\Bigg)\beta_{i1}^{(a_ib_1)}\right]\cdot \\
-		&\qquad\qquad \sigma_1^{a_1+b_1}\left[\prod_{2\le j<i\le m}\Bigg(\prod_{2\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\beta_{ij}^{(a_ib_j)}\right]\left(\prod_{i=2}^mF_i^{a_i+b_i}\right).
+		&= \left[\prod_{1<i\le m}\Bigg(\prod_{1\le k<i}\sigma_k^{a_k}\Bigg)\sigma_i^{(a_i)}\sigma_1^{(b_1)}\beta_{i1}\right]F_1^{a_1+b_1}\left(\prod_{i=2}^mF_i^{a_i}\right)\left(\prod_{i=2}^mF_i^{b_i}\right) \\
+		&= \left[\prod_{1<i\le m}\Bigg(\prod_{1\le k<i}\sigma_k^{a_k}\Bigg)\sigma_i^{(a_i)}\sigma_1^{(b_1)}\beta_{i1}\right]F_1^{a_1+b_1}\cdot{} \\
+		&\qquad\qquad\left[\prod_{2\le j<i\le m}\Bigg(\prod_{2\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\sigma_i^{(a_i)}\sigma_j^{(b_j)}\beta_{ij}\right]\left(\prod_{i=2}^mF_i^{a_i+b_i}\right) \\
+		&= \left[\prod_{1<i\le m}\Bigg(\prod_{1\le k<i}\sigma_k^{a_k}\Bigg)\sigma_i^{(a_i)}\sigma_1^{(b_1)}\beta_{i1}\right]\cdot{} \\
+		&\qquad\qquad \sigma_1^{a_1+b_1}\left[\prod_{2\le j<i\le m}\Bigg(\prod_{2\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\sigma_i^{(a_i)}\sigma_j^{(b_j)}\beta_{ij}\right]\left(\prod_{i=2}^mF_i^{a_i+b_i}\right).
 	\end{align*}
 	From here, a little rearrangement finishes the inductive step.
 \end{proof}
 The reason we exerted this pain upon ourselves is for the following result.
 \begin{prop} \label{prop:writedowncocycle}
 	Fix everything as in the set-up. Then, if well-defined, we can represent the cohomology class corresponding to $\mc E$ by the cocycle
-	\[c(g,h)\coloneqq\left[\prod_{1\le j<i\le m}\Bigg(\prod_{1\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\beta_{ij}^{(a_ib_j)}\right]\left[\prod_{i=1}^m\Bigg(\prod_{1\le k<i}\sigma_k^{a_k+b_k}\Bigg)\alpha_i^{\floor{\frac{a_i+b_i}{n_i}}}\right],\]
+	\[c(g,h)\coloneqq\left[\prod_{1\le j<i\le m}\Bigg(\prod_{1\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\sigma_i^{(a_i)}\sigma_j^{(b_j)}\beta_{ij}\right]\left[\prod_{i=1}^m\Bigg(\prod_{1\le k<i}\sigma_k^{a_k+b_k}\Bigg)\alpha_i^{\floor{\frac{a_i+b_i}{n_i}}}\right],\]
 	where $g=\prod_i\sigma_i^{a_i}$ and $h=\prod_i\sigma_i^{b_i}$.
 \end{prop}
 Observe that \autoref{prop:writedowncocycle} has a fairly strong hypothesis that $c$ is well-defined; we will return to this later.
 \begin{proof}
 	Very quickly, we use the division algorithm to define
 	\[a_i+b_i=n_iq_i+r_i\]
-	where $q_\in\{0,1\}$ and $0\le r_i<n_i$. In particular,
+	where $q_i\in\{0,1\}$ and $0\le r_i<n_i$. In particular,
 	\[gh=\prod_{i=1}^mF_i^{r_i}.\]
 	Now, because the elements $\sigma_i$ generate $ G$, we see that the lifts $\sigma_i\mapsto F_i$ defines a section $s\colon G\to\mc E$. As such, we can compute a representing cocycle for our cohomology class as
 	\begin{align*}
 		c(g,h) &= s(g)s(h)s(gh)^{-1} \\
 		&= \Bigg(\prod_{i=1}^mF_i^{a_i}\Bigg)\Bigg(\prod_{i=1}^mF_i^{b_i}\Bigg)\Bigg(\prod_{i=1}^mF_i^{r_i}\Bigg)^{-1} \\
-		&= \left[\prod_{1\le j<i\le m}\Bigg(\prod_{1\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\beta_{ij}^{(a_ib_j)}\right]\left(\prod_{i=1}^mF_i^{a_i+b_i}\right)\Bigg(\prod_{i=1}^mF_{m-i+1}^{-r_{m-i+1}}\Bigg).
+		&= \left[\prod_{1\le j<i\le m}\Bigg(\prod_{1\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\sigma_i^{(a_i)}\sigma_j^{(b_j)}\beta_{ij}\right]\left(\prod_{i=1}^mF_i^{a_i+b_i}\right)\Bigg(\prod_{i=1}^mF_{m-i+1}^{-r_{m-i+1}}\Bigg).
 	\end{align*}
 	It remains to deal with the last products; we claim that it is equal to
 	\[\left(\prod_{i=1}^mF_i^{a_i+b_i}\right)\Bigg(\prod_{i=1}^mF_{m-i+1}^{-r_{m-i+1}}\Bigg)=\prod_{i=1}^m\Bigg(\prod_{1\le k<i}\sigma_k^{a_k+b_k}\Bigg)\alpha_i^{q_i},\]
@@ -215,13 +218,13 @@ A priori we have no reason to expect that the $c$ constructed in \autoref{prop:w
 To account for this, we modify our set-up slightly. By the classification of finitely generated abelian groups, we may write
 \[ G\simeq\bigoplus_{k=1}^m G_k,\]
 where $ G_k\subseteq G$ with $ G_k\cong\ZZ/n_k\ZZ$ and $n_k>1$ for each $n_k$. As such, we let $\sigma_k$ be a generating element of $ G_k$ so that we still know that the $\sigma_k$ generate $ G$. In this case, we have the following result.
-\begin{theorem} \label{thm:getcocycle}
+\begin{theorem}[{\cite[Theorem~1.3]{abelian-crossed}}] \label{thm:getcocycle}
 	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Then a $\{\sigma_i\}_{i=1}^m$-tuple of $\{\alpha_i\}_{i=1}^m$ and $\{\beta_{ij}\}_{i>j}$ makes
-	\[c(g,h)\coloneqq\left[\prod_{1\le j<i\le m}\Bigg(\prod_{1\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\beta_{ij}^{(a_ib_j)}\right]\left[\prod_{i=1}^m\Bigg(\prod_{1\le k<i}\sigma_k^{a_k+b_k}\Bigg)\alpha_i^{\floor{\frac{a_i+b_i}{n_i}}}\right],\]
+	\[c(g,h)\coloneqq\left[\prod_{1\le j<i\le m}\Bigg(\prod_{1\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\sigma_i^{(a_i)}\sigma_j^{(b_j)}\beta_{ij}\right]\left[\prod_{i=1}^m\Bigg(\prod_{1\le k<i}\sigma_k^{a_k+b_k}\Bigg)\alpha_i^{\floor{\frac{a_i+b_i}{n_i}}}\right],\]
 	where $g\coloneqq\prod_i\sigma_i^{a_i}$ with $h\coloneqq\prod_i\sigma_j^{a_j}$ and $0\le a_i,b_i<n_i$, into a cocycle in $Z^2( G,A)$.
 \end{theorem}
 \begin{proof}
-	Note that $c$ is now surely well-defined because the elements $g$ and $h$ have unique representations as described. Anyway, we relegate the direct cocycle check to \autoref{sec:verifycocycle} because it is long, annoying, and unenlightening. We will also present an alternative proof in \autoref{sec:tuplestudy}, using more abstract theory.
+	Note that $c$ is now surely well-defined because the elements $g$ and $h$ have unique representations as described. Anyway, we relegate the direct cocycle check to \autoref{sec:verifycocycle} because it is long, annoying, and unenlightening. We will also present an alternative proof in \autoref{thm:yesitisacocycle}, using more abstract theory.
 \end{proof}
 Observe that the above construction has now completely forgotten about $\mc E$! Namely, we have managed to go from tuples straight to cocycles; this is theoretically good because it will allow us to go fully in reverse: we will be able to start with a tuple, build the corresponding cocycle, from which the extension arises. However, equivalence classes of cocycles give the ``same'' extension, so we will also need to give equivalence classes for tuples as well.
 
@@ -255,7 +258,7 @@ Here is a nice sanity check that we are doing things in the right setting: not o
 \begin{proof}
 	From \autoref{thm:getcocycle}, we may build the cocycle $c\in Z^2( G,A)$ defined by
 	\begin{equation}
-		c(g,h)\coloneqq\left[\prod_{1\le j<i\le m}\Bigg(\prod_{1\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\beta_{ij}^{(a_ib_j)}\right]\left[\prod_{i=1}^m\Bigg(\prod_{1\le k<i}\sigma_k^{a_k+b_k}\Bigg)\alpha_i^{\floor{\frac{a_i+b_i}{n_i}}}\right], \label{eq:uglycocycle}
+		c(g,h)\coloneqq\left[\prod_{1\le j<i\le m}\Bigg(\prod_{1\le k<j}\sigma_k^{a_k+b_k}\Bigg)\Bigg(\prod_{j\le k<i}\sigma_k^{a_k}\Bigg)\sigma_i^{(a_i)}\sigma_j^{(b_j)}\beta_{ij}\right]\left[\prod_{i=1}^m\Bigg(\prod_{1\le k<i}\sigma_k^{a_k+b_k}\Bigg)\alpha_i^{\floor{\frac{a_i+b_i}{n_i}}}\right], \label{eq:uglycocycle}
 	\end{equation}
 	where $g\coloneqq\prod_iF_i^{a_i}$ and $h\coloneqq\prod_iF_j^{a_j}$ and $0\le a_i,b_i<n_i$. As such, we use $\mc E\coloneqq\mc E_c$ to be the corresponding extension and $F_i\coloneqq(1,\sigma_i)$ as our lifts. We have the following checks.
 	\begin{itemize}
@@ -299,13 +302,13 @@ To make this precise, we want to define an equivalence relation on tuples which 
 	It is not too hard to see directly from the definition that this is in fact an equivalence relation. In fact, the set of tuples equivalent to the ``trivial'' tuple of all $1$s is closed under multiplication (and inversion) and hence forms a subgroup of $\mathcal T(G,A)$. As such, the set of equivalence classes forms a quotient group of $\mathcal T(G,A)$. We will denote this quotient group by $\overline{\mathcal T}(G,A)$.
 \end{remark}
 This notion of equivalence can be seen to be the correct one in the sense that it correctly generalizes \autoref{prop:findallalpha}.
-\begin{proposition} \label{prop:extenmakesaclass}
+\begin{proposition}[{\cite[Theorem~1.4]{abelian-crossed}}] \label{prop:extenmakesaclass}
 	Fix everything as in the modified set-up with an extension $\mc E$. As the lifts $F_i$ change, the corresponding values of
 	\[\alpha_i\coloneqq F_i^{n_i}\qquad\text{and}\qquad\beta_{ij}\coloneqq F_iF_jF_i^{-1}F_j^{-1}\]
 	go through a full equivalence class of $\{\sigma_i\}_{i=1}^m$-tuples.
 \end{proposition}
 \begin{proof}
-	We proceed as in \autoref{prop:findallalpha}. Given an extension $\mc E'$, let $S_{\mc E'}$ be the set of $\{\sigma_i\}_{i=1}^m$-tuples generated as the lifts $F_i$ change. We start by showing that an isomorphism $\varphi\colon\mc E\simeq\mc E'$ of extensions implies that $S_{\mc E}=S_{\mc E'}$; by symmetry, it will be enough for $S_{\mc E}\subseteq S_{\mc E'}$. The isomorphism induces the following diagram.
+	We proceed as in \autoref{prop:findallalpha}. Given an extension $\mc E'$, let $S_{\mc E'}$ be the set of $\{\sigma_i\}_{i=1}^m$-tuples generated as the lifts $F_i$ change. We start by showing that an isomorphism $\varphi\colon\mc E\cong\mc E'$ of extensions implies that $S_{\mc E}=S_{\mc E'}$; by symmetry, it will be enough for $S_{\mc E}\subseteq S_{\mc E'}$. The isomorphism induces the following diagram.
 	% https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMSJdLFsxLDAsIkxeXFx0aW1lcyJdLFsyLDAsIlxcbWMgRSJdLFszLDAsIlxcR2FtbWEiXSxbNCwwLCIxIl0sWzAsMSwiMSJdLFsxLDEsIkxeXFx0aW1lcyJdLFsyLDEsIlxcbWMgRSciXSxbMywxLCJcXEdhbW1hIl0sWzQsMSwiMSJdLFswLDFdLFsxLDJdLFsyLDMsIlxccGkiXSxbMyw0XSxbNSw2XSxbNiw3XSxbNyw4LCJcXHBpJyJdLFs4LDldLFsyLDcsIlxcdmFycGhpIl0sWzEsNiwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMyw4LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
 	\[\begin{tikzcd}
 		1 & {A} & {\mc E} &  G & 1 \\
@@ -345,7 +348,7 @@ We are now ready to upgrade our section.
 	
 	In one direction, suppose $(\{\alpha_i\},\{\beta_{ij}\})\sim(\{\alpha_i'\},\{\beta_{ij}'\})$. By \autoref{cor:alltuplesfromextens}, we can find an extension $\mc E$ which gives $(\{\alpha_i\},\{\beta_{ij}\})$ by choosing an appropriate set of lifts. By \autoref{prop:extenmakesaclass}, we see that $(\{\alpha_i'\},\{\beta_{ij}'\})$ must also come from choosing an appropriate set of lifts in $\mc E$. However, the cocycles in $Z^2( G,A)$ generated by \autoref{thm:getcocycle} from our two tuples now both represent the isomorphism class of $\mc E$ by \autoref{prop:writedowncocycle}, so these cocycles belong to the same cohomology class.
 
-	In the other direction, name the cocycles corresponding to $(\{\alpha_i\},\{\beta_{ij}\})$ and $(\{\alpha_i'\},\{\beta_{ij}'\})$ by $c$ and $c'$ respectively, and suppose $[c]=[c']$. Then $\mc E_c\simeq\mc E_{c'}$ as extensions, but we know by the proof of \autoref{cor:alltuplesfromextens} that $(\{\alpha_i\},\{\beta_{ij}\})$ comes from choosing lifts of $\mc E_c$ and similar for $(\{\alpha_i'\},\{\beta_{ij}'\})$. In particular, because $\mc E_c\simeq\mc E_{c'}$, we know that $(\{\alpha_i'\},\{\beta_{ij}'\})$ will also come from choosing some lifts in $\mc E_c$ (recall the proof of \autoref{prop:extenmakesaclass}), so $(\{\alpha_i\},\{\beta_{ij}\})\sim(\{\alpha_i'\},\{\beta_{ij}'\})$ follows.
+	In the other direction, name the cocycles corresponding to $(\{\alpha_i\},\{\beta_{ij}\})$ and $(\{\alpha_i'\},\{\beta_{ij}'\})$ by $c$ and $c'$ respectively, and suppose $[c]=[c']$. Then $\mc E_c\cong\mc E_{c'}$ as extensions, but we know by the proof of \autoref{cor:alltuplesfromextens} that $(\{\alpha_i\},\{\beta_{ij}\})$ comes from choosing lifts of $\mc E_c$ and similar for $(\{\alpha_i'\},\{\beta_{ij}'\})$. In particular, because $\mc E_c\cong\mc E_{c'}$, we know that $(\{\alpha_i'\},\{\beta_{ij}'\})$ will also come from choosing some lifts in $\mc E_c$ (recall the proof of \autoref{prop:extenmakesaclass}), so $(\{\alpha_i\},\{\beta_{ij}\})\sim(\{\alpha_i'\},\{\beta_{ij}'\})$ follows.
 \end{proof}
 \begin{theorem} \label{thm:classisomorphism}
 	The maps described in \autoref{cor:cocycletuplesection} descend to an isomorphism of abelian groups between the equivalence classes in $\overline{\mathcal T}(G,A)$ and cohomology classes in $H^2( G,A)$.
@@ -387,26 +390,25 @@ As such, the above relations fully describe the extension because they also spec
 We continue in the modified set-up, but we will no longer need access to an extension $\mc E$. In this subsection, we are interested in what happens to tuples when the cocycle operations of $\op{Inf}\colon H^2\left(G/H,A^H\right)\to H^2(G,A)$ and $\op{Res}\colon H^2(G,A)\to H^2(H,A)$ are applied, where $H\subseteq G$ is some subgroup.
 
 In general, this is difficult because the structure of a subgroup $H\subseteq G$ might not be particularly amenable to forming a tuple from a tuple in $G$. More concretely, $H$ might have generators which look very different from those of $G$. However, it will be enough for our purposes to restrict our attention to the subgroups of the form
-\[H=\langle\sigma_1^{t_1},\ldots,\sigma_m^{t_m}\rangle,\]
-where the $\{t_i\}_{i=1}^m$ are some positive integers. With that said, here are our computations. We begin with inflation.
+\[H=\langle\sigma_1^{d_1},\ldots,\sigma_m^{d_m}\rangle,\]
+where the $\{d_i\}_{i=1}^m$ are some positive integers with $d_i\mid n_i$ for each $i$. With that said, here are our computations. We begin with inflation.
 \begin{lemma} \label{lem:tupleinflation}
-	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Further, let $H\coloneqq\langle\sigma_1^{t_1},\ldots,\sigma_m^{t_m}\rangle$ be a subgroup with $t_\bullet\mid n_\bullet$, and let $\overline\sigma_i$ be the image of $\sigma_i$ in $G/H$. Consider the inflation map $\op{Inf}\colon H^2\left(G/H,A^H\right)\to H^2(G,A)$.
+	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Further, let $H\coloneqq\langle\sigma_1^{d_1},\ldots,\sigma_m^{d_m}\rangle$ be a subgroup with $d_\bullet\mid n_\bullet$, and let $\overline\sigma_i$ be the image of $\sigma_i$ in $G/H$. Consider the inflation map $\op{Inf}\colon H^2\left(G/H,A^H\right)\to H^2(G,A)$.
 	
 	If the cocycle $\overline c\in Z^2\left(G/H,A^H\right)$ gives the $\left\{\overline\sigma_i\right\}_{i=1}^m$-tuple $(\{\overline\alpha_i\},\{\overline\beta_{ij}\})$ (by \autoref{cor:cocycletuplesection}), then the cocycle $\op{Inf}\overline c\in Z^2(G,A)$ gives the $\{\sigma_i\}_{i=1}^m$-tuple
-	\[\op{Inf}(\{\overline\alpha_i\},\{\overline\beta_{ij}\})\coloneqq(\{\alpha_i\},\{\beta_{ij}\})=\left(\left\{\overline\alpha_i^{n_i/\gcd(t_i,n_i)}\right\},\{\overline\beta_{ij}\}\right).\]
-	Notably, $\gcd(t_i,n_i)$ is the order of $\overline\sigma_i\in G/H$.
+	\[\op{Inf}(\{\overline\alpha_i\},\{\overline\beta_{ij}\})\coloneqq(\{\alpha_i\},\{\beta_{ij}\})=\left(\left\{\overline\alpha_i^{n_i/d_i}\right\},\{\overline\beta_{ij}\}\right).\]
 \end{lemma}
 \begin{proof}
 	The point is to use the explicit formulae for the $\alpha_i$ and $\beta_{ij}$ of \autoref{lem:explicitalphabeta}.
 	
 	More explicitly, the map of \autoref{cor:cocycletuplesection} tells us that we can compute the tuple for $\op{Inf}\overline c$ by using our explicit formulae for $\alpha_i$ and $\beta_{ij}$ on the $2$-cocycle $\op{Inf}\overline c\in Z^2(G,A)$. For some $\alpha_i$, the computation is
 	\begin{align*}
-		\alpha_i &= \prod_{k=0}^{n_i-1}(\op{Inf}c)\left(\sigma_i^k,\sigma_i\right) \\
+		\alpha_i &= \prod_{k=0}^{n_i-1}(\op{Inf}\overline c)\left(\sigma_i^k,\sigma_i\right) \\
 		&= \prod_{k=0}^{n_i-1}\overline c\left(\overline\sigma_i^k,\overline\sigma_i\right) \\
-		&= \Bigg(\prod_{k=0}^{\gcd(n_i,t_i)-1}\overline c\left(\overline\sigma_i^k,\overline\sigma_i\right)\Bigg)^{n_i/\gcd(n_i,t_i)}
+		&= \Bigg(\prod_{k=0}^{d_i-1}\overline c\left(\overline\sigma_i^k,\overline\sigma_i\right)\Bigg)^{n_i/d_i}
 	\end{align*}
-	where the last equality is because $\overline\sigma_i^{\gcd(n_i,t_i)}=1$ in $G/H$. In fact, $\gcd(n_i,t_i)$ is the order of $\overline\sigma_i$, so the product is just $\overline\alpha_i$ by \autoref{lem:explicitalphabeta} and how we defined $\overline\alpha_i$. It follows
-	\[\alpha_i=\overline\alpha_i^{n_i/\gcd(n_i,t_i)}.\]
+	where the last equality is because $\overline\sigma_i^{d_i}=1$ in $G/H$. In fact, $d_i$ is the order of $\overline\sigma_i$, so the product is just $\overline\alpha_i$ by \autoref{lem:explicitalphabeta} and how we defined $\overline\alpha_i$. It follows
+	\[\alpha_i=\overline\alpha_i^{n_i/d_i}.\]
 	Continuing, for some $\beta_{ij}$, we have
 	\begin{align*}
 		\beta_{ij} &= \frac{(\op{Inf}\overline c)(\sigma_i,\sigma_j)}{(\op{Inf}\overline c)(\sigma_j,\sigma_i)} \\
@@ -445,28 +447,28 @@ where the $\{t_i\}_{i=1}^m$ are some positive integers. With that said, here are
 \end{remark}
 Restriction is similar.
 \begin{lemma} \label{lem:restricttuple}
-	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Further, let $H\coloneqq\langle\sigma_1^{t_1},\ldots,\sigma_m^{t_m}\rangle$ be a subgroup with $t_\bullet\mid n_\bullet$. Consider the inflation map $\op{Res}\colon H^2\left(G,A\right)\to H^2(H,A)$.
+	Fix everything as in the modified set-up, forgetting about the extension $\mc E$. Further, let $H\coloneqq\langle\sigma_1^{d_1},\ldots,\sigma_m^{d_m}\rangle$ be a subgroup with $d_\bullet\mid n_\bullet$. Consider the restriction map $\op{Res}\colon H^2\left(G,A\right)\to H^2(H,A)$.
 	
-	If the cohomology class $[c]\in H^2\left(G,A\right)$ is represented by the $\left\{\sigma_i\right\}_{i=1}^m$-tuple $(\{\alpha_i\},\{\beta_{ij}\})$, then the cohomology class $[\op{Res}\overline c]$ is represented by the $\{\sigma_i\}_{i=1}^m$-tuple
-	\[(\{\overline\alpha_i\},\{\overline\beta_{ij}\})=\left(\left\{\alpha_i^{1_{n_i\mid t_i}}\right\},\left\{\beta_{ij}^{(\gcd(t_i,n_i)1_{n_i\mid t_i},\,\gcd(t_j,n_j)1_{n_i\mid t_i})}\right\}\right).\]
+	If the cohomology class $[c]\in H^2\left(G,A\right)$ is represented by the $\left\{\sigma_i\right\}_{i=1}^m$-tuple $(\{\alpha_i\},\{\beta_{ij}\})$, then the cohomology class $[\op{Res}\overline c]$ is represented by the $\{\sigma_i^{d_i}\}_{i=1}^m$-tuple
+	\[(\{\overline\alpha_i\},\{\overline\beta_{ij}\})=\left(\left\{\alpha_i^{1_{d_i=n_i}}\right\},\left\{\sigma_i^{(d_i1_{n_i=d_i})}\sigma_j^{(d_j1_{n_j=d_j})}\beta_{ij}\right\}\right).\]
 \end{lemma}
 \begin{proof}
-	By replacing $t_i$ with $\gcd(t_i,n_i)$ (which does not affect $\langle\sigma_i^{t_i}\rangle$ and hence does not affect $H$), we may assume that $t_i=\gcd(t_i,n_i)$. As in the previous proof, we will simply define $c$ by \autoref{thm:getcocycle}, and we will use the formulae of \autoref{lem:explicitalphabeta} to retrieve the $\left\{\sigma_i^{t_i}\right\}$-tuple for $\op{Res}c$. Indeed, we compute
+	As in the previous proof, we will simply define $c$ by \autoref{thm:getcocycle}, and we will use the formulae of \autoref{lem:explicitalphabeta} to retrieve the $\{\sigma_i^{d_i}\}$-tuple for $\op{Res}c$. Indeed, we compute
 	\begin{align*}
-		\overline\alpha_i &= \prod_{k=0}^{n_i/t_i-1}(\op{Res}c)\left(\sigma_i^{t_ik},\sigma_i^{t_i}\right) \\
-		&= \prod_{k=0}^{n_i/t_i-1}c\left(\sigma_i^{t_ik},\sigma_i^{t_i}\right) \\
-		&= \prod_{k=0}^{n_i/t_i-1}\alpha_i^{\floor{t_i(k+1)/n_i}},
+		\overline\alpha_i &= \prod_{k=0}^{n_i/d_i-1}(\op{Res}c)\left(\sigma_i^{d_ik},\sigma_i^{d_i}\right) \\
+		&= \prod_{k=0}^{n_i/d_i-1}c\left(\sigma_i^{d_ik},\sigma_i^{d_i}\right) \\
+		&= \prod_{k=0}^{n_i/d_i-1}\alpha_i^{\floor{d_i(k+1)/n_i}},
 	\end{align*}
-	where in the last equality we have used the construction of $c$. Now, if $n_i\mid t_i$, then $n_i=t_i$, and the product is empty, and we get $1$; otherwise, the last term of the product $k=n_i/t_i-1$ is the only term which does not return $1$, and it returns $\alpha_i$. So this matches the claimed $\alpha_i^{1_{n_i\mid t_i}}$.
+	where in the last equality we have used the construction of $c$. Now, if $n_i=d_i$, and the product is empty, and we get $1$; otherwise, the last term of the product $k=n_i/d_i-1$ is the only term which does not return $1$, and it returns $\alpha_i$. So this matches the claimed $\alpha_i^{1_{n_i=d_i}}$.
 
 	Continuing, we compute
 	\begin{align*}
-		\overline\beta_{ij} &= \frac{(\op{Res}c)\left(\sigma_i^{t_i},\sigma_j^{t_j}\right)}{(\op{Res}c)\left(\sigma_j^{t_j},\sigma_i^{t_i}\right)} \\
-		&= \frac{c\left(\sigma_i^{t_i},\sigma_j^{t_j}\right)}{c\left(\sigma_j^{t_j},\sigma_i^{t_i}\right)} \\
-		&= c\left(\sigma_i^{t_i},\sigma_j^{t_j}\right),
+		\overline\beta_{ij} &= \frac{(\op{Res}c)\left(\sigma_i^{d_i},\sigma_j^{d_j}\right)}{(\op{Res}c)\left(\sigma_j^{d_j},\sigma_i^{d_i}\right)} \\
+		&= \frac{c\left(\sigma_i^{d_i},\sigma_j^{d_j}\right)}{c\left(\sigma_j^{d_j},\sigma_i^{d_i}\right)} \\
+		&= c\left(\sigma_i^{d_i},\sigma_j^{d_j}\right),
 	\end{align*}
-	where in the last step we have used the construction of $c$. Now, if $n_i\mid t_i$ or $n_i\mid t_j$, then we are computing $c\left(1,\sigma_j^{t_j}\right)$ or $c\left(\sigma_i^{t_i},1\right)$, which are both $1$, as needed. Otherwise, $t_i<n_i$ and $t_j<n_j$, so
-	\[\overline\beta_{ij}=\beta_{ij}^{(t_it_j)},\]
+	where in the last step we have used the construction of $c$. Now, if $n_i= d_i$ or $n_i= d_j$, then we are computing $c\left(1,\sigma_j^{d_j}\right)$ or $c\left(\sigma_i^{d_i},1\right)$, which are both $1$, as needed. Otherwise, $d_i<n_i$ and $d_j<n_j$, so
+	\[\overline\beta_{ij}=\beta_{ij}^{(d_id_j)},\]
 	which again is as claimed.
 \end{proof}
 Thankfully, we will really only care about inflation in the following discussion, but we will say that there are analogues of \autoref{rem:tupleinflationcommutativediagram} and \autoref{rem:inflationclasses}.
@@ -479,8 +481,8 @@ Let $\mathcal I$ be a poset category such that any pair of elements has an upper
 In order to be able to apply our theory, we will assume that $G$ is a finite direct sum of procyclic groups as
 \[G\simeq\bigoplus_{k=1}^m\overline{\langle\sigma_k\rangle}\]
 for some elements $\{\sigma_k\}_{k=1}^m\subseteq G$. Further, we will require that the kernel $N_i$ of the map $G\onto G_i$ to take the form
-\[N_i\coloneqq\overline{\left\langle\sigma_1^{t_{i,1}},\ldots,\sigma_m^{t_{i,m}}\right\rangle}.\]
-In short, our restriction on the $N_i$ will allow our inflation maps to be computable in the sense of \autoref{lem:tupleinflation}. We quickly remark that, because the topology on $G$ is the coarsest one making the projections $G\onto G_i$ continuous, the subsets $\{N_i\}_{i\in\mathcal I}$ give a fundamental system of open neighborhoods around the identity.
+\[N_i\coloneqq\overline{\left\langle\sigma_1^{d_{i,1}},\ldots,\sigma_m^{d_{i,m}}\right\rangle}\]
+in such a way that $\langle\sigma_kN_i\rangle$ has order $d_{i,k}$. In short, our restriction on the $N_i$ will allow our inflation maps to be computable in the sense of \autoref{lem:tupleinflation}. We quickly remark that, because the topology on $G$ is the coarsest one making the projections $G\onto G_i$ continuous, the subsets $\{N_i\}_{i\in\mathcal I}$ give a fundamental system of open neighborhoods around the identity.
 \begin{remark}
 	Of course, one could also start with $G$ being a finite direct sum of procyclic groups and then define the $N_i$ and $G_i$ accordingly. We have chosen the above approach because in application one might only have access to select $G_i$s, and it is not obvious how to choose these from such a ``top-down'' approach.
 \end{remark}
@@ -501,7 +503,7 @@ In short, our restriction on the $N_i$ will allow our inflation maps to be compu
 	% for some sufficiently large $a\in\NN$; here the last isomorphism is by the logarithm map, which exists because $\op{char}K=0$. (For details, see \cite{neukirch-alg-nt}, Proposition II.5.7.)
 \end{example}
 \begin{remark}
-	I'm not sure if such an explicit construction can be extended to other local fields $K$ (say, via Lubin--Tate theory). Because $K^\times$ is not topologically finitely generated when $K$ is in positive characteristic (see for example \cite{neukirch-alg-nt}, Proposition~II.5.7) such a construction must do something subtle.
+	I'm not sure if such an explicit construction can be extended to other local fields $K$ (say, via Lubin--Tate theory). Because $K^\times$ is not topologically finitely generated when $K$ is in positive characteristic (see for example \cite[Proposition~II.5.7]{neukirch-alg-nt}) such a construction must do something subtle.
 \end{remark}
 Let $A$ be a discrete $G$-module. The main goal of this subsection is to be able to provide a notion of a ``compatible system'' of tuples from each individual $H^2(G_i,A)$ to be able to exactly describe an element of $H^2(G,A)$. To effect this, we have the following somewhat annoying checks.
 % \begin{lemma}
@@ -601,10 +603,10 @@ Observe that the above proofs did not use the extra hypotheses on $G$ nor $N_i$ 
 % \end{definition}
 % The precise definition above is one of technical convenience, as we will shortly see.
 To work more concretely, we note that any $i\in\mathcal I$ has
-\[G_i\simeq\frac G{N_i}\simeq\bigoplus_{p=1}^m\overline{\langle\sigma_p\rangle}/\overline{\langle\sigma_p^{t_{i,p}}\rangle}\simeq\bigoplus_{p=1}^m\langle\sigma_p\rangle/\langle\sigma_p^{t_{i,p}}\rangle\subseteq\bigoplus_{p=1}^m\ZZ/t_{i,p}\ZZ\]
-is a finite abelian group generated by the elements $\sigma_pN_i$. As a warning, the order of $\sigma_pN_i$ might not be $t_{i,p}$, for example if $\sigma_p$ itself has some small finite order which $t_{i,p}$ is not properly capitalizing on. More concretely, $\ZZ_5/3\ZZ_5=0$.
+\[G_i\simeq\frac G{N_i}\simeq\bigoplus_{p=1}^m\overline{\langle\sigma_p\rangle}/\overline{\langle\sigma_p^{d_{i,p}}\rangle}\simeq\bigoplus_{p=1}^m\langle\sigma_p\rangle/\langle\sigma_p^{d_{i,p}}\rangle\subseteq\bigoplus_{p=1}^m\ZZ/d_{i,p}\ZZ\]
+is a finite abelian group generated by the elements $\sigma_pN_i$. By choosing the $d_{i,p}$ appropriately, recall that we also forced the order of $\sigma_pN_i$ to be $d_{i,p}$.
 
-Regardless, the main point is that, given a discrete $G$-module $A$, we can consider the $\{\sigma_pN_i\}_{p=1}^m$-tuples $\mathcal T\left(G_i,A^{N_i}\right)$. Now, as discussed above, $i\le j$ in $\mathcal I$ induces a quotient map $G_j\simeq G/N_j\onto G_i/N_i$. From this, we have the following coherence check.
+Regardless, the main point is that, given a discrete $G$-module $A$, we can consider the $\{\sigma_pN_i\}_{p=1}^m$-tuples $\mathcal T\left(G_i,A^{N_i}\right)$. Now, as discussed above, $i\le j$ in $\mathcal I$ induces a quotient map $G_j\simeq G/N_j\onto G/N_i\simeq G_i$. From this, we have the following coherence check.
 \begin{lemma} \label{lem:tupleinflationcommutes}
 	Fix everything as in the profinite set-up, and let $A$ be a discrete $G$-module. Then, given $i\le j\le k$ in $\mathcal I$, the diagram
 	% https://q.uiver.app/?q=WzAsMyxbMCwwLCJcXG1hdGhjYWwgVFxcbGVmdChHX2ksQV9pXntOX2l9XFxyaWdodCkiXSxbMSwwLCJcXG1hdGhjYWwgVFxcbGVmdChHX2osQV9qXntOX2p9XFxyaWdodCkiXSxbMSwxLCJcXG1hdGhjYWwgVFxcbGVmdChHX2ssQV9rXntOX2t9XFxyaWdodCkiXSxbMCwxLCJcXG9we0luZn0iXSxbMSwyLCJcXG9we0luZn0iXSxbMCwyLCJcXG9we0luZn0iLDJdXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
@@ -621,14 +623,14 @@ Regardless, the main point is that, given a discrete $G$-module $A$, we can cons
 	For each $i\in\mathcal I$, we let $n_{i,p}$ denote the order of $\sigma_pN_i\in G_i$. Using the definition of $\op{Inf}$ from \autoref{lem:tupleinflation}, we just pick up some $\{\sigma_pN_p\}_{p=1}^m$-tuple $(\{\alpha_p\},\{\beta_{pq}\})$-tuple in $\mathcal T\left(G_i,A^{N_i}\right)$ and track through the diagram as follows.
 	% https://q.uiver.app/?q=WzAsNCxbMCwwLCIoXFx7XFxhbHBoYV9wXFx9LFxce1xcYmV0YV97cHF9XFx9KSJdLFsxLDAsIlxcbGVmdChcXGJpZ1xce1xcYWxwaGFfcF57bl97aixwfS9uX3tpLHB9fVxcYmlnXFx9LFxce1xcYmV0YV97cHF9XFx9XFxyaWdodCkiXSxbMSwxLCJcXGxlZnQoXFxiaWdcXHtcXGFscGhhX3BeeyhuX3tqLHB9L25fe2kscH0pKG5fe2sscH0vbl97aixwfSl9XFxiaWdcXH0sXFx7XFxiZXRhX3twcX1cXH1cXHJpZ2h0KSJdLFswLDEsIlxcbGVmdChcXGJpZ1xce1xcYWxwaGFfcF57bl97ayxwfS9uX3tpLHB9fVxcYmlnXFx9LFxce1xcYmV0YV97cHF9XFx9XFxyaWdodCkiXSxbMCwxLCJcXG9we0luZn0iXSxbMSwyLCJcXG9we0luZn0iXSxbMCwzLCJcXG9we0luZn0iLDJdLFszLDIsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
 	\[\begin{tikzcd}
-		{(\{\alpha_p\},\{\beta_{pq}\})} & {\left(\big\{\alpha_p^{n_{j,p}/n_{i,p}}\big\},\{\beta_{pq}\}\right)} \\
-		{\left(\big\{\alpha_p^{n_{k,p}/n_{i,p}}\big\},\{\beta_{pq}\}\right)} & {\left(\big\{\alpha_p^{(n_{j,p}/n_{i,p})(n_{k,p}/n_{j,p})}\big\},\{\beta_{pq}\}\right)}
+		{(\{\alpha_p\},\{\beta_{pq}\})} & {\left(\big\{\alpha_p^{d_{j,p}/d_{i,p}}\big\},\{\beta_{pq}\}\right)} \\
+		{\left(\big\{\alpha_p^{1_{d_{k,p}=d_{i,p}}d_{k,p}/d_{i,p}}\big\},\{\beta_{pq}\}\right)} & {\left(\big\{\alpha_p^{(1_{d_{j,p}=d_{i,p}}d_{j,p}/d_{i,p})(1_{d_{k,p}=d_{j,p}}d_{k,p}/d_{j,p})}\big\},\{\beta_{pq}\}\right)}
 		\arrow["{\op{Inf}}", from=1-1, to=1-2]
 		\arrow["{\op{Inf}}", from=1-2, to=2-2]
 		\arrow["{\op{Inf}}"', from=1-1, to=2-1]
 		\arrow[Rightarrow, no head, from=2-1, to=2-2]
 	\end{tikzcd}\]
-	This completes the proof.
+	Notably, $d_{k,p}=d_{i,p}$ implies that these are both equal to $d_{j,p}$ because $i\le j\le k$ upon tracking the order of $\sigma_p$ through our morphisms $G_k\to G_j\to G_i$. This completes the proof.
 \end{proof}
 % Now, if we let $n_{i,p}$ denote the actual order of $\sigma_{i,p}N_i\in G_i$, then we may compute the inflation map $\op{Inf}\colon H^2\left(G_i,A^{N_i}\right)\to H^2\left(G_j,A^{N_j}\right)$ by
 % \[\op{Inf}\left(\{\alpha_{i,p}\},\{\beta_{i,pq}\}\right)=\left(\{\alpha_{i,p}^{n_{j,p}}\},\{\beta_{i,pq}\}\right),\]

@@ -877,6 +877,7 @@ We now show that this notion of equivalence correctly translates to shiftable fu
 \begin{remark}
 	The above result makes it fairly clear that cohomological equivalence actually makes an equivalence relation. In particular, we can invert and compose natural isomorphisms, which gives symmetry and transitivity of cohomological equivalence respectively.
 \end{remark}
+One use of this machinery is that we have pretty good tools to tell what is cohomologically equivalent to $0$.
 \begin{cor} \label{cor:bettercohomequivzero}
 	Let $G$ be a finite group, and let $X$ be a $G$-module. Then $X$ is cohomologically equivalent to $0$ if and only if $\widehat H^0(G,\op{Hom}_\ZZ(X,X))=0$.
 \end{cor}
@@ -910,11 +911,27 @@ We now show that this notion of equivalence correctly translates to shiftable fu
 	\end{align*}
 	from which $\widehat H^0(G,\op{Hom}_\ZZ(A,A))=\widehat H^0(G,\op{Hom}_\ZZ(B,B))=0$ is forced.
 \end{proof}
-\begin{example}
+\begin{example} \label{ex:projectiveiszero}
 	By \autoref{ex:inducediszero}, free $\ZZ[G]$-modules $\ZZ[G]^S\simeq\ZZ[G]\otimes_\ZZ\ZZ^S$ for sets $S$ are cohomologically equivalent to $0$. It follows that all projective $\ZZ[G]$-modules are cohomologically equivalent to $0$ from \autoref{cor:additiontozero}.
 \end{example}
-This alternate definition also provides us with a way to multiply.
-\begin{cor}
+Here is a quick partial converse to \autoref{ex:projectiveiszero}.
+\begin{proposition}
+	Let $G$ be a finite group. If $X$ is $\ZZ$-projective and cohomologically equivalent to $0$, then $X$ is $\ZZ[G]$-projective.
+\end{proposition}
+\begin{proof}
+	It suffices to show that $\op{Hom}_{\ZZ[G]}(X,-)$ is exact. Well, given a short exact sequence
+	\[0\to A\to B\to C\to 0\]
+	of $G$-modules, the $\ZZ$-projectivity of $X$ implies that
+	\[0\to\op{Hom}_\ZZ(X,A)\to\op{Hom}_\ZZ(X,B)\to\op{Hom}_\ZZ(X,C)\to0\]
+	is also exact. Taking cohomology, we have the exact sequence
+	\[0\to\op{Hom}_{\ZZ[G]}(X,A)\to\op{Hom}_{\ZZ[G]}(X,B)\to\op{Hom}_{\ZZ[G]}(X,C)\to H^1(G,\op{Hom}_\ZZ(X,A)),\]
+	and $H^1(G,\op{Hom}_\ZZ(X,A))=0$ by \autoref{prop:cohomologicaldef}. So indeed, $\op{Hom}_{\ZZ[G]}(X,-)$ is exact.
+\end{proof}
+\begin{remark}
+	Overall, it seems like an interesting question to pin down exactly which $G$-modules are cohomologically equivalent to $0$. It is possible to show that all such $X$ must be acyclic, but it seems currently out of reach to show that being acyclic is also sufficient.
+\end{remark}
+Anyway, the alternate definition for cohomological equivalence from \autoref{prop:cohomologicaldef} also provides us with a way to multiply.
+\begin{cor} \label{cor:multequiv}
 	Let $G$ be a finite group. If $X$ and $X'$ are cohomologically equivalent and $Y$ and $Y'$ are cohomologically equivalent, then $X\otimes_\ZZ X'$ is cohomologically equivalent to $Y\otimes_\ZZ Y'$.
 \end{cor}
 \begin{proof}
@@ -1712,6 +1729,9 @@ The goal of this section is to build encoding modules up from smaller ones.
 	\end{align*}
 	which is what we wanted.
 \end{proof}
+\begin{remark}
+	With some care, it is possible to use \autoref{cor:multequiv} to show this result. The difficulty in realizing this approach lies in the fact that $r$ and $s$ need not both be nonnegative.
+\end{remark}
 \begin{proposition} \label{prop:dualmodule}
 	Let $G$ be a finite group, and let $X$ be an $r$-encoding module. Then $\op{Hom}_\ZZ(X,\ZZ)$ is a $(-r)$-encoding module.
 \end{proposition}

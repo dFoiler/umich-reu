@@ -35,9 +35,9 @@ Only now will we bring in tuples. The first result provides an alternate descrip
 \end{restatable}
 \noindent The second result brings in the last ingredient, the cup product.
 \begin{restatable}{theorem}{thmyesitisacocycle} \label{thm:yesitisacocycle}
-	Fix everything as in the set-up. Also, fix a $G$-module $A$ and a $\{\sigma_i\}_{i=1}^m$-tuple $\left(\{\alpha_i\},\{\beta_{ij}\}\right)$. Then observe there is a natural cup product map
-	\[\cup\colon H^2(G,X)\times H^0(G,\op{Hom}_\ZZ(X,A))\to H^2(G,A)\]
-	by using the evaluation map $X\otimes_\ZZ\op{Hom}_\ZZ(X,A)\to A$. Then, using the isomorphism of \autoref{prop:alternativetuple}, the cocycle defined in \autoref{thm:getcocycle} is simply the output of $\delta(\overline c)\cup\left(\{\alpha_i\},\{\beta_{ij}\}\right)$ on cocycles.
+	Fix everything as in the set-up. Also, fix a $G$-module $A$ and a $\{\sigma_i\}_{i=1}^m$-tuple $\left(\{\alpha_i\},\{\beta_{ij}\}\right)$. Observe there is a natural cup product map
+	\[\cup\colon H^2(G,X)\times H^0(G,\op{Hom}_\ZZ(X,A))\to H^2(G,A).\]
+	Then, using the isomorphism of \autoref{prop:alternativetuple}, the cocycle defined in \autoref{thm:getcocycle} is simply the output of $\delta(\overline c)\cup\left(\{\alpha_i\},\{\beta_{ij}\}\right)$ on cocycles.
 \end{restatable}
 \noindent Because we know that the cup product sends cocycles to cocycles, this will show that the cocycle of \autoref{thm:getcocycle} is in fact well-defined. More importantly, $X$ will be a $2$-encoding module.
 
@@ -248,52 +248,52 @@ And mostly because we can, we show that our main short exact sequence splits.
 Here we prove \autoref{prop:manufacturedcocycle}.
 % verify that all the $1$-cocycles of \autoref{prop:cocycleclassify} are indeed $1$-cocycles.
 Namely, we show that the $1$-cochain $\overline c\in C^1(G,\coker\mathcal F)$ defined by
-\[\overline c(g)=\sum_{i=1}^mg_i\sigma_i^{(a_i)}\varepsilon_i\]
-where $g\coloneqq\prod_{i=1}^m\sigma_i^{a_i}$ is actually a $1$-cocycle. It will be beneficial for us to do this by hand, which is a matter of brute force. Set $c\in C^1\left(G,\ZZ[G]^m\right)$ defined by
-\[c(g)\coloneqq\left(g_i\sigma_i^{(a_i)}\right)^m_{i=1},\]
-where $g\coloneqq\prod_{i=1}^m\sigma_i^{a_i}$. We will show that $\im dc\subseteq\im\mathcal F$, which we will mean that $\im\overline{dc}=\im d\overline c=0$, where $f\mapsto\overline f$ is the map $C^\bullet\left(G,\ZZ[G]^m\right)\onto C^\bullet\left(G,\coker\mathcal F\right)$ induced by modding out.
+\[\overline c(g)=\sum_{i=1}^mg_{(i)}\sigma_i^{(a_i)}\varepsilon_i\]
+where $g\coloneqq\prod_{i=1}^m\sigma_i^{a_i}$ with $0\le a_i<n_i$ is actually a $1$-cocycle. It will be beneficial for us to do this by hand, which is a matter of brute force. Set $c\in C^1\left(G,\ZZ[G]^m\right)$ defined by
+\[c(g)\coloneqq\sum_{i=1}^mg_{(i)}\sigma_i^{(a_i)}\varepsilon_i,\]
+where $g\coloneqq\prod_{i=1}^m\sigma_i^{a_i}$  with $0\le a_i<n_i$. We will show that $\im dc\subseteq\im\mathcal F$, which we will mean that $\im\overline{dc}=\im d\overline c=0$, where $f\mapsto\overline f$ is the map $C^\bullet\left(G,\ZZ[G]^m\right)\onto C^\bullet\left(G,\coker\mathcal F\right)$ induced by modding out.
 
 As such, we set $g\coloneqq\prod_{i=1}^m\sigma_i^{a_i}$ and $h\coloneqq\prod_{i=1}^m\sigma_i^{b_i}$ with $0\le a_i,b_i<n_i$ for each $i$. Then, using the division algorithm, write
 \[a_i+b_i=n_iq_i+r_i\]
 where $q_i\in\{0,1\}$ and $0\le r_i<n_i$ for each $i$. Now, we want to show $dc(g,h)\in\im\mathcal F$, so we begin by writing
 \begin{align}
 	dc(g,h) &= gc(h)-c(gh)+c(g) \notag \\
-	&= g\left(h_i\sigma_i^{(b_i)}\right)_{i=1}^m-\Bigg(\prod_{p=0}^{i-1}\sigma_p^{r_p}\cdot\sigma_i^{(r_i)}\Bigg)_{i=1}^m+\left(g_i\sigma_i^{(a_i)}\right)_{i=1}^m \notag \\
-	&= \left(gh_i\sigma_i^{(b_i)}\right)_{i=1}^m-\left(g_ih_i\sigma_i^{(r_i)}\right)_{i=1}^m+\left(g_i\sigma_i^{(a_i)}\right)_{i=1}^m. \label{eq:expandedcocycle}
+	&= \sum_{i=1}^m\left(gh_{(i)}\sigma_i^{(b_i)}\varepsilon_i-\prod_{p=0}^{i-1}\sigma_p^{r_p}\sigma_i^{(r_i)}\varepsilon_i+g_{(i)}\sigma_i^{(a_i)}\varepsilon_i\right) \notag \\
+	&= \sum_{i=1}^m\left(gh_{(i)}\sigma_i^{(b_i)}\varepsilon_i-g_{(i)}h_{(i)}\sigma_i^{(r_i)}\varepsilon_i+g_{(i)}\sigma_i^{(a_i)}\varepsilon_i\right). \label{eq:expandedcocycle}
 \end{align}
 We now go term-by-term in \autoref{eq:expandedcocycle}. The easiest is the middle term of \autoref{eq:expandedcocycle}, for which we write
 \begin{align*}
-	g_ih_i\sigma_i^{(r_i)} &= g_ih_i\sigma_i^{(a_i+b_i)}-g_ih_i\sigma_i^{r_i}\sigma_i^{(n_iq_i)} \\
-	&= g_ih_i\sigma_i^{(a_i+b_i)}-g_ih_i\sigma_i^{a_i+b_i}\cdot q_iN_i \\
-	&= g_ih_i\sigma_i^{(a_i+b_i)}-g_ih_i\cdot q_iN_i,
+	g_{(i)}h_{(i)}\sigma_i^{(r_i)} &= g_{(i)}h_{(i)}\sigma_i^{(a_i+b_i)}-g_{(i)}h_{(i)}\sigma_i^{r_i}\sigma_i^{(n_iq_i)} \\
+	&= g_{(i)}h_{(i)}\sigma_i^{(a_i+b_i)}-g_{(i)}h_{(i)}\sigma_i^{a_i+b_i}\cdot q_iN_i \\
+	&= g_{(i)}h_{(i)}\sigma_i^{(a_i+b_i)}-g_{(i)}h_{(i)}\cdot q_iN_i,
 \end{align*}
 where the last equality is because $\sigma_iN_i=N_i$. Thus,
 \begin{align*}
-	-\left(g_ih_i\sigma_i^{(r_i)}\right)_{i=1}^m &= -\left(g_ih_i\sigma_i^{(a_i+b_i)}\right)_{i=1}^m+\left(g_ih_i\cdot q_iN_i\right)_{i=1}^m \\
-	&= -\left(g_ih_i\sigma_i^{(a_i+b_i)}\right)_{i=1}^m+\mathcal F\big((g_ih_iq_i)_i,(0)_{i>j}\big).
+	-\sum_{i=1}^mg_{(i)}h_{(i)}\sigma_i^{(r_i)}\varepsilon_i &= -\sum_{i=1}^mg_{(i)}h_{(i)}\sigma_i^{(a_i+b_i)}\varepsilon_i+\sum_{i=1}^mg_{(i)}h_{(i)}\cdot q_iN_i\varepsilon_i \\
+	&= -\sum_{i=1}^mg_{(i)}h_{(i)}\sigma_i^{(a_i+b_i)}\varepsilon_i+\sum_{i=1}^m\mathcal F\big(g_{(i)}h_{(i)}q_i\kappa_i\big).
 \end{align*}
 Now, using \autoref{lem:expandgi}, the $i$th coordinate of the left term of \autoref{eq:expandedcocycle} is
 \begin{align*}
-	gh_i\sigma_i^{(b_i)} &= g_i\sigma_i^{a_i}\Bigg(\prod_{ j=i+1}^{m}\sigma_j^{a_j}\Bigg)h_i\sigma_i^{(b_i)} \\
-	&= g_i\Bigg(1+\sum_{j=i+1}^{m}\Bigg(\prod_{q=i+1}^{j-1}\sigma_q^{a_q}\Bigg)\sigma_j^{(a_j)}T_j\Bigg)h_i\sigma_i^{a_i}\sigma_i^{(b_i)} \\
-	&= g_ih_i\sigma_i^{a_i}\sigma_i^{(b_i)}+\sum_{j=i+1}^{m}\Bigg(g_i\sigma_i^{a_i}\prod_{q=i+1}^{j-1}\sigma_q^{a_q}\Bigg)h_i\sigma_j^{(a_j)}\sigma_i^{(b_i)}T_j \\
-	&= g_ih_i\sigma_i^{a_i}\sigma_i^{(b_i)}+\sum_{j=i+1}^{m}g_jh_i\sigma_j^{(a_j)}\sigma_i^{(b_i)}T_j.
+	gh_{(i)}\sigma_i^{(b_i)} &= g_{(i)}\sigma_i^{a_i}\Bigg(\prod_{ j=i+1}^{m}\sigma_j^{a_j}\Bigg)h_i\sigma_i^{(b_i)} \\
+	&= g_{(i)}\Bigg(1+\sum_{j=i+1}^{m}\Bigg(\prod_{q=i+1}^{j-1}\sigma_q^{a_q}\Bigg)\sigma_j^{(a_j)}T_j\Bigg)h_{(i)}\sigma_i^{a_i}\sigma_i^{(b_i)} \\
+	&= g_{(i)}h_{(i)}\sigma_i^{a_i}\sigma_i^{(b_i)}+\sum_{j=i+1}^{m}\Bigg(g_{(i)}\sigma_i^{a_i}\prod_{q=i+1}^{j-1}\sigma_q^{a_q}\Bigg)h_{(i)}\sigma_j^{(a_j)}\sigma_i^{(b_i)}T_j \\
+	&= g_{(i)}h_{(i)}\sigma_i^{a_i}\sigma_i^{(b_i)}+\sum_{j=i+1}^{m}g_{(j)}h_{(i)}\sigma_j^{(a_j)}\sigma_i^{(b_i)}T_j.
 \end{align*}
 And lastly, for the right term of \autoref{eq:expandedcocycle}, the $i$th coordinate is
 \begin{align*}
-	g_i\sigma_i^{(a_i)} &= g_i\Bigg(h_i-\sum_{j=1}^{i-1}h_j\sigma_j^{(b_j)}T_j\Bigg)\sigma_i^{(a_i)} \\
-	&= g_ih_i\sigma_i^{(a_i)}-\sum_{j=1}^{i-1}g_ih_j\sigma_i^{(a_i)}\sigma_j^{(b_j)}T_j.
+	g_{(i)}\sigma_i^{(a_i)} &= g_{(i)}\Bigg(h_{(i)}-\sum_{j=1}^{i-1}h_{(j)}\sigma_j^{(b_j)}T_j\Bigg)\sigma_i^{(a_i)} \\
+	&= g_{(i)}h_{(i)}\sigma_i^{(a_i)}-\sum_{j=1}^{i-1}g_{(i)}h_{(j)}\sigma_i^{(a_i)}\sigma_j^{(b_j)}T_j.
 \end{align*}
 So to finish, we continue from \autoref{eq:expandedcocycle}, which gives
 \begin{align*}
-	dc(g,h)-\mathcal F\big((g_ih_iq_i)_i,(0)_{i>j}\big) &= \left(g_ih_i\sigma_i^{a_i}\sigma_i^{(b_i)}\right)_{i=1}^m-\left(g_ih_i\sigma_i^{(a_i+b_i)}\right)_{i=1}^m+\left(g_ih_i\sigma_i^{(a_i)}\right)_{i=1}^m \\
-	&\qquad\qquad+\Bigg(\sum_{j=i+1}^{m}g_jh_i\sigma_j^{(a_j)}\sigma_i^{(b_i)}T_j-\sum_{j=1}^{i-1}g_ih_j\sigma_i^{(a_i)}\sigma_j^{(b_j)}T_j\Bigg)_{i=1}^m \\
-	&= \Bigg(-\sum_{j=1}^{i-1}g_ih_j\sigma_i^{(a_i)}\sigma_j^{(b_j)}T_j+\sum_{j=i+1}^{m}g_jh_i\sigma_j^{(a_j)}\sigma_i^{(b_i)}T_j\Bigg)_{i=1}^m \\
-	&= \mathcal F\left((0)_i,\big(g_ih_j\sigma_i^{(a_i)}\sigma_j^{(b_j)}\big)_{i>j}\right).
+	dc(g,h)-\sum_{i=1}^m\mathcal F\big(g_{(i)}h_{(i)}q_i\kappa_i\big) &= \sum_{i=1}^m\left(g_{(i)}h_{(i)}\sigma_i^{a_i}\sigma_i^{(b_i)}\varepsilon_i-g_{(i)}h_{(i)}\sigma_i^{(a_i+b_i)}\varepsilon_i+g_{(i)}h_{(i)}\sigma_i^{(a_i)}\varepsilon_i\right) \\
+	&\qquad\qquad+\sum_{i=1}^m\Bigg(\sum_{j=i+1}^{m}g_{(j)}h_{(i)}\sigma_j^{(a_j)}\sigma_i^{(b_i)}T_j-\sum_{j=1}^{i-1}g_{(i)}h_{(j)}\sigma_i^{(a_i)}\sigma_j^{(b_j)}T_j\Bigg)\varepsilon_i \\
+	&= \sum_{i=1}^m\Bigg(-\sum_{j=1}^{i-1}g_{(i)}h_{(j)}\sigma_i^{(a_i)}\sigma_j^{(b_j)}T_j+\sum_{j=i+1}^{m}g_{(j)}h_{(i)}\sigma_j^{(a_j)}\sigma_i^{(b_i)}T_j\Bigg)\varepsilon_i \\
+	&= \sum_{i>j}\mathcal F\left(g_{(i)}h_{(j)}\sigma_i^{(a_i)}\sigma_j^{(b_j)}\lambda_{ij}\right).
 \end{align*}
 Thus,
 \begin{equation}
-	dc(g,h) = \mathcal F\left((g_ih_iq_i)_i,\big(g_ih_j\sigma_i^{(a_i)}\sigma_j^{(b_j)}\big)_{i>j}\right)\in\im\mathcal F. \label{eq:computedelta}
+	dc(g,h) = \mathcal F\left(\sum_{i=1}^mg_{(i)}h_{(i)}\kappa_i+\sum_{i>j}g_{(i)}h_{(j)}\sigma_i^{(a_i)}\sigma_j^{(b_j)}\lambda_{ij}\right)\in\im\mathcal F. \label{eq:computedelta}
 \end{equation}
 This completes the proof of \autoref{prop:manufacturedcocycle}.
 
@@ -304,7 +304,7 @@ to give the short exact sequence
 In particular, we can track $\overline c\in Z^1(G,\coker\mathcal F)$ through a boundary morphism: we already have a chosen lift $c\in Z^1(G,\ZZ[G]^m)$ for $\overline c$, and we have also computed $\mathcal F^{-1}\circ dc$ from the above work. This gives the following result.
 \begin{cor} \label{cor:deltaccomputation}
 	Fix everything as in the set-up. Then the $\overline c$ of \autoref{prop:manufacturedcocycle} has
-	\[\delta(c)(g,h)\coloneqq\left((g_ih_iq_i)_i,\big(g_ih_j\sigma_i^{(a_i)}\sigma_j^{(b_j)}\big)_{i>j}\right)\in Z^2(G,X)\]
+	\[\delta(c)(g,h)\coloneqq\sum_{i=1}^mg_{(i)}h_{(i)}\kappa_i+\sum_{i>j}g_{(i)}h_{(j)}\sigma_i^{(a_i)}\sigma_j^{(b_j)}\lambda_{ij}\]
 	where $\delta$ is induced by
 	\[0\to X\stackrel{\mathcal F}\to\ZZ[G]^m\to\coker\mathcal F\to0.\]
 \end{cor}
@@ -403,7 +403,7 @@ In fact, the following is true.
 	Fix everything as in the set-up. Then the elements (a)--(e) of \autoref{lem:getgens}, with (b) removed, generate $\ker\mathcal F$.
 \end{lemma}
 \begin{proof}
-	We remark that we callously removed (b) because it is implied (c): $T_q\kappa_p+N_p\lambda_{pq}\in\ker\mathcal F$ implies that
+	We remark that we callously removed (b) because it is implied: $T_q\kappa_p+N_p\lambda_{pq}\in\ker\mathcal F$ implies that
 	\[N_q\cdot(T_q\kappa_p+N_p\lambda_{pq})=N_pN_q\lambda_{pq}\]
 	is also in $\ker\mathcal F$. Anyway, this proof is long and annoying and hence relegated to \autoref{sec:havegensproof}.
 \end{proof}
@@ -460,20 +460,20 @@ Here is the payoff for the hard work in \autoref{lem:havegens}.
 And now because it is so easy, we might as well prove \autoref{thm:yesitisacocycle}.
 \thmyesitisacocycle*
 \begin{proof}
-	The main point is that we have a computation of $\delta(\overline c)$ from \autoref{cor:deltaccomputation}, which we merely need to track through. In particular, fix a $\{\sigma_i\}_{i=1}^m$-tuple $(\{\alpha_i\}_i,\{\beta_{ij}\}_{i>j})$, and let $f\in H^0(G,\op{Hom}_\ZZ(X,A))$ be the corresponding morphism. As such, we may compute
-	\[\delta(\overline c)\cup f\colon(g,h)\mapsto\delta(\overline c)(g,h)\otimes_\ZZ gh\cdot f=\delta(\overline c)(g,h)\otimes_\ZZ f.\]
-	To pass through evaluation, we set $g\coloneqq\prod_i\sigma_i^{a_i}$ and $h\coloneqq\prod_i\sigma_i^{b_i}$, from which we get
+	The main point is that we have a computation of $\delta(\overline c)$ from \autoref{cor:deltaccomputation}, which we merely need to track through. In particular, fix a $\{\sigma_i\}_{i=1}^m$-tuple $(\{\alpha_i\}_i,\{\beta_{ij}\}_{i>j})$, and let $f\in H^0(G,\op{Hom}_\ZZ(X,A))$ be the corresponding morphism. As such, we may compute our cup product out as
+	\[\big(\delta(\overline c)\cup f\big)(g,h)=\delta(\overline c)(g,h)\otimes_\ZZ gh\cdot f=\delta(\overline c)(g,h)\otimes_\ZZ f.\]
+	To pass through evaluation, we set $g\coloneqq\prod_i\sigma_i^{a_i}$ and $h\coloneqq\prod_i\sigma_i^{b_i}$ with $0\le a_i,b_i<n_i$, from which we get
 	\begin{align*}
-		f(\delta(\overline c)(g,h)) &= f\left((g_ih_iq_i)_i,\big(g_ih_j\sigma_i^{(a_i)}\sigma_j^{(b_j)}\big)_{i>j}\right) \\
-		&= \sum_{i=1}^mg_ih_i\floor{\frac{a_i+b_i}{n_i}}\cdot\alpha_i+\sum_{\substack{i,j=1\\i>j}}^mg_ih_j\sigma_i^{(a_i)}\sigma_j^{(b_j)}\cdot\beta_{ij} \\
-		&= \sum_{\substack{i,j=1\\i>j}}^m\Bigg(\prod_{p<i}\sigma_p^{a_p}\Bigg)\Bigg(\prod_{q<j}\sigma_q^{b_q}\Bigg)\sigma_i^{(a_i)}\sigma_j^{(b_j)}\beta_{ij}+\sum_{i=1}^mg_ih_i\alpha_i^{\floor{\frac{a_i+b_i}{n_i}}}.
+		f\big(\delta(\overline c)(g,h)\big) &= f\Bigg(\sum_{i=1}^mg_{(i)}h_{(i)}q_i\kappa_i+\sum_{i>j}g_{(i)}h_{(j)}\sigma_i^{(a_i)}\sigma_j^{(b_j)}\lambda_{ij}\Bigg) \\
+		&= \sum_{i=1}^mg_{(i)}h_{(i)}\floor{\frac{a_i+b_i}{n_i}}\cdot\alpha_i+\sum_{\substack{i,j=1\\i>j}}^mg_{(i)}h_{(j)}\sigma_i^{(a_i)}\sigma_j^{(b_j)}\cdot\beta_{ij} \\
+		&= \sum_{\substack{i,j=1\\i>j}}^m\Bigg(\prod_{p<i}\sigma_p^{a_p}\Bigg)\Bigg(\prod_{q<j}\sigma_q^{b_q}\Bigg)\sigma_i^{(a_i)}\sigma_j^{(b_j)}\beta_{ij}+\sum_{i=1}^mg_{(i)}h_{(i)}\alpha_i^{\floor{\frac{a_i+b_i}{n_i}}}.
 	\end{align*}
 	Doing a little more rearrangement and writing this multiplicatively exactly recovers the cocycle of \autoref{thm:getcocycle}. This completes the proof.
 \end{proof}
 
 % \subsection{Some Loose Ends}
 % We continue in the set-up and notation of the previous subsection.
-Though we have proven everything we set out to do in \autoref{sec:overview}, there is more to discuss with our alternate description of tuples. As a taste, we prove the following extension of \autoref{prop:alternativetuple}.
+Though we have successfully provided an alternate proof of \autoref{thm:getcocycle}, there is more to discuss with our alternate description of tuples. Namely, we now begin showing that $X$ is a $2$-encoding module.
 \begin{proposition} \label{prop:alternativetupleclass}
 	Fix everything as in the set-up, and let $A$ be a $G$-module. Then the isomorphism of \autoref{prop:alternativetuple} descends to an isomorphism between equivalence classes of $\{\sigma_i\}_{i=1}^m$-tuples are canonically isomorphic to $\widehat H^0(G,\op{Hom}_\ZZ(X,A))$.
 \end{proposition}
@@ -538,7 +538,7 @@ Though we have proven everything we set out to do in \autoref{sec:overview}, the
 	% Lastly, $\mathcal T/\mathcal T_0\to\widehat H^0(G,\op{Hom}_\ZZ(X,L^\times))$ is descended from the morphism of \autoref{prop:alternativetuple}, so the diagram does indeed commute by \autoref{thm:yesitisacocycle}. In particular, this vertical map is well-defined and in fact an isomorphism by the commutativity of the diagram. This completes the proof.
 \end{proof}
 \begin{remark}
-	This proof feels more motivated coming from the perspective that $X$ ``should'' be a $2$-encoding module (for example, $\coker\mathcal F$ ``should'' be a $1$-encoding module, allowing us to use \autoref{prop:encodingses}), so actually the equivalence relation on the tuples from \autoref{defi:tupleequiv} can be seen as falling out of the quotient
+	This proof feels more motivated coming from the perspective that $X$ ``should'' be a $2$-encoding module (for example, $\coker\mathcal F$ ``should'' be a $1$-encoding module, allowing us to use \autoref{prop:encodingses}). Namely, we should think of the equivalence relation on the tuples from \autoref{defi:tupleequiv} as being unmotivated before and instead is best motivated now as coming out of the quotient
 	\[H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X,-)).\]
 	Indeed, the equivalence relations had better match up anyway.
 \end{remark}
@@ -741,7 +741,7 @@ Though we have proven everything we set out to do in \autoref{sec:overview}, the
 % \begin{proof}
 % 	Omitted.
 % \end{proof}
-% Importantly, our torus $T$ is split over $L$ because (say) all characters in $X^*(T)$ are defined over $L$.\todo{I'm not sure if this makes sense.}
+% Importantly, our torus $T$ is split over $L$ because (say) all characters in $X^*(T)$ are defined over $L$.
 
 % In light of \autoref{cor:torustupledescription}, we are particularly interested in the case of $n=-2$ in \autoref{thm:torusreciprocity}, giving an isomorphism
 % \[-\cup u_{L/K}\colon\widehat H^{-2}(L/K,X_*(T))\to\widehat H^0(L/K,T(L)).\]
@@ -861,7 +861,7 @@ Though we have proven everything we set out to do in \autoref{sec:overview}, the
 
 \subsection{Algebraic Corollaries}
 We continue in the set-up of the previous subsection. Observe that \autoref{prop:alternativetupleclass} combined with \autoref{thm:classisomorphism} tells us that we have isomorphisms
-\[\delta(\overline c)\cup-\colon\widehat H^0(G,\op{Hom}_\ZZ(X,A))\to\widehat H^2(G,A).\]
+\[[\delta(\overline c)]\cup-\colon\widehat H^0(G,\op{Hom}_\ZZ(X,A))\to\widehat H^2(G,A).\]
 In fact, \autoref{lem:cuppingisnatural} tells us that these isomorphisms assemble into a natural isomorphism, so we have the following result.
 \begin{theorem}
 	Fix everything as in the set-up. Then $X$ is a $2$-encoding module.
@@ -883,7 +883,7 @@ Here are some other results.
 	Fix everything as in the set-up. Then $X$ is cohomologically equivalent to $I_G\otimes_\ZZ I_G$.
 \end{cor}
 \begin{proof}
-	We know that $I_G\otimes_\ZZ I_G$ is a $2$-encoding module by \autoref{ex:igisencoding}, from which \autoref{prop:encodingmodules} finishes.
+	We know that $I_G\otimes_\ZZ I_G$ is a $2$-encoding module by \autoref{ex:igisencoding}, so \autoref{prop:encodingmodules} finishes.
 \end{proof}
 \begin{cor}
 	Fix everything as in the set-up. Then, for any $i\in\ZZ$ and subgroup $H\subseteq G$, we have natural isomorphisms
@@ -893,7 +893,7 @@ Here are some other results.
 	Follow the proof of \autoref{cor:betterencodingdef} to see that we can set $x=[\delta(\overline c)]$ there. This gives the result for $H=G$, and we get general subgroups by appealing to \autoref{cor:encodingsubgroups}.
 \end{proof}
 \begin{remark}
-	Even though we have some notion of restriction, writing a ``tuple'' in $\widehat H^0(H,\op{Hom}_\ZZ(X,A))$ seems somewhat difficult in general. For example, it is not clear how to (in general) write $X$ as $\ZZ[H]^m/M$ for an $H$-module $M$. In simple cases, we have worked this out in \autoref{lem:restricttuple}.
+	Even though we have some notion of restriction from \autoref{lem:restricttuple}, writing a ``tuple'' in $\widehat H^0(H,\op{Hom}_\ZZ(X,A))$ seems somewhat difficult in general. For example, it is not clear how to (in general) write $X$ as $\ZZ[H]^m/M$ for an $H$-module $M$. In simple cases, we have worked this out in \autoref{lem:restricttuple}.
 \end{remark}
 \begin{cor}
 	Fix everything as in the set-up. Then $\widehat H^2(G,X)$ is cyclic of order $\#G$ generated by $[\delta(\overline c)]$.
@@ -901,7 +901,7 @@ Here are some other results.
 \begin{proof}
 	This follows from \autoref{cor:hpxcomputation}.
 \end{proof}
-\begin{remark}
+\begin{remark} \label{rem:betaiscup}
 	Fix notation as in \autoref{sec:overview}, and take $m=2$. Then there are natural transformations
 	\[\widehat H^2(G,-)\stackrel{[\delta(\overline c)]^\lor\cup-}\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{-1}(G,-)\]
 	sending a $2$-cocycle to its $\{\sigma_i\}_{i=1}^m$-tuple and then to the (class of) $\beta_{10}$. (It turns out that, because $G$ is bicyclic, the equivalence relation on $\beta_{10}$ is exactly what we need to form a class of $\widehat H^{-1}$.) Now, applying \autoref{prop:encodingsarecups}, we see that the right natural transformation must be a cup-product map, so by associativity of the cup product, the entire natural transformation is a cup-product map.

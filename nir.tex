@@ -30,6 +30,8 @@
 % DEALINGS IN THE SOFTWARE.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% /LICENSING
 
+% LTeX: enabled=false
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HOW TO USE
 % some notes on using this file:
 % - this file is constantly a work-in-progress; it changes frequently
@@ -43,10 +45,10 @@
 %   feel free to delete and move them around as you see fit
 % - this toggles if the file is "official" (namely, amsart)
 \newif\ifnirfancy
-\nirfancytrue
+\makeatletter
+\@ifclassloaded{amsart}{\nirfancyfalse}{\nirfancytrue}
+\makeatother
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% /HOW TO USE
-
-% LTeX: enabled=false
 
 \usepackage[margin=1in, marginparwidth=2cm]{geometry}
 \usepackage[table,dvipsnames]{xcolor}

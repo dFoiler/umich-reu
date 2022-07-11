@@ -7,23 +7,23 @@ The story from \autoref{sec:general} was able to encode a cohomology class in $H
 \subsection{Set-Up and Overview} \label{sec:overview}
 The approach here will be to attempt to abstract our data away from the $ G$-module $A$ as much as possible. To set up our discussion, we continue with
 \[G\simeq\bigoplus_{i=1}^mG_i,\]
-where $G_i=\langle\sigma_i\rangle\subseteq G$ and $\sigma_i$ has order $n_k$. These variables allow us to define
+where $G_i=\langle\sigma_i\rangle\subseteq G$ and $\sigma_i$ has order $n_i$. These variables allow us to define
 \[T_i\coloneqq(\sigma_i-1)\qquad\text{and}\qquad N_i\coloneqq\sum_{p=0}^{n_i-1}\sigma_i^p\]
-for each index $i$. In fact, it will be helpful to also have notation
+for each index $i$. In fact, it will be helpful to continue to use the notation
 \[\sigma^{(a)}\coloneqq\sum_{p=0}^{a-1}\sigma^p\]
 for any $\sigma\in G$ and nonnegative integer $a\ge0$; in particular, $\sigma^{(0)}=0$ and $\sigma_i^{(n_i)}=N_i$. The main benefits to this notation will be the facts that
 \[\sigma^{(a+b)}=\sigma^{(a)}+\sigma^a\sigma^{(b)}\qquad\text{and}\qquad\sigma_i^a=T_i\sigma_i^{(a)}+1,\]
 which can be seen by direct expansion. Given $g\in\prod_{p=1}^n\sigma_p^{a_p}$, we will also define the notation
-\[g_i\coloneqq\prod_{p=1}^{i-1}\sigma_p^{a_p}\]
-for $i\ge0$. In particular $g_0=g_1=1$ and $g_{n+1}=g$.
+\[g_{(i)}\coloneqq\prod_{p=1}^{i-1}\sigma_p^{a_p}\]
+for $i\ge0$. In particular $g_{(0)}=g_{(1)}=1$ and $g_{(m+1)}=g$.\footnote{We are using a subscript here because we are more or less taking a subsequence of $g$.}
 
-Now, our tool in the proof of \autoref{thm:getcocycle} will be the magical map $\mathcal F\colon\ZZ[G]^m\times\ZZ[G]^{\binom m2}\to\ZZ[G]^m$ defined by
+The key to our discussion will be the magical map $\mathcal F\colon\ZZ[G]^m\times\ZZ[G]^{\binom m2}\to\ZZ[G]^m$ defined by
 \[\mathcal F\colon\big((x_i)_{i=1}^m,(y_{ij})_{i>j}\big)\mapsto\Bigg(x_iN_i-\sum_{j=1}^{i-1}y_{ij}T_j+\sum_{j=i+1}^my_{ji}T_j\Bigg)_{i=1}^m.\]
 This is of course a $G$-module homomorphism. We will go ahead and state the main results we will prove. Roughly speaking, $\mathcal F$ is manufactured to make the following result true.
 \begin{prop} \label{prop:manufacturedcocycle}
 	Fix everything as in the set-up. Then the function
-	\[\overline c(g)\coloneqq\left(g_i\sigma_i^{(a_i)}\right)_{i=1}^m,\]
-	where $g\coloneqq\prod_{i=1}^m\sigma_i^{a_i}$, is a $1$-cocycle in $Z^1(G,\coker\mathcal F)$.
+	\[\overline c(g)\coloneqq\left(g_{(i)}\sigma_i^{(a_i)}\right)_{i=1}^m,\]
+	where $g\coloneqq\prod_{i=1}^m\sigma_i^{a_i}$ with $0\le a_i<n_i$ for each $i$, is a $1$-cocycle in $Z^1(G,\coker\mathcal F)$.
 \end{prop}
 The reason we care about this cocycle is that we can pass it through a boundary morphism induced by the short exact sequence
 \[0\to\underbrace{\frac{\ZZ[G]^m\times\ZZ[G]^{\binom m2}}{\ker\mathcal F}}_{X\coloneqq}\stackrel{\mathcal F}\to\ZZ[G]^m\to\coker\mathcal F\to0,\]
@@ -52,9 +52,9 @@ We continue in the set-up of the previous subsection.
 % 	with $g\coloneqq\prod_{i=1}^m\sigma_i^{a_i}$
 % \end{proposition}
 Before jumping into any hard logic, we define some (more) notation which will be useful later on as well. First, in $\ZZ[G]^m\times\ZZ[G]^{\binom m2}$, we define
-\[\kappa_p\coloneqq\big((1_{i=p})_i,(0)_{i>j}\big)\in X\qquad\text{and}\qquad\lambda_{pq}\coloneqq\big((0)_i,(1_{(i,j)=(p,q)})_{i>j}\big)\]
+\[\kappa_p\coloneqq\big((1_{i=p})_i,(0)_{i>j}\big)\qquad\text{and}\qquad\lambda_{pq}\coloneqq\big((0)_i,(1_{(i,j)=(p,q)})_{i>j}\big)\]
 for all relevant indices $p$ and $q$ so that the $\kappa_p$ and $\lambda_{pq}$ are a basis for $\ZZ[G]^m\times\ZZ[G]^{\binom m2}$ as a $\ZZ[G]$-module. Secondly, we define
-\[\varepsilon_p\coloneqq(1_{i=p})_{i=1}^m\]
+\[\varepsilon_p\coloneqq(1_{i=p})_{i=1}^m\in\ZZ[G]^m\]
 for all indices $p$, again giving a basis for $\ZZ[G]^m$ as a $\ZZ[G]$-module. For example, this notation lets us write
 \begin{equation}
 	\mathcal F\left(\sum_{i=1}^mx_i\kappa_i+\sum_{i>j}y_{ij}\lambda_{ij}\right)=\sum_{i=1}^mx_iN_i\varepsilon_i+\sum_{i>j}y_{ij}(T_i\varepsilon_j-T_j\varepsilon_i), \label{eq:betterf}
@@ -65,32 +65,32 @@ where $g\coloneqq\prod_{i=1}^m\sigma_i^{a_i}$.
 
 Additionally, so that we do not need to interrupt our discussion later, we establish a few lemmas which will aide our proof of \autoref{prop:manufacturedcocycle}.
 \begin{lemma} \label{lem:separatenijs}
-	Fix everything as in the set-up. Then, for any set of distinct indices $(i_1,\ldots,i_k)$, we have
+	Fix everything as in the set-up. For any set of distinct indices $\{i_1,\ldots,i_k\}\subseteq\{1,\ldots,m\}$, we have
 	\[\bigcap_{p=1}^k\im N_{i_p}=\im\prod_{p=1}^kN_{i_p},\]
 	where we are identifying $x\in\ZZ[G]$ with its associated multiplication map $x\colon\ZZ[G]\to\ZZ[G]$.
 \end{lemma}
 \begin{proof}
-	The point is that the elements of $\bigcap_{p=1}^k\im N_{i_p}$ and $\im\prod_{p=1}^kN_{i_p}$ are both simply the elements whose expansion in the form $\sum_gc_gg\in\ZZ[G]$ have $c_j$ ``constant in $\sigma_p$ and $\sigma_q$.'' More explicitly, of course, $\prod_{p=1}^kN_{i_p}\in\bigcap_{p=1}^k\im N_{i_p}$, so
+	The point is that the elements of $\bigcap_{p=1}^k\im N_{i_p}$ and $\im\prod_{p=1}^kN_{i_p}$ are both simply the elements whose expansion in the form $\sum_gc_gg\in\ZZ[G]$ have $c_g$ ``constant in $\sigma_p$ and $\sigma_q$.'' More explicitly, of course, $\prod_{p=1}^kN_{i_p}\in\bigcap_{p=1}^k\im N_{i_p}$, so
 	\[\im\prod_{p=1}^kN_{i_p}\subseteq\bigcap_{p=1}^k\im N_{i_p}.\]
 	In the other direction, suppose that we have some element
-	\[z\coloneqq\sum_{(a_i)_i}c_{(a_i)_i}\sigma_1^{a_1}\cdots\sigma_m^{a_m}\in\bigcap_{p=1}^k\im N_{i_p},\]
-	the sum is over sequences $(a_i)_{i=1}^m$ such that $0\le a_i<n_i$ for each index $i$. We will show $z\in\im\prod_{p=1}^kN_{i_p}$.
+	\[z\coloneqq\sum_{\{a_i\}_i}c_{\{a_i\}_i}\sigma_1^{a_1}\cdots\sigma_m^{a_m}\in\bigcap_{p=1}^k\im N_{i_p},\]
+	the sum is over sequences $\{a_i\}_{i=1}^m$ such that $0\le a_i<n_i$ for each index $i$. We will show $z\in\im\prod_{p=1}^kN_{i_p}$.
 	
-	Now, $z\in\im N_r$ for $r\in\{p,q\}$ is equivalent to $z\in\ker T_r$, but upon multiplying by $(\sigma_r-1)$ we see that we are asking for
-	\[\sum_{(a_i)_i}c_{(a_i)_i}\sigma_1^{a_1}\cdots\sigma_{r-1}^{a_{r-1}}\sigma_r^{a_r}\sigma_{r+1}^{a_{r+1}}\cdots\sigma_n^{a_n}=\sum_{(a_i)_i}c_{(a_i)_i}\sigma_1^{a_1}\cdots\sigma_{r-1}^{a_{r-1}}\sigma_r^{a_r+1}\sigma_{r+1}^{a_{r+1}}\cdots\sigma_n^{a_n}.\]
+	Now, $z\in\im N_r$ for given $r$ is equivalent to $z\in\ker T_r$, but upon multiplying by $(\sigma_r-1)$ we see that we are asking for
+	\[\sum_{\{a_i\}_i}c_{\{a_i\}_i}\sigma_1^{a_1}\cdots\sigma_{r-1}^{a_{r-1}}\sigma_r^{a_r}\sigma_{r+1}^{a_{r+1}}\cdots\sigma_n^{a_n}=\sum_{\{a_i\}_i}c_{\{a_i\}_i}\sigma_1^{a_1}\cdots\sigma_{r-1}^{a_{r-1}}\sigma_r^{a_r+1}\sigma_{r+1}^{a_{r+1}}\cdots\sigma_n^{a_n}.\]
 	In other words, this is asking for $c_{(a_i)_i}=c_{(a_i)_i+(1_{i=r})_i}$, or more succinctly just that $c$ is constant in the $i=r$ coordinate.
 
-	Thus, $c$ is constant in all the $i=i_p$ coordinates for each index $i_p$. Thus, we let $d_{(a_i)_{i\notin\{i_p\}}}$ be the restricted function equal to $c_{(a_i)_i}$ but forgetting the information input from any of the $a_{i_p}$. This allows us to write
+	Thus, $c$ is constant in all the $i=i_p$ coordinates for each index $i_p$. Thus, we let $d_{\{a_i\}_{i\notin\{i_p\}}}$ be the restricted function equal to $c_{(a_i)_i}$ but forgetting the information input from any of the $a_{i_p}$. This allows us to write
 	\begin{align*}
-		z &= \sum_{(a_i)_i}c_{(a_i)_i}\sigma_1^{a_1}\cdots\sigma_m^{a_m} \\
-		&= \sum_{(a_i)_{i\notin\{i_p\}}}\sum_{a_{i_1}=0}^{n_{i_1}-1}\cdots\sum_{a_{i_k}=0}^{n_{i_k}-1}d_{(a_i)_{i\notin\{i_p\}}}\sigma_1^{a_1}\cdots\sigma_m^{a_m} \\
-		&= \Bigg(\sum_{(a_i)_{i\notin\{i_p\}}}d_{(a_i)_{i\notin\{i_p\}}}\prod_{\substack{i=0\\i\notin\{i_p\}}}^m\sigma_i^{a_i}\Bigg)\Bigg(\sum_{a_{i_1}=0}^{n_{i_1}-1}\sigma_{i_1}^{a_{i_1}}\Bigg)\cdots\Bigg(\sum_{a_{i_k}=0}^{n_{i_k}-1}\sigma_{i_k}^{a_{i_k}}\Bigg),
+		z &= \sum_{\{a_i\}_i}c_{\{a_i\}_i}\sigma_1^{a_1}\cdots\sigma_m^{a_m} \\
+		&= \sum_{\{a_i\}_{i\notin\{i_p\}}}\sum_{a_{i_1}=0}^{n_{i_1}-1}\cdots\sum_{a_{i_k}=0}^{n_{i_k}-1}d_{\{a_i\}_{i\notin\{i_p\}}}\sigma_1^{a_1}\cdots\sigma_m^{a_m} \\
+		&= \Bigg(\sum_{\{a_i\}_{i\notin\{i_p\}}}d_{\{a_i\}_{i\notin\{i_p\}}}\prod_{\substack{i=0\\i\notin\{i_p\}}}^m\sigma_i^{a_i}\Bigg)\Bigg(\sum_{a_{i_1}=0}^{n_{i_1}-1}\sigma_{i_1}^{a_{i_1}}\Bigg)\cdots\Bigg(\sum_{a_{i_k}=0}^{n_{i_k}-1}\sigma_{i_k}^{a_{i_k}}\Bigg),
 	\end{align*}
 	which is now manifestly in $\im\prod_{p=1}^kN_{i_p}$.
 \end{proof}
 \begin{lemma} \label{lem:expandgi}
 	Fix everything as in the set-up. Then, given $g\coloneqq\prod_{i=1}^m\sigma_i^{a_i}$, we have
-	\[g_i=1+\sum_{p=1}^{i-1}g_p\sigma_p^{(a_p)}T_p\]
+	\[g_{(i)}=1+\sum_{p=1}^{i-1}g_{(p)}\sigma_p^{(a_p)}T_p\]
 	for $i\ge1$.
 \end{lemma}
 \begin{proof}
@@ -98,55 +98,54 @@ Additionally, so that we do not need to interrupt our discussion later, we estab
 	\[\prod_{p=2}^{i-1}\sigma_p^{a_p}=1+\sum_{p=2}^{i-1}\Bigg(\prod_{q=2}^{p-1}\sigma_q^{a_q}\Bigg)\sigma_p^{(a_p)}T_p.\]
 	In particular, multiplying through by $\sigma_1^{a_1}$ yields
 	\begin{align*}
-		g_i &= \sigma_1^{a_1}\cdot\prod_{p=2}^{i-1}\sigma_p^{a_p} \\
+		g_{(i)} &= \sigma_1^{a_1}\cdot\prod_{p=2}^{i-1}\sigma_p^{a_p} \\
 		&= \sigma_1^{a_1}+\sigma_1^{a_1}\sum_{p=2}^{i-1}\Bigg(\prod_{q=2}^{p-1}\sigma_q^{a_q}\Bigg)\sigma_p^{(a_p)}T_p \\
-		&= \sigma_1^{a_1}+\sum_{p=2}^{i-1}g_p\sigma_p^{(a_p)}T_p \\
-		&= 1+\sigma_1^{(a_1)}T_1+\sum_{p=2}^{i-1}g_p\sigma_p^{(a_p)}T_p,
+		&= \sigma_1^{a_1}+\sum_{p=2}^{i-1}g_{(p)}\sigma_p^{(a_p)}T_p \\
+		&= 1+\sigma_1^{(a_1)}T_1+\sum_{p=2}^{i-1}g_{(p)}\sigma_p^{(a_p)}T_p,
 	\end{align*}
 	which is exactly what we wanted, after a little more rearrangement.
 \end{proof}
 And mostly because we can, we show that our main short exact sequence splits.
 \begin{lemma} \label{lem:sessplits}
 	Fix everything as in the set-up. Then consider $\ZZ$-module map $\rho\colon\ZZ[G]^m\to\ZZ[G]^m$ defined by
-	\[\rho(g\varepsilon_i)\coloneqq g_i\big(\sigma_i^{a_i}-N_i1_{a_i=n_i-1}\big)\varepsilon_i+\sum_{j=i+1}^mg_j\sigma_j^{(a_j)}T_i\varepsilon_j,\]
-	where $g\coloneqq\prod_{i=1}^m\sigma_i^{a_i}$ with $0\le a_i<n_i$. Then $\rho$ descends to a map $\overline\rho\colon\coker\mathcal F\to\ZZ[G]^m$ witnessing the splitting of the short exact sequence
-	\[0\to X\to\ZZ[G]^m\to\coker\mathcal F\to0\]
-	over $\ZZ$.
+	\[\rho(g\varepsilon_i)\coloneqq g_{(i)}\big(\sigma_i^{a_i}-N_i1_{a_i=n_i-1}\big)\varepsilon_i+\sum_{j=i+1}^mg_{(j)}\sigma_j^{(a_j)}T_i\varepsilon_j,\]
+	where $g\coloneqq\prod_{i=1}^m\sigma_i^{a_i}$ with $0\le a_i<n_i$. Then $\rho$ descends to a map $\overline\rho\colon\coker\mathcal F\to\ZZ[G]^m$ witnessing the $\ZZ$-splitting of the short exact sequence
+	\[0\to X\to\ZZ[G]^m\to\coker\mathcal F\to0.\]
 \end{lemma}
 \begin{proof}
 	Observe that we have a well-defined map $\rho\colon\ZZ[G]^m\to\ZZ[G]^m$ because $\ZZ[G]^m$ is a free abelian group generated by $g\varepsilon_i$ for $g\in G$ and indices $i$. It remains to show that $\im\mathcal F\subseteq\ker\rho$ to get a map $\overline\rho\colon\coker\mathcal F\to\ZZ[G]^m$ and then to show that $\rho(z)\equiv z\pmod{\im\mathcal F}$ to get the splitting. We show these individually.
 
-	To show that $\im\mathcal F\subseteq\ker\rho$, we note from \autoref{eq:betterf} that $\im\mathcal F$ is generated over $\ZZ[G]$ by the elements $N_i\varepsilon_i$ and $T_i\varepsilon_j-T_j\varepsilon_i$ for relevant indices $i$ and $j$. Thus, $\im\mathcal F$ is generated over $\ZZ$ by the elements $gN_i\varepsilon_i$ and $gT_i\varepsilon_j-gT_j\varepsilon_i$ for relevant indices $i$ and $j$. Thus, we fix any $g\coloneqq\prod_{i=1}^n\sigma_i^{a_i}$ and show that $gN_i\varepsilon_i\in\ker\rho$ and $gT_i\varepsilon_j-gT_j\varepsilon_i\in\ker\rho$ for relevant indices $i$ and $j$.
+	To show that $\im\mathcal F\subseteq\ker\rho$, we note from \autoref{eq:betterf} that $\im\mathcal F$ is generated over $\ZZ[G]$ by the elements $N_i\varepsilon_i$ and $T_i\varepsilon_j-T_j\varepsilon_i$ for $g\in G$ and relevant indices $i$ and $j$. Thus, $\im\mathcal F$ is generated over $\ZZ$ by the elements $gN_i\varepsilon_i$ and $gT_i\varepsilon_j-gT_j\varepsilon_i$ for relevant indices $i$ and $j$. Thus, we fix any $g\coloneqq\prod_{i=1}^n\sigma_i^{a_i}$ with $0\le a_i<n_i$ and show that $gN_i\varepsilon_i\in\ker\rho$ and $gT_i\varepsilon_j-gT_j\varepsilon_i\in\ker\rho$ for relevant indices $i$ and $j$.
 	\begin{itemize}
 		\item We show $gN_i\varepsilon_i\in\ker\rho$ for any $i$. Because $gN_i=g\sigma_iN_i$, we may as well as assume that $a_i=0$. Then
-		\[\rho\left(g\sigma_i^a\varepsilon_i\right)=g_i\big(\sigma_i^{a}-N_i1_{a=n_i-1}\big)\varepsilon_i+\sum_{j=i+1}^mg_j\sigma_i^a\sigma_j^{(a_j)}T_i\varepsilon_j.\]
-		As $a$ varies from $0$ to $n_i-1$, we note that the term $g_i\big(\sigma_i^{a}-N_i1_{a=n_i-1}\big)\varepsilon_i$ will only get the $-N_i$ contribution exactly once at $a=n_i-1$. Summing, we thus see that
-		\[\rho(gN_i\varepsilon_i)=g_i\Bigg(-N_i+\sum_{a=0}^{n_i-1}\sigma_i^{a}\Bigg)\varepsilon_i+\sum_{a=0}^{n_i-1}\sum_{j=i+1}^mg_j\sigma_i^a\sigma_j^{(a_j)}T_i\varepsilon_j.\]
-		The left term vanishes because $N_i=\sum_{a=0}^{n_i-1}\sigma_i^a$. Additionally, the right term vanishes because we can factor $T_i\sum_{a=0}^{n_i-1}\sigma_i^a=T_iN_i=0$. So $gN_i\varepsilon_i\in\ker\rho$.
+		\[\rho\left(g\sigma_i^a\varepsilon_i\right)=g_{(i)}\big(\sigma_i^{a}-N_i1_{a=n_i-1}\big)\varepsilon_i+\sum_{j=i+1}^mg_{(j)}\sigma_i^a\sigma_j^{(a_j)}T_i\varepsilon_j.\]
+		As $a$ varies from $0$ to $n_i-1$, we note that the term $g_{(i)}\big(\sigma_i^{a}-N_i1_{a=n_i-1}\big)\varepsilon_i$ will only get the $-N_i$ contribution exactly once at $a=n_i-1$. Summing, we thus see that
+		\[\rho(gN_i\varepsilon_i)=g_{(i)}\Bigg(-N_i+\sum_{a=0}^{n_i-1}\sigma_i^{a}\Bigg)\varepsilon_i+\sum_{a=0}^{n_i-1}\sum_{j=i+1}^mg_{(j)}\sigma_i^a\sigma_j^{(a_j)}T_i\varepsilon_j.\]
+		The left term vanishes because $N_i=\sum_{a=0}^{n_i-1}\sigma_i^a$. Additionally, the right term vanishes because we can factor out $T_i\sum_{a=0}^{n_i-1}\sigma_i^a=T_iN_i=0$. So $gN_i\varepsilon_i\in\ker\rho$.
 		\item We show $gT_p\varepsilon_q-gT_q\varepsilon_p\in\ker\rho$ for any $p>q$. Equivalently, we will show that $\rho(g\sigma_p\varepsilon_q)-\rho(g\varepsilon_q)=\rho(g\sigma_q\varepsilon_p)-\rho(g\varepsilon_p)$. On one hand, note
 		\begin{align*}
-			\rho(g\sigma_p\varepsilon_q) &= g_q\big(\sigma_q^{a_q}-N_i1_{a_q=n_q-1}\big)\varepsilon_q \\
-			&\qquad\qquad+\sum_{j=q+1}^{p-1}g_j\sigma_j^{(a_j)}T_q\varepsilon_j \\
-			&\qquad\qquad+g_p\left(\sigma_p^{(a_p+1)}-N_p1_{a_p=n_p-1}\right)T_q\varepsilon_p \\
-			&\qquad\qquad+\sum_{j=p+1}^m\sigma_pg_j\sigma_j^{(a_j)}T_q\varepsilon_j
+			\rho(g\sigma_p\varepsilon_q) &= g_{(q)}\big(\sigma_q^{a_q}-N_i1_{a_q=n_q-1}\big)\varepsilon_q \\
+			&\qquad\qquad+\sum_{j=q+1}^{p-1}g_{(j)}\sigma_j^{(a_j)}T_q\varepsilon_j \\
+			&\qquad\qquad+g_{(p)}\left(\sigma_p^{(a_p+1)}-N_p1_{a_p=n_p-1}\right)T_q\varepsilon_p \\
+			&\qquad\qquad+\sum_{j=p+1}^m\sigma_pg_{(j)}\sigma_j^{(a_j)}T_q\varepsilon_j
 		\end{align*}
-		because $g_j$ doesn't ``see'' the extra $\sigma_p$ term until $j>p$. (For the $j=p$ term, we would like to write $\sigma_p^{(a_p+1)}$ above, but when $a_p=n_p-1$, we actually end up with $\sigma_p^{(0)}=0$ and hence have to subtract out $\sigma_p^{(n_p)}=N_p$.) Thus,
-		\[\rho(g\sigma_p\varepsilon_q)-\rho(g\varepsilon_q) = g_p\left(\sigma_p^{a_p}-N_p1_{a_p=n_p-1}\right)T_q\varepsilon_p+\sum_{j=p+1}^mg_j\sigma_j^{(a_j)}T_pT_q\varepsilon_j.\]
+		because $g_{(j)}$ doesn't ``see'' the extra $\sigma_p$ term until $j>p$. (For the $j=p$ term, we would like to write $\sigma_p^{(a_p+1)}$ above, but when $a_p=n_p-1$, we actually end up with $\sigma_p^{(0)}=0$ and hence have to subtract out $\sigma_p^{(n_p)}=N_p$.) Thus,
+		\[\rho(g\sigma_p\varepsilon_q)-\rho(g\varepsilon_q) = g_{(p)}\left(\sigma_p^{a_p}-N_p1_{a_p=n_p-1}\right)T_q\varepsilon_p+\sum_{j=p+1}^mg_{(j)}\sigma_j^{(a_j)}T_pT_q\varepsilon_j.\]
 		On the other hand, we have
-		\[\rho(g\sigma_q\varepsilon_p) = \sigma_qg_p\big(\sigma_p^{a_p}-N_p1_{a_p=n_p-1}\big)\varepsilon_p+\sum_{j=p+1}^m\sigma_qg_j\sigma_j^{(a_j)}T_p\varepsilon_j\]
-		where this time all $j>p$ also have $j>q$ and so $(\sigma_qg)_j=\sigma_qg_j$. Thus,
-		\[\rho(g\sigma_q\varepsilon_p)-\rho(g\varepsilon_p) = g_p\left(\sigma_p^{a_p}-N_p1_{a_p=n_p-1}\right)T_q\varepsilon_p+\sum_{j=p+1}^mg_j\sigma_j^{(a_j)}T_pT_q\varepsilon_j,\]
+		\[\rho(g\sigma_q\varepsilon_p) = \sigma_qg_{(p)}\big(\sigma_p^{a_p}-N_p1_{a_p=n_p-1}\big)\varepsilon_p+\sum_{j=p+1}^m\sigma_qg_{(j)}\sigma_j^{(a_j)}T_p\varepsilon_j\]
+		where this time all $j>p$ also have $j>q$ and so $(\sigma_qg)_{(j)}=\sigma_qg_{(j)}$. Thus,
+		\[\rho(g\sigma_q\varepsilon_p)-\rho(g\varepsilon_p) = g_{(p)}\left(\sigma_p^{a_p}-N_p1_{a_p=n_p-1}\right)T_q\varepsilon_p+\sum_{j=p+1}^mg_{(j)}\sigma_j^{(a_j)}T_pT_q\varepsilon_j,\]
 		as desired.
 	\end{itemize}
 	We now check the splitting. For this, we simply need to check that $\rho(g\varepsilon_i)\equiv g\varepsilon_i\pmod{\im\mathcal F}$, and we will get the result for all elements of $\ZZ[G]^m$ by additivity of $\rho$. Well, using \autoref{lem:expandgi}, we write
 	\begin{align*}
-		g\varepsilon_i &= g_i\sigma_i^{a_i}\Bigg(\prod_{j=i+1}^m\sigma_j^{a_j}\Bigg)\varepsilon_i \\
-		&= g_i\sigma_i^{a_i}\Bigg(1+\sum_{j=i+1}^m\Bigg(\prod_{q=i+1}^{j-1}\sigma_q^{a_q}\Bigg)\sigma_j^{(a_j)}T_j\Bigg)\varepsilon_i \\
-		&= g_i\sigma_i^{a_i}\varepsilon_i+\sum_{j=i+1}^mg_i\sigma_i^{a_i}\Bigg(\prod_{q=i+1}^{j-1}\sigma_q^{a_q}\Bigg)\sigma_j^{(a_j)}T_j\varepsilon_i \\
-		&\equiv g_i\sigma_i^{a_i}\varepsilon_i+\sum_{j=i+1}^mg_j\sigma_j^{(a_j)}T_i\varepsilon_j,
+		g\varepsilon_i &= g_{(i)}\sigma_i^{a_i}\Bigg(\prod_{j=i+1}^m\sigma_j^{a_j}\Bigg)\varepsilon_i \\
+		&= g_{(i)}\sigma_i^{a_i}\Bigg(1+\sum_{j=i+1}^m\Bigg(\prod_{q=i+1}^{j-1}\sigma_q^{a_q}\Bigg)\sigma_j^{(a_j)}T_j\Bigg)\varepsilon_i \\
+		&= g_{(i)}\sigma_i^{a_i}\varepsilon_i+\sum_{j=i+1}^mg_{(i)}\sigma_i^{a_i}\Bigg(\prod_{q=i+1}^{j-1}\sigma_q^{a_q}\Bigg)\sigma_j^{(a_j)}T_j\varepsilon_i \\
+		&\equiv g_{(i)}\sigma_i^{a_i}\varepsilon_i+\sum_{j=i+1}^mg_{(j)}\sigma_j^{(a_j)}T_i\varepsilon_j\pmod{\im\mathcal F},
 	\end{align*}
 	where in the last step we have used the fact that $T_j\varepsilon_i\equiv T_j\varepsilon_i\pmod{\im\mathcal F}$. Lastly, we note that $hN_i\varepsilon_i\equiv h\varepsilon_i\pmod{\im\mathcal F}$ for any $h\in G$, so in fact
-	\[g\varepsilon_i\equiv g_i\left(\sigma_i^{a_i}-N_i1_{a_i=n_i-1}\right)\varepsilon_i+\sum_{j=i+1}^mg_j\sigma_j^{(a_j)}T_i\varepsilon_j,\]
+	\[g\varepsilon_i\equiv g_{(i)}\left(\sigma_i^{a_i}-N_i1_{a_i=n_i-1}\right)\varepsilon_i+\sum_{j=i+1}^mg_{(j)}\sigma_j^{(a_j)}T_i\varepsilon_j,\]
 	and now the right-hand side is $\rho(g\varepsilon_i)$.
 \end{proof}
 % \begin{remark}

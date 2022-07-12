@@ -34,6 +34,12 @@
 \setcounter{tocdepth}{4}
 \tableofcontents
 
+\section{Introduction} \label{sec:intro}
+\input{abeliangerbs/intro}
+
+\section{Background} \label{sec:background}
+\input{abeliangerbs/background}
+
 \section{Generalized Periodic Cohomology} \label{sec:crackpot}
 \input{abeliangerbs/crackpot}
 
@@ -46,32 +52,34 @@
 \section{Tuples as Encoding Modules} \label{sec:tuplestudy}
 \input{abeliangerbs/tuples}
 
-\section{Local Gerbs}
+\section{Local Gerbs} \label{sec:local}
+In the following two sections, we will use the results of (largely) \autoref{sec:general} in order to provide explicit group laws for some of the Kottwitz gerbs \cite{kottwitz}. In this section, we will focus on abelian extensions of local fields. The approch here is similar to the approach for global fundamental classes in \cite{explicit-fund-classes}, though we work in more generality than multiquadratic extensions.
+
 \subsection{Set-Up} \label{sec:setup}
 \input{localfund/ntsetup}
 
 \subsection{Computation}
 In this section we record the details of the computation.
 
-\subsubsection{Group Cohomology}
+\subsubsection{Explicit Inflation--Restriction}
 \input{localfund/cohom}
 
-\subsubsection{Number Theory}
+\subsubsection{Computing the Cocycle}
 \input{localfund/nt}
 
-\subsubsection{Checks}
-\input{localfund/checks}
+% \subsubsection{Checks}
+% \input{localfund/checks}
 
-\subsubsection{Consequences}
-\input{localfund/consequences}
+% \subsubsection{Consequences}
+% \input{localfund/consequences}
 
-\subsection{An Explicit Example}
+\subsection{Tame Ramification}
 \input{localfund/tamram}
 
 \subsection{Towers}
 \input{localfund/towers}
 
-\section{Global Gerbs}
+\section{Global Gerbs} \label{sec:global}
 \input{localfund/global}
 
 \printbibliography[title={References}]

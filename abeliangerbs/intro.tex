@@ -1,0 +1,39 @@
+% !TEX root = ../abeliangerbs.tex
+
+Given a Galois extension of fields of $L/K$ with Galois group $G$ and an algebraic torus $\mathbb T$, a Galois gerb $\mc E$ of $L/K$ bound by $\mathbb T$ is a group extension
+\[0\to\mathbb T(L)\to\mc E\to G\to0.\]
+Roughly speaking, the goal of the paper is to be able to describe such Galois gerbs---and group extensions in general---explicitly by giving $\mc E$ a group presentation.
+
+More specifically, let $L/K$ be a finite Galois extension of global fields with Galois group $G$. In \cite{kottwitz}, Kottwitz defined three global gerbs $\mc E_1$, $\mc E_2$, and $\mc E_3$. The overall goal of this paper is to be able to provide a somewhat explicit description of the group law for $\mc E_3$ in the toy case of $L=\QQ(\zeta_q)$ and $K=\QQ$ for $q$ a prime-power. Along the way, we will develop various tools which suggest that the methods can be feasibly extended beyond this toy case.
+
+To describe the approach, we quickly recall the definitions of $\mc E_1$, $\mc E_2$, and $\mc E_3$. Let $V_F$ denote the set of places of a global field $F$. We begin with the following short exact sequences.
+\begin{align*}
+	0 \to \ZZ[V_L]_0 \to \ZZ[V_L] \to \ZZ \to 0 \tag{X} \label{eq:X} \\
+	0 \to L^\times \to \AA_L^\times \to \AA_L^\times/L^\times \to 0 \tag{A} \label{eq:A}
+\end{align*}
+Selecting the global fundamental class $\alpha_1(L/K)=u_{L/K}\in\widehat H^2(G,\AA_L^\times/L^\times)$, we may construct the Galois gerb
+\[0\to\op{Hom}_\ZZ(\ZZ,\AA_L^\times/L^\times)\to\mc E_1\to G\to0.\]
+By gluing together local fundamental classes, we may construct a class $\alpha_2(L/K)\in\widehat H^2(G,\AA_L^\times)$ defining the Galois gerb
+\[0\to\op{Hom}_\ZZ(\ZZ[V_L],\AA_L^\times)\to\mc E_2\to G\to0.\]
+Constructing $\mc E_3$ is more difficult. Denote the set of morphisms of short exact sequences from \autoref{eq:X} to \autoref{eq:A} by $\op{Hom}(X,A)$. It turns out that
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJIXjIoRyxcXG9we0hvbX0oWCxBKSkiXSxbMCwxLCJIXjIoRyxcXG9we0hvbX1fXFxaWihcXFpaLFxcQUFfTF5cXHRpbWVzL0xeXFx0aW1lcykpIl0sWzEsMCwiSF4yKEcsXFxvcHtIb219X1xcWlooXFxaWltWX0xdLFxcQUFfTF5cXHRpbWVzKSkiXSxbMSwxLCJIXjIoRyxcXG9we0hvbX1fXFxaWihcXFpaW1ZfTF0sXFxBQV9MXlxcdGltZXMvTF5cXHRpbWVzKSkiXSxbMCwxXSxbMSwzXSxbMCwyXSxbMiwzXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+\begin{equation}
+	\begin{tikzcd}
+		{H^2(G,\op{Hom}(X,A))} & {H^2(G,\op{Hom}_\ZZ(\ZZ[V_L],\AA_L^\times))} \\
+		{H^2(G,\op{Hom}_\ZZ(\ZZ,\AA_L^\times/L^\times))} & {H^2(G,\op{Hom}_\ZZ(\ZZ[V_L],\AA_L^\times/L^\times))}
+		\arrow[from=1-1, to=2-1]
+		\arrow[from=2-1, to=2-2]
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=2-2]
+	\end{tikzcd} \label{eq:magicalpullback}
+\end{equation}
+is a pull-back square, so we can check that we can construct a unique element $\alpha(L/K)\in H^2(G,\op{Hom}(X,A))$ by $\alpha_1(L/K)$ and $\alpha_2(L/K)$. Projecting $\alpha(L/K)$ to $H^2(G,\op{Hom}_\ZZ(\ZZ[V_L]_0,L^\times))$ yields $\alpha_3$ and hence the Galois gerb
+\[0\to\op{Hom}_\ZZ(\ZZ[V_L]_0,L^\times)\to\mc E_3\to G\to 0.\]
+
+Most of this definition can be turned directly into a computation. For example, a $2$-cocycle representing $\alpha_1(L/K)=u_{L/K}$ is not too hard to construct, especially in our toy case of $\QQ(\zeta_q)/\QQ$. Continuing, finding a representative for $\alpha_2(L/K)$ is simply a matter of constructing local fundamental classes and then gluing them together appropriately. However, it is harder to make the pull-back square of \autoref{eq:magicalpullback}. In short, this requires choosing a representative for $\alpha_2$ in such a way to appropriately cohere with our choice of representative for $\alpha_1$. This is by far the hardest part of this approach.
+
+The layout of the paper is as follows. To write down the group law of a group extension of a group $G$ by a $G$-module $A$ requires being able to easily carry around $2$-cocycles in $Z^2(G,A)$. As such, \autoref{sec:crackpot} is interested in studying how one can, in general, encode cocycles. This section is rather pure homological algebra and is largely of separate interest.
+
+The rest of the paper is interested in abelian groups $G$. In \autoref{sec:general}, we describe a natural way to give a group extension of $G$ by a $G$-module $A$ a group law and use this to provide a classification of group extensions. In \autoref{sec:tuplestudy}, we recast this theory in the abstract more machinery established in \autoref{sec:crackpot}.
+
+Having established enough algebra, we turn to executing the above computation. In \autoref{sec:local}, we use the framework provided by \autoref{sec:general} to write down local fundamental classes of abelian extensions. Lastly, \autoref{sec:global} finishes the computation by gluing the local fundamental classes together appropriately to represent $\alpha_2(\QQ(\zeta_p)/\QQ)$ and so also $\alpha_3(\QQ(\zeta_p)/\QQ)$, in our toy case.

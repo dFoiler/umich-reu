@@ -73,3 +73,5 @@ circulant
 duals
 injectivity
 Whiskering
+Teichmüller
+adelés

@@ -1,0 +1,184 @@
+% !TEX root = ../abeliangerbs.tex
+
+In this section, we familiarize ourselves with various tools used throughout the paper.
+
+\subsection{Group Cohomology}
+Fix $G$ to be a group. There is a unique sequence of functors $H^i(G,-)\colon\mathrm{Mod}_G\to\mathrm{Ab}$ for $i\in\NN$ satisfying the following set of properties.
+\begin{itemize}
+	\item $H^0(G,-)=\op{Hom}_{\ZZ[G]}(\ZZ,-)=(-)^G$.
+	\item $H^i(G,I)=0$ for all $i>1$ and injective modules $I$.
+	\item There is a functor taking short exact sequences
+	\[0\to A\to B\to C\to 0\]
+	of $G$-modules to long exact sequences
+	\[0\to H^0(G,A)\to H^0(G,B)\to H^0(G,C)\to H^1(G,A)\to H^1(G,B)\to H^1(G,C)\to H^2(G,A)\to\cdots.\]
+\end{itemize}
+The functors $H^i(G,-)$ are the cohomology functors. Analogously, there is a unique sequence of functors $H_i(G,-)\colon\mathrm{Mod}_G\to\mathrm{Ab}$ for $i\in\NN$ satisfying the following set of properties.
+\begin{itemize}
+	\item $H_0(G,-)=\ZZ\otimes_{\ZZ[G]}-$.
+	\item $H_i(G,P)=0$ for all $i>1$ and projective modules $P$.
+	\item There is a functor taking short exact sequences
+	\[0\to A\to B\to C\to 0\]
+	of $G$-modules to long exact sequences
+	\[\cdots\to H_2(G,C)\to H_1(G,A)\to H_1(G,B)\to H_1(G,C)\to H_0(G,A)\to H_0(G,B)\to H_0(G,C)\to0.\]
+\end{itemize}
+It turns out that we can tie these together by defining Tate cohomology: \todo{Finish?}
+% state tate cohomology
+% cup products
+% a little on change of group
+% explicit cocycles
+% give shapiro's lemma
+% induced modules?
+
+\subsection{Group Extensions}
+We continue with $G$ as a group and $A$ as a $G$-module. We have the following definition.
+\begin{definition}
+	Let $G$ be a group and $A$ a $G$-module. A \textit{group extension $\mc E$ of $G$ by $A$} is a short exact sequence
+	\[0\to A\stackrel\iota\to\mc E\stackrel\pi\to G\to0\]
+	such that any $a\in A$ and $w\in\mc E$ have
+	\[\pi(w)\cdot\iota(a)=\iota\left(waw^{-1}\right).\]
+\end{definition}
+For example, Galois gerbs are group extensions.
+
+An isomorphism of group extensions $\mc E_1\to\mc E_2$ is a morphism of the corresponding short exact sequences, as follows.
+% https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIkEiXSxbMiwwLCJcXG1jIEVfMSJdLFszLDAsIkciXSxbNCwwLCIwIl0sWzAsMSwiMCJdLFsxLDEsIkEiXSxbMiwxLCJcXG1jIEVfMiJdLFszLDEsIkciXSxbNCwxLCIwIl0sWzAsMV0sWzEsMl0sWzIsM10sWzMsNF0sWzUsNl0sWzYsN10sWzcsOF0sWzgsOV0sWzIsN10sWzEsNiwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMyw4LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+\[\begin{tikzcd}
+	0 & A & {\mc E_1} & G & 0 \\
+	0 & A & {\mc E_2} & G & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+	\arrow[from=1-3, to=2-3]
+	\arrow[Rightarrow, no head, from=1-2, to=2-2]
+	\arrow[Rightarrow, no head, from=1-4, to=2-4]
+\end{tikzcd}\]
+By the Five lemma, all such morphisms must be isomorphisms of short exact sequences, which justify why these are isomorphisms of group extensions.
+
+We have the following classification result.
+\begin{theorem}[{\cite[Theorem~IV.3.12]{brown-cohomology}}] \label{thm:classifyextensionscohom}
+	Let $G$ be a group and $A$ a $G$-module. Then isomorphism classes of group extensions $\mc E$ of $G$ by $A$ are in bijection with cohomology classes in $H^2(G,A)$.
+\end{theorem}
+\begin{proof}[Sketch]
+	We will describe the maps from $2$-cocycles to group extensions and vice versa; that the maps are well-defined and provided the needed isomorphism are a matter of computation. In one direction, fix a group extension
+	\[0\to A\stackrel\iota\to\mc E\stackrel\pi\to G\to0.\]
+	Now, choose a set-theoretic lift $s\colon G\to\mc E$ of $\pi$, and it turns out that the function $c\colon G^2\to A$ given by
+	\[c(g,h)\coloneqq s(g)s(h)s(gh)^{-1}\]
+	defines a $2$-cocycle $c\in Z^2(G,A)$.
+
+	In the other direction, fix a $2$-cocycle $c\in Z^2(G,A)$. Then we build the extension
+	\[0\to A\stackrel\iota\to \mc E_c\stackrel\pi\to G\to 0\]
+	as follows. As a set, $\mc E_c=A\times G$, with group law defined by
+	\[(a,g)(a',g')\coloneqq\big(a+g\cdot a'+c(g,g'),gg'\big).\]
+	The identity is $(-c(1,1),1)$. To finish, we define $\pi\colon\mc E_c\to G$ by projection and $\iota\colon A\to\mc E_c$ by $a\mapsto(a-c(1,1),1)$.
+\end{proof}
+The isomorphism of \autoref{thm:classifyextensionscohom} also behaves well with the functoriality of our cohomology groups. For example, a group homomorphism $\varphi\colon G\to H$ and $G$-module $A$ induces a map $H^2(H,A)\to H^2(G,A)$. On the side of group extensions, given a class $u\in H^2(H,A)$ corresponding to the group extension $\mc E$, we can construct $\mc E'$ corresponding to $\varphi(u)$ by pulling back as follows.
+% https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIkEiXSxbMiwwLCJcXG1jIEUiXSxbMSwxLCJBIl0sWzAsMSwiMCJdLFsyLDEsIlxcbWMgRSciXSxbMywwLCJIIl0sWzMsMSwiRyJdLFs0LDAsIjAiXSxbNCwxLCIwIl0sWzcsNiwiXFx2YXJwaGkiLDJdLFsxLDMsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzUsMiwiIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsMV0sWzEsMl0sWzIsNl0sWzYsOF0sWzQsM10sWzMsNV0sWzUsN10sWzcsOV0sWzUsNiwiIiwyLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+\[\begin{tikzcd}
+	0 & A & {\mc E} & H & 0 \\
+	0 & A & {\mc E'} & G & 0
+	\arrow["\varphi"', from=2-4, to=1-4]
+	\arrow[Rightarrow, no head, from=1-2, to=2-2]
+	\arrow[dashed, from=2-3, to=1-3]
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=90}, draw=none, from=2-3, to=1-4]
+\end{tikzcd}\]
+Similarly, a $G$-module homomorphism $f\colon A\to B$ induces a map $H^2(G,A)\to H^2(G,B)$. On the side of group extensions, given a class $u\in H^2(G,A)$ corresponding to the group extension $\mc E$, we can construct $\mc E'$ corresponding to $f(u)$ by pushing out as follows.
+% https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIkEiXSxbMiwwLCJcXG1jIEUiXSxbMywwLCJHIl0sWzQsMCwiMCJdLFszLDEsIkciXSxbNCwxLCIwIl0sWzAsMSwiMCJdLFsxLDEsIkIiXSxbMiwxLCJcXG1jIEUnIl0sWzAsMV0sWzEsOF0sWzEsMl0sWzgsOV0sWzIsOSwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzksMSwiIiwxLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV0sWzcsOF0sWzIsM10sWzksNV0sWzUsNl0sWzMsNF0sWzMsNSwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+\[\begin{tikzcd}
+	0 & A & {\mc E} & G & 0 \\
+	0 & B & {\mc E'} & G & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=2-2, to=2-3]
+	\arrow[dashed, from=1-3, to=2-3]
+	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-3, to=1-2]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+	\arrow[from=1-4, to=1-5]
+	\arrow[Rightarrow, no head, from=1-4, to=2-4]
+\end{tikzcd}\]
+
+\subsection{Class Field Theory}
+For our purposes, class field theory will be used to be able to describe certain cohomology groups associated to local and global fields.
+
+\subsubsection{Local Class Field Theory}
+We begin with the local story. Let $L/K$ be a finite Galois extension of  degree $n$ and Galois group $G\coloneqq\op{Gal}(L/K)$. Because we are interested in extensions, we begin with what $H^2\left(G,L^\times\right)$ looks like.
+\begin{theorem}[{\cite[Lemma~III.2.2]{milne-cft}}]
+	Let $L/K$ be a Galois extension of local fields of degree $n$ and Galois group $G\coloneqq\op{Gal}(L/K)$. Then there is a canonical isomorphism
+	\[\op{inv}\colon H^2\left(G,L^\times\right)\to{\textstyle\frac1n}\ZZ/\ZZ.\]
+\end{theorem}
+The element of $H^2(G,L^\times)$ corresponding to $\frac1n$ deserves a name.
+\begin{definition}
+	Let $L/K$ be a Galois extension of local fields of degree $n$ and Galois group $G\coloneqq\op{Gal}(L/K)$. Then the \textit{local fundamental class} $u_{L/K}$ is the class in $H^2\left(G,L^\times\right)$ with
+	\[\op{inv}u_{L/K}=1/n.\]
+\end{definition}
+The local fundamental class satisfies a number of good functoriality properties.
+\begin{proposition}[{\cite[Lemma~III.2.7]{milne-cft}}] \label{prop:functorialfundclass}
+	Let $M/L/K$ be a tower of finite local field extensions where $M/K$ is Galois. Then
+	\[\op{Res}u_{M/K}=u_{M/L}.\]
+	If $L/K$ is also Galois, then
+	\[\op{Inf}u_{L/K}=[M:L]u_{M/K}.\]
+\end{proposition}
+With the machinery in place, we might as well mention the local Artin reciprocity map.
+\begin{theorem}[{\cite[Theorem~III.3.1]{milne-cft}}]
+	Let $L/K$ be a finite Galois extension of local fields with Galois group $G$. Then the map
+	\[(u_{L/K}\cup-)\colon\widehat H^i(G,\ZZ)\to\widehat H^{i+2}\left(G,L^\times\right)\]
+	is an isomorphism for all $i\in\ZZ$.
+\end{theorem}
+\begin{remark}
+	More generally, if $T$ is an algebraic $K$-torus which splits over $L$, then the map
+	\[(u_{L/K}\cup-)\colon\widehat H^i(G,X_*(T))\to\widehat H^{i+2}\left(G,L^\times\right)\]
+	is an isomorphism for all $i\in\ZZ$; see \cite[Theorem~6.2]{alg-tori}.
+\end{remark}
+
+\subsubsection{Global Class Field Theory}
+We now turn to the global story. Given a global field $K$, we let $V_K$ denote its set of places.
+
+Let $L/K$ be a finite Galois extension of global fields of degree $n$ and Galois group $G\coloneqq\op{Gal}(L/K)$. To be able to make class field theory, we need to fix the correct objects.
+\begin{definition}
+	Given a global field $K$, we define the \textit{ring of adel\'es} to be the restricted direct product
+	\[\AA_K\coloneqq\prod_{v\in V_K}(K_v,\mathcal O_v).\]
+	Namely, we are considering infinite tuples $(a_v)_{v\in V_K}$, where $a_v\in K_v$ for each $v\in V_K$ but $v\in\mathcal O_v$ for all but finitely many $v\in V_K$.
+\end{definition}
+Observe that there is a natural embedding $K\into\AA_K$ by
+\[a\mapsto(a)_{v\in V_K}.\]
+This embedding descends to an embedding $K^\times\into\AA_K^\times/K^\times$, which lets us consider the quotient $\AA_K^\times/K^\times$.
+
+It turns out that $\AA_K^\times$ and $\AA_K^\times/K^\times$ are the right objects to study. For example, we have the following result.
+\begin{theorem}[{\cite[Proposition~2.5]{milne-cft}}] \label{thm:idelecohom}
+	Let $L/K$ be a finite Galois extension of global fields with Galois group $G\coloneqq\op{Gal}(L/K)$. Then the various restrictions define an isomorphism
+	\[\widehat H^i(G,\AA_L^\times)\simeq\bigoplus_{u\in V_K}\widehat H^i(G,L_v^\times),\]
+	for $i\ge0$, where the $v\in V_L$ is a chosen prime over each $u\in V_K$.
+\end{theorem}
+We also have a global invariant map.
+\begin{theorem}[{\cite[p.~194]{global-cft}}]
+	Let $L/K$ be a finite Galois extension of global fields of degree $n$ with Galois group $G\coloneqq\op{Gal}(L/K)$. Then there is a canonical map
+	\[\op{inv}=\sum_{v\in V_L}\op{inv}_v\colon H^2(G,\AA_L^\times)\to\QQ/\ZZ\]
+	induced by the local invariant maps and \autoref{thm:idelecohom}. This map induces an isomorphism
+	\[\op{inv}\colon H^2(G,\AA_L^\times/L^\times)\to{\textstyle\frac1n}\ZZ/\ZZ.\]
+\end{theorem}
+As before, the canonical generator we chose will be of special interest.
+\begin{definition}
+	Let $L/K$ be a Galois extension of global fields of degree $n$ with Galois group $G$. Then the \textit{global fundamental class} $u_{L/K}$ is the class in $H^2\left(G,\AA_L^\times/L^\times\right)$ with
+	\[\op{inv}u_{L/K}=1/n.\]
+\end{definition}
+And, for fun, here is our global Artin reciprocity map.
+\begin{theorem}[{\cite[p.~197]{global-cft}}]
+	Let $L/K$ be a Galois extension of global fields of degree $n$ with Galois group $G$. Then the map
+	\[(u_{L/K}\cup-)\colon\widehat H^i(G,\ZZ)\to\widehat H^{i+2}\left(G,\AA_L^\times/L^\times\right)\]
+	is an isomorphism for all $i\in\ZZ$.
+\end{theorem}

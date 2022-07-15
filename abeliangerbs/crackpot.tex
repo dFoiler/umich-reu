@@ -43,9 +43,9 @@ It will turn out that the index $i\in\ZZ$ is more or less irrelevant. Indeed, we
 		for any $i\in\ZZ$.
 		\item There are $x\in\widehat H^r(G,X)$ and $x^\lor\in\widehat H^{-r}(G,\op{Hom}_\ZZ(X,\ZZ))$ such that
 		\[x\cup x^\lor=[1]\in\widehat H^0(G,\ZZ)\qquad\text{and}\qquad x^\lor\cup x=[{\id_X}]\in\widehat H^0(G,\op{Hom}_\ZZ(X,X)).\]
-		\item We can find $x\in\widehat H^r(G,X)$ yielding natural isomorphisms
-		\[(-\cup x)\colon\widehat H^i(G,-)\Rightarrow\widehat H^{i+r}(G,-\otimes_\ZZ X)\]
-		for all $i\in\ZZ$.
+		% \item We can find $x\in\widehat H^r(G,X)$ yielding natural isomorphisms
+		% \[(-\cup x)\colon\widehat H^i(G,-)\Rightarrow\widehat H^{i+r}(G,-\otimes_\ZZ X)\]
+		% for all $i\in\ZZ$.
 	\end{enumerate}
 	If $X$ is also $\ZZ$-free, these are equivalent to
 	\begin{enumerate}[label=(\alph*),resume]
@@ -53,7 +53,9 @@ It will turn out that the index $i\in\ZZ$ is more or less irrelevant. Indeed, we
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
-	The equivalence of (a) and (b) follow from combining \autoref{prop:encodingmodules} with \autoref{ex:igisencoding} and \autoref{ex:allencoderesexist}. The equivalence of (c) follows from \autoref{prop:encodingsarecups}. Continuing, the equivalence of (d) follows from \autoref{prop:intdualelement}. The equivalence of (e) follows from \autoref{thm:tensorencode} and the discussion in \autoref{rem:bighandwave}. Lastly, the equivalence of (f) follows from \autoref{prop:finitecohomcheck}.
+	The equivalence of (a) and (b) follow from combining \autoref{prop:encodingmodules} with \autoref{ex:igisencoding} and \autoref{ex:allencoderesexist}. The equivalence of (c) follows from \autoref{prop:encodingsarecups}. Continuing, the equivalence of (d) follows from \autoref{prop:intdualelement}.
+	% The equivalence of (e) follows from \autoref{thm:tensorencode} and the discussion in \autoref{rem:bighandwave}.
+	Lastly, the equivalence of (e) follows from \autoref{prop:finitecohomcheck}.
 \end{proof}
 
 % Throughout this section, $G$ will be a finite group. To motivate where we are going, we will go ahead and say that a $p$-encoding $G$-module $X$ is a $G$-module equipped with a natural isomorphism
@@ -1489,13 +1491,13 @@ It turns out that we can also encode ``on the other side,'' in the following sen
 	The above checks complete the proof.
 \end{proof}
 \begin{remark} \label{rem:bighandwave}
-	One could rebuild the theory we have in the previous sections, in particular showing that all natural isomorphisms of the form
+	It is conceivable that one could rebuild the theory we have in the previous sections, in particular showing that all natural isomorphisms of the form
 	\[\widehat H^i(G,-\otimes_\ZZ A)\Rightarrow\widehat H^{i+r}(G,-\otimes_\ZZ B)\]
-	are cup products from an element of $\widehat H^r(G,\op{Hom}_\ZZ(A,B))$. Thus, for some $G$-module $X$, natural isomorphisms
+	are cup products from an element of $\widehat H^r(G,\op{Hom}_\ZZ(A,B))$. Then, for some $G$-module $X$, natural isomorphisms
 	\[\widehat H^i(G,-)\Rightarrow\widehat H^{i+r}(G,-\otimes_\ZZ X)\]
 	promise $x\in\widehat H^r(G,X)$ (from using $A=\ZZ$ and $B=X$ with $i=0$) and $x^\lor\in\widehat H^{-r}(G,\op{Hom}_\ZZ(X,\ZZ))$ (from using $A=X$ and $B=\ZZ$ with $i=-r$) which we can evaluate to have
 	\[x\cup x^\lor=[1]\in\widehat H^0(G,\ZZ)\qquad\text{and}\qquad x^\lor\cup x=[{\id_X}]\in\widehat H^0(G,\op{Hom}_\ZZ(X,X)).\]
-	Namely, $X$ is an $r$-encoding module!
+	Namely, $X$ would then be an $r$-encoding module!
 \end{remark}
 \begin{cor}
 	Let $G$ be a finite group, and let $X$ be an $r$-encoding module with encoding element $x\in\widehat H^r(G,X)$. Then the cup products

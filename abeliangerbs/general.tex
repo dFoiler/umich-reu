@@ -5,7 +5,7 @@ Having established some background of what we expect from our encoding modules, 
 Much of the theory in this section will be similar to that built in \cite{abelian-crossed} and \cite{cohom-abelian-crossed}. In particular, providing a group law for the extensions built from our $G$-module $A$ is essentially the same problem as being able to write down a group law for abelian crossed products. Regardless, we will build the theory from the ground.
 
 \subsection{Motivating Results} \label{sec:singlevar}
-Throughout this section, $ G$ will be a finite group and $A$ will be a $ G$-module; we will write the group operation of $A$ and the group action of $ G$ on $A$ multiplicatively. To sketch the idea here, begin with an extension
+Throughout this section, $ G$ will be a finite group and $A$ will be a $ G$-module; we will write the group operation of $A$ and the group action of $ G$ on $A$ both multiplicatively.\footnote{We denote the group law on $A$ multiplicatively for two reasons: a key example will be $A=L^\times$ where $L$ is some local field, and we do not want to denote the group law of an extension $\mc E$ of $G$ by $A$ additively because $\mc E$ need not be abelian.} To sketch the idea here, begin with an extension
 \[1\to A\to\mc E\stackrel\pi\to G\to1.\]
 We know that we can abstractly represent $\mc E$ as the set $A\times G$ with some group law dictated by a $2$-cocycle in $Z^2(G,A)$, so we expect that $\mc E$ can be presented by $A$ and a choice of lifts from $ G$, with some specially chosen relations.
 
@@ -13,7 +13,7 @@ Here are some basic observations realizing this idea. We start by lifting a sing
 \begin{lemma} \label{lem:constructalpha}
 	Let $A$ be a $ G$-module, and let 
 	\[1\to A\to\mc E\stackrel\pi\to G\to1\]
-	denote a group extension. Further, fix some $\sigma\in G$ of order $n_\sigma$, and find $F\in\mc E$ such that $\sigma\coloneqq\pi(F)$. Then
+	denote a group extension. Further, fix some $\sigma\in G$ of order $n_\sigma$, and find $F\in\mc E$ such that $\sigma=\pi(F)$. Then
 	\[\alpha\coloneqq F^{n_\sigma}\]
 	has $\alpha\in A^{\langle\sigma\rangle}$.
 \end{lemma}
@@ -29,7 +29,7 @@ We can make the above proof more explicit by specifying the group law of $\mc E$
 	Let $A$ be a $ G$-module. Picking up some $2$-cocycle $c\in Z^2( G,A)$, let
 	\[1\to A\to\mc E_c\stackrel\pi\to G\to1\]
 	be the corresponding extension. Fixing $\sigma\in G$ of order $n_\sigma$, let $F\coloneqq(m,\sigma)\in\mc E_c$ be a lift. Supposing $c(1,\sigma)=1$, then
-	\[\alpha\coloneqq F^{n_\sigma}=N_\sigma(m)\prod_{i=0}^{n_\sigma-1}c\left(\sigma^i,\sigma\right),\]
+	\[F^{n_\sigma}=N_\sigma(m)\prod_{i=0}^{n_\sigma-1}c\left(\sigma^i,\sigma\right),\]
 	where $N_\sigma\coloneqq\sum_{i=0}^{n_\sigma-1}\sigma^i$.
 \end{lemma}
 \begin{proof}
@@ -38,7 +38,7 @@ We can make the above proof more explicit by specifying the group law of $\mc E$
 	for $k\in\NN$. Indeed, there is nothing to say for $k=0$, and the inductive step merely expands out $F^k\cdot F$.
 
 	It follows that
-	\[\alpha=F^{n_\sigma}=\left(\prod_{i=0}^{n_\sigma-1}\sigma^i(m)\cdot\prod_{i=0}^{n_\sigma-1}c\left(\sigma^i,\sigma\right),1\right),\]
+	\[F^{n_\sigma}=\left(\prod_{i=0}^{n_\sigma-1}\sigma^i(m)\cdot\prod_{i=0}^{n_\sigma-1}c\left(\sigma^i,\sigma\right),1\right),\]
 	which is what we wanted.
 \end{proof}
 Having this explicit formula lets us say how $\alpha$ changes as we vary the lift.
@@ -47,7 +47,7 @@ Having this explicit formula lets us say how $\alpha$ changes as we vary the lif
 	\[1\to A\to\mc E\stackrel\pi\to G\to1\]
 	be a group extension whose isomorphism class corresponds to $u$. Further, fix some $\sigma\in G$ of order $n_\sigma$, and let $A_\sigma\coloneqq A^{\langle\sigma\rangle}$ be the fixed submodule. Then the set
 	\[S_{\mc E,\sigma}\coloneqq\left\{F^{n_\sigma}:\pi(F)=\sigma\right\}\]
-	is an equivalence class in $A_\sigma/N_\sigma(A)$, independent of the choice of $\mc E$, where $N_\sigma\coloneqq\sum_{i=1}^{n_\sigma-1}\sigma^i$.
+	is an equivalence class in $A_\sigma/N_\sigma(A)$, independent of the choice of $\mc E$; here, $N_\sigma\coloneqq\sum_{i=1}^{n_\sigma-1}\sigma^i$.
 \end{prop}
 \begin{proof}
 	Note that $S_{\mc E,\sigma}\subseteq A_\sigma$ already from \autoref{lem:constructalpha}.
@@ -84,7 +84,7 @@ The fact that we are taking elements of $ G$ to equivalence classes in $A_\sigma
 \begin{proof}
 	Note that $S_\sigma\in A_\sigma/N_\sigma(A)=\widehat H^0(\langle\sigma\rangle,A)$, so the conclusion at least makes sense.
 	
-	Now, using notation as in the proof of \autoref{prop:findallalpha}, we recall that $S_\sigma=S_{\mc E_c,\sigma}$, so it suffices to prove the result for $\mc E_c$. Well, by \autoref{lem:explicitalpha}, $S_\sigma$ is represented by
+	Now, using notation as in the proof of \autoref{prop:findallalpha}, we recall that $S_\sigma=S_{\mc E_c,\sigma}$, so it suffices to prove the result for $\mc E_c$. Well, by \autoref{lem:explicitalpha}, $S_\sigma\in A_\sigma/N_\sigma(A)$ is represented by
 	\[\prod_{i=0}^{n_\sigma-1}c\left(\sigma^i,\sigma\right),\]
 	which is exactly the cup product $[\sigma]\cup[c]$.
 \end{proof}
@@ -97,18 +97,18 @@ The fact that we are taking elements of $ G$ to equivalence classes in $A_\sigma
 \begin{proof}
 	Recalling $\theta_{L/L_\sigma}^{-1}$ is a cup product map, note that $\theta_{L/L_\sigma}^{-1}(\sigma)$ is given by $[\sigma]\cup u_{L/K}$. So we are done by \autoref{cor:alphaiscupproduct}.
 \end{proof}
-The above results are all interested in lifting single elements of $ G$ and studying how they behave on their own. In the discussion that follows, we will need to study how the lifts interact with each other, but for now, we will justify why lifts are adequate to study as follows.
+The above results are all interested in lifting single elements of $ G$ and studying how they behave on their own. In the discussion that follows, we will need to study how the lifts interact with each other, but for now, we will justify why lifts are adequate to study at all.
 \begin{proposition} \label{prop:liftsgenerate}
 	Let $A$ be a $ G$-module. Further, let
 	\[1\to A\to\mc E\stackrel\pi\to G\to1\]
-	be a group extension. Given elements $\Sigma$ which generate $ G$, then $\mc E$ is generated by $A$ and a set of lifts $\{F_\sigma\}_{\sigma\in\Sigma}$ with $\pi(F_\sigma)=\sigma$ for each $\sigma\in\Sigma$.
+	be a group extension. Given elements $\Sigma\subseteq G$ which generate $ G$, then $\mc E$ is generated by $A$ and a set of lifts $\{F_\sigma\}_{\sigma\in\Sigma}$ with $\pi(F_\sigma)=\sigma$ for each $\sigma\in\Sigma$.
 \end{proposition}
 \begin{proof}
 	Fix some element $w\in\mc E$, which we need to exhibit as a product of elements in $A$ and $F_\sigma$s. Well, because the $\sigma\in\Sigma$ generate $ G$, we know that $\pi(w)\in G$ can be written as
 	\[\pi(w)=\prod_{\sigma\in\Sigma}^m\sigma^{a_\sigma}\]
 	for some sequence of integers $\{a_\sigma\}_{\sigma\in\Sigma}\in\NN^{\oplus\Sigma}$. It follows that
 	\[\pi\left(\frac w{\prod_{\sigma\in\Sigma}F_\sigma^{a_\sigma}}\right)=1,\]
-	so $w/\prod_{\sigma\in\Sigma}F_\sigma^{a_\sigma}=\ker\pi=A$. Thus, we can find some $a\in A$ such that
+	so $w/\prod_{\sigma\in\Sigma}F_\sigma^{a_\sigma}\in\ker\pi=A$. Thus, we set $a\in A$ to be the quotient $w/\prod_{\sigma\in\Sigma}F_\sigma^{a_\sigma}$ so that
 	\[w=a\cdot\prod_{\sigma\in\Sigma}F_\sigma^{a_\sigma},\]
 	which is what we wanted.
 \end{proof}

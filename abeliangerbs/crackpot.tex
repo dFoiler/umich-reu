@@ -10,7 +10,7 @@ for any $G$-module $M$. In fact, it is not too hard to write down $\chi$ as bein
 \[\left(\sigma^i,\sigma^j\right)\mapsto\floor{\frac{i+j}n},\]
 so \autoref{eq:motivatingcycliccohom} is telling us that we can represent each cohomology class of $\widehat H^2(G,M)$ by a $2$-cocycle of the form
 \[\left(\sigma^i,\sigma^j\right)\mapsto\floor{\frac{i+j}n}\alpha\]
-for some $\alpha\in M^G$. This ``classification'' of $2$-cocycles in $\widehat H^2(G,M)$ is incredibly useful and makes cyclic groups very easy to work with computationally.
+for some $\alpha\in M^G$. This ``classification'' of $2$-cocycles in $\widehat H^2(G,M)$ is incredibly useful and makes the cohomology of cyclic groups very easy to work with computationally.
 
 From one perspective, this classification of $2$-cocycles for cyclic groups says that we can retrieve all $2$-cocycles by keeping track of the single element $\alpha\in M^G=H^0(G,M)$, modulo some equivalence relation coming from Tate cohomology. The algebraic way to choose a single element of $M^G$ is by elements in
 \[\op{Hom}_\ZZ\left(\ZZ,M^G\right)=\op{Hom}_{\ZZ[G]}(\ZZ,M).\]
@@ -33,7 +33,7 @@ The above discussion is intended to motivate the following definition.
 We will abbreviate the $G$ from ``$r$-encoding $G$-module'' whenever confusion is unlikely to arise.
 
 It will turn out that the index $i\in\ZZ$ is more or less irrelevant. Indeed, we will be able to show the following equivalences.
-\begin{theorem}
+\begin{theorem} \label{thm:crackpot}
 	Let $G$ be a finite group. Given a $G$-module $X$ and index $r\in\ZZ$, the following are equivalent.
 	\begin{enumerate}[label=(\alph*)]
 		\item $X$ is an $r$-encoding module.
@@ -64,12 +64,12 @@ It will turn out that the index $i\in\ZZ$ is more or less irrelevant. Indeed, we
 % \[\widehat H^0(G,\op{Hom}_\ZZ(X,A))=\frac{\op{Hom}_{\ZZ[G]}(X,A)}{N_G\op{Hom}_\ZZ(X,A)}.\]
 % If $X$ is finitely generated, we can write $X=\ZZ[G]^m/M$ for some $m\ge0$ and $G$-module $M$, so this object essentially picks out $m$ elements of $A$ and encodes some relations among them. In other words, an $m$-tuple of elements in $A$ (satisfying some special relations) is able to encode cohomology.
 
-When we may take $X=\ZZ$ (e.g., when $G$ is cyclic), we are essentially studying groups with periodic cohomology, so many results in this section will mimic these results. However, periodic cohomology requires somewhat stringent conditions on the group itself, and allowing this ``free parameter'' $X$ will permit general groups at the cost of a perhaps more complex $X$. For example, when $r\ge0$, we can take $X=I_G^{\otimes r}$ for any finite group $G$, though this $G$-module is quite rough to handle.
+When we may take $X=\ZZ$ (e.g., when $G$ is cyclic), we are essentially studying groups with periodic cohomology, so many results and arguments in this section will mimic those of \autoref{thm:periodiccohom}. However, periodic cohomology requires somewhat stringent conditions on the group itself, and allowing this ``free parameter'' $X$ will permit general groups at the cost of a perhaps more complex $X$. For example, when $r\ge0$, we can take $X=I_G^{\otimes r}$ for any finite group $G$ (as seen from \autoref{thm:crackpot}), though this $G$-module is quite rough to handle.
 
 In general, it can be an interesting question what specified abelian groups $X$ can be turned into encoding modules or dually what the encoding modules for a given group $G$ look like. Many of the results in this section are motivated by a desire to provide partial answers or intuition towards answers to these questions.
 
 \subsection{Shiftable Functors}
-The main point of this section is to set up some theory around what we call shiftable functors, whose main application will be in the proofs of \autoref{cor:cupup} and \autoref{cor:cupdown}.
+The main point of this subsection is to set up some theory around what we call shiftable functors, whose main application will be in the proofs of \autoref{cor:cupup} and \autoref{cor:cupdown}.
 \begin{definition}
 	Let $G$ be a finite group. Then a functor $F\colon\op{Mod}_G\to\op{Mod}_G$ is a \textit{shiftable functor} if and only if $F$ is both additive and sends induced modules to induced modules.
 \end{definition}
@@ -87,7 +87,7 @@ Here are our key examples of shiftable functors.
 \begin{proof}
 	We already know that $\op{Hom}_\ZZ(-,X)$ is additive, so the main check is that we send induced modules to induced modules. Well, without loss of generality, let $M\coloneqq\ZZ[G]\otimes_\ZZ A$ be our induced module. Then the tensor--hom adjunction gives
 	\[\op{Hom}_\ZZ(M,X)=\op{Hom}_\ZZ(\ZZ[G]\otimes_\ZZ A,X)\simeq\op{Hom}_\ZZ(\ZZ[G],\op{Hom}_\ZZ(A,X)),\]
-	which is also a $G$-module isomorphism. This finishes.
+	so we are done because the rightmost $G$-module is induced.
 \end{proof}
 \begin{lemma} \label{lem:hompreservesinduced}
 	Let $G$ be a finite group and $X$ a $G$-module. Then $\op{Hom}_\ZZ(X,-)$ is a shiftable functor.
@@ -164,8 +164,8 @@ The following will be our key example.
 In particular, cup products assemble into natural transformations.
 \begin{lemma} \label{lem:cuppingisnatural}
 	Let $G$ be a finite group, and let $(F,F',X,\eta)$ be a shifting pair. Then, given indices $r,s\in\ZZ$ and $c\in\widehat H^r(G,X)$, the cup-product maps
-	\[(c\cup-)\colon\widehat H^s(G,F-)\Rightarrow\widehat H^{r+s}(G,F'-)\]
-	make a natural transformation of cohomology functors.
+	\[(c\cup-)\colon\widehat H^s(G,F-)\Rightarrow\widehat H^{r+s}(G,F'-),\]
+	induced by $\eta$, make a natural transformation of cohomology functors.
 \end{lemma}
 \begin{proof}
 	Given a $G$-module $A$, we note that our cup-product map is defined by
@@ -183,7 +183,7 @@ In particular, cup products assemble into natural transformations.
 		\arrow["f"', from=1-1, to=2-1]
 		\arrow["{c\cup-}", from=2-1, to=2-2]
 	\end{tikzcd}\]
-	The left square commutes by functoriality of cup products (see \cite{bonn-lectures}, Proposition~I.5.3), and the right square commutes by the naturality of $\eta$ and functoriality of $\widehat H^{r+s}(G,-)$.
+	The left square commutes by functoriality of cup products \cite[Proposition~I.5.3]{bonn-lectures}, and the right square commutes by the naturality of $\eta$ and functoriality of $\widehat H^{r+s}(G,-)$.
 \end{proof}
 It will turn out occasionally that we have multiple evaluation maps flying around, so we pick up the following lemma for reassurance.
 \begin{lemma} \label{lem:cupassoc}
@@ -233,7 +233,7 @@ It will turn out occasionally that we have multiple evaluation maps flying aroun
 	\end{tikzcd}\]
 	Namely, $(a\cup b)\cup c$ corresponds to following the top and then right legs of the diagram, and $a\cup(b\cup c)$ corresponds to following the left and then bottom legs of the diagram.
 	
-	Thus, it suffices to show that the entire diagram square commutes. Well, $(1)$ commutes by associativity of the cup product, $(2)$ and $(3)$ commute by naturality of the cup product, and $(4)$ commutes by the hypothesized square and functoriality of $\widehat H^{r+s+t}(G,-)$. This finishes.
+	Thus, it suffices to show that the entire diagram square commutes. Well, $(1)$ commutes by associativity of the cup product, $(2)$ and $(3)$ commute by naturality of the cup product, and $(4)$ commutes by the hypothesized square and functoriality of $\widehat H^{r+s+t}(G,-)$.
 \end{proof}
 Let's start with a key result on shiftable functors, which gives a taste for why our hypotheses are so specially chosen.
 \begin{proposition} \label{prop:dimshiftcupisos}
@@ -274,13 +274,13 @@ Let's start with a key result on shiftable functors, which gives a taste for why
 		\arrow["{\eta_{\ZZ[G]}}"', from=2-3, to=3-3]
 		\arrow["{\eta_A}"', from=2-4, to=3-4]
 	\end{tikzcd}\]
-	where the bottom two rows commute by definition of $\eta$ and thus give a morphism of short exact sequences. These short exact sequences give us boundary morphisms
+	where the bottom two rows commute by naturality of $\eta$ and thus give a morphism of short exact sequences. These short exact sequences give us boundary morphisms
 	\[\arraycolsep=1.4pt\begin{array}{rccc}
 		\delta\colon& \widehat H^{r+j-1}(G,F'A) &\to& \widehat H^{r+j}(G,F'(I_G\otimes_\ZZ A)) \\
 		\delta_h\colon& \widehat H^{j-1}(G,FA) &\to& \widehat H^j(G,F(I_G\otimes_\ZZ A)) \\
 		\delta_t\colon& \widehat H^{r+j-1}(G,X\otimes_\ZZ FA) &\to& \widehat H^{r+j}(G,X\otimes_\ZZ F(I_G\otimes_\ZZ A)).
 	\end{array}\]
-	Notably, all these $\delta$ morphisms because their short exact sequences have induced middle terms: all of $F$ and $X\otimes_\ZZ F$ and $F'$ are shiftable functors.
+	Notably, all these $\delta$ morphisms are isomorphisms because their short exact sequences have induced middle terms: all of $F$ and $X\otimes_\ZZ F$ and $F'$ are shiftable functors.
 	
 	Now, the key to this dimension-shifting is claiming that the diagram
 	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF57ai0xfShHLFxcb3B7SG9tfV9cXFpaKFgsQSkpIl0sWzEsMCwiXFx3aWRlaGF0IEhee3Arai0xfShHLEEpIl0sWzAsMSwiXFx3aWRlaGF0IEhee2p9KEcsXFxvcHtIb219X1xcWlooWCxJX0dcXG90aW1lc19cXFpaIEEpKSJdLFsxLDEsIlxcd2lkZWhhdCBIXntwK2p9KEcsSV9HXFxvdGltZXNfXFxaWiBBKSJdLFswLDEsImNcXGN1cC0iXSxbMiwzLCJjXFxjdXAtIl0sWzAsMiwiXFxkZWx0YV9oIiwyXSxbMSwzLCJcXGRlbHRhIiwyXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
@@ -337,7 +337,7 @@ Let's start with a key result on shiftable functors, which gives a taste for why
 		\delta_h\colon& \widehat H^{j}(G,F(\op{Hom}_\ZZ(I_G,A))) &\to& \widehat H^{j+1}(G,FA) \\
 		\delta_t\colon& \widehat H^{r+j}(G,X\otimes_\ZZ F(\op{Hom}_\ZZ(I_G,A))) &\to& \widehat H^{r+j+1}(G,X\otimes_\ZZ FA).
 	\end{array}\]
-	We again note that all $\delta$ are isomorphisms because the middle terms of our short exact sequences are induced: all of $F$ and $X\otimes_\ZZ F$ and $F'$ are shiftable functors.
+	We again note that all of these are isomorphisms because the middle terms of our short exact sequences are induced: all of $F$ and $X\otimes_\ZZ F$ and $F'$ are shiftable functors.
 
 	Once more, the key to the dimension-shifting will be the claim that the diagram
 	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF57an0oRyxcXG9we0hvbX1fXFxaWihYLFxcb3B7SG9tfV9cXFpaKElfRyxBKSkpIl0sWzAsMSwiXFx3aWRlaGF0IEhee2orMX0oRyxcXG9we0hvbX1fXFxaWihYLEEpKSJdLFsxLDAsIlxcd2lkZWhhdCBIXntwK2p9KEcsXFxvcHtIb219X1xcWlooSV9HLEEpKSJdLFsxLDEsIlxcd2lkZWhhdCBIXntwK2orMX0oRyxBKSJdLFswLDEsIlxcZGVsdGFfaCIsMl0sWzIsMywiXFxkZWx0YSIsMl0sWzAsMiwiY1xcY3VwLSJdLFsxLDMsImNcXGN1cC0iXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
@@ -378,12 +378,12 @@ Here are some applications.
 	Now, in light of \autoref{prop:dimshiftcupisos}, we merely have to find $c\in\widehat H^1(G,I_G)$ and show that we have a natural isomorphism at $i=0$. Because we already have a natural transformation by \autoref{lem:cuppingisnatural}, we are only worried about making the component morphisms
 	\[\widehat H^0(G,\op{Hom}_\ZZ(X,A))\to\widehat H^1(G,\op{Hom}_\ZZ(X,I_G\otimes_\ZZ A))\]
 	isomorphisms for all $G$-modules $A$. Well, we note that we have the $\ZZ$-split short exact sequence
-	\[0\to\op{Hom}_\ZZ(X,I_G\otimes_\ZZ A)\to\op{Hom}_\ZZ(X,\ZZ[G]\otimes_\ZZ A)\to\op{Hom}_\ZZ(X,I_G\otimes_\ZZ A)\to0\]
+	\[0\to\op{Hom}_\ZZ(X,I_G\otimes_\ZZ A)\to\op{Hom}_\ZZ(X,\ZZ[G]\otimes_\ZZ A)\to\op{Hom}_\ZZ(X,A)\to0\]
 	which will induce a $\delta$ morphism between the correct modules. In fact, because $\op{Hom}_\ZZ(X,-)$ is a shiftable functor, the middle term here is induced, so the $\delta$ morphism
 	\[\delta\colon\widehat H^0(G,\op{Hom}_\ZZ(X,A))\to\widehat H^1(G,\op{Hom}_\ZZ(X,I_G\otimes_\ZZ A))\]
 	is an isomorphism.
 
-	To finish, we claim that this $\delta$ morphism arises as a cup product. We simply show this by hand by tracking through the $\delta$ morphism. Given $[f]\in\widehat H^0(G,\op{Hom}_\ZZ(X,A))$ where $f\colon X\to A$ is a $G$-module homomorphism, we can pull this back to the $0$-chain $\widetilde f\colon X\to\ZZ[G]\otimes_\ZZ A$ defined by
+	To finish, we claim that this $\delta$ morphism arises as a cup product. We simply show this by hand by tracking through the $\delta$ morphism. Given $[f]\in\widehat H^0(G,\op{Hom}_\ZZ(X,A))$ where $f\colon X\to A$ is a $G$-module homomorphism, we can pull this back to the $0$-cochain $\widetilde f\colon X\to\ZZ[G]\otimes_\ZZ A$ defined by
 	\[\widetilde f\colon x\mapsto 1\otimes f(x).\]
 	Applying the differential, we get the $1$-cocycle $d\widetilde f\in B^1(G,\op{Hom}_\ZZ(X,\ZZ[G]\otimes_\ZZ A))$ defined by
 	\begin{align*}
@@ -414,7 +414,7 @@ Here are some applications.
 	\[\delta\colon\widehat H^0(G,\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(I_G,A)))\to\widehat H^1(G,\op{Hom}_\ZZ(X,A)).\]
 	In fact, $\delta$ is an isomorphism because our middle term $\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(\ZZ[G],A))$ is induced.
 
-	We now show that $\delta$ is a cup product by hand. Pick up some $[f]\in\widehat H^0(G,\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(I_G,A)))$ where $f\colon X\to\op{Hom}_\ZZ(I_G,A)$ is a $G$-module homomorphism. This pulls back to the $0$-cochain
+	We now show that $\delta$ is a cup product by hand. Pick up some $[f]\in\widehat H^0(G,\op{Hom}_\ZZ(X,\op{Hom}_\ZZ(I_G,A)))$ where $f\colon X\to\op{Hom}_\ZZ(I_G,A)$ is a $G$-module homomorphism. This pulls back to $\widetilde f\in\widehat H^0(G,\op{Hom}_\ZZ(\op{Hom}_\ZZ(\ZZ[G],A)))$ defined by
 	\[\widetilde f\colon x\mapsto\big(z\mapsto f(x)(z-\varepsilon(z))\big).\]
 	Applying the differential, we compute
 	\begin{align*}
@@ -434,7 +434,7 @@ Here are some applications.
 \begin{remark}
 	Essentially the same proofs for \autoref{cor:cupup} and \autoref{cor:cupdown} will work when $\op{Hom}_\ZZ(X,-)$ is replaced by $X\otimes_\ZZ-$, or any composite of these. There isn't an analogue for arbitrary shiftable functors because, for example, there is no way obvious way to construct $\eta$ in general. Regardless, we will not need to work in these levels of generality.
 \end{remark}
-The point of \autoref{cor:cupup} and \autoref{cor:cupdown} is that have a somewhat general version of dimension-shifting granted by cup products. In fact, we see that we can use the same $c\in\widehat H^1(G,I_G)$ represented by $g\mapsto(g-1)$ for both shifting isomorphisms.
+The point of \autoref{cor:cupup} and \autoref{cor:cupdown} is that have a somewhat general version of dimension-shifting granted by cup products. In fact, the proofs show that we can use the same $c\in\widehat H^1(G,I_G)$ represented by $g\mapsto(g-1)$ for both shifting isomorphisms.
 
 \subsection{Shifting Natural Transformations}
 Observe that a natural transformation $F\Rightarrow F'$ of shiftable functors will induce natural transformations in cohomology
@@ -475,7 +475,7 @@ To begin, we show this result for $i=0$.
 	which will be enough by the commutativity of \autoref{eq:cohomologicalyoneda}. We have two similar cases to appropriately deal with the cup product.
 	\begin{itemize}
 		\item Suppose that $r\ge0$ so that we can interpret $x$ as an element of $\op{Hom}_{\ZZ[G]}\left(\ZZ[G^{r+1}],X\right)$, using the standard resolution. As such, we compute
-		\[(x\cup f)(g_0,\ldots,g_p) = x(g_0,\ldots,g_p) \otimes f(g_r),\]
+		\[(x\cup f)(g_0,\ldots,g_r) = x(g_0,\ldots,g_r) \otimes f(g_r),\]
 		where our output is in $\op{Hom}_\ZZ(X',X)\otimes_\ZZ\op{Hom}_\ZZ(X,A)$. Applying evaluation, the cup product is outputting
 		\[(g_0,\ldots,g_r)\mapsto\overline f\circ x(g_0,\ldots,g_r)\]
 		as our element of $\op{Hom}_{\ZZ[G]}(\ZZ[G^{r+1}],\op{Hom}_\ZZ(X',A))$. Indeed, this morphism represents $\overline f([x])$.
@@ -524,7 +524,7 @@ The case of $r=0$ will be particularly interesting to us, so we note that we hav
 	Now, pick up $[x]\in\widehat H^i(G,\op{Hom}_\ZZ(X,A))$. We have two cases.
 	\begin{itemize}
 		\item If $i\ge0$, we can interpret $x$ as an element of $\op{Hom}_{\ZZ[G]}\left(\ZZ[G]^{i+1},\op{Hom}_\ZZ(X,A)\right)$. Then our cup product is
-		\[(\widetilde\varphi\cup x)(g_0,\ldots,g_i)=\widetilde\varphi(x_0)\otimes x(g_0,\ldots,g_i),\]
+		\[(\widetilde\varphi\cup x)(g_0,\ldots,g_i)=\widetilde\varphi(g_0)\otimes x(g_0,\ldots,g_i),\]
 		which evaluates to
 		\[(g_0,\ldots,g_i)\mapsto x(g_0,\ldots,g_i)\circ\varphi,\]
 		which represents the desired class $(-\circ\varphi)([x])$.
@@ -755,8 +755,8 @@ We now get the main result by dimension-shifting.
 	\[f\colon I_G\otimes_\ZZ\op{Hom}_\ZZ(I_G,A)\to A.\]
 	We want the outer rectangle to commute, for which it suffices to show that each parallelogram and the small top and bottom triangles to commute.
 	\begin{itemize}
-		\item The left parallelogram commutes by definition of $\Phi_A^{(i)}$.
-		\item The right parallelogram commutes by naturality of $\Phi^{(i+1)}_\bullet$.
+		\item The left parallelogram commutes by definition of $\Phi_\bullet^{(i)}=(x\cup-)$.
+		\item The right parallelogram commutes by naturality of $\Phi^{(i+1)}_\bullet$ applied to $f$.
 		\item Showing that the bottom triangle commutes will be analogous to showing that the top triangle commutes, so we will only show the top. Unwinding \autoref{cor:cupup} and \autoref{cor:cupdown}, we see that this triangle is actually induced by the following diagram.
 		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHdpZGVoYXQgSF5pKEcsRihcXG9we0hvbX1fXFxaWihJX0csQSkpKSJdLFsxLDAsIlxcd2lkZWhhdCBIXmkoRyxJX0dcXG90aW1lc19cXFpaIEYoXFxvcHtIb219X1xcWlooSV9HLEEpKSkiXSxbMSwxLCJcXHdpZGVoYXQgSF5pKEcsRihJX0dcXG90aW1lc19cXFpaXFxvcHtIb219X1xcWlooSV9HLEEpKSkiXSxbMiwwLCJcXHdpZGVoYXQgSF5pKEcsRkEpIl0sWzAsMSwiY1xcY3VwLSJdLFsyLDMsImYiLDJdLFsxLDIsIlxcZXRhX2QiLDJdLFsxLDMsIlxcZXRhX3UiXV0=&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
 		\[\begin{tikzcd}
@@ -794,10 +794,10 @@ We now get the main result by dimension-shifting.
 
 	We will not give detail for the induction downwards from $i-1$ to $i$, except to say that we reverse the applications of \autoref{cor:cupup} and \autoref{cor:cupdown}. The rest of the approach essentially goes through verbatim, constructing $\Phi_\bullet^{(i)}$ from a given $\Phi_\bullet^{(i-1)}$, applying the inducting hypothesis to $\Phi_\bullet^{(i)}$, and then finishing by shifting back to $\Phi_\bullet^{(i-1)}$.
 \end{proof}
-\begin{remark}
+\begin{remark} \label{rem:shiftingthenatiso}
 	Essentially the same proof can show that, for any pair of shiftable functors $F,F'\colon\mathrm{Mod}_G\to\mathrm{Mod}_G$, a natural transformation (respectively, isomorphism)
-	\[\Phi_\bullet^{(i)}\colon\widehat H^i(G,F-)\Rightarrow\widehat H^i(G,F'-),\]
-	at $i=r$ induces natural transformations (respectively, isomorphisms) at all $i\in\ZZ$. Instead of using \autoref{cor:cupup} and \autoref{cor:cupdown}, we must instead dimension-shifting using the usual short exact sequences.
+	\[\Phi_\bullet^{(i)}\colon\widehat H^i(G,F-)\Rightarrow\widehat H^{i+r}(G,F'-),\]
+	at $i=s$ induces natural transformations (respectively, isomorphisms) at all $i\in\ZZ$. Instead of using \autoref{cor:cupup} and \autoref{cor:cupdown}, we must instead dimension-shifting using the usual short exact sequences.
 \end{remark}
 \begin{cor}
 	Let $G$ be a finite group, and let $X$ and $X'$ be $G$-modules. Then, given indices $s\in\ZZ$, any natural transformation
@@ -812,7 +812,7 @@ We now get the main result by dimension-shifting.
 It might be the case that ``many'' different shiftable functors give the same cohomology groups. Because we are mostly interested in the case of $\op{Hom}_\ZZ(X,-)$, we now have the tools to talk fairly concretely about what this means. We have the following definition.
 \begin{definition}
 	Let $G$ be a finite group. We say that two $G$-modules $X,X'$ are \textit{cohomologically equivalent} if and only if there exist morphisms $[\varphi]\in\widehat H^0(G,\op{Hom}_\ZZ(X',X))$ and $[\varphi']\in\widehat H^0(G,\op{Hom}_\ZZ(X,X'))$ such that
-	\[[\varphi\circ\varphi']=[\id_X]\in\widehat H^0(G,\op{Hom}_\ZZ(X,X))\qquad\text{and}\qquad[\varphi'\circ\varphi]=[\id_{X'}]\in\widehat H^0(G,\op{Hom}_\ZZ(X',X')).\]
+	\[[\varphi\circ\varphi']=[{\id_X}]\in\widehat H^0(G,\op{Hom}_\ZZ(X,X))\qquad\text{and}\qquad[\varphi'\circ\varphi]=[{\id_{X'}}]\in\widehat H^0(G,\op{Hom}_\ZZ(X',X')).\]
 \end{definition}
 \begin{example} \label{ex:inducediszero}
 	All induced modules $X$ are cohomologically equivalent to $0$. To see this, we set $\varphi\colon 0\to X$ and $\varphi'\colon X\to0$ equal to the zero maps (which are our only options). Then note that $\op{Hom}_\ZZ(X,X)$ is induced by \autoref{lem:hompreservesinduced} and $\op{Hom}_\ZZ(0,0)=0$, so
@@ -820,7 +820,7 @@ It might be the case that ``many'' different shiftable functors give the same co
 	making the checks on $\varphi$ and $\varphi'$ both trivial.
 \end{example}
 More concretely, $X$ and $X'$ are cohomologically equivalent if and only if we have two $G$-module morphisms $\varphi\colon X'\to X$ and $\varphi'\colon X\to X'$ and two $\ZZ$-module morphisms $f\colon X\to X$ and $f'\colon X'\to X'$ such that
-\[\varphi\circ\varphi'=\id_X+N_Gf\qquad\text{and}\qquad\varphi'\circ\varphi=\id_{X'}+N_Gf'.\]
+\[\varphi\circ\varphi'={\id_X}+N_Gf\qquad\text{and}\qquad\varphi'\circ\varphi={\id_{X'}}+N_Gf'.\]
 As a quick sanity check that this is a reasonable notion of equivalence of modules, we have the following.
 \begin{lemma} \label{lem:monoidequiv}
 	Let $G$ be a finite group. If the $G$-modules $X$ and $X'$ are equivalent and $Y$ and $Y'$ are equivalent, then $X\oplus Y$ is equivalent to $X'\oplus Y'$.
@@ -834,10 +834,14 @@ As a quick sanity check that this is a reasonable notion of equivalence of modul
 		\item $g\colon Y\to Y$ and $g'\colon Y'\to Y'$ (as morphisms of $\ZZ$-modules),
 	\end{itemize}
 	which are required to satisfy
-	\begin{align*}
-		\varphi\circ\varphi'={\id_X}+N_Gf\qquad&\text{and}\qquad\varphi'\circ\varphi={\id_{X'}}+N_Gf', \\
-		\psi\circ\psi'={\id_Y}+N_Gg\qquad&\text{and}\qquad\psi'\circ\psi={\id_{Y'}}+N_Gg'.
-	\end{align*}
+	\[\arraycolsep=1.4pt\begin{array}{cccccccccc}
+		\varphi\circ\varphi' &=& {\id_X}+N_Gf&\qquad&\text{and}&\qquad&\varphi'\circ\varphi&=&{\id_{X'}}+N_Gf', \\
+		\psi\circ\psi'&=&{\id_Y}+N_Gg&\qquad&\text{and}&\qquad&\psi'\circ\psi&=&{\id_{Y'}}+N_Gg'.
+	\end{array}\]
+	% \begin{align*}
+	% 	\varphi\circ\varphi'={\id_X}+N_Gf\qquad&\text{and}\qquad\varphi'\circ\varphi={\id_{X'}}+N_Gf', \\
+	% 	\psi\circ\psi'={\id_Y}+N_Gg\qquad&\text{and}\qquad\psi'\circ\psi={\id_{Y'}}+N_Gg'.
+	% \end{align*}
 	Summing everywhere, we get the $G$-module homomorphisms $\varphi\oplus\psi\colon X\oplus Y\to X'\oplus Y'$ and $\varphi'\oplus\psi'\colon X'\oplus Y'\to X\oplus Y$ satisfying
 	\begin{align*}
 		(\varphi\oplus\psi)\circ(\varphi'\oplus\psi') &= (\varphi\circ\varphi')\oplus(\psi\circ\psi') \\
@@ -854,10 +858,10 @@ We now show that this notion of equivalence correctly translates to shiftable fu
 \begin{proof}
 	In the forward direction, suppose $X$ and $X'$ are cohomologically equivalent so that we have $[\varphi]\in\widehat H^0(G,\op{Hom}_\ZZ(X',X))$ and $[\varphi']\in\widehat H^0(G,\op{Hom}_\ZZ(X,X'))$ such that
 	\[[\varphi]\cup[\varphi']=[\varphi\circ\varphi']=[\id_X]\qquad\text{and}\qquad[\varphi']\cup[\varphi]=[\varphi'\circ\varphi]=[\id_{X'}],\]
-	where we are using the canonical evaluation maps for the cup products. Now, we note that, for any $G$-module $A$, we have inverse morphisms
+	where we are using the canonical evaluation maps for the cup products (see \autoref{lem:cupiscomp}). Now, we note that, for any $G$-module $A$, we have inverse morphisms
 	\begin{equation}
 		\arraycolsep=1.4pt\begin{array}{ccc}
-			\widehat H^0(G,\op{Hom}_\ZZ(X,A)) &\simeq& \widehat H^0(G,\op{Hom}_\ZZ(X,A)) \\
+			\widehat H^0(G,\op{Hom}_\ZZ(X,A)) &\simeq& \widehat H^0(G,\op{Hom}_\ZZ(X',A)) \\
 			{[f]} &\mapsto& {[f\circ\varphi]} \\
 			{[f'\circ\varphi']} & \mapsfrom & {[f']}.
 		\end{array} \label{eq:makenaturaliso}
@@ -873,7 +877,7 @@ We now show that this notion of equivalence correctly translates to shiftable fu
 		&{[f'\circ\varphi']} & \mapsfrom & {[f']}
 	\end{array}\]
 	are mutually inverse. In particular, we see that
-	\[[\id_X]=[{\id_X}\circ\varphi\circ\varphi']=[\varphi\circ\varphi'],\]
+	\[[{\id_X}]=[{\id_X}\circ\varphi\circ\varphi']=[\varphi\circ\varphi'],\]
 	so $[\varphi\circ\varphi']=[\id_X]$. Swapping primed and unprimed variables, we see $[\varphi'\circ\varphi]=[\id_{X'}]$ as well.
 \end{proof}
 \begin{remark}
@@ -899,7 +903,7 @@ One use of this machinery is that we have pretty good tools to tell what is coho
 	\[\op{Hom}_\ZZ(\ZZ,\ZZ)\cong\ZZ\cong\op{Hom}_\ZZ(\ZZ i,\ZZ i)\]
 	as $G$-modules (!), but these modules are not cohomologically equivalent because
 	\[\widehat H^0(G,\op{Hom}_\ZZ(\ZZ,\ZZ))\cong\ZZ/2\ZZ\not\cong0\cong\widehat H^0(G,\op{Hom}_\ZZ(\ZZ,\ZZ i)).\]
-	Namely, $\op{Hom}_\ZZ(\ZZ,\ZZ i)=0$ as $G$-modules.
+	Namely, $\op{Hom}_{\ZZ[G]}(\ZZ,\ZZ i)\cong(\ZZ i)^G=0$.
 \end{ex}
 \begin{cor} \label{cor:additiontozero}
 	Let $G$ be a finite group, and let $A$ and $B$ be $G$-modules. Then, if $A\oplus B$ is cohomologically equivalent to $0$, then both $A$ and $B$ are cohomologically equivalent to $0$.
@@ -927,7 +931,7 @@ Here is a quick partial converse to \autoref{ex:projectiveiszero}.
 	\[0\to\op{Hom}_\ZZ(X,A)\to\op{Hom}_\ZZ(X,B)\to\op{Hom}_\ZZ(X,C)\to0\]
 	is also exact. Taking cohomology, we have the exact sequence
 	\[0\to\op{Hom}_{\ZZ[G]}(X,A)\to\op{Hom}_{\ZZ[G]}(X,B)\to\op{Hom}_{\ZZ[G]}(X,C)\to H^1(G,\op{Hom}_\ZZ(X,A)),\]
-	and $H^1(G,\op{Hom}_\ZZ(X,A))=0$ by \autoref{prop:cohomologicaldef}. So indeed, $\op{Hom}_{\ZZ[G]}(X,-)$ is exact.
+	but $H^1(G,\op{Hom}_\ZZ(X,A))=0$ by \autoref{prop:cohomologicaldef}. So indeed, $\op{Hom}_{\ZZ[G]}(X,-)$ is exact.
 \end{proof}
 \begin{remark}
 	Overall, it seems like an interesting question to pin down exactly which $G$-modules are cohomologically equivalent to $0$. It is possible to show that all such $X$ must be acyclic, but it seems currently out of reach to show that being acyclic is also sufficient.
@@ -974,7 +978,7 @@ One might hope that we can get more information by using indices away from $0$, 
 	\[\eta_\bullet\colon\op{Hom}_\ZZ(X',X)\otimes_\ZZ\op{Hom}_\ZZ(X,-)\to\op{Hom}_\ZZ(X',-).\]
 	Then we take $r=r$ and $s=0$ and $c=[\varphi]$ as above so that the cup-product natural transformation
 	\[([\varphi]\cup-)\colon\widehat H^i(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^i(G,\op{Hom}_\ZZ(X',-))\]
-	is simply induced by $(-\circ\varphi)$ for any $i\in\ZZ$ by \autoref{lem:cupiscomp}. So we are given that this is a natural isomorphism at $i=r$, so \autoref{prop:dimshiftcupisos} gives us this isomorphism at all $i\in\ZZ$, which proves (c).
+	is simply induced by $(-\circ\varphi)$ for any $i\in\ZZ$ by \autoref{lem:cupiscomp}. So we are given that $(-\circ\varphi)$ is a natural isomorphism at $i=r$, so \autoref{prop:dimshiftcupisos} gives us this isomorphism at all $i\in\ZZ$, which proves (c).
 	% Thus, (b) implies (c) is the interesting part. Observe that we already know from \autoref{lem:dimshiftnaturaltrans} that we have a natural isomorphism
 	% \[\Phi^{(0)}_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^0(G,\op{Hom}_\ZZ(X',-)).\]
 	% Now, applying \autoref{lem:naturaltransiscupping}, we see that this must be induced by some $\varphi\colon X'\to X$, so we know that we have a natural isomorphism
@@ -1047,14 +1051,14 @@ One might hope that we can get more information by using indices away from $0$, 
 \subsection{Encoding Modules}
 Lastly, we arrive at the application we care about: encoding cohomology. Cohomological equivalence is exactly what we need to talk about uniqueness.
 \begin{prop} \label{prop:encodingmodules}
-	Let $G$ be a finite group, and let $r,s\in\ZZ$ be indices. Then, if nonempty, the set of $G$-module $X$ with a natural isomorphism
+	Let $G$ be a finite group, and let $r,s\in\ZZ$ be indices. Then, if nonempty, the set of $G$-modules $X$ with a natural isomorphism
 	\[\Phi_\bullet\colon\widehat H^r(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{r+s}(G,-)\]
 	make up exactly one cohomological equivalence class.
 \end{prop}
 \begin{proof}
 	Fix some $G$-module $X$ with such a natural isomorphism
 	\[\Psi_\bullet\colon\widehat H^r(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{r+s}(G,-).\]
-	We would like to show that a $G$-module $X'$ has a natural isomorphism $\Phi_\bullet$ between the analogous functors if and only if $X$ and $X'$ are cohomologically equivalent.
+	We would like to show that $X'$ has a natural isomorphism $\Phi_\bullet\colon\widehat H^r(G,\op{Hom}_\ZZ(X',-))\Rightarrow\widehat H^{r+s}(G,-)$ if and only if $X$ and $X'$ are cohomologically equivalent.
 
 	% Noting that the cup product is natural in both arguments (see, for example, \autoref{}), we see that the combination of \autoref{thm:yesitisacocycle} and \autoref{prop:alternativetupleclass} tells us that we have a natural isomorphism
 	% \[\Psi_\bullet\colon\widehat H^0(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^2(G,-).\]
@@ -1183,12 +1187,12 @@ The element defined in \autoref{cor:betterencodingdef} is so special that we wil
 \begin{definition}
 	Let $G$ be a finite group and $X$ an $r$-encoding module. An element $x\in\widehat H^r(G,X)$ as constructed in \autoref{cor:betterencodingdef} is the \textit{encoding element}.
 \end{definition}
-It will turn out that encoding elements are unique, though they will be almost unique.
+It will turn out that encoding elements are not unique, though they will be almost unique.
 
 \subsection{Encoding Is Unique}
 Fix an $r$-encoding module $X$. As a brief intermission, we will show that there is essentially one way to do the encoding
 \[\widehat H^i(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{i+r}(G,-).\]
-Namely, we know from \autoref{prop:encodingsarecups}, that this natural isomorphism must come from a cup-product with an element $x\in\widehat H^r(G,X)$, so we might wonder how unique this element $x$ is. The answer to this, roughly speaking, will be that $\widehat H^r(G,X)$ is cyclic of order $\#G$ generated by $x$. In the process, we will be able to compute all the cohomology groups $\widehat H^i(G,X)$.
+Namely, we know from \autoref{prop:encodingsarecups}, that this natural isomorphism must come from a cup-product with an element $x\in\widehat H^r(G,X)$, so we might wonder how unique this element $x$ is. The answer to this, roughly speaking, will be that $\widehat H^r(G,X)$ is cyclic of order $\#G$ generated by $x$.
 
 Anyway, the main idea will be to use the following duality result.
 \begin{prop}[{\cite[Corollary~XII.6.5]{cartan-eilenberg}}] \label{prop:ceduality}
@@ -1242,21 +1246,21 @@ And here is our computation.
 \end{cor}
 \begin{proof}
 	For brevity, set $n\coloneqq\#G$. By \autoref{cor:betterencodingdef}, we have the isomorphism
-	\[x\cup-\colon\widehat H^{-p-1}(G,\op{Hom}_\ZZ(X,\QQ/\ZZ))\to\widehat H^{-1}(G,\QQ/\ZZ)=\textstyle\frac1n\ZZ/\ZZ.\]
-	In particular, $\widehat H^{-p-1}(G,\op{Hom}_\ZZ(X,\ZZ))\simeq\ZZ/n\ZZ$, generated by some element $x^\lor$ such that $x\cup x^\lor=[1/n]$.
+	\[(x\cup-)\colon\widehat H^{-r-1}(G,\op{Hom}_\ZZ(X,\QQ/\ZZ))\to\widehat H^{-1}(G,\QQ/\ZZ)=\textstyle\frac1n\ZZ/\ZZ.\]
+	In particular, $\widehat H^{-r-1}(G,\op{Hom}_\ZZ(X,\ZZ))\simeq\ZZ/n\ZZ$, generated by some element $x^*$ such that $x\cup x^*=[1/n]$.
 
 	Now, we apply \autoref{prop:ceduality} to say that the cup-product pairing induces an isomorphism
-	\[{\textstyle\frac1n\ZZ/n\ZZ}\simeq\widehat H^{-p-1}(G,\op{Hom}_\ZZ(X,\QQ/\ZZ))\to\op{Hom}_\ZZ\left(\widehat H^p(G,X),\widehat H^{-1}(G,\QQ/\ZZ)\right)\simeq\op{Hom}_\ZZ\left(\widehat H^p(G,X),\textstyle\frac1n\ZZ/\ZZ\right).\]
-	Because $\widehat H^p(G,X)$ is $n$-torsion, homomorphisms $\widehat H^2(G,X)\to\QQ/\ZZ$ must have image in $\frac1n\ZZ/\ZZ$, so in fact the rightmost group is the dual of $\widehat H^p(G,X)$. Because an abelian group is isomorphic to its dual, we see that $\widehat H^p(G,X)$ is in fact cyclic of order $n$.
+	\[{\textstyle\frac1n\ZZ/n\ZZ}\simeq\widehat H^{-r-1}(G,\op{Hom}_\ZZ(X,\QQ/\ZZ))\to\op{Hom}_\ZZ\left(\widehat H^r(G,X),\widehat H^{-1}(G,\QQ/\ZZ)\right)\simeq\op{Hom}_\ZZ\left(\widehat H^r(G,X),\textstyle\frac1n\ZZ/\ZZ\right).\]
+	Because $\widehat H^p(G,X)$ is $n$-torsion, homomorphisms $\widehat H^r(G,X)\to\QQ/\ZZ$ must have image in $\frac1n\ZZ/\ZZ$, so in fact the rightmost group is the dual of $\widehat H^r(G,X)$. Because an abelian group is isomorphic to its dual, we see that $\widehat H^r(G,X)$ is in fact cyclic of order $n$.
 
-	It remains to show that $x$ is a generator; for this, we show that $x$ has order at least $n$, which will be enough because $H^2(G,X)$ is cyclic of order $n$. Well, if we have $k\in\ZZ$ such that $kx=0$, then
-	\[[k/n]=k\big(x\cup x^\lor\big)=kx\cup x^\lor=[0]\cup x^\lor=[0]\]
+	It remains to show that $x$ is a generator; for this, we show that $x$ has order at least $n$, which will be enough because $H^r(G,X)$ is cyclic of order $n$. Well, if we have $k\in\ZZ$ such that $kx=0$, then
+	\[[k/n]=k\big(x\cup x^*\big)=kx\cup x^*=[0]\cup x^*=[0]\]
 	in $\widehat H^{-1}(G,\QQ/\ZZ)\simeq\frac1n\ZZ/\ZZ$, so $n\mid k$. This finishes.
 \end{proof}
 \begin{remark}
 	Conversely, if $x\in\widehat H^r(G,X)$ is any generator, then
 	\[(x\cup-)\colon\widehat H^i(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{i+r}(G,-)\]
-	is a natural isomorphism. Indeed, certainly some generator $x_0\in\widehat H^p(G,X)$ conjured from \autoref{cor:betterencodingdef} suffices, but then $x=kx_0$ for some $k\in(\ZZ/\#G\ZZ)^\times$, so we have the equality
+	is a natural isomorphism. Indeed, certainly some generator $x_0\in\widehat H^r(G,X)$ conjured from \autoref{cor:betterencodingdef} suffices, but then $x=kx_0$ for some $k\in(\ZZ/\#G\ZZ)^\times$, so we have the equality
 	\[(x\cup-)=\big((kx_0)\cup-\big)=k(x_0\cup-)\]
 	of natural transformations. But multiplication by $k$ is a natural isomorphism $\widehat H^\bullet(G,-)\Rightarrow\widehat H^\bullet(G,-)$ because these cohomology groups are $\#G$-torsion, so we conclude $(x\cup-)=k(x_0\cup-)$ is a natural isomorphism.
 \end{remark}
@@ -1281,7 +1285,7 @@ And here is our uniqueness result.
 \subsection{The Dual Element}
 In the theory of periodic cohomology (e.g., see \cite[Section~XII.11]{cartan-eilenberg}), it is helpful to phrase the theory in terms of having some elements $x\in\widehat H^r(G,\ZZ)$ and $y\in\widehat H^{-r}(G,\ZZ)$ such that
 \[x\cup y=[1]\in\widehat H^0(G,\ZZ).\]
-In contrast, given an $r$-encoding module $X$, we cannot hope to have $x\in\widehat H^r(G,X)$ and $y\in\widehat H^{-r}(G,X)$ with $x\cup y\in\widehat H^0(G,\ZZ)$ because there is no obvious map $X\otimes_\ZZ X\to\ZZ$. To remedy this, we observe that this is a canonical map
+In contrast, given an $r$-encoding module $X$, we cannot hope to have $x\in\widehat H^r(G,X)$ and $y\in\widehat H^{-r}(G,X)$ with $x\cup y\in\widehat H^0(G,\ZZ)$ because there is no obvious map $X\otimes_\ZZ X\to\ZZ$. To remedy this, we observe that there is a canonical evaluation map
 \[X\otimes_\ZZ\op{Hom}_\ZZ(X,\ZZ)\to\ZZ.\]
 This idea gives the following result.
 % Let $X$ be an $r$-encoding module, and conjure $x\in\widehat H^p(G,X)$ from \autoref{cor:betterencodingdef}. Then note that our proof of \autoref{cor:hpxcomputation} found $x^\lor\in\widehat H^{-p-1}(G,\op{Hom}_\ZZ(X,\QQ/\ZZ))$ such that
@@ -1326,7 +1330,7 @@ This idea gives the following result.
 		\arrow[maps to, from=2-3, to=2-4]
 	\end{tikzcd}\]
 	commutes. Anyway, we now see that we have inverse morphisms, so
-	\[x\cup[{\id_X}]=\id_X(x)=x\]
+	\[x\cup[{\id_X}]=\id_X(x)=x=x\cup(x^\lor\cup x)\]
 	implies that $x^\lor\cup x=[{\id_X}]$, finishing.
 
 	We now show (b) implies (a). Let $i\in\ZZ$ be any index. The main point is that
@@ -1337,8 +1341,8 @@ This idea gives the following result.
 	ought to be inverse natural transformations. More formally, we want to show $(x\cup-)$ is a natural isomorphism, for which we note naturality follows from \autoref{lem:cuppingisnatural}.
 
 	Thus, given a $G$-module $A$, it remains to show that its component morphisms
-	\[(x\cup-)\colon \widehat H^i(G,\op{Hom}_\ZZ(X,A))\to\widehat H^{i+r}(G,A).\]
-	In fact, we claim that the corresponding map
+	\[(x\cup-)\colon \widehat H^i(G,\op{Hom}_\ZZ(X,A))\to\widehat H^{i+r}(G,A)\]
+	are isomorphisms. In fact, we claim that the corresponding map
 	\[(x^\lor\cup-)\colon\widehat H^{i+r}(G,A)\to\widehat H^i(G,\op{Hom}_\ZZ(X,A))\]
 	is the inverse morphism. We have two checks.
 	\begin{itemize}
@@ -1394,11 +1398,16 @@ We quickly note that the proof of \autoref{prop:intdualelement} actually managed
 \end{proof}
 As such, we will give the element $x^\lor$ a name.
 \begin{definition}
-	Let $G$ be a finite group and $X$ an $r$-encoding module. Element $x^\lor\in\widehat H^{-r}(G,\op{Hom}_\ZZ(X,\ZZ))$ as constructed in \autoref{prop:intdualelement} are \textit{dual elements}.
+	Let $G$ be a finite group and $X$ an $r$-encoding module. Then $x^\lor\in\widehat H^{-r}(G,\op{Hom}_\ZZ(X,\ZZ))$ as constructed in \autoref{prop:intdualelement} is the \textit{dual element}.
 \end{definition}
+\begin{remark}
+	The above definition says ``the'' dual element because these are unique, once given an $x\in\widehat H^r(G,X)$. Indeed, the isomorphism
+	\[(x\cup-)\colon\widehat H^{-r}(G,\op{Hom}_\ZZ(X,\ZZ))\to\widehat H^0(G,\ZZ)\]
+	promises the uniqueness of $x^\lor\in\widehat H^{-r}(G,\op{Hom}_\ZZ(X,\ZZ))$ going to $x\cup x^\lor=[1]\in\widehat H^0(G,\ZZ)$.
+\end{remark}
 Here is another amusing corollary we get from this.
 \begin{cor} \label{cor:encodingsubgroups}
-	Let $G$ be a finite group, and let $X$ be an $r$-encoding module with encoding element $x\in\widehat H^r(G,X)$. Then, for any subgroup $H\subseteq G$, $X$ is an $r$-encoding $H$-module so that any index $i\in\ZZ$ has the natural isomorphism
+	Let $G$ be a finite group, and let $X$ be an $r$-encoding $G$-module with encoding element $x\in\widehat H^r(G,X)$. Then, for any subgroup $H\subseteq G$, $X$ is an $r$-encoding $H$-module so that any index $i\in\ZZ$ has the natural isomorphism
 	\[(\op{Res}x\cup-)\colon\widehat H^i(H,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{i+r}(H,-).\]
 \end{cor}
 \begin{proof}
@@ -1439,7 +1448,7 @@ It turns out that we can also encode ``on the other side,'' in the following sen
 	assemble into a natural isomorphism for any $i\in\ZZ$.
 \end{theorem}
 \begin{proof}
-	That we have a natural transformation follows from the naturality of cup products. Thus, it suffices to pick up a $G$-module $A$ and show that the component morphisms
+	That we have a natural transformation follows from the naturality of cup products. Thus, it suffices to pick up a $G$-module $A$ and show that the component morphism
 	\[(-\cup x)\colon\widehat H^i(G,A)\to\widehat H^{i+r}(G,A\otimes_\ZZ X)\]
 	is an isomorphism. For this, we pick up a dual element $x^\lor\in\widehat H^{i+r}(G,\op{Hom}_\ZZ(X,\ZZ))$ so that
 	\[x\cup x^\lor=[1]\in\widehat H^0(G,\ZZ)\qquad\text{and}\qquad x^\lor\cup x=[{\id_X}]\in\widehat H^0(G,\op{Hom}_\ZZ(X,X)).\]
@@ -1448,10 +1457,10 @@ It turns out that we can also encode ``on the other side,'' in the following sen
 		(-\cup x)\colon& \widehat H^i(G,A) &\to& \widehat H^{i+r}(G,A\otimes_\ZZ X) \\
 		(-\cup x^\lor)\colon& \widehat H^{i+r}(G,A\otimes_\ZZ X) &\to& \widehat H^i(G,A)
 	\end{array}\]
-	are inverse, which will finish; here $(-\cup x^\lor)$ is using the following evaluation map.
+	are inverse, which will finish; here $(-\cup x^\lor)$ is using the following evaluation map
 	\[\arraycolsep=1.4pt\begin{array}{clclccc}
 		(A&\otimes_\ZZ& X)&\otimes_\ZZ&\op{Hom}_\ZZ(X,\ZZ) &\to& A \\
-		b &\otimes& y &\otimes& f &\mapsto& f(y)b
+		b &\otimes& y &\otimes& f &\mapsto& f(y)b.
 	\end{array}\]
 	We have now checks for our morphisms to be inverse.
 	\begin{itemize}
@@ -1490,15 +1499,16 @@ It turns out that we can also encode ``on the other side,'' in the following sen
 	\end{itemize}
 	The above checks complete the proof.
 \end{proof}
-\begin{remark} \label{rem:bighandwave}
-	It is conceivable that one could rebuild the theory we have in the previous sections, in particular showing that all natural isomorphisms of the form
-	\[\widehat H^i(G,-\otimes_\ZZ A)\Rightarrow\widehat H^{i+r}(G,-\otimes_\ZZ B)\]
-	are cup products from an element of $\widehat H^r(G,\op{Hom}_\ZZ(A,B))$. Then, for some $G$-module $X$, natural isomorphisms
-	\[\widehat H^i(G,-)\Rightarrow\widehat H^{i+r}(G,-\otimes_\ZZ X)\]
-	promise $x\in\widehat H^r(G,X)$ (from using $A=\ZZ$ and $B=X$ with $i=0$) and $x^\lor\in\widehat H^{-r}(G,\op{Hom}_\ZZ(X,\ZZ))$ (from using $A=X$ and $B=\ZZ$ with $i=-r$) which we can evaluate to have
-	\[x\cup x^\lor=[1]\in\widehat H^0(G,\ZZ)\qquad\text{and}\qquad x^\lor\cup x=[{\id_X}]\in\widehat H^0(G,\op{Hom}_\ZZ(X,X)).\]
-	Namely, $X$ would then be an $r$-encoding module!
-\end{remark}
+% \begin{remark} \label{rem:bighandwave}
+% 	It is conceivable that one could rebuild the theory we have in the previous sections, in particular showing that all natural isomorphisms of the form
+% 	\[\widehat H^i(G,-\otimes_\ZZ A)\Rightarrow\widehat H^{i+r}(G,-\otimes_\ZZ B)\]
+% 	are cup products from an element of $\widehat H^r(G,\op{Hom}_\ZZ(A,B))$. Then, for some $G$-module $X$, natural isomorphisms
+% 	\[\widehat H^i(G,-)\Rightarrow\widehat H^{i+r}(G,-\otimes_\ZZ X)\]
+% 	promise $x\in\widehat H^r(G,X)$ (from using $A=\ZZ$ and $B=X$ with $i=0$) and $x^\lor\in\widehat H^{-r}(G,\op{Hom}_\ZZ(X,\ZZ))$ (from using $A=X$ and $B=\ZZ$ with $i=-r$) which we can evaluate to have
+% 	\[x\cup x^\lor=[1]\in\widehat H^0(G,\ZZ)\qquad\text{and}\qquad x^\lor\cup x=[{\id_X}]\in\widehat H^0(G,\op{Hom}_\ZZ(X,X)).\]
+% 	Namely, $X$ would then be an $r$-encoding module!
+% \end{remark}
+Something nice that falls out of this theory is that we are able to compute the cohomology groups of our encoding modules.
 \begin{cor}
 	Let $G$ be a finite group, and let $X$ be an $r$-encoding module with encoding element $x\in\widehat H^r(G,X)$. Then the cup products
 	\[(-\cup x)\colon\widehat H^i(G,\ZZ)\to\widehat H^{i+r}(G,X)\]
@@ -1507,6 +1517,67 @@ It turns out that we can also encode ``on the other side,'' in the following sen
 \begin{proof}
 	Plug in $\ZZ$ into \autoref{thm:tensorencode}.
 \end{proof}
+\begin{remark}
+	It is conceivable that one can build a converse for \autoref{thm:tensorencode}. In the case where $X$ is finitely generated, one can use duality arguments due to the canonical isomorphism
+	\[A\simeq\op{Hom}_\ZZ(\op{Hom}_\ZZ(A,\QQ/\ZZ),\QQ/\ZZ)\]
+	for finitely generated $G$-modules. However, in general, this seems to be difficult because the analogous version of \autoref{prop:intdualelement} is nontrivial to prove.
+\end{remark}
+% We now spend a little time building a partial converse for this. Here is our statement; let $\mathrm{FgMod}_G$ denote the category of finitely generated $G$-modules.
+% \begin{proposition}
+% 	Let $G$ be a finite group, and let $X$ be a $G$-module equipped with a natural isomorphism
+% 	\[\Phi_\bullet\colon\widehat H^s(G,-)\Rightarrow\widehat H^{s+r}(G,-\otimes_\ZZ X)\]
+% 	for each $s\in\ZZ$. 
+% \end{proposition}
+% We begin by building the tensor analogue for \autoref{prop:allnaturaltransarecups}.
+% \begin{proposition}
+% 	Let $G$ be a finite group, and let $X$ be a $G$-module equipped with a natural isomorphism
+% 	\[\Phi^{(s)}_\bullet\colon\widehat H^s(G,-)\Rightarrow\widehat H^{s+r}(G,-\otimes_\ZZ X)\]
+% 	for some $s,r\in\ZZ$. Then there exists $x\in\widehat H^r(G,X)$ such that
+% 	\[(-\cup x)\colon\widehat H^i(G,-)\Rightarrow\widehat H^{i+r}(G,-\otimes_\ZZ X)\]
+% 	is a natural isomorphism for all $i\in\ZZ$.
+% \end{proposition}
+% \begin{proof}
+% 	Because $\op{id}$ and $-\otimes_\ZZ X$ are both shiftable functors, we can use \autoref{rem:shiftingthenatiso} to know that we have natural isomorphisms
+% 	\[\Phi^{(i)}_\bullet\colon\widehat H^i(G,-)\Rightarrow\widehat H^{i+r}(G,-\otimes_\ZZ X)\]
+% 	for all $i\in\ZZ$. Setting $i=0$, we have a natural isomorphism
+% 	\[\Phi_\bullet\colon\widehat H^0(G,-)\Rightarrow\widehat H^r(G,-\otimes_\ZZ X),\]
+% 	which we claim is induced by a cup product with an element of $\widehat H^r(G,X)$.
+	
+% 	To see this, we argue as in the Yoneda lemma: fix a $G$-module $A$ so that we want to compute $\Phi_A([a])$ for some $[a]\in\widehat H^0(G,A)$. Well, $a\in A^G$ implies that there is a $G$-module morphism $\varphi\colon\ZZ\to A$ by $1\mapsto a$. As such, naturality of $\Phi_\bullet$ induces the following commutative diagram.
+% 	% https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXHdpZGVoYXQgSF4wKEcsXFxaWikiXSxbMCwxLCJcXHdpZGVoYXQgSF4wKEcsQSkiXSxbMSwwLCJcXHdpZGVoYXQgSF5yKEcsXFxaWlxcb3RpbWVzX1xcWlogWCkiXSxbMSwxLCJcXHdpZGVoYXQgSF5yKEcsQVxcb3RpbWVzX1xcWlogWCkiXSxbMiwwLCJcXHdpZGVoYXQgSF5yKEcsWCkiXSxbMCwyLCJcXFBoaV9YIl0sWzAsMSwiXFx2YXJwaGkiLDJdLFsxLDMsIlxcUGhpX0EiXSxbMiwzLCJcXHZhcnBoaSIsMl0sWzIsNCwiXFxzaW1lcSIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
+% 	\[\begin{tikzcd}
+% 		{\widehat H^0(G,\ZZ)} & {\widehat H^r(G,\ZZ\otimes_\ZZ X)} & {\widehat H^r(G,X)} \\
+% 		{\widehat H^0(G,A)} & {\widehat H^r(G,A\otimes_\ZZ X)}
+% 		\arrow["{\Phi_X}", from=1-1, to=1-2]
+% 		\arrow["\varphi"', from=1-1, to=2-1]
+% 		\arrow["{\Phi_A}", from=2-1, to=2-2]
+% 		\arrow["\varphi"', from=1-2, to=2-2]
+% 		\arrow["\simeq"{marking}, draw=none, from=1-2, to=1-3]
+% 	\end{tikzcd}\]
+% 	In particular, we compute
+% 	\[\Phi_A([a])=\Phi_A(\varphi([1]))=\varphi(\Phi_X([1])).\]
+% 	As such, we set $[x]\in\widehat H^r(G,X)$ to be $\Phi_X([1])\in\widehat H^r(G,\ZZ\otimes_\ZZ X)$ passed through the isomorphism $\ZZ\otimes_\ZZ X\simeq X$. For clarity, we will write $\iota([x])=\Phi_X([1])$.
+	
+% 	It remains to show that $\varphi(\iota([x]))=[a]\cup[x]$. For this, we need to evaluate some cup products, so we use the standard resolution of \cite{atiyah-wall}. We have two cases. Represent $[a]\in\widehat H^0(G,A)$ by the constant function $\widetilde a\colon\ZZ[G]\to A$ by $\widetilde a(z)=a$ for all $z\in\ZZ[G]$.
+% 	\begin{itemize}
+% 		\item Take $r\ge0$. Then $[x]\in\widehat H^r(G,X)$ is represented by an element $x\in\op{Hom}_{\ZZ[G]}(\ZZ[G]^{i+1},X)$. On one hand,
+% 		\[\varphi\big(\iota(x)\big)(g_0,\ldots,g_r)=\varphi\big(1\otimes x(g_0,\ldots,g_r)\big)=a\otimes x(g_0,\ldots,g_r),\]
+% 		but on the other hand,
+% 		\[(\widetilde a\cup x)(g_0,\ldots,g_r)=\widetilde a(g_0)\otimes x(g_0,\ldots,g_r)=a\otimes x(g_0,\ldots,g_r).\]
+% 		So we see that $\varphi(\iota(x))=\widetilde a\cup x$ on the level of cocycles, so they equal on cohomology classes.
+% 		\item Take $r<0$. Then $[x]\in\widehat H^r(G,X)$ is represented by an element $x\in\op{Hom}_{\ZZ[G]}(\op{Hom}_\ZZ(\ZZ[G]^r,\ZZ),X)$. On one hand,
+% 		\[\varphi\big(\iota(x)\big)(g_1^*,\ldots,g_r^*)=\varphi\big(1\otimes x(g_1^*,\ldots,g_r^*)\big)=a\otimes x(g_1^*,\ldots,g_r^*),\]
+% 		but on the other hand,
+% 		\[(\widetilde a\cup x)(g_1^*,\ldots,g_r^*)=\widetilde a(g_1)\otimes x(g_1^*,\ldots,g_r^*)=a\otimes x(g_1^*,\ldots,g_r^*).\]
+% 		Once more, $\varphi(\iota(x))=\widetilde a\cup x$ on the level of cocycles, so they equal on cohomology classes.
+% 	\end{itemize}
+% 	The above computations finish the proof.
+% \end{proof}
+% \begin{remark}
+% 	With a little more effort---namely, paying attention to how \autoref{rem:shiftingthenatiso} constructs the natural isomorphisms $\Phi^{(i)}_\bullet$---one can actually show that $\Phi_\bullet^{(s)}$ is actually a cup product. It is conceivable that one can show that all natural isomorphisms
+% 	\[\widehat H^s(G,-\otimes_\ZZ X)\Rightarrow\widehat H^{s+r}(G,-\otimes_\ZZ X')\]
+% 	are induced by a cup product by an element of $\widehat H^r(G,\op{Hom}_\ZZ(X,X')$, but this seems out of reach of the technology developed here.
+% \end{remark}
 
 \subsection{Torsion-Free Encoding}
 In the theory of periodic cohomology, one can show that it is enough to check the single cohomology group
@@ -1638,7 +1709,7 @@ And here is our result.
 	
 	Indeed, on one hand, let $A$ be a $G$-module (which we will set to be $X$ shortly), and we claim that the composite
 	\[\widehat H^r(G,A)\stackrel{x^\lor\cup-}\to\widehat H^0(G,\op{Hom}_\ZZ(X,A))\stackrel{x\cup-}\to\widehat H^r(G,A)\]
-	is the identity. Then the commutativity of the diagram
+	is the identity. To see this, pass the commutativity of the diagram
 	% https://q.uiver.app/?q=WzAsOCxbMCwwLCJYXFxvdGltZXNfXFxaWlxcb3B7SG9tfV9cXFpaKFgsXFxaWilcXG90aW1lc19cXFpaIEEiXSxbMSwwLCJYXFxvdGltZXNfXFxaWlxcb3B7SG9tfV9cXFpaKFgsQSkiXSxbMCwxLCJcXFpaXFxvdGltZXNfXFxaWiBBIl0sWzEsMSwiQSJdLFsyLDAsInhfMFxcb3RpbWVzIGZcXG90aW1lcyBhXzAiXSxbMywwLCJ4XzBcXG90aW1lc1xcYmlnKHlcXG1hcHN0byBmKHkpYV8wXFxiaWcpIl0sWzIsMSwiZih4XzApXFxvdGltZXMgYV8wIl0sWzMsMSwiZih4XzApYV8wIl0sWzAsMl0sWzIsM10sWzAsMV0sWzEsM10sWzQsNiwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFs2LDcsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbNCw1LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzUsNywiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
 	\[\begin{tikzcd}
 		{X\otimes_\ZZ\op{Hom}_\ZZ(X,\ZZ)\otimes_\ZZ A} & {X\otimes_\ZZ\op{Hom}_\ZZ(X,A)} & {x_0\otimes f\otimes a_0} & {x_0\otimes\big(y\mapsto f(y)a_0\big)} \\
@@ -1652,21 +1723,15 @@ And here is our result.
 		\arrow[maps to, from=1-3, to=1-4]
 		\arrow[maps to, from=1-4, to=2-4]
 	\end{tikzcd}\]
-	allows us to compute, for any $a\in\widehat H^p(G,A)$,
+	through \autoref{lem:cupassoc} to compute that, for any $a\in\widehat H^p(G,A)$,
 	\begin{equation}
 		x\cup x^\lor\cup a=[1]\cup a=a, \label{eq:oneside}
 	\end{equation}
-	as desired.
-	
-	Now, taking $A=X$, we note
-	\begin{equation}
-		x\cup[{\id_X}]=x\in\widehat H^r(G,X). \label{eq:twoside}
-	\end{equation}
-	So we will be done once we show that \autoref{eq:babycuptoupgrade}is injective. Well, note $[{\id_X}]\in\widehat H^0(G,\op{Hom}_\ZZ(X,X))$ has order $n$: if $k[{\id_X}]=0$, then $0=k(x\cup[{\id_X}])=kx$, so $n\mid k$. Because $\widehat H^0(G,\op{Hom}_\ZZ(X,X))$ is cyclic (by hypothesis!) and $n$-torsion, we conclude that in fact $\widehat H^0(G,\op{Hom}_\ZZ(X,X))$ is cyclic of order $n$ generated by $[{\id_X}]$. Thus, we note that there is a unique isomorphism
+	as desired. Taking $A=X$, It follows that
+	\[x\cup(x^\lor x)=x=x\cup[{\id_X}].\]
+	Now, it remains to show that the map $(x\cup-)$ from \autoref{eq:babycuptoupgrade} is injective. Well, note $[{\id_X}]\in\widehat H^0(G,\op{Hom}_\ZZ(X,X))$ has order $n$: if $k[{\id_X}]=0$, then $0=k(x\cup[{\id_X}])=kx$, so $n\mid k$. Because $\widehat H^0(G,\op{Hom}_\ZZ(X,X))$ is cyclic (by hypothesis!) and $n$-torsion, we conclude that in fact $\widehat H^0(G,\op{Hom}_\ZZ(X,X))$ is cyclic of order $n$ generated by $[{\id_X}]$. Thus, we note that there is a unique morphism
 	\[\widehat H^0(G,\op{Hom}_\ZZ(X,X))\cong\ZZ/n\ZZ\cong\widehat H^r(G,X)\]
-	sending $[{\id_X}]$ to $1$ to $x$, so this isomorphism must be $(x\cup-)$ by \autoref{eq:twoside}; in particular, $(x\cup-)$ is injective.
-	
-	Finishing up, comparing the injectivity of $(x\cup-)$ with \autoref{eq:oneside} and \autoref{eq:twoside} forces us to conclude that $x^\lor\cup x=[{\id_X}]$. This finishes.
+	sending $[{\id_X}]$ to $1$ to $x$, and this map is an isomorphism. However, $(x\cup-)$ sends $[{\id_X}]$ to $x$ as well, so $(x\cup-)$ is an isomorphism and thus injective.
 \end{proof}
 \begin{example}
 	The $\ZZ$-free condition is necessary. As in \autoref{rem:neednaturality}, let $G\coloneqq\ZZ/p\ZZ$ act on $X\coloneqq\ZZ/p\ZZ$ trivially. Then
@@ -1708,7 +1773,7 @@ In some sense, the issue with the above example is that we could decompose our $
 	Thus, one of $A$ or $B$ is an $r$-encoding module; without loss of generality, say that $A$ is. It remains to show that $B$ is cohomologically equivalent to $0$. Well, we have
 	\[\widehat H^0(G,\op{Hom}_\ZZ(A,A))\cong\widehat H^r(G,A)=\ZZ/\#G\ZZ\]
 	because $A$ is an $r$-encoding module, so the embedding
-	\[\underbrace{\widehat H^0(G,\op{Hom}_\ZZ(A,A))}_{\ZZ/\#G\ZZ}\oplus\widehat H^0(G,\op{Hom}_\ZZ(B,B))\subseteq\underbrace{\widehat H^0(G,\op{Hom}_\ZZ(A\oplus B,A\oplus B))}_{\ZZ/\#G\ZZ}\]
+	\[\underbrace{\widehat H^0(G,\op{Hom}_\ZZ(A,A))}_{\ZZ/\#G\ZZ}\oplus\widehat H^0(G,\op{Hom}_\ZZ(B,B))\into\underbrace{\widehat H^0(G,\op{Hom}_\ZZ(A\oplus B,A\oplus B))}_{\ZZ/\#G\ZZ}\]
 	forces $\widehat H^0(G,\op{Hom}_\ZZ(B,B))=0$. As such, \autoref{cor:bettercohomequivzero} finishes.
 \end{proof}
 \begin{remark}
@@ -1732,14 +1797,14 @@ The goal of this section is to build encoding modules up from smaller ones.
 	which is what we wanted.
 \end{proof}
 \begin{remark}
-	With some care, it is possible to use \autoref{cor:multequiv} to show this result. The difficulty in realizing this approach lies in the fact that $r$ and $s$ need not both be nonnegative.
+	With some care, it is possible to use \autoref{cor:multequiv} combined with \autoref{ex:allencoderesexist} (below) to show this result. The difficulty in realizing this approach lies in the fact that $r$ and $s$ need not both be nonnegative.
 \end{remark}
 \begin{proposition} \label{prop:dualmodule}
 	Let $G$ be a finite group, and let $X$ be an $r$-encoding module. Then $\op{Hom}_\ZZ(X,\ZZ)$ is a $(-r)$-encoding module.
 \end{proposition}
 \begin{proof}
 	We use \autoref{prop:intdualelement}. For brevity, we set $X^\lor\coloneqq\op{Hom}_\ZZ(X,\ZZ)$ and $X^{\lor\lor}\coloneqq\op{Hom}_\ZZ(X^\lor,\ZZ)$. Observe that there is a (canonical) map $\varphi\colon X\to X^{\lor\lor}$ by
-	\[\varphi\colon f\mapsto f\circ\varphi.\]
+	\[\varphi(x)\colon f\mapsto f(x).\]
 	By \autoref{prop:intdualelement}, we may find $x\in\widehat H^r(G,X)$ and $x^\lor\in\widehat H^{-r}(G,X^\lor)$ such that
 	\[x\cup x^\lor=[1]\in\widehat H^0(G,\ZZ)\qquad\text{and}\qquad x^\lor\cup x=[{\id_X}]\in\widehat H^0(G,\op{Hom}_\ZZ(X,X)).\]
 	As such, we set $y\coloneqq x^\lor$ and $y^\lor\coloneqq(-1)^r\varphi(x)$. The commutative diagram
@@ -1760,7 +1825,7 @@ The goal of this section is to build encoding modules up from smaller ones.
 	\[\varphi(x)\cup x^\lor=x\cup x^\lor=[1]\in\widehat H^0(G,\ZZ),\]
 	so $y\cup y^\lor=[1]\in\widehat H^0(G,\ZZ)$ after being careful with signs.
 
-	On the other hand, we set $A=B=X$ for clarity and define $\psi\colon\op{Hom}_\ZZ(A,B)\to\op{Hom}_\ZZ(B^*,A^*)$ by
+	On the other hand, we set $A=B=X$ for clarity and define $\psi\colon\op{Hom}_\ZZ(A,B)\to\op{Hom}_\ZZ(B^\lor,A^\lor)$ by
 	\[\psi(f)\colon g\mapsto(g\circ f),\]
 	yielding the commutative diagram
 	% https://q.uiver.app/?q=WzAsOCxbMCwwLCJBXipcXG90aW1lc19cXFpaIEIiXSxbMSwwLCJcXG9we0hvbX1fXFxaWihBLEIpIl0sWzAsMSwiQV4qXFxvdGltZXNfXFxaWlxcb3B7SG9tfV9cXFpaKEJeKixcXFpaKSJdLFsxLDEsIlxcb3B7SG9tfV9cXFpaKEJeKixBXiopIl0sWzIsMCwiZlxcb3RpbWVzIGIiXSxbMywwLCJcXGJpZyhhXFxtYXBzdG8gZihhKWJcXGJpZykiXSxbMiwxLCJmXFxvdGltZXNcXGJpZyhnXFxtYXBzdG8gZyhiKVxcYmlnKSJdLFszLDEsIlxcYmlnKGdcXG1hcHN0byBnKGIpZlxcYmlnKSJdLFsxLDMsIlxccHNpIl0sWzAsMV0sWzAsMiwie1xcaWR9XFxvdGltZXNcXHZhcnBoaSIsMl0sWzIsM10sWzQsNiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFs2LDcsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbNSw3LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzQsNSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dXQ==&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
@@ -1781,7 +1846,7 @@ The goal of this section is to build encoding modules up from smaller ones.
 	so $y^\lor\cup y=[{\id_{X^\lor}}]$ after being careful with signs. This completes the proof.
 \end{proof}
 \begin{example} \label{ex:allencoderesexist}
-	\autoref{ex:igisencoding} established that $I_G^{\otimes r}$ is an $r$-encoding module for $r\ge0$. As such, $\op{Hom}_\ZZ\left(I_G^{\otimes r},\ZZ\right)$ is a $(-r)$-encoding module for $-r\le0$. Thus, we have established existence for $r$-encoding modules for all $r\in\ZZ$.
+	\autoref{ex:igisencoding} established that $I_G^{\otimes r}$ is an $r$-encoding module for $r\ge0$. By \autoref{prop:dualmodule}, $\op{Hom}_\ZZ\left(I_G^{\otimes r},\ZZ\right)$ is a $(-r)$-encoding module for $-r\le0$. Thus, we have established existence for $r$-encoding modules for all $r\in\ZZ$.
 \end{example}
 \begin{cor} \label{cor:getfreeencoder}
 	Let $G$ be a finite group, and let $X$ be a finitely generated $r$-encoding module. Letting $X_t$ denote the $\ZZ$-torsion subgroup of $X$, we have that $X_t$ is a $G$-submodule of $X$, and $X/X_t$ is an $r$-encoding module.
@@ -1806,7 +1871,7 @@ The goal of this section is to build encoding modules up from smaller ones.
 	by $x\mapsto(f\mapsto f(x))$ is a $G$-module morphism and isomorphism of abelian groups because $X_f$ is torsion-free and finitely generated. Thus, $\varphi$ is an isomorphism of $G$-modules, implying that $X_f$ is an $r$-encoding module.
 \end{proof}
 \begin{remark} \label{rem:almosttorsionfree}
-	Even though \autoref{ex:notalltorsionfree} asserts that not all $p$-encoding modules $X$ are $\ZZ$-torsion-free, \autoref{cor:getfreeencoder} explains that we can canonically obtain a $\ZZ$-torsion-free $p$-encoding module from $X$ in the form of $\op{Hom}_\ZZ(\op{Hom}_\ZZ(X,\ZZ),\ZZ)\cong X/X_t$.
+	Even though \autoref{ex:notalltorsionfree} asserts that not all $r$-encoding modules $X$ are $\ZZ$-torsion-free, \autoref{cor:getfreeencoder} explains that we can canonically obtain a $\ZZ$-torsion-free $r$-encoding module from $X$ in the form of $\op{Hom}_\ZZ(\op{Hom}_\ZZ(X,\ZZ),\ZZ)\cong X/X_t$.
 \end{remark}
 \begin{proposition} \label{prop:encodingses}
 	Let $G$ be a finite group, and let
@@ -1849,7 +1914,7 @@ The goal of this section is to build encoding modules up from smaller ones.
 	\[\Phi_\bullet\colon\widehat H^1(G,\op{Hom}_\ZZ(X,-))\Rightarrow\widehat H^{r+1}(G,-),\]
 	so the composite
 	\[\widehat H^0(G,\op{Hom}_\ZZ(X',-))\stackrel{\delta_\bullet}\Rightarrow\widehat H^1(G,\op{Hom}_\ZZ(X,-))\stackrel{\Phi_\bullet}\Rightarrow\widehat H^{r+1}(G,-)\]
-	shows that $X'$ is a $(r+1)$-encoding module. The other direction is analogous, concatenating with $\delta_\bullet^{-1}$.
+	shows that $X'$ is an $(r+1)$-encoding module. The other direction is analogous, concatenating with $\delta_\bullet^{-1}$.
 \end{proof}
 \begin{example}
 	Fix a finite group $G$ generated by $S\coloneqq\langle\sigma_1,\ldots,\sigma_n\rangle$, and let $M\coloneqq\ZZ[G]^{\#S}$ have basis $\{e_i\}_{i=1}^m$. Then there is a projection $\pi\colon\ZZ[G]^{\#G}\onto I_G$ by sending $e_i\mapsto(\sigma_i-1)$, giving the short exact sequence
@@ -2015,7 +2080,7 @@ We now synthesize this with the theory we have been building.
 	need not be an isomorphism; for example, take $A=0$.
 \end{remark}
 \begin{remark} \label{rem:artinreciptaste}
-	When $X$ is a $\ZZ$-free $2$-encoding module, we can think about $\op{Hom}_\ZZ(X,-)$ as a torus $T$. For example, if $L/K$ is an extension of local fields, and the torus $T$ splits over $L$, then the above statement says that the Artin reciprocity map
-	\[\widehat H^{-2}(L/K,X_*(T))\to\widehat H^0(L/K,TL)\]
+	When $X$ is a $\ZZ$-free $2$-encoding module, we can think about $\op{Hom}_\ZZ(X,-)$ as an algebraic torus $T$. For example, if $L/K$ is an extension of local fields, and the torus $T$ splits over $L$, then the above statement says that the Artin reciprocity map
+	\[(u_{L/K}\cup-)\colon\widehat H^{-2}(L/K,X_*(T))\to\widehat H^0(L/K,TL)\]
 	uniquely determines $u_{L/K}\in\widehat H^2(L/K,L^\times)$. It is conceivable that a sufficiently concrete description of this reciprocity map might then be able to describe $u_{L/K}$.
 \end{remark}

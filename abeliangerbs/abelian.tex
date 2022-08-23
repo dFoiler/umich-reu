@@ -1,9 +1,9 @@
 % !TEX root = ../abeliangerbs.tex
 
-\subsection{Tuple Data}
-The results from \autoref{sec:singlevar} are very focused on single elements, which are only enough when our group $G$ is cyclic. Our goal will be to be able to cover all abelian groups, so if we want to keep track of the fact our group is abelian, we should extract the elements of $A$ which can do so.
+\subsection{Tuple Relations}
+The results from \autoref{sec:singlevar} are very focused on single elements $\sigma\in G$ and the cyclic groups they generate, but we will be more interested in dealing with more general abelian groups $G$. If we want to keep track of the fact our group is abelian, we should extract the elements of $A$ which can do so.
 \begin{lemma}[{\cite[Lemma~1.2]{abelian-crossed}}] \label{lem:constructalphabeta}
-	Let $A$ be a $ G$-module, and let 
+	Let $G$ be an abelian group and $A$ be a $ G$-module, and let 
 	\[1\to A\to\mc E\stackrel\pi\to G\to1\]
 	be a group extension. Further, fix some $F_1,F_2\in\mc E$ and define $\sigma_i\coloneqq\pi(F_i)$ for $i\in\{1,2\}$, and let $\sigma_i\in G$ have order $n_i$. Then, setting
 	\[\alpha_i\coloneqq F_i^{n_i}\qquad\text{and}\qquad\beta\coloneqq F_1F_2F_1^{-1}F_2^{-1},\]
@@ -18,10 +18,10 @@ The results from \autoref{sec:singlevar} are very focused on single elements, wh
 	\begin{listalph}
 		\item That $\alpha_i\in A_i$ follows from \autoref{lem:constructalpha}. Lastly, $\beta\in A$ follows from noting
 		\[\pi(\beta)=\pi(F_1)\pi(F_2)\pi(F_1)^{-1}\pi(F_2)^{-1}=1,\]
-		so $\beta\in\ker\pi=A$.
+		so $\beta\in\ker\pi=A$. Note we have used the fact that $G$ is abelian.
 		\item We will check that $\op N_{L/L_1}(\beta)=\alpha_1/\sigma_2(\alpha_1)$; the other equality follows symmetrically after switching $1$s and $2$s because $\beta^{-1}=F_2F_1F_2^{-1}F_1^{-1}$. Well, we compute
 		\begin{align*}
-			N_1(\beta) &= \sigma_1^{-1}(\beta)\cdot\sigma_1^{-2}(\beta)\cdot\sigma^{-3}\cdot\ldots\cdot\sigma^{-n_1}(\beta) \\
+			N_1(\beta) &= \sigma_1^{-1}(\beta)\cdot\sigma_1^{-2}(\beta)\cdot\sigma^{-3}(\beta)\cdot\ldots\cdot\sigma^{-n_1}(\beta) \\
 			&= F_1^{-1}\left(F_1F_2F_1^{-1}F_2^{-1}\right)F_1 \\
 			&\phantom{{}={}}\cdot F_1^{-2}\left(F_1F_2F_1^{-1}F_2^{-1}\right)F_1^2 \\
 			&\phantom{{}={}}\cdot F_1^{-3}\left(F_1F_2F_1^{-1}F_2^{-1}\right)F_1^3\cdot\ldots \\
@@ -43,7 +43,7 @@ The results from \autoref{sec:singlevar} are very focused on single elements, wh
 The proof of (b) above might appear magical, but in fact it comes from a more general idea.
 \begin{lemma}[{\cite[Lemma~1.1(b)]{abelian-crossed}}] \label{lem:switchtwo}
 	Fix everything as in \autoref{lem:constructalphabeta}. Then, for $x,y\ge0$, we have
-	\[F_1^xF_2^y=\prod_{k=0}^{x-1}\prod_{\ell=0}^{y-1}\sigma_1^k\sigma_2^\ell(\beta)F_2^yF_1^x.\]
+	\[F_1^xF_2^y=\prod_{k=0}^{x-1}\prod_{\ell=0}^{y-1}\left(\sigma_1^k\sigma_2^\ell(\beta)F_2^yF_1^x\right).\]
 \end{lemma}
 \begin{proof}
 	We induct. We take a moment to write out the case of $x=1$, for which we induct on $y$. To be explicit, we will prove
@@ -74,7 +74,7 @@ The proof of (b) above might appear magical, but in fact it comes from a more ge
 \begin{remark} \label{rem:alphabetarelation}
 	Setting $x=n_1$ and $y=1$ recovers $\op N_{L/L^{\langle\sigma_1\rangle}}(\beta)=\alpha_1/\sigma_2(\alpha_1)$.
 \end{remark}
-In particular, \autoref{rem:alphabetarelation} tells us that coherence of the group law in $\mc E$ should give rise to relations between our elements of $A$. Here is a more complex example.
+Roughly speaking, \autoref{rem:alphabetarelation} tells us that coherence of the group law in $\mc E$ should give rise to relations between our elements of $A$. Namely, trying to expand out the group law as placed constraints on our $\alpha_1,\alpha_2,\beta$. Here is another example.
 \begin{lemma}[{\cite[Lemma~1.2]{abelian-crossed}}] \label{lem:betarelations}
 	Let $A$ be a $ G$-module, and let 
 	\[1\to A\to\mc E\stackrel\pi\to G\to1\]
@@ -104,7 +104,7 @@ In particular, \autoref{rem:alphabetarelation} tells us that coherence of the gr
 	which rearranges into the desired equation.
 \end{proof}
 \begin{remark}
-	The relation from \autoref{lem:betarelations} may look asymmetric in the $\beta_{ij}$, but this is because the definitions of the $\beta_{ij}$s themselves are asymmetric in $F_i$.
+	The relation from \autoref{lem:betarelations} may look asymmetric in the $\beta_{ij}$, but this is because the definitions of the $\beta_{ij}$s themselves are asymmetric in $F_i$. For example, swapping all $1$s and $2$s, will indeed recover the same relation.
 \end{remark}
 \begin{remark}
 	So far we have mostly been able to recover the results from \autoref{sec:singlevar} beyond working with just a single $\sigma\in G$ and $\alpha$s to be able to work with lots of group elements in $G$ and some $\beta$s. We have not built an analogue for \autoref{cor:alphaiscupproduct}, though we will explain that it is possible to do so much later in \autoref{rem:betaiscup}.
@@ -112,7 +112,7 @@ In particular, \autoref{rem:alphabetarelation} tells us that coherence of the gr
 
 \subsection{Tuples to Cocycles}
 \subsubsection{The Set-Up}
-The proceeding lemmas \autoref{lem:constructalphabeta} and \autoref{lem:betarelations} is intended to give intuition that the element $\beta$ is helping to specify the group law on $\mc E$.
+The preceding lemmas \autoref{lem:constructalphabeta} and \autoref{lem:betarelations} are intended to give intuition that the element $\beta$ is helping to specify the group law on $\mc E$.
 
 More concretely, we will take the following set-up for the following results: fix a $ G$-module $A$, and let
 \[1\to A\to\mc E\to G\to1\]

@@ -2,10 +2,10 @@
 
 In this section, we familiarize ourselves with various tools used throughout the paper.
 
-\subsection{Group Cohomology}
+\subsection{Homological Algebra}
 
 \subsubsection{Definitions}
-Fix $G$ to be a group. We take a moment to review some of the group cohomology will be used in the paper. There is a unique sequence of functors $H^i(G,-)\colon\mathrm{Mod}_G\to\mathrm{Ab}$ for $i\in\NN$ satisfying the following set of properties.
+Fix a group $G$, not necessarily finite. We take a moment to review properties of group cohomology and group homology will be used throughout. There is a unique sequence of functors $H^i(G,-)\colon\mathrm{Mod}_G\to\mathrm{Ab}$ for $i\in\NN$ satisfying the following set of properties.
 \begin{itemize}
 	\item $H^0(G,-)=\op{Hom}_{\ZZ[G]}(\ZZ,-)=(-)^G$.
 	\item $H^i(G,I)=0$ for all $i>1$ and injective modules $I$.
@@ -23,7 +23,7 @@ The functors $H^i(G,-)$ are the cohomology functors. Analogously, there is a uni
 	of $G$-modules to long exact sequences
 	\[\cdots\to H_2(G,C)\to H_1(G,A)\to H_1(G,B)\to H_1(G,C)\to H_0(G,A)\to H_0(G,B)\to H_0(G,C)\to0.\]
 \end{itemize}
-When $G$ is a finite group, it turns out that we can tie these together by defining Tate cohomology: define for a $G$-module $A$, define
+When $G$ is a finite group, it turns out that we can tie $H^i$ and $H_i$ together by defining Tate cohomology: for a $G$-module $A$, define
 \[\widehat H^i(G,A)\coloneqq\begin{cases}
 	H^i(G,A) & i\ge1, \\
 	A^G/\im N_G & i=0, \\
@@ -32,7 +32,7 @@ When $G$ is a finite group, it turns out that we can tie these together by defin
 \end{cases}\]
 where $N_G\colon A\to A$ is the norm map, and $I_G$ is the kernel of the augmentation map $\varepsilon\colon\ZZ[G]\to G$ sending $\varepsilon\colon g\mapsto1$ for each $g\in G$. Then we have the following.
 \begin{theorem}[{\cite[Theorem~3]{atiyah-wall}}]
-	Let $TG$ be a finite group. There is a functor taking short exact sequences
+	Let $G$ be a finite group. There is a functor taking short exact sequences
 	\[0\to A\to B\to C\to 0\]
 	of $G$-modules to (very) long exact sequences
 	\[\cdots\to\widehat H^{-1}(G,A)\to\widehat H^{-1}(G,B)\to\widehat H^{-1}(G,C)\to\widehat H^0(G,A)\to\widehat H^0(G,B)\to\widehat H^0(G,C)\to\cdots.\]
@@ -48,11 +48,11 @@ Throughout the paper, we will essentially exclusively assume that $G$ is finite 
 % \[d(g_0,\ldots,g_{i+1})\coloneqq\sum_{j=0}^{i+1}(-1)^j(g_0,\ldots,g_{j-1},g_{j+1},\ldots,g_{i+1}).\]
 % One can check that \autoref{eq:barresolution} is in fact a free resolution of $\ZZ$, and then we define the complex
 % \[0\to\op{Hom}_\ZZ(\ZZ,A)\stackrel{\varepsilon^*}\to\op{Hom}_\ZZ(P_0,A)\stackrel{(d^1)^*}\to\op{Hom}_\ZZ(P_1,A)\stackrel{(d^2)^*}\op{Hom}_\ZZ(P_2,A)\to\cdots.\]
-To actually compute group cohomology, one can use the bar resolution. We will not need the full bar resolution for Tate cohomology except in a few circumstances, so we will content ourselves with describing $H^1(G,A)$ and $H^2(G,A)$ for a $G$-module $A$, and we will say explicitly when we need to refer to the full standard complex from \cite{atiyah-wall}.
+To actually compute group cohomology, one can use the bar resolution. We will not need the full bar resolution for Tate cohomology except in a few circumstances, so we will content ourselves with describing $H^1(G,A)$ and $H^2(G,A)$ for a $G$-module $A$. Outside these, we will say explicitly when we need to refer to the full standard complex from \cite{atiyah-wall}.
 
 We have the following definitions.
 \begin{definition}
-	Fix a group $G$ and $G$-module $A$. Then a \textit{$1$-cocycle} is a function $f\colon G\to A$ satisfying the relation
+	Fix a group $G$ and $G$-module $A$. Then a \textit{1-cocycle} is a function $f\colon G\to A$ satisfying the relation
 	\[f(gg')=f(g)+g\cdot f(g')\]
 	for each $g,g'\in G$. The set of $1$-cocycles is denoted $Z^1(G,A)$.
 \end{definition}
@@ -60,7 +60,7 @@ We have the following definitions.
 	Let $G$ act on an abelian group $A$ trivially. Then $Z^1(G,A)=\op{Hom}_\ZZ(G,A)$.
 \end{example}
 \begin{definition}
-	Fix a group $G$ and $G$-module $A$. Then a \textit{$1$-coboundary} is a function $f\colon G\to A$ such that there exists $a\in A$ such that
+	Fix a group $G$ and $G$-module $A$. Then a \textit{1-coboundary} is a function $f\colon G\to A$ such that there exists $a\in A$ such that
 	\[f(g)=(g-1)\cdot a\]
 	for each $g\in G$. The set of $1$-coboundaries is denoted $B^1(G,A)$.
 \end{definition}
@@ -68,23 +68,60 @@ One can check that $B^1(G,A)\subseteq Z^1(G,A)$, and it is a fact that
 \[H^1(G,A)\cong Z^1(G,A)/B^1(G,A).\]
 There is a similar description for $H^2(G,A)$.
 \begin{definition}
-	Fix a group $G$ and $G$-module $A$. Then a \textit{$2$-cocycle} is a function $f\colon G^2\to A$ satisfying the relation
+	Fix a group $G$ and $G$-module $A$. Then a \textit{2-cocycle} is a function $f\colon G^2\to A$ satisfying the relation
 	\[g\cdot f(g',g'')+f(g,g'g'')=f(g,g')+f(gg',g'')\]
 	for each $g,g',g''\in G$. The set of $2$-coboundaries is denoted $Z^2(G,A)$.
 \end{definition}
 \begin{example}
-	If $G$ is cyclic of order $n$ generated by $\sigma\in G$, then any $a\in A$ can define the $2$-cocycle
-	\[f(\sigma^i,\sigma^j)\coloneqq\floor{\frac{i+j}n}\]
+	If $G$ is cyclic of order $n$ generated by $\sigma\in G$, then any $a\in A^G$ can define the $2$-cocycle
+	\[f(\sigma^i,\sigma^j)\coloneqq\floor{\frac{i+j}n}a\]
 	where $0\le i,j<n$.
 \end{example}
 \begin{definition}
-	Fix a group $G$ and $G$-module $A$. Then a \textit{$2$-coboundary} is a function $f\colon G^2\to A$ such that there exists $b\colon G\to A$ with
-	\[f(g,g')=gb(g')-b(gg')+b(g')\]
+	Fix a group $G$ and $G$-module $A$. Then a \textit{2-coboundary} is a function $f\colon G^2\to A$ such that there exists $b\colon G\to A$ with
+	\[f(g,g')=g\cdot b(g')-b(gg')+b(g')\]
 	for each $g,g'\in G$. The set of $2$-cobounaries is denoted $B^2(G,A)$.
 \end{definition}
 Again, one can check that $B^2(G,A)\subseteq Z^2(G,A)$, and it is again a fact that
 \[H^2(G,A)\cong Z^2(G,A)/B^2(G,A).\]
-These descriptions will suffice for us, for the most part.
+
+\subsubsection{Induced Modules}
+Let $G$ be a group and $H\subseteq G$ a subgroup. The following is our definition.
+\begin{definition}
+	Fix a group $G$ with subgroup $H\subseteq G$. Then, given an $H$-module $M$, we can construct the \textit{induced module} $\op{Ind}^G_HM$ as the set of functions $\varphi\colon G\to M$ satisfying $\varphi(hg)=h\varphi(g)$ for each $h\in H$. Here, the $G$-action on $\op{Ind}^G_HM$ is given by
+	\[(g\cdot\varphi)(g')\coloneqq\varphi(g'g).\]
+\end{definition}
+\begin{remark}
+	In the absence of an explicitly defined subgroup $H\subseteq G$, we will assume that $H$ is the trivial subgroup.
+\end{remark}
+These modules enjoy a number of nice properties.
+\begin{lemma}[{\cite[Remark~II.1.3]{milne-cft}}]
+	Fix a finite group $G$ with subgroup $H\subseteq G$ and $H$-module $M$. Then $\op{Ind}^G_HM$ is (canonically) isomorphic to $M\otimes_{\ZZ[H]}\ZZ[G]$.
+\end{lemma}
+\begin{proof}[Sketch]
+	Send a morphism $\varphi\in\op{Ind}^G_HM$ to
+	\[\sum_{g\in G}\varphi(g)\otimes g^{-1}\in M\otimes_{\ZZ[H]}\ZZ[G].\]
+	Note that this sum is finite because $G$ is finite.
+\end{proof}
+\begin{remark}
+	Here is yet another description: when $G$ is finite, $\op{Ind}^G_HM$ is isomorphic to the set of functions $f\colon G/H\to M$ with $G$-action given by
+	\[(g\cdot f)(x)=g\cdot f\left(g^{-1}x\right).\]
+\end{remark}
+Here is the main result we will want out of induced modules.
+\begin{lemma}[Shapiro, {\cite[Proposition~1.11]{milne-cft}}] \label{lem:shapiro}
+	Fix a group $G$ with subgroup $H\subseteq G$ and $H$-module $M$. Then, for any $i\in\ZZ$, there is a canonical isomorphism
+	\[\widehat H^i(G,\op{Ind}^G_HM)\to\widehat H^i(H,M).\]
+\end{lemma}
+One can track this isomorphism explicitly from the left to right for $i>0$ using the bar resolution. For example, for $i=1$, we take a $1$-cocycle $f\colon G\to\op{Ind}^G_HM$ to the composite
+\[H\stackrel f\to\op{Ind}^G_HM\stackrel{eH}\to M,\]
+where the last map is evaluating at the coset $eH\in G/H$.
+\begin{cor}[{\cite[Corollary~1.12]{milne-cft}}]
+	Fix a finite group $G$, and let $1$ denote the trivial subgroup. Then any abelian group $M$ has
+	\[\widehat H^i(G,M\otimes_\ZZ\ZZ[G])\cong\widehat H^i(G,\op{Hom}_\ZZ(\ZZ[G],M))=0.\]
+\end{cor}
+\begin{proof}
+	Note $M\otimes_\ZZ\ZZ[G]\cong\op{Hom}_\ZZ(\ZZ[G],M)=\op{Ind}^G_1M$, so use \autoref{lem:shapiro}.
+\end{proof}
 
 \subsubsection{Change of Group}
 Let $G$ be a finite group and $A$ a $G$-module. Given a morphism $f\colon A\to B$ of $G$-modules, we know that we induce a morphism
@@ -104,6 +141,11 @@ to be a $1$-cocycle in $Z^1(G,A)$. As before, this will induce a map
 And we also get to extend this morphism to all indices $i\in\ZZ$ as
 \[\op{Inf}\colon\widehat H^i\left(G/H,A^H\right)\to\widehat H^i(G,A)\]
 by extending this construction.
+\begin{remark} \label{rem:changeofgroup}
+	More generally, a group homomorphism $\varphi\colon H\to G$ can take a $1$-cocycle $f\colon G\to A$ to the $1$-cocycle
+	\[H\stackrel\varphi\to G\stackrel f\to A.\]
+	Thus, we define a morphism $H^1(G,A)\to H^1(H,A)$. Again, this can be extended to all indices $i\in\ZZ$.
+\end{remark}
 
 \subsubsection{Cup Products}
 Let $G$ be a finite group. Given two $G$-modules $A$ and $B$, we can make $A\otimes_\ZZ B$ a $G$-module by letting $G$ acting diagonally. Now, by \cite[Theorem~4]{atiyah-wall} there is a unique family of cup-product morphisms
@@ -113,7 +155,7 @@ for all $G$-modules $A,B$ and $i,j\in\ZZ$ satisfying the following.
 	\item The cup products $\cup$ are natural in $A$ and $B$.
 	\item The cup product
 	\[\cup\colon\widehat H^0(G,A)\otimes_\ZZ\widehat H^0(G,B)\to\widehat H^0(G,A\otimes_\ZZ B)\]
-	is the natural one, induced by $A^G\otimes_\ZZ B^G\to(A\otimes_\ZZ B)^G$.
+	is induced by $A^G\otimes_\ZZ B^G\to(A\otimes_\ZZ B)^G$.
 	\item Given an exact sequence
 	\[0\to A\to B\to C\to 0\]
 	of $G$-modules and a $G$-module $M$ such that
@@ -126,7 +168,7 @@ for all $G$-modules $A,B$ and $i,j\in\ZZ$ satisfying the following.
 	of $G$-modules and a $G$-module $M$ such that
 	\[0\to M\otimes_\ZZ A\to M\otimes_\ZZ B\to M\otimes_\ZZ C\to 0\]
 	is also exact, our cup product commutes with $\delta$ morphisms in that
-	\[m\cup(\delta c)=\delta(m\cup c)\in\widehat H^{i+j+1}(G,M\otimes_\ZZ A\otimes_\ZZ)\]
+	\[m\cup(\delta c)=(-1)^i\delta(m\cup c)\in\widehat H^{i+j+1}(G,M\otimes_\ZZ A)\]
 	for $m\in\widehat H^i(G,M)$ and $c\in\widehat H^j(G,C)$.
 \end{enumerate}
 There are explicit formulae for these cup products in terms of the standard resolution in \cite[p.~107]{atiyah-wall}, which we will occasionally reference.
@@ -135,38 +177,46 @@ Here are a few properties of cup products which we will use without citation.
 \begin{proposition}[{\cite[Proposition~9]{atiyah-wall}}]
 	Let $G$ be a finite group and $A$, $B$, and $C$ all $G$-modules. Then, for $a\in\widehat H^i(G,A)$ and $b\in\widehat H^j(G,B)$ and $c\in\widehat H^k(G,C)$, the following are true.
 	\begin{itemize}
-		\item $(a\cup b)\cup c=a\cup(b\cup c)$, where we have identified $(A\otimes_\ZZ B)\otimes_\ZZ C$ and $A\otimes_\ZZ(B\otimes_\ZZ C)$ in the obvious way.
-		\item $a\cup b=(-1)^{ij}(b\cup a)$, where we have identified $A\otimes_\ZZ B$ and $B\otimes_\ZZ A$ in the obvious way.
+		\item $(a\cup b)\cup c=a\cup(b\cup c)$, where we have identified $(A\otimes_\ZZ B)\otimes_\ZZ C$ with $A\otimes_\ZZ(B\otimes_\ZZ C)$.
+		\item $a\cup b=(-1)^{ij}(b\cup a)$, where we have identified $A\otimes_\ZZ B$ with $B\otimes_\ZZ A$.
 		\item For a subgroup $H\subseteq G$, we have $\op{Res}(a\cup b)=(\op{Res}a)\cup(\op{Res}b)$.
 	\end{itemize}
 \end{proposition}
+\begin{remark}
+	Oftentimes we might have some canonical map $\varphi\colon A\otimes_\ZZ B\to C$ of $G$-modules, in which case we might directly refer to the cup product map as the composite
+	\[\widehat H^i(G,A)\otimes_\ZZ\widehat H^j(G,B)\to\widehat H^{i+j}(G,A\otimes_\ZZ B)\stackrel\varphi\to\widehat H^{i+j}(G,C)\]
+	induced by $\varphi$.
+\end{remark}
 
 \subsubsection{Periodic Cohomology}
 Some results from \autoref{sec:crackpot} will mirror the theory of periodic cohomology, so we take a moment to state the main theorem here. We have the following definition.
 \begin{definition}
-	A finite group $G$ has \textit{periodic cohomology} if and only if there is a natural isomorphism between the functors $\widehat H^i(G,-)$ and $\widehat H^{i+d}(G,-)$ for some $d\in\ZZ$ for each $i\in\ZZ$.
+	A finite group $G$ has \textit{periodic cohomology} if and only if there is a $d\in\\ZZ^+$ and natural isomorphism
+	\[\widehat H^i(G,-)\Rightarrow\widehat H^{i+d}(G,-)\]
+	for each $i\in\ZZ$.
 \end{definition}
 Then one can show the following.
-\begin{theorem}[{\cite[Theorems~VI.9.1, VI.9.5]{brown-cohomology}}]
+\begin{theorem}[{\cite[Theorems~VI.9.1, VI.9.5]{brown-cohomology}}] \label{thm:periodiccohom}
 	Let $G$ be a finite group. Then the following are equivalent.
 	\begin{listalph}
 		\item $G$ has periodic cohomology.
-		\item There is a nonzero $i\in\ZZ$ such that $\widehat H^0(G,\ZZ)\cong\ZZ/\#G\ZZ$.
+		\item There is a nonzero $i\in\ZZ$ such that $\widehat H^i(G,\ZZ)\cong\ZZ/\#G\ZZ$.
 		\item There is a nonzero $i\in\ZZ$ and $x\in\widehat H^i(G,\ZZ)$ and $x^\lor\in\widehat H^{-i}(G,\ZZ)$ with
 		\[x\cup x^\lor=x^\lor\cup x=[1]\in\widehat H^0(G,\ZZ).\]
+		Here, the cup products are induced by the isomorphism $\ZZ\otimes_\ZZ\ZZ\cong\ZZ$.
 		\item For some nonzero $i,d\in\ZZ$ and $x\in\widehat H^i(G,\ZZ)$, we have a natural isomorphism
-		\[(x\cup-)\colon\widehat H^i(G,-)\Rightarrow\widehat H^{i+d}(G,\ZZ).\]
+		\[(x\cup-)\colon\widehat H^i(G,-)\Rightarrow\widehat H^{i+d}(G,-).\]
 		\item All Sylow $p$-subgroups of $G$ are cyclic.
 	\end{listalph}
 \end{theorem}
 \begin{example}
-	If $G$ is cyclic of order $n$ generated by $\sigma$, then one can show that $G$ has $2$-periodic cohomology, in that
+	If $G$ is cyclic of order $n$ generated by $\sigma$, then one can show that $G$ has $2$-periodic cohomology: note
 	\[(\chi\cup-)\colon\widehat H^i(G,-)\Rightarrow\widehat H^{i+2}(G,-)\]
 	defines a natural isomorphism, where $\chi\in\widehat H^2(G,\ZZ)$ is represented by the $2$-cocycle
 	\[\left(\sigma^i,\sigma^j\right)\mapsto\floor{\frac{i+j}n},\]
 	where $0\le i,j<n$.
 \end{example}
-We will not prove this, but it is useful to note that these periodic cohomology theories all come from cup products and that they can be witnessed by an ``invertible'' element in the cohomology ring $\widehat H^\bullet(G,\ZZ)$. These themes will reoccur.
+We will not prove \autoref{thm:periodiccohom}, but it is useful to note that these periodic cohomology theories all come from cup products and that they can be witnessed by an ``invertible'' element in the cohomology ring $\widehat H^\bullet(G,\ZZ)$. These themes will reoccur.
 % state tate cohomology
 % cup products
 % a little on change of group
@@ -205,12 +255,12 @@ By the Five lemma, all such morphisms must be isomorphisms of short exact sequen
 
 We have the following classification result.
 \begin{theorem}[{\cite[Theorem~IV.3.12]{brown-cohomology}}] \label{thm:classifyextensionscohom}
-	Let $G$ be a group and $A$ a $G$-module. Then isomorphism classes of group extensions $\mc E$ of $G$ by $A$ are in bijection with cohomology classes in $H^2(G,A)$.
+	Let $G$ be a group and $A$ a $G$-module. Then isomorphism classes of group extensions $\mc E$ of $G$ by $A$ are in natural bijection with cohomology classes in $H^2(G,A)$.
 \end{theorem}
 \begin{proof}[Sketch]
 	We will describe the maps from $2$-cocycles to group extensions and vice versa; that the maps are well-defined and provided the needed isomorphism are a matter of computation. In one direction, fix a group extension
 	\[0\to A\stackrel\iota\to\mc E\stackrel\pi\to G\to0.\]
-	Now, choose a set-theoretic lift $s\colon G\to\mc E$ of $\pi$, and it turns out that the function $c\colon G^2\to A$ given by
+	Now, choose a set-theoretic section $s\colon G\to\mc E$ of $\pi$, and it turns out that the function $c\colon G^2\to A$ given by
 	\[c(g,h)\coloneqq s(g)s(h)s(gh)^{-1}\]
 	defines a $2$-cocycle $c\in Z^2(G,A)$.
 
@@ -218,9 +268,9 @@ We have the following classification result.
 	\[0\to A\stackrel\iota\to \mc E_c\stackrel\pi\to G\to 0\]
 	as follows. As a set, $\mc E_c=A\times G$, with group law defined by
 	\[(a,g)(a',g')\coloneqq\big(a+g\cdot a'+c(g,g'),gg'\big).\]
-	The identity is $(-c(1,1),1)$. To finish, we define $\pi\colon\mc E_c\to G$ by projection and $\iota\colon A\to\mc E_c$ by $a\mapsto(a-c(1,1),1)$.
+	The identity is $(-c(1,1),1)$. And lastly, we define $\pi\colon\mc E_c\to G$ by projection and $\iota\colon A\to\mc E_c$ by $a\mapsto(a-c(1,1),1)$.
 \end{proof}
-The isomorphism of \autoref{thm:classifyextensionscohom} also behaves well with the functoriality of our cohomology groups. For example, a group homomorphism $\varphi\colon G\to H$ and $G$-module $A$ induces a map $H^2(H,A)\to H^2(G,A)$. On the side of group extensions, given a class $u\in H^2(H,A)$ corresponding to the group extension $\mc E$, we can construct $\mc E'$ corresponding to $\varphi(u)$ by pulling back as follows.
+The isomorphism of \autoref{thm:classifyextensionscohom} also behaves well with the functoriality of our cohomology groups. For example, a group homomorphism $\varphi\colon G\to H$ and $G$-module $A$ induces a map $\widetilde\varphi\colon H^2(H,A)\to H^2(G,A)$ (see \autoref{rem:changeofgroup}). On the side of group extensions, given a class $u\in H^2(H,A)$ corresponding to the group extension $\mc E$, we can construct $\mc E'$ corresponding to $\widetilde\varphi(u)$ by pulling back as follows.
 % https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIkEiXSxbMiwwLCJcXG1jIEUiXSxbMSwxLCJBIl0sWzAsMSwiMCJdLFsyLDEsIlxcbWMgRSciXSxbMywwLCJIIl0sWzMsMSwiRyJdLFs0LDAsIjAiXSxbNCwxLCIwIl0sWzcsNiwiXFx2YXJwaGkiLDJdLFsxLDMsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzUsMiwiIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsMV0sWzEsMl0sWzIsNl0sWzYsOF0sWzQsM10sWzMsNV0sWzUsN10sWzcsOV0sWzUsNiwiIiwyLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
 \[\begin{tikzcd}
 	0 & A & {\mc E} & H & 0 \\
@@ -238,7 +288,7 @@ The isomorphism of \autoref{thm:classifyextensionscohom} also behaves well with 
 	\arrow[from=2-4, to=2-5]
 	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=90}, draw=none, from=2-3, to=1-4]
 \end{tikzcd}\]
-Similarly, a $G$-module homomorphism $f\colon A\to B$ induces a map $H^2(G,A)\to H^2(G,B)$. On the side of group extensions, given a class $u\in H^2(G,A)$ corresponding to the group extension $\mc E$, we can construct $\mc E'$ corresponding to $f(u)$ by pushing out as follows.
+Similarly, a $G$-module homomorphism $f\colon A\to B$ induces a map $\widetilde f\colon H^2(G,A)\to H^2(G,B)$. On the side of group extensions, given a class $u\in H^2(G,A)$ corresponding to the group extension $\mc E$, we can construct $\mc E'$ corresponding to $\widetilde f(u)$ by pushing out as follows.
 % https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIkEiXSxbMiwwLCJcXG1jIEUiXSxbMywwLCJHIl0sWzQsMCwiMCJdLFszLDEsIkciXSxbNCwxLCIwIl0sWzAsMSwiMCJdLFsxLDEsIkIiXSxbMiwxLCJcXG1jIEUnIl0sWzAsMV0sWzEsOCwiZiJdLFsxLDJdLFs4LDldLFsyLDksIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs5LDEsIiIsMSx7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXIifX1dLFs3LDhdLFsyLDNdLFs5LDVdLFs1LDZdLFszLDRdLFszLDUsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d&macro_url=https%3A%2F%2Fraw.githubusercontent.com%2FdFoiler%2Fnotes%2Fmaster%2Fnir.tex
 \[\begin{tikzcd}
 	0 & A & {\mc E} & G & 0 \\
@@ -258,17 +308,21 @@ Similarly, a $G$-module homomorphism $f\colon A\to B$ induces a map $H^2(G,A)\to
 \end{tikzcd}\]
 
 \subsection{Class Field Theory}
-For our purposes, class field theory will be used to be able to describe certain cohomology groups associated to local and global fields.
+For our purposes, class field theory will be used to be able to describe certain cohomology groups associated to local and global fields. So as not to confuse Hilbert's Theorem 90 with the (harder) results of class field theory, we will state it now.
+\begin{theorem}[Hilbert's Theorem 90]
+	Let $L/K$ be a Galois extension of fields with Galois group $G$. Then $H^1(G,L^\times)=0$.
+\end{theorem}
+Note that we do not assume our fields are local or global.
 
 \subsubsection{Local Class Field Theory}
-We begin with the local story. Let $L/K$ be a finite Galois extension of  degree $n$ and Galois group $G\coloneqq\op{Gal}(L/K)$. Because we are interested in extensions, we begin with what $H^2\left(G,L^\times\right)$ looks like.
+We begin with the local story. Let $L/K$ be a finite Galois extension of  degree $n$ and Galois group $G$. Because we are interested in extensions, we begin with what $H^2\left(G,L^\times\right)$ looks like.
 \begin{theorem}[{\cite[Lemma~III.2.2]{milne-cft}}]
-	Let $L/K$ be a Galois extension of local fields of degree $n$ and Galois group $G\coloneqq\op{Gal}(L/K)$. Then there is a canonical isomorphism
+	Let $L/K$ be a Galois extension of local fields of degree $n$ and Galois group $G$. Then there is a canonical isomorphism
 	\[\op{inv}\colon H^2\left(G,L^\times\right)\to{\textstyle\frac1n}\ZZ/\ZZ.\]
 \end{theorem}
 The element of $H^2(G,L^\times)$ corresponding to $\frac1n$ deserves a name.
 \begin{definition}
-	Let $L/K$ be a Galois extension of local fields of degree $n$ and Galois group $G\coloneqq\op{Gal}(L/K)$. Then the \textit{local fundamental class} $u_{L/K}$ is the class in $H^2\left(G,L^\times\right)$ with
+	Let $L/K$ be a Galois extension of local fields of degree $n$ and Galois group $G$. Then the \textit{local fundamental class} $u_{L/K}$ is the class in $H^2\left(G,L^\times\right)$ with
 	\[\op{inv}u_{L/K}=1/n.\]
 \end{definition}
 The local fundamental class satisfies a number of good functoriality properties.
@@ -297,7 +351,7 @@ Let $L/K$ be a finite Galois extension of global fields of degree $n$ and Galois
 \begin{definition}
 	Given a global field $K$, we define the \textit{ring of adel\'es} to be the restricted direct product
 	\[\AA_K\coloneqq\prod_{v\in V_K}(K_v,\mathcal O_v).\]
-	Namely, we are considering infinite tuples $(a_v)_{v\in V_K}$, where $a_v\in K_v$ for each $v\in V_K$ but $v\in\mathcal O_v$ for all but finitely many $v\in V_K$.
+	Namely, we are considering infinite tuples $(a_v)_{v\in V_K}$, where $a_v\in K_v$ for each $v\in V_K$ but $a_v\in\mathcal O_v$ for all but finitely many $v\in V_K$.
 \end{definition}
 Observe that there is a natural embedding $K\into\AA_K$ by
 \[a\mapsto(a)_{v\in V_K}.\]
@@ -305,15 +359,15 @@ This embedding descends to an embedding $K^\times\into\AA_K^\times/K^\times$, wh
 
 It turns out that $\AA_K^\times$ and $\AA_K^\times/K^\times$ are the right objects to study. For example, we have the following result.
 \begin{theorem}[{\cite[Proposition~2.5]{milne-cft}}] \label{thm:idelecohom}
-	Let $L/K$ be a finite Galois extension of global fields with Galois group $G\coloneqq\op{Gal}(L/K)$. Then the various restrictions define an isomorphism
-	\[\widehat H^i(G,\AA_L^\times)\simeq\bigoplus_{u\in V_K}\widehat H^i(G,L_v^\times),\]
-	for $i\ge0$, where the $v\in V_L$ is a chosen prime over each $u\in V_K$.
+	Let $L/K$ be a finite Galois extension of global fields with Galois group $G$. Then the various restrictions define an isomorphism
+	\[\widehat H^i(G,\AA_L^\times)\simeq\bigoplus_{u\in V_K}\widehat H^i(G,L_{v(u)}^\times),\]
+	for $i\ge0$, where the $v(u)\in V_L$ is a chosen prime over each $u\in V_K$.
 \end{theorem}
 We also have a global invariant map.
 \begin{theorem}[{\cite[p.~194]{global-cft}}]
-	Let $L/K$ be a finite Galois extension of global fields of degree $n$ with Galois group $G\coloneqq\op{Gal}(L/K)$. Then there is a canonical map
+	Let $L/K$ be a finite Galois extension of global fields of degree $n$ with Galois group $G$. Then there is a canonical map
 	\[\op{inv}=\sum_{v\in V_L}\op{inv}_v\colon H^2(G,\AA_L^\times)\to\QQ/\ZZ\]
-	induced by the local invariant maps and \autoref{thm:idelecohom}. This map induces an isomorphism
+	induced by the local invariant maps and \autoref{thm:idelecohom}. This map induces a canonical isomorphism
 	\[\op{inv}\colon H^2(G,\AA_L^\times/L^\times)\to{\textstyle\frac1n}\ZZ/\ZZ.\]
 \end{theorem}
 As before, the canonical generator we chose will be of special interest.
@@ -323,7 +377,7 @@ As before, the canonical generator we chose will be of special interest.
 \end{definition}
 And, for fun, here is our global Artin reciprocity map.
 \begin{theorem}[{\cite[p.~197]{global-cft}}]
-	Let $L/K$ be a Galois extension of global fields of degree $n$ with Galois group $G$. Then the map
+	Let $L/K$ be a Galois extension of global fields with Galois group $G$. Then the map
 	\[(u_{L/K}\cup-)\colon\widehat H^i(G,\ZZ)\to\widehat H^{i+2}\left(G,\AA_L^\times/L^\times\right)\]
 	is an isomorphism for all $i\in\ZZ$.
 \end{theorem}
@@ -333,7 +387,7 @@ We quickly recall the construction of the Kottwitz gerbs $\mathcal E_1$, $\mathc
 
 Fix a finite Galois extension of global fields $L/K$ with Galois group $G\coloneqq\op{Gal}(L/K)$. For later use, we will also let $G_v\subseteq G$ denote the decomposition group of a place $v\in V_L$. Now, we build two short exact sequences, as described in \autoref{sec:intro}. To begin, we note that the augmentation map $\ZZ[V_K]\onto\ZZ$ induces the short exact sequence
 \[0\to\ZZ[V_L]_0\to\ZZ[V_L]\to\ZZ\to0\label{eq:sesx}\tag{$X$}\]
-where $\ZZ[V_L]$ is the kernel of $\ZZ[V_L]\onto\ZZ$. We also have the short exact sequence
+where $\ZZ[V_L]_0$ is the kernel of $\ZZ[V_L]\onto\ZZ$. We also have the short exact sequence
 \[0\to L^\times\to\AA_L^\times\to\AA_L^\times/L^\times\to0\tag{$A$}\label{eq:sesa}\]
 where the inclusion $L^\times\into\AA_L^\times$ is the diagonal one.
 
@@ -342,11 +396,11 @@ We now construct the Kottwitz gerbs one at a time. For $\mc E_1$, we let $\alpha
 \[0\to\AA_L^\times/L^\times\to\mc E_1(L/K)\to G\to0.\]
 This completes the construction of $\mc E_1(L/K)$, so we see that constructing $\mc E_1(L/K)$ is exactly as hard as constructing the global fundamental class.
 
-To construct $\mc E_2$, let $\mathbb D_2\coloneqq\op{Hom}_\ZZ(\ZZ[V_L],-)$ denote the protorus with character group $\ZZ[V_L]$. Then $\mathcal E_2(L/K)$ is the Galois gerb associated to a particular class $\alpha_2\in\widehat H^2\left(G,\mathbb D(\mathbb A_L)\right)$. To construct this class, we need the following lemma.
+To construct $\mc E_2$, let $\mathbb D_2\coloneqq\op{Hom}_\ZZ(\ZZ[V_L],-)$ denote the algebraic torus with character group $\ZZ[V_L]$. Then $\mathcal E_2(L/K)$ is the Galois gerb associated to a particular class $\alpha_2\in\widehat H^2\left(G,\mathbb D_2(\mathbb A_L)\right)$. To construct this class, we need the following lemma.
 \begin{lemma}[{\cite[p.~714]{tate-torus}}] \label{lem:magicaltate}
 	Let $L/K$ be an extension of global fields with Galois group $G$, and let $V_L$ and $V_K$ denote the set of places of $L$ and $K$ respectively. Given a place $v\in V_L$, let $G_v\subseteq G$ denote its decomposition group. Then, for any $i\in\ZZ$,
 	\[\widehat H^i(G,\op{Hom}_\ZZ(\ZZ[V_L],M))\simeq\prod_{u\in V_K}\widehat H^i(G_{v(u)},M),\]
-	where the product is over places $u\in V_K$ taking a fixed place $v(u)\in V_L$ above $u$.
+	where the product is over places $u\in V_K$ with a chosen place $v(u)\in V_L$ above $u$.
 \end{lemma}
 \begin{proof}
 	We give the proof for later use. This is essentially a matter of separating our places and then applying Shapiro's lemma. For each $u\in V_K$, let $V_{u}\subseteq V_L$ denote the set of places in $L$ above $u$. Then we see
@@ -365,7 +419,7 @@ To construct $\mc E_2$, let $\mathbb D_2\coloneqq\op{Hom}_\ZZ(\ZZ[V_L],-)$ denot
 		&\simeq \widehat H^i\left(G,\op{Mor}_{\mathrm{Set}}(G_{v(u)}\backslash G,M)\right) \\
 		&\simeq \widehat H^i\big(G,\op{CoInd}_{G_{v(u)}}^G(M)\big),
 	\end{align*}
-	where the last isomorphism is because $\op{Mor}_{\mathrm{Set}}(G_{v(u)}\backslash G,M)\simeq\op{CoInd}_H^G(M)$ by taking $f\colon G_{v(u)}\backslash G\to M$ to the function $g\mapsto gf\left(G_vg^{-1}\right)$. Now, this last cohomology group is isomorphic to $\widehat H^i(G_{v(u)},M)$ by Shapiro's lemma, thus finishing.
+	where the last isomorphism is because $\op{Mor}_{\mathrm{Set}}(G_{v(u)}\backslash G,M)\simeq\op{CoInd}_H^G(M)$ by taking $f\colon G_{v(u)}\backslash G\to M$ to the function $g\mapsto gf\left(G_vg^{-1}\right)$. Now, this last cohomology group is isomorphic to $\widehat H^i(G_{v(u)},M)$ by \autoref{lem:shapiro}, thus finishing.
 \end{proof}
 \begin{remark} \label{rem:forwardshapiro}
 	Tracking through the application of Shapiro's lemma above, we can see that the isomorphism behaves as
@@ -409,7 +463,7 @@ To rigorize this, we let $\op{Hom}_\ZZ(X,A)$ denote the group of morphisms of sh
 	\arrow["{\pi_3}"', from=1-1, to=2-1]
 	\arrow[from=1-2, to=2-2]
 	\arrow[from=2-1, to=2-2]
-	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+	% \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
 \end{tikzcd}\]
 is a pull-back square. Then we can check via \autoref{lem:magicaltate} that $\widehat H^1(G,\op{Hom}_\ZZ(\ZZ[V_L],\AA_L^\times))=0$, which gives the following result.
 \begin{lemma}[{\cite[p.~716]{tate-torus}, \cite[Lemma~6.3]{kottwitz}}] \label{lem:constructtatealpha}
@@ -422,11 +476,11 @@ is a pull-back square. Then we can check via \autoref{lem:magicaltate} that $\wi
 		\arrow["{\pi_3}"', from=1-1, to=2-1]
 		\arrow[from=1-2, to=2-2]
 		\arrow[from=2-1, to=2-2]
-		\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=45}, draw=none, from=1-1, to=2-2]
+		% \arrow["\lrcorner"{anchor=center, pos=0.125, rotate=45}, draw=none, from=1-1, to=2-2]
 	\end{tikzcd}\]
 	is a pull-back square.
 \end{lemma} 
-To finish, we merely have to check that $\alpha_2$ and $\alpha_1$ have the same image in $\widehat H^2(G,\op{Hom}_\ZZ(\ZZ[V_L],\AA_L^\times))$ so that \autoref{lem:constructtatealpha} promises us $\alpha\in\widehat H^2(G,\op{Hom}_\ZZ(X,A))$ such that $\pi_2\alpha=\alpha_2$ and $\pi_1\alpha=\alpha_1$. These together let us construct $\alpha_3\coloneqq\pi_3\alpha$ and hence $\mc E_3(L/K)$ from \autoref{thm:classifyextensionscohom} as the extension
+To finish, we note that one can check that $\alpha_2$ and $\alpha_1$ have the same image in $\widehat H^2(G,\op{Hom}_\ZZ(\ZZ[V_L],\AA_L^\times))$ so that \autoref{lem:constructtatealpha} promises us $\alpha\in\widehat H^2(G,\op{Hom}_\ZZ(X,A))$ such that $\pi_2\alpha=\alpha_2$ and $\pi_1\alpha=\alpha_1$. These together let us construct $\alpha_3\coloneqq\pi_3\alpha\in\widehat H^2(G,\op{Hom}_\ZZ(\ZZ[V_L]_0,\AA_L^\times/L^\times))$ and hence $\mc E_3(L/K)$ from \autoref{thm:classifyextensionscohom} as the extension
 \[0\to\mathbb D_3(L^\times)\to\mc E_3(L/K)\to G\to0,\]
 where $\mathbb D_3\coloneqq\op{Hom}_\ZZ(\ZZ[V_L]_0,-)$.
 \begin{remark}
@@ -442,7 +496,7 @@ where $\mathbb D_3\coloneqq\op{Hom}_\ZZ(\ZZ[V_L]_0,-)$.
 		\arrow["{f_3}", dashed, from=1-2, to=2-2]
 		\arrow["{f_2}", from=1-3, to=2-3]
 	\end{tikzcd}\]
-	commute by solving $a'f_3=f_2b'$ (when possible). However, it is not true that $\alpha_2$ uniquely determines $\alpha_3$ like this because the induced map
+	commute by solving $a'f_3=f_2b'$ (when possible). (Here, $a'$ and $b'$ are the obvious maps.) However, it is not true that $\alpha_2$ uniquely determines $\alpha_3$ like this because the induced map
 	\[a'\colon\widehat H^2(G,\op{Hom}_\ZZ(\ZZ[V_L]_0,L^\times))\to\widehat H^2(G,\op{Hom}_\ZZ(\ZZ[V_L]_0,\AA_L^\times))\]
 	need not be injective in general, so knowing $a'\alpha_3=b'\alpha_2$ does not specify $\alpha_3$ in general.
 \end{remark}

@@ -37,3 +37,11 @@
 {"rule":"SENTENCE_WHITESPACE","sentence":"^\\QE2.\\E$"}
 {"rule":"SOME_OF_THE","sentence":"^\\QWe take a moment to review some of the group cohomology will be used in the paper.\\E$"}
 {"rule":"EN_A_VS_AN","sentence":"^\\QIn one direction, if \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q-encoding module, then \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q promises us a natural isomorphism \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, so the composite \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q shows that \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q-encoding module.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThroughout, we freely use the packages qZeil and qMultiSum developed by Axel Riese; see \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q for a description of these packages.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThroughout, we freely use the packages qZeil and qMultiSum developed by Axel Riese; see \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q for a description of these packages.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe package qZeil shows that \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q has \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"IF_IS","sentence":"^\\QTo explicate our orthogonal and symplectic groups, we fix \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q if \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q if \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, and \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q so that \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is defined to preserve the quadratic form \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe functionals \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q and \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q are a basis of the space \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, where \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q denotes the functional on \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q supported on \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QA Unipotent Eigenvector.\\E$"}
+{"rule":"SENTENCE_WHITESPACE","sentence":"^\\QSym.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QSym.\\E$"}

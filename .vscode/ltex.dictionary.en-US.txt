@@ -105,3 +105,8 @@ Gelfand
 antidiagonal
 Diagonalizing
 equidistribution
+upper-triangularization
+Vandermonde
+diagonalizing
+upper-triangularizations
+expositional

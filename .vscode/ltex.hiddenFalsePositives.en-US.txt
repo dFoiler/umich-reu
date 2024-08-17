@@ -45,3 +45,6 @@
 {"rule":"EN_A_VS_AN","sentence":"^\\QA Unipotent Eigenvector.\\E$"}
 {"rule":"SENTENCE_WHITESPACE","sentence":"^\\QSym.\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QSym.\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QThus, viewing \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q as an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q matrix with entries that are \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q (block) matrices, we see that \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is (block) diagonal with diagonal entries \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QThus, viewing \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q as an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q matrix with entries that are \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q (block) matrices, we see that \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is similar to a (block) diagonal matrix with diagonal entries \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QThus, viewing \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q as an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q matrix with entries that are \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q (block) matrices, we see that \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is similar to a (block) upper-triangular matrix with diagonal entries \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}

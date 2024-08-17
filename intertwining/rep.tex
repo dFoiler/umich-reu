@@ -697,8 +697,8 @@ We are now in a position to write down some matrices when $\beta^2=1$. We begin 
 	Fix a character $\chi\colon P\to\CC^\times$, which we write as $\chi=(\alpha\circ m)(\beta\circ\chi_{\det})$. Assume that $\beta=1$ so that $\chi=\chi^J$. Give $\left(\Ind_P^G\chi\right)^\chi$ the standard basis $\{f_0,\ldots,f_n\}$ of \Cref{prop:ind-irred}. For each $r,s\in\{0,\ldots,n\}$, define
 	\[I(r,s)\coloneqq\begin{cases}
 		\displaystyle(-1)^{r+s-n}\frac{(q;q)_s^2}{(q;q)_{n-r}^2(q;q)_{r+s-n}}q^{n^2-s^2+\binom{r+s-n}2} & \text{if }G\in\{\GL_{2n},\SL_{2n}\}, \\
-		\displaystyle(-1)^{(r+s-n)/2}\frac{(q;q)_s}{(q;q)_{n-r}(q^2;q^2)_{(r+s-n)/2}}q^{\binom{n-1}2-\binom{s-1}2+2\binom{(r+s-n)/2}2} & \text{if }G\in\{\GO_{2n},\O_{2n}\}, \\
-		\displaystyle(-1)^{r+s-n-\floor{(r+s-n)/2}}\frac{(q;q)_s}{(q;q)_{n-r}(q^2;q^2)_{\floor{(r+s-n)/2}}}q^{\binom{n+1}2-\binom{s+1}2+2\binom{\floor{(r+s-n)/2}}2} & \text{if }G\in\{\GSp_{2n},\Sp_{2n}\}, \\
+		\displaystyle(-1)^{(r+s-n)/2}\frac{(q;q)_s}{(q;q)_{n-r}(q^2;q^2)_{(r+s-n)/2}}q^{\binom{n}2-\binom{s}2+2\binom{(r+s-n)/2}2} & \text{if }G\in\{\GO_{2n},\O_{2n}\}, \\
+		\displaystyle(-1)^{r+s-n-\floor{(r+s-n)/2}}\frac{(q;q)_s}{(q;q)_{n-r}(q^2;q^2)_{\floor{(r+s-n)/2}}}q^{\binom{n+1}2-\binom{s+1}2+2\binom{\floor{(r+s-n)/2}+1}2} & \text{if }G\in\{\GSp_{2n},\Sp_{2n}\}, \\
 	\end{cases}\]
 	where we implicitly take $I(r,s)=0$ unless $r+s-n$ is nonnegative (and $I(r,s)=0$ unless $r+s-n$ is also even when $G\in\{\GO_{2n},\O_{2n}\}$). Then $[I(r,s)]_{0\le s,r\le n}$ is the matrix representation of $I$.
 \end{proposition}
@@ -769,15 +769,15 @@ It remains to handle $G\in\{\GO_{2n},\O_{2n},\GSp_{2n},\Sp_{2n}\}$. Though it wa
 \Cref{lem:general-from-special-matrix} tells us that we can essentially focus on $G\in\{\O_{2n},\Sp_{2n}\}$. For example, the eigenvalues of $I\circ I$ in the case that $G\in\{\GO_{2n},\GSp_{2n}\}$ can be read off the eigenvalues by taking suitable submatrices everywhere. Anyway, we now handle $G\in\{\O_{2n},\Sp_{2n}\}$. The approaches are rather different, so we will handle them separately.
 \begin{proposition}
 	Take $G=\O_{2n}$. Fix a character $\chi\colon P\to\CC^\times$, which we write as $\chi=\beta\circ\chi_{\det}$. Assume that $\beta^2=1$ but $\beta\ne1$ so that $\chi=\chi^J$. Let $\{f_0,\ldots,f_n\}$ be the standard basis of $\left(\Ind_P^G\chi\right)^\chi$. Then the matrix representation of $I$ is
-	\[\left[(-1)^{(r+s-n)/2}q^{\binom{n-1}2-\binom{s-1}2+2\binom{(r+s-n)/2}2}\frac{(q;q)_s}{(q;q)_{n-r}(q^2;q^2)_{(r+s-n)/2}}\right]_{0\le s,r\le n},\]
+	\[\left[(-1)^{(r+s-n)/2}q^{\binom{n}2-\binom{s}2+2\binom{(r+s-n)/2}2}\frac{(q;q)_s}{(q;q)_{n-r}(q^2;q^2)_{(r+s-n)/2}}\right]_{0\le s,r\le n},\]
 	where the coefficient implicitly vanishes unless $r+s-n$ is a nonnegative even integer.
 \end{proposition}
 \begin{proof}
 	Arguing as in \Cref{prop:trivial-matrix-coeffs}, we use \Cref{lem:matrix-coeff}. In \Cref{prop:trivial-matrix-coeffs}, evaluating the sum in \Cref{lem:matrix-coeff} was relatively easy because $\beta$ was trivial, implying $\beta(\det E)^{-1}=1$ always. But in the case that $G=\O_{2n}$, we see that $\det E=1$ by definition of $E$, so we still have $\beta(\det E)^{-1}=1$. Thus, the argument of \Cref{prop:trivial-matrix-coeffs} goes through, with the caveat that we must consider the sign $\beta(\varepsilon)^{n-s}=\beta(1)^{n-s}=1$ which occurs when evaluating $If_r(\eta_s)$.
 \end{proof}
-\begin{proposition}
+\begin{proposition} \label{prop:sp-quadratic-matrix}
 	Take $G=\Sp_{2n}$. Fix a character $\chi\colon P\to\CC^\times$, which we write as $\chi=\beta\circ\chi_{\det}$. Assume that $\beta^2=1$ but $\beta\ne1$ so that $\chi=\chi^J$. Let $\{f_0,\ldots,f_n\}$ be the standard basis of $\left(\Ind_P^G\chi\right)^\chi$. If $\beta(-1)=1$, then the matrix representation of $I$ is
-	\[\left[\beta(-1)^{n-s+(r+s-n)/2}(-1)^{(r+s-n)/2}q^{\binom{n+1}2-\binom{s+1}2+2\binom{(r+s-n)/2}2-(r+s-n)/2}\frac{(q;q)_s}{(q;q)_{n-r}(q^2;q^2)_{(r+s-n)/2}}\right]_{0\le s,r\le n},\]
+	\[\left[\beta(-1)^{n-s+(r+s-n)/2}(-1)^{(r+s-n)/2}q^{\binom{n+1}2-\binom{s+1}2+2\binom{(r+s-n)/2+1}2-(r+s-n)/2}\frac{(q;q)_s}{(q;q)_{n-r}(q^2;q^2)_{(r+s-n)/2}}\right]_{0\le s,r\le n},\]
 	where the coefficient implicitly vanishes unless $r+s-n$ is a nonnegative even integer.
 \end{proposition}
 \begin{proof}
@@ -839,7 +839,7 @@ Here is our main result of the present subsection.
 	In other words, $\op{Hom}_U\left(\psi_T,\Ind_P^G\chi\right)$ is spanned by the $f_{\chi,T}$ of \Cref{ex:produce-psi-t-eigen}.
 \end{proposition}
 \begin{proof}
-	We use Mackey theory. By Frobenius reciprocity, we are computing the dimension of the space $\Hom_G\left(\Ind_U^G\psi_T,\Ind_P^G\chi\right)$, which \cite[Theorem~32.1]{bump-lie-group} explains equals
+	We use Mackey theory. By Frobenius reciprocity, we are computing the dimension of the space $\Hom_G\left(\Ind_U^G\psi_T,\Ind_P^G\chi\right)$, which \cite[Theorem~32.1]{bump-lie-group} explains equals the dimension of
 	\[\mc H\coloneqq\left\{f\in\op{Mor}(G,\CC):f(pgu)=\chi(p)f(g)\psi_T(u)\text{ for }p\in P,g\in G,u\in U\right\}.\]
 	We proceed in steps.
 	\begin{enumerate}
@@ -1000,5 +1000,5 @@ Thus, we see that the values of $g^G(\omega,\psi,T)$ will be interesting to us. 
 	When $G\in\{\GO_{2n},\O_{2n}\}$, it may appear that our signs may disagree, but recall from \Cref{rem:bad-orthogonal} that $T$ does not even exist when $n$ is odd, so we will always have $\beta(-1)^n=\beta(\varepsilon)^n$; thus, the above equation still holds. As such, we see that the sum in the definition of $g^G(\beta,\psi,T)$ obeys the expected ``square root'' cancellation generically.
 \end{remark}
 \begin{remark}
-	Later on, we will compute the values of $g^G(\beta,\psi,T)$ in terms of usual Gauss sums; for example, we will be able to check \eqref{eq:gauss-sum-mag} directly. Do note that \eqref{eq:gauss-sum-mag} cannot hold in the non-generic cases where $\beta^2=1$ because $\left|g^G(\beta,\psi,T)\right|^2$ is (up to sign) an eigenvalue of $I\circ I$, but there is no such eigenvalue when $\beta^2=1$.\todo{Check this.}
+	Later on, we will compute the values of $g^G(\beta,\psi,T)$ in terms of usual Gauss sums; for example, we will be able to check \eqref{eq:gauss-sum-mag} directly. Do note that \eqref{eq:gauss-sum-mag} cannot hold in the non-generic cases where $\beta^2=1$ because $\left|g^G(\beta,\psi,T)\right|^2$ is (up to sign) an eigenvalue of $I\circ I$, but there may be no such eigenvalue when $\beta^2=1$. Instead, it will turn out that $\left|g^G(\beta,\psi,T)\right|^2$ equals the smallest magnitude of an eigenvalue of $I\circ I$ even when $\beta^2=1$, which can be checked by comparing the computations of \Cref{sec:qcombo,sec:gsum}.
 \end{remark}

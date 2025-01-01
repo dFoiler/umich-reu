@@ -16,9 +16,7 @@
 \begin{document}
 
 \begin{abstract}
-    We consider degenerate principal series $\Ind_P^G\chi$ representations over finite fields, where $G$ is a classical group of even rank, and $P$ is the Siegel parabolic subgroup of matrices of the form $\begin{bsmallmatrix}
-        A & B \\ & D
-    \end{bsmallmatrix}$. For example, we show that this representation is multiplicity-free and irreducible for most $\chi$. We then discuss a particular intertwining operator $I$ on $\Ind_P^G\chi$ and related combinatorics. A basis of $\Ind_P^G\chi$ provides a matrix representation, leading to families of diagonalizable antitriangular matrices with extraordinarily well-behaved eigenvalues. Lastly, applying $I$ to a special vector in $\Ind_P^G\chi$ leads us to various matrix Gauss sums, whose evaluations imply an explicit equidistribution result of the trace and determinant of symmetric and alternating invertible matrices.
+    We consider degenerate principal series representations $\Ind_P^G\chi$ over finite fields, where $G$ is a classical group of even rank, and $P$ is the Siegel parabolic subgroup. For example, we show that this representation is multiplicity-free and irreducible for most characters $\chi$. We then discuss a particular intertwining operator $I$ on $\Ind_P^G\chi$ and its related combinatorics. Firstly, this operator $I$ produces families of diagonalizable antitriangular matrices with well-behaved eigenvalues. Secondly, applying $I$ to a special vector in $\Ind_P^G\chi$ leads us to various matrix Gauss sums, whose evaluations imply an explicit equidistribution result of the trace and determinant of symmetric and alternating invertible matrices.
 \end{abstract}
 
 \maketitle
@@ -31,7 +29,7 @@
 \section{Introduction}
 Let $q$ be a prime-power not divisible by $2$ or $3$, and let $2n$ be a positive even integer. For the purposes of the introduction, we work with the group $G\coloneqq\op{SL}_{2n}(\FF_q)$, and we let $P\subseteq G$ denote the subgroup of matrices of the form $\begin{bsmallmatrix}
     A & B \\ & D
-\end{bsmallmatrix}$ where $A,B,D\in\FF_q^{n\times n}$. This paper is interested in the degenerate principal series representations $\Ind_P^G\chi$, where $\chi\colon P\to\CC^\times$ is some character, and the combinatorics attached to these representations.
+\end{bsmallmatrix}$ where $A,B,D\in\FF_q^{n\times n}$. This paper is interested in the degenerate principal series representations $\Ind_P^G\chi$, where $\chi\colon P\to\CC^\times$ is some character, and the combinatorics attached to these representations. We take a moment to remark that these representations play a prominent role in the doubling method of Piatetski-Shapiro and Rallis \cite{ps-r-doubling}; we refer to \Cref{rem:double} at the end of the introduction for some more discussion of this once we have set up the relevant objects.
 
 For example, we are able to show that the representation $\Ind_P^G\chi$ tends to be irreducible.
 \begin{theorem}
@@ -44,38 +42,38 @@ For example, we are able to show that the representation $\Ind_P^G\chi$ tends to
 \end{theorem}
 The result follows by combining \Cref{prop:ind-irred,prop:ind-mult-free}. In short, we use Gelfand pairs to show that the representation is multiplicity-free, and we use Mackey theory to compute the number of irreducible components.
 
-Anyway, the point is that this representation is reasonably simple. The combinatorics attached to this representation comes from defining a special intertwining operator $I\colon\Ind_P^G\chi\to\Ind_P^G\chi'$ by
+The combinatorics attached to this representation comes from defining a special intertwining operator $I\colon\Ind_P^G\chi\to\Ind_P^G\chi'$ by
 \[If(g)\coloneqq\sum_{B\in\FF_q^{n\times n}}f\left(\begin{bmatrix}
     & 1_n \\ -1_n
 \end{bmatrix}\begin{bmatrix}
     1_n & B \\ & 1_n
 \end{bmatrix}g\right),\]
-where $\chi'\colon P\to\CC^\times$ is some other explicitly defined character. When $\chi^2\ne1$, one has that $I\circ I$ is an operator on $\Ind_P^G\chi$; otherwise, when $\chi^2=1$, it turns out that $\chi'=\chi$ so that $I$ is an operator on $\Ind_P^G\chi$.
+where $\chi'\colon P\to\CC^\times$ is some other explicitly defined character. In general, one has that $I\circ I$ is an operator on $\Ind_P^G\chi$; when $\chi^2=1$, it turns out that $\chi'=\chi$ so that $I$ is an operator on $\Ind_P^G\chi$.
 
 As such, we see that there are two cases of interest for our operator $I$. On one hand, in the exceptional cases where $\chi^2=1$, we can ask how $I$ acts on the irreducible components of $\Ind_P^G\chi$. For simplicity, we will consider $\chi=1$ for the time being. By choosing a basis of $\Ind_P^G1$, we show the following in \Cref{prop:trivial-matrix-coeffs} and \Cref{thm:eigens-gl}.
-\begin{theorem}
+\begin{theorem} \label{thm:sln-eigens}
     One can give $\Ind_P^G1$ an ordered basis so that the operator $I$ on $\Ind_P^G1$ has matrix given by
-    \[\left[(-1)^{r+s-n}\frac{(q;q)_s^2}{(q;q)_{n-r}^2(q;q)_{r+s-n}}q^{n^2-s^2+\binom{r+s-n}2}\right]_{0\le s,r\le n},\]
-    where $(a;q)_n\coloneqq\prod_{i=1}^n\left(1-aq^i\right)$ is the $q$-Pochhammer symbol. This matrix is diagonalizable and has eigenvalues given by
-    \[\left\{(-1)^{r}q^{\binom n2+\binom{n-r+1}2}:0\le r\le n\right\}.\]
+    \[\left[(-1)^{i+j-n}q^{n^2-i^2+\binom{i+j-n}2}\frac{(q;q)_i^2}{(q;q)_{n-j}^2(q;q)_{i+j-n}}\right]_{i+j\ge n},\]
+    where $(a;q)_n\coloneqq\prod_{i=0}^{n-1}\left(1-aq^i\right)$ is the $q$-Pochhammer symbol; here, $i,j\in\{0,\ldots,n\}$ are indices, and $i+j\ge n$ indicates that the matrix has $0$s when $i+j< n$. This matrix is diagonalizable and has eigenvalues given by
+    \[\left\{(-1)^{n-i}q^{\binom n2+\binom{i+1}2}:0\le i\le n\right\}.\]
 \end{theorem}
-\begin{example}
-    For $n=4$, this matrix is
-    \[\begin{bmatrix}  &   &   &   & q^{16}\\  &   &   & q^{15}  & \frac{ ( q - 1 ) }{1} q^{15}\\  &   & q^{12}  & \frac{ ( q^{2} - 1 ) ^{2} }{ ( q - 1 ) } q^{12}  & \frac{ ( q - 1 ) ( q^{2} - 1 ) }{1} q^{13}\\  & q^{7}  & \frac{ ( q^{3} - 1 ) ^{2} }{ ( q - 1 ) } q^{7}  & \frac{ ( q^{2} - 1 ) ( q^{3} - 1 ) ^{2} }{ ( q - 1 ) } q^{8}  & \frac{ ( q - 1 ) ( q^{2} - 1 ) ( q^{3} - 1 ) }{1} q^{10}\\1 & \frac{ ( q^{4} - 1 ) ^{2} }{ ( q - 1 ) }  & \frac{ ( q^{3} - 1 ) ^{2} ( q^{4} - 1 ) ^{2} }{ ( q - 1 ) ( q^{2} - 1 ) } q^{1}  & \frac{ ( q^{2} - 1 ) ( q^{3} - 1 ) ( q^{4} - 1 ) ^{2} }{ ( q - 1 ) } q^{3}  & \frac{ ( q - 1 ) ( q^{2} - 1 ) ( q^{3} - 1 ) ( q^{4} - 1 ) }{1} q^{6}\\\end{bmatrix},\]
-    and the eigenvalues are $\left\{q^{16},-q^{12},q^9,-q^7,q^6\right\}$.
-\end{example}
+% \begin{example}
+%     For $n=4$, this matrix is
+%     \[\begin{bmatrix}  &   &   &   & q^{16}\\  &   &   & q^{15}  & \frac{ ( q - 1 ) }{1} q^{15}\\  &   & q^{12}  & \frac{ ( q^{2} - 1 ) ^{2} }{ ( q - 1 ) } q^{12}  & \frac{ ( q - 1 ) ( q^{2} - 1 ) }{1} q^{13}\\  & q^{7}  & \frac{ ( q^{3} - 1 ) ^{2} }{ ( q - 1 ) } q^{7}  & \frac{ ( q^{2} - 1 ) ( q^{3} - 1 ) ^{2} }{ ( q - 1 ) } q^{8}  & \frac{ ( q - 1 ) ( q^{2} - 1 ) ( q^{3} - 1 ) }{1} q^{10}\\1 & \frac{ ( q^{4} - 1 ) ^{2} }{ ( q - 1 ) }  & \frac{ ( q^{3} - 1 ) ^{2} ( q^{4} - 1 ) ^{2} }{ ( q - 1 ) ( q^{2} - 1 ) } q^{1}  & \frac{ ( q^{2} - 1 ) ( q^{3} - 1 ) ( q^{4} - 1 ) ^{2} }{ ( q - 1 ) } q^{3}  & \frac{ ( q - 1 ) ( q^{2} - 1 ) ( q^{3} - 1 ) ( q^{4} - 1 ) }{1} q^{6}\\\end{bmatrix},\]
+%     and the eigenvalues are $\left\{q^{16},-q^{12},q^9,-q^7,q^6\right\}$.
+% \end{example}
 \begin{remark}
     Considerations with other classical groups $G$ produces other families of diagonalizable antitriangular matrices.
 \end{remark}
-What is remarkable is that we have produced a family of diagonalizable ``antitriangular'' matrices. We are not aware of any general method to handle such diagonalization problems, and it does not appear clear a priori that the eigenvalues listed above should be so well-behaved. Diagonalizing certain antitriangular (satisfying a ``global antidiagonal property'') matrices have combinatorial applications in \cite{britnell-antitriangular}, and some aspects of our methods can be considered $q$-analogues of their arguments, but the analogy is somewhat weak. Notably, the above family of matrices does not satisfy the global antidiagonal property considered there.
+What is remarkable is that we have produced a family of diagonalizable ``antitriangular'' matrices. We are not aware of any general method to handle such diagonalization problems, and it does not appear clear a priori that the eigenvalues listed above should be so well-behaved. Diagonalizing certain antitriangular (satisfying a ``global antidiagonal property'') matrices have combinatorial applications in \cite{britnell-antitriangular}, and some aspects of our methods can be considered $q$-analogues of their arguments, but the analogy is weak. Notably, the family of matrices considered in \Cref{thm:sln-eigens} does not satisfy the global antidiagonal property.
 
-On the other hand, we may still be interested in the generic case $\chi^2\ne1$. Here, a matrix representation as above can describe the behavior of $I\circ I$. Another approach would be to choose a particularly special vector of $\Ind^P_G\chi$ and then evaluate $I\circ I$ on this vector; this will determine the entire behavior of $I\circ I$ because $\Ind_P^G\chi$ is irreducible. A particular choice of vector leads us to consider the matrix Gauss sums of \cite{kim-gauss-sum}; the following result is \Cref{prop:i-on-psi-eigen}.
+On the other hand, we may still be interested in the generic case $\chi^2\ne1$. In this case, $\op{Ind}^G_P\chi$ is irreducible, so $I\circ I$ is a scalar. As such, one may simply pick up any nonzero vector in $\op{Ind}^G_P\chi$ and apply $I\circ I$ to it in order to compute this scalar. Executing this strategy leads us to consider the matrix Gauss sums of \cite{kim-gauss-sum}; the following result is \Cref{prop:i-on-psi-eigen}.
 \begin{theorem}
-    Fix a nontrivial character $\psi\colon\FF_q\to\CC^\times$. For each character $\chi\colon P\to\CC^\times$, we define a vector $f_\chi\in\Ind_P^G\chi$ as supported on matrices of the form $P\begin{bsmallmatrix}
+    Fix a nontrivial character $\psi\colon\FF_q\to\CC^\times$. For each character $\chi\colon P\to\CC^\times$, we define a vector $f_\chi\in\Ind_P^G\chi$ as supported on matrices of the form $p\begin{bsmallmatrix}
         & -1_n \\ 1_n
     \end{bsmallmatrix}\begin{bsmallmatrix}
         1_n & B \\ & 1_n
-    \end{bsmallmatrix}$ with value
+    \end{bsmallmatrix}$ for $p\in P$ with value
     \[f_\chi\left(p\begin{bmatrix}
         & -1_n \\ 1_n
     \end{bmatrix}\begin{bmatrix}
@@ -84,32 +82,44 @@ On the other hand, we may still be interested in the generic case $\chi^2\ne1$. 
     Then
     \[If_\chi=\Bigg(\sum_{B\in\GL_n(\FF_q)}\chi(\det B)\psi(\tr B)\Bigg)f_{\chi'}.\]
 \end{theorem}
+\begin{remark}
+    In fact, even when $I$ fails to be a scalar, we will be able to show that the eigenvalue given by the Gauss sum equals the smallest eigenvalue of $I$, and it seems to be the case that this eigenvalue has the largest eigenspace in $\Ind_P^G\chi$. This is discussed further in \Cref{rem:generic-eigenvalue}. It would be interesting to explicitly compute (or at least compare) the dimensions of all the eigenspaces of $\op{Ind}_P^G\chi$, but this seems out of reach at the moment.
+\end{remark}
+
 Thus, we are motivated to evaluate these Gauss sums. In the case of $G=\SL_{2n}(\FF_q)$, the corresponding Gauss sums given as above have been evaluated in \cite{kim-gauss-sum}. However, considerations of other groups $G$ lead to different sums. For example, $G=\Sp_{2n}(\FF_q)$ leads to a sum over invertible symmetric matrices considered in \cite{saito-sym-gauss-sum}, and $G=\O_{4n}(\FF_q)$ leads to a sum over invertible alternating matrices (which appears to be new).
 
-We provide evaluations for all of these matrix Gauss sums. Our methods are based on an explicit row-reduction analogous to the Bruhat decomposition considerations of \cite{kim-gauss-sum}, but the explicit nature of our exposition allows our proofs over all the various kinds of sums to be rather uniform. For example, even though the sum over invertible symmetric matrices has already been considered in \cite{saito-sym-gauss-sum}, our method seems to be easier to visualize.
+We provide evaluations for all of these matrix Gauss sums. Our methods are based on an explicit row-reduction analogous to the Bruhat decomposition methods of \cite{kim-gauss-sum}, but the explicit nature of our exposition allows our proofs to be rather uniform over all the various sums. For example, even though the sum over invertible symmetric matrices has already been considered in \cite{saito-sym-gauss-sum}, our method seems to be easier to visualize.
 
-Evaluating these Gauss sums also has a combinatorial application: we are able to provide a reasonably explicit formula for the number of invertible matrices (symmetric, alternating, or neither) with given trace and determinant. For general invertible matrices, this application is essentially implicit in \cite[Theorem~6.2]{kim-gauss-sum}, so we state results for symmetric and alternating matrices, which appear to be new. The following results follow from \Cref{cor:count-sym,cor:count-alt}, and they provide a rather explicit equidistribution result for the trace and determinant.
+Evaluating these Gauss sums also has a combinatorial application: we are able to provide an explicit formula for the number of invertible symmetric, alternating, or general matrices with given trace and determinant. For general invertible matrices, this application is essentially implicit in \cite[Theorem~6.2]{kim-gauss-sum}, so we only state results for symmetric and alternating matrices, which appear to be new. The following results follow from \Cref{cor:count-sym,cor:count-alt}, and they provide an explicit equidistribution result for the trace and determinant.
 \begin{theorem}
-    Fix $d\in\FF_q^\times$ and $t\in\FF_q$. For odd integers $2m+1$, the number $N(d,t)$ of symmetric $A\in\GL_{2m+1}(\FF_q)$ is bounded by
-    \[-q^{m(m+1)}(q-1)^{m+1}\cdot\frac{1}{q(q-1)}\le N(d,t)-\frac N{q(q-1)}\le q^{m(m+1)}(q-1)^{m+1}\cdot\frac{q(q-1)-1}{q(q-1)},\]
+    Fix $d\in\FF_q^\times$ and $t\in\FF_q$. For odd integers $2m+1$, the number $N(d,t)$ of symmetric $A\in\GL_{2m+1}(\FF_q)$ with $(\det A,\tr A)=(d,t)$ is bounded by
+    \[\left|N(d,t)-\frac N{q(q-1)}\right|\le q^{m(m+1)}(q-1)^{m+1},\]
     where $N$ is the total number of invertible symmetric $(2m+1)\times(2m+1)$ matrices.
 \end{theorem}
 \begin{remark}
-    There is analogous result for even integers $2m$, but it is slightly more complicated to state.
+    There is analogous, albeit slightly more complicated, result for even integers $2m$.
 \end{remark}
 \begin{theorem}
-    Fix $d\in\FF_q^{\times2}$ and $t\in\FF_q$. For even integers $2m$, the number $N(d,t)$ of alternating $A\in\GL_{2n}(\FF_q)$ is bounded by
-    \[-q^{m(m-1)}(q-1)^m\cdot\frac2{q(q-1)}\le N(d,t)-\frac N{q(q-1)/2}\le q^{m(m-1)}(q-1)^m\cdot\frac{q(q-1)-2}{q(q-1)},\]
+    Fix a square $d\in\FF_q^{\times2}$ and $t\in\FF_q$. For even integers $2m$, the number $N(d,t)$ of alternating $A\in\GL_{2m}(\FF_q)$ with $(\det A,\tr A)=(d,t)$ is bounded by
+    \[\left|N(d,t)-\frac N{q(q-1)/2}\right|\le q^{m(m-1)}(q-1)^m,\]
     where $N$ is the total number of invertible alternating $2m\times2m$ matrices.
 \end{theorem}
+\begin{remark} \label{rem:double}
+    The aforementioned matrix Gauss sums also appear in finite-field analogues of the doubling method. In short, the doubling method is a way to define gamma factors of representations of groups $G$, and the main idea is to embed the group $G$ (such as $\GL_n(\FF_q)$) into a group $H$ of the same type but twice the size (such as $\GL_{2n}(\FF_q)$). Then for any irreducible representation $\pi$ of $G$ and ``generic'' character $\chi$ of $G$, one can try to prove a multiplicity one theorem
+    \[\dim\op{Hom}_{G\times G}\left(\op{Ind}_P^H\chi\otimes\pi\otimes\pi^\lor,\CC\right)=1,\]
+    where $P\subseteq H$ is a Siegel parabolic. This allows one to define a zeta function $Z(f,v,w)$ for $\pi$. The intertwining operator $I$ above enters the picture by providing a functional equation for $Z$, and this functional equation defines a gamma factor $\Gamma(\pi,\omega)$.
+    
+    However, to normalize this gamma factor, one needs to normalize the intertwining operator, which is tantamount to rescaling it so that $I\circ I$ has an eigenspace with eigenvalue of magnitude $1$. Thus, we are once again motivated to understand the eigenvalues of $I$, and we note that matrix Gauss sums in particular provide a clean way to normalize $I$ when $\chi$ is generic; see for example \cite[Section~3.6]{chang-doubling}.
+    We refer to \cite{chang-doubling} for more details.
+\end{remark}
 
 \subsection{Layout}
-We quickly explain the outline of the paper. In \cref{sec:rep-theory}, we examine the representation theory of $\Ind_P^G\chi$ and explain where the combinatorial applications arise. In \cref{sec:qcombo}, we provide the diagonalization of our intertwining operator. Lastly, in \cref{sec:gsum}, we evaluate our matrix Gauss sums and provide the combinatorial applications.
+We quickly explain the outline of the paper. In \Cref{sec:rep-theory}, we examine the representation theory of $\Ind_P^G\chi$ and explain where the combinatorial applications arise. In \Cref{sec:qcombo}, we provide the diagonalization of our intertwining operator. Lastly, in \Cref{sec:gsum}, we evaluate our matrix Gauss sums and provide the combinatorial applications.
 
 \subsection{Acknowledgements}
-This research was conducted during the University of Michigan REU during the summer of 2023; it was funded by the RTG Number Theory and Representation Theory grant. The author is particularly indebted to his advisors Elad Zelingher and Jialiang Zou for endlessly helpful advice and guidance in many aspects of this paper, from suggestions on the Hecke algebra to a plethora of helpful references. This project could not exist without them. The author is also grateful to Ofir Gorodetsky for aide in proving certain $q$-identities used in the article.
+This research was conducted during the University of Michigan REU during the summer of 2023; it was funded by the NSF RTG Number Theory and Representation Theory grant. The authors are particularly indebted to his advisors Elad Zelingher and Jialiang Zou for endlessly helpful advice and guidance in many aspects of this paper, from suggestions on the Hecke algebra to a plethora of helpful references. This project could not exist without them. The authors are also grateful to Ofir Gorodetsky for aide in proving certain $q$-identities used in the article, most notably by explaining how to use the packages \texttt{qZeil} and \texttt{qMultiSum}. As such, the authors are also grateful to the Research Institute for Symbolic Computation for access to those two packages.
 
-The author would also like to thank various friends in the undergraduate mathematics department at the University of California at Berkeley, in particular Jad Damaj, Sophie McCormick, and Zain Shields for diverting conversations regarding diagonalizing antitriangular matrices. Lastly, the author is most thankful to Hui Sun for consistent support throughout the research and writing process.
+The first author would also like to thank various friends in the undergraduate mathematics department at the University of California at Berkeley, in particular Jad Damaj, Sophie McCormick, and Zain Shields for diverting conversations regarding diagonalizing antitriangular matrices. Lastly, the first author is most thankful to Hui Sun for consistent companionship.
 
 \input{intertwining/rep}
 
